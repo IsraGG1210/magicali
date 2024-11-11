@@ -1,0 +1,8 @@
+# security.txt for Cozy Blocks – Page Builder for Gutenberg & Site Editor, Post Blocks, WooCommerce Blocks, Magazine Blocks, WordPress Gutenberg Blocks, Patterns and Templates Library
+Contact: mailto:support@cozythemes.com
+Encryption: https://patchstack.com/database/vdp/cozy-addons
+Acknowledgements: https://patchstack.com/database/vulnerability/cozy-addons
+Preferred-Languages: en
+Policy: https://patchstack.com/database/vdp/cozy-addons
+Expires: 2025-06-30T06:00:00.000Z
+SBOM: not applicable

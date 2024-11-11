@@ -1,0 +1,343 @@
+.wpcf7 .screen-reader-response {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	word-wrap: normal !important;
+}
+
+.wpcf7 form .wpcf7-response-output {
+	margin: 2em 0.5em 1em;
+	padding: 0.2em 1em;
+	border: 2px solid #00a0d2;
+	/* Blue */
+}
+
+.wpcf7 form.init .wpcf7-response-output,
+.wpcf7 form.resetting .wpcf7-response-output,
+.wpcf7 form.submitting .wpcf7-response-output {
+	display: none;
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+	border-color: #46b450;
+	/* Green */
+}
+
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+	border-color: #dc3232;
+	/* Red */
+}
+
+.wpcf7 form.spam .wpcf7-response-output {
+	border-color: #f56e28;
+	/* Orange */
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+	border-color: #ffb900;
+	/* Yellow */
+}
+
+.wpcf7-form-control-wrap {
+	position: relative;
+}
+
+.wpcf7-not-valid-tip {
+	color: #dc3232;
+	/* Red */
+	font-size: 1em;
+	font-weight: normal;
+	display: block;
+}
+
+.use-floating-validation-tip .wpcf7-not-valid-tip {
+	position: relative;
+	top: -2ex;
+	left: 1em;
+	z-index: 100;
+	border: 1px solid #dc3232;
+	background: #fff;
+	padding: .2em .8em;
+	width: 24em;
+}
+
+.wpcf7-list-item {
+	display: inline-block;
+	margin: 0 0 0 1em;
+}
+
+.wpcf7-list-item-label::before,
+.wpcf7-list-item-label::after {
+	content: " ";
+}
+
+.wpcf7-spinner {
+	visibility: hidden;
+	display: inline-block;
+	background-color: #23282d;
+	/* Dark Gray 800 */
+	opacity: 0.75;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 100%;
+	padding: 0;
+	margin: 0 24px;
+	position: relative;
+}
+
+form.submitting .wpcf7-spinner {
+	visibility: visible;
+}
+
+.wpcf7-spinner::before {
+	content: '';
+	position: absolute;
+	background-color: #fbfbfc;
+	/* Light Gray 100 */
+	top: 4px;
+	left: 4px;
+	width: 6px;
+	height: 6px;
+	border: none;
+	border-radius: 100%;
+	transform-origin: 8px 8px;
+	animation-name: spin;
+	animation-duration: 1000ms;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wpcf7-spinner::before {
+		animation-name: blink;
+		animation-duration: 2000ms;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes blink {
+	from {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.wpcf7 [inert] {
+	opacity: 0.5;
+}
+
+.wpcf7 input[type="file"] {
+	cursor: pointer;
+}
+
+.wpcf7 input[type="file"]:disabled {
+	cursor: default;
+}
+
+.wpcf7 .wpcf7-submit:disabled {
+	cursor: not-allowed;
+}
+
+.wpcf7 input[type="url"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"] {
+	direction: ltr;
+}
+
+.wpcf7-reflection>output {
+	display: list-item;
+	list-style: none;
+}
+
+.wpcf7-reflection>output[hidden] {
+	display: none;
+}
+
+/* CLASES DIEGO */
+.mi-clase {
+	background-color: #f0f0f0;
+	/* Color de fondo */
+	border: 1px solid #ccc;
+	/* Borde */
+	padding: 10px;
+	/* Relleno interno */
+	border-radius: 5px;
+	/* Esquinas redondeadas */
+	width: 98%;
+	/* Ancho del select */
+}
+
+.btn {
+	display: inline-block;
+	/* Para que se comporte como un botón */
+	font-weight: 400;
+	/* Peso de la fuente normal */
+	color: #fff;
+	/* Color del texto */
+	text-align: center;
+	/* Centra el texto */
+	text-decoration: none;
+	/* Sin subrayado */
+	padding: 0.5rem 1rem;
+	/* Relleno interno (arriba/abajo, izquierda/derecha) */
+	border: 1px solid transparent;
+	/* Borde inicial transparente */
+	border-radius: 0.25rem;
+	/* Esquinas redondeadas */
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+	/* Transiciones suaves */
+}
+
+.btn-sm {
+	padding: 0.25rem 0.5rem;
+	/* Relleno menor para el tamaño pequeño */
+	font-size: 0.875rem;
+	/* Tamaño de fuente más pequeño */
+	border-radius: 0.2rem;
+	/* Esquinas redondeadas más pequeñas */
+}
+
+.btn-md {
+	padding: 0.5rem 1rem;
+	/* Relleno intermedio para el tamaño mediano */
+	font-size: 1rem;
+	/* Tamaño de fuente intermedio */
+	border-radius: 0.25rem;
+	/* Esquinas redondeadas estándar */
+}
+
+.btn-lg {
+	padding: 0.75rem 1.25rem;
+	/* Mayor relleno para el tamaño grande */
+	font-size: 1.25rem;
+	/* Tamaño de fuente más grande */
+	border-radius: 0.3rem;
+	/* Esquinas redondeadas más grandes */
+}
+
+.btn-primary {
+	color: #fff;
+	/* Color del texto en el botón primario */
+	background-color: #007bff;
+	/* Color de fondo del botón primario */
+	border-color: #007bff;
+	/* Color del borde del botón primario */
+}
+
+.btn-primary:hover {
+	color: #fff;
+	/* Color del texto al pasar el mouse */
+	background-color: #0056b3;
+	/* Color de fondo más oscuro al pasar el mouse */
+	border-color: #0056b3;
+	/* Color del borde más oscuro al pasar el mouse */
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+	outline: none;
+	/* Sin contorno al enfocar */
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+	/* Sombra al enfocar */
+}
+
+
+/* ESTILOS FORMS */
+.formulario {
+	/* max-width: 500px; */
+	/* Ancho máximo del formulario */
+	margin: 0 auto;
+	/* Centrar el formulario en la página */
+	padding: 20px;
+	/* Espaciado interno */
+	border: 1px solid #ccc;
+	/* Borde del formulario */
+	border-radius: 8px;
+	/* Bordes redondeados */
+	background-color: #f9f9f9;
+	/* Fondo del formulario */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	/* Sombra */
+}
+
+.formulario-group {
+	margin-bottom: 15px;
+	/* Espacio entre los grupos de campos */
+}
+
+.formulario label {
+	display: block;
+	/* Que las etiquetas ocupen todo el ancho */
+	margin-bottom: 5px;
+	/* Espacio entre la etiqueta y el campo */
+	font-weight: bold;
+	/* Negrita para las etiquetas */
+}
+
+.formulario input[type="email"],
+.formulario input[type="tel"],
+.formulario select {
+	width: 100%;
+	/* Que los campos ocupen todo el ancho */
+	padding: 10px;
+	/* Espaciado interno en los campos */
+	border: 1px solid #ccc;
+	/* Borde de los campos */
+	border-radius: 4px;
+	/* Bordes redondeados en los campos */
+	box-sizing: border-box;
+	/* Incluye padding y borde en el ancho total */
+}
+
+.formulario input[type="checkbox"] {
+	margin-right: 5px;
+	/* Espacio a la derecha del checkbox */
+}
+
+.formulario-submit {
+	background-color: #007BFF;
+	/* Color de fondo del botón */
+	color: white;
+	/* Color del texto del botón */
+	border: none;
+	/* Sin borde */
+	padding: 10px 15px;
+	/* Espaciado interno del botón */
+	border-radius: 4px;
+	/* Bordes redondeados */
+	cursor: pointer;
+	/* Cambia el cursor al pasar por encima */
+	transition: background-color 0.3s;
+	/* Efecto de transición */
+}
+
+.formulario-submit:hover {
+	background-color: #0056b3;
+	/* Color de fondo al pasar el cursor */
+}
