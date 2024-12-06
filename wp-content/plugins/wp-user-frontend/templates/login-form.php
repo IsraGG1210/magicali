@@ -3,6 +3,7 @@
   If you would like to edit this file, copy it to your current theme's directory and edit it there.
   WPUF will always look in your theme's directory first, before using this default template.
  */
+
 ?>
 <div class="login" id="wpuf-login-form">
 
@@ -19,8 +20,10 @@
         wpuf()->frontend->simple_login->show_errors();
         wpuf()->frontend->simple_login->show_messages();
     ?>
-
-    <form name="loginform" class="wpuf-login-form" id="loginform" action="<?php echo esc_attr( $action_url ); ?>" method="post">
+    
+        <form name="loginform" class="wpuf-login-form" id="loginform" action="<?php echo esc_attr( $action_url ); ?>" method="post">
+            
+        
         <p>
             <label for="wpuf-user_login"><?php esc_html_e( 'Username or Email', 'wp-user-frontend' ); ?></label>
             <input type="text" name="log" id="wpuf-user_login" class="input" value="" size="20" />
@@ -84,6 +87,7 @@
             <?php do_action( 'wpuf_login_form_bottom' ); ?>
         </p>
     </form>
-
+    
     <?php echo wp_kses_post( wpuf()->frontend->simple_login->get_action_links( [ 'login' => false ] ) ); ?>
+    
 </div>

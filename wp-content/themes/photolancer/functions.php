@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('PHOTOLANCER_VERSION')) {
     // Replace the version number of the theme on each release.
     define('PHOTOLANCER_VERSION', wp_get_theme()->get('Version'));
@@ -112,21 +113,25 @@ function photolancer_add_woocommerce_support()
 add_action('after_setup_theme', 'photolancer_add_woocommerce_support');
 
 /* NUEVO */
-function obtener_gurus_activos() {
+function obtener_gurus_activos()
+{
     $args = array(
         'role'    => 'guru', // Cambia 'guru' al slug del rol que estás usando
         'fields' => array('ID', 'display_name') // Devuelve solo el ID y el nombre para el select
     );
 
     $usuarios = get_users($args);
-    
+
     return $usuarios;
 }
 
-function cambiar_valor_option_js() {
-    ?>
+
+
+function cambiar_valor_option_js()
+{
+?>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Busca el select por el atributo name
             var selectGuru = document.querySelector('select[name="guru"]');
 
@@ -143,7 +148,8 @@ function cambiar_valor_option_js() {
     <?php
 }
 
-function rellenar_select_gurus($tag, $unused) {
+function rellenar_select_gurus($tag, $unused)
+{
     if ($tag['name'] === 'guru') {
         $gurus = obtener_gurus_activos();
 
@@ -154,10 +160,10 @@ function rellenar_select_gurus($tag, $unused) {
         $container = "\n";
         foreach ($gurus as $guru) {
             // Agrega cada gurú a las opciones
-            if(count($gurus) == $i){
+            if (count($gurus) == $i) {
                 $container == "";
             }
-            $options .= $container.'<option value="' . esc_attr($guru->ID) . '">' . esc_html($guru->display_name) . '</option>';
+            $options .= $container . '<option value="' . esc_attr($guru->ID) . '">' . esc_html($guru->display_name) . '</option>';
             $i++;
         }
 
@@ -174,15 +180,16 @@ function rellenar_select_gurus($tag, $unused) {
 }
 
 // Añadir el campo personalizado en el perfil del usuario
-function agregar_campo_suscripcion_usuario($user) {
-    if(in_array('subscriber', $user->roles)) {
+function agregar_campo_suscripcion_usuario($user)
+{
+    if (in_array('subscriber', $user->roles)) {
     ?>
         <h3>Estado de Suscripción</h3>
         <table class="form-table">
             <tr>
                 <th><label for="suscripcion_activa">Suscripción Activa</label></th>
                 <td>
-                    <input type="checkbox" name="suscripcion_activa" id="suscripcion_activa" value="1" <?php checked( get_user_meta( $user->ID, 'suscripcion_activa', true ), '1' ); ?> />
+                    <input type="checkbox" name="suscripcion_activa" id="suscripcion_activa" value="1" <?php checked(get_user_meta($user->ID, 'suscripcion_activa', true), '1'); ?> />
                     <span class="description">Marca si la suscripción está activa.</span>
                 </td>
             </tr>
@@ -194,8 +201,9 @@ add_action('show_user_profile', 'agregar_campo_suscripcion_usuario');
 add_action('edit_user_profile', 'agregar_campo_suscripcion_usuario');
 
 // Guardar el campo personalizado
-function guardar_campo_suscripcion_usuario($user_id) {
-    if(!current_user_can('edit_user', $user_id)) {
+function guardar_campo_suscripcion_usuario($user_id)
+{
+    if (!current_user_can('edit_user', $user_id)) {
         return false;
     }
     update_user_meta($user_id, 'suscripcion_activa', isset($_POST['suscripcion_activa']) ? '1' : '0');
@@ -208,7 +216,8 @@ add_action('wp_footer', 'cambiar_valor_option_js');
 
 //TABLA SUSCRIPTORES ACTIVOS
 // Añadir un menú en el administrador para mostrar los suscriptores
-function agregar_menu_suscriptores() {
+function agregar_menu_suscriptores()
+{
     add_menu_page(
         'Suscriptores', // Título de la página
         'Suscriptores', // Nombre del menú
@@ -222,7 +231,8 @@ function agregar_menu_suscriptores() {
 add_action('admin_menu', 'agregar_menu_suscriptores');
 
 // Función para mostrar la tabla de suscriptores
-function mostrar_suscriptores() {
+function mostrar_suscriptores()
+{
     ?>
     <div class="wrap">
         <h1>Lista de Suscriptores</h1>
@@ -248,14 +258,14 @@ function mostrar_suscriptores() {
                     foreach ($users as $user) {
                         // Obtener el estado de la suscripción del usuario
                         $suscripcion_activa = get_user_meta($user->ID, 'suscripcion_activa', true);
-                        ?>
+                ?>
                         <tr>
                             <td><?php echo esc_html($user->ID); ?></td>
                             <td><?php echo esc_html($user->display_name); ?></td>
                             <td><?php echo esc_html($user->user_email); ?></td>
                             <td><?php echo $suscripcion_activa == '1' ? 'Activa' : 'Inactiva'; ?></td>
                         </tr>
-                        <?php
+                <?php
                     }
                 } else {
                     echo '<tr><td colspan="4">No hay suscriptores.</td></tr>';
@@ -264,7 +274,7 @@ function mostrar_suscriptores() {
             </tbody>
         </table>
     </div>
-    <?php
+<?php
 }
 
 // Crear un shortcode para mostrar la lista de suscriptores
@@ -390,25 +400,42 @@ function mostrar_suscriptores() {
 
     return ob_get_clean(); // Devolver el contenido almacenado en el buffer
 } */
-function mostrar_suscriptores_shortcode() {
+function mostrar_suscriptores_shortcode()
+{
     ob_start(); // Iniciar el almacenamiento en buffer de salida
 
     // Verificar si se ha enviado un formulario para activar/desactivar suscripciones
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && isset($_POST['user_id'])) {
         $user_id = intval($_POST['user_id']);
+
         $suscripcion_activa = get_user_meta($user_id, 'suscripcion_activa', true);
         $new_status = $suscripcion_activa == '1' ? '0' : '1';
+        if ($_POST['action'] == 'activate') {
+            update_user_meta($user_id, 'fecha_inicio_suscripcion', date('Y-m-d', current_time('timestamp')));
+            $fecha_inicio = get_user_meta($user_id, 'fecha_inicio_suscripcion', true);
+            if (get_user_meta($user_id, 'plan_contratado', true) == 74) {
+                $fecha_finalizacion = date('Y-m-d', strtotime($fecha_inicio . ' +1 month'));
+                update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $fecha_finalizacion);
+            } else {
+                $fecha_finalizacion = date('Y-m-d', strtotime($fecha_inicio . ' +1 year'));
+                update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $fecha_finalizacion);
+            }
+        } else {
+            update_user_meta($user_id, 'fecha_inicio_suscripcion', '0000-00-00');
+            update_user_meta($user_id, 'fecha_finalizacion_suscripcion', '0000-00-00');
+        }
         update_user_meta($user_id, 'suscripcion_activa', $new_status);
     }
 
     // Obtener los filtros
+
     $nombre = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
     $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
     $estatus = isset($_POST['estatus']) ? sanitize_text_field($_POST['estatus']) : '';
     $fecha_inicio = isset($_POST['fecha_inicio']) ? sanitize_text_field($_POST['fecha_inicio']) : '';
     $fecha_final = isset($_POST['fecha_final']) ? sanitize_text_field($_POST['fecha_final']) : '';
 
-    ?>
+?>
     <style>
         .btn {
             display: inline-block;
@@ -424,36 +451,43 @@ function mostrar_suscriptores_shortcode() {
             border-radius: 0.25rem;
             transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
         }
+
         .btn-danger {
             color: #fff;
             background-color: #dc3545;
             border-color: #dc3545;
         }
+
         .btn-danger:hover {
             color: #fff;
             background-color: #c82333;
             border-color: #bd2130;
         }
+
         .btn-success {
             color: #fff;
             background-color: #28a745;
             border-color: #28a745;
         }
+
         .btn-success:hover {
             color: #fff;
             background-color: #218838;
             border-color: #1e7e34;
         }
+
         .btn-info {
             color: white;
             background-color: #17a2b8;
             border-color: #17a2b8;
         }
+
         .btn-info:hover {
             background-color: #138496;
             border-color: #138496;
             color: white;
         }
+
         .form-control {
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
@@ -461,19 +495,23 @@ function mostrar_suscriptores_shortcode() {
             font-size: 1rem;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
         .form-control:focus {
             border-color: #80bdff;
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
+
         .form-control::placeholder {
             color: #6c757d;
             opacity: 1;
         }
+
         .mb-3 {
             margin-bottom: 1rem;
         }
-        .filter-style{
+
+        .filter-style {
             padding-bottom: 20px;
             justify-content: end;
             display: flex;
@@ -508,7 +546,10 @@ function mostrar_suscriptores_shortcode() {
                                                     <th>ID</th>
                                                     <th>Nombre</th>
                                                     <th>Email</th>
-                                                    <th>Suscripción Activa</th>
+                                                    <th>Fecha de Solicitud</th>
+                                                    <th>Fecha Inicio</th>
+                                                    <th>Fecha Finalizacion </th>
+                                                    <th>Estatus</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -517,6 +558,7 @@ function mostrar_suscriptores_shortcode() {
                                                 // Obtener usuarios con el rol de subscriber
                                                 $args = array(
                                                     'role' => 'subscriber',
+                                                    'role' => 'guru',
                                                 );
                                                 $user_query = new WP_User_Query($args);
                                                 $users = $user_query->get_results();
@@ -524,11 +566,14 @@ function mostrar_suscriptores_shortcode() {
                                                 // Filtrar usuarios
                                                 if (!empty($users)) {
                                                     // Filtrar resultados
-                                                    $filtered_users = array_filter($users, function($user) use ($nombre, $email, $estatus) {
+                                                    $filtered_users = array_filter($users, function ($user) use ($nombre, $email, $fecha_inicio, $estatus) {
                                                         $suscripcion_activa = get_user_meta($user->ID, 'suscripcion_activa', true);
+
+
                                                         return (!$nombre || stripos($user->display_name, $nombre) !== false) &&
-                                                               (!$email || stripos($user->user_email, $email) !== false) &&
-                                                               ($estatus === '' || $suscripcion_activa == $estatus);
+                                                            (!$email || stripos($user->user_email, $email) !== false) &&
+                                                            (!$fecha_inicio || stripos($user->user_registered, $fecha_inicio) !== false) &&
+                                                            ($estatus === '' || $suscripcion_activa == $estatus);
                                                     });
 
                                                     // Paginación
@@ -544,24 +589,30 @@ function mostrar_suscriptores_shortcode() {
                                                     // Mostrar usuarios
                                                     foreach ($paged_users as $user) {
                                                         $suscripcion_activa = get_user_meta($user->ID, 'suscripcion_activa', true);
-                                                        ?>
+                                                ?>
                                                         <tr style="height: 50px; border-bottom: 1px solid #ccc; vertical-align: middle;">
                                                             <td><?php echo esc_html($user->ID); ?></td>
                                                             <td><?php echo esc_html($user->display_name); ?></td>
                                                             <td><?php echo esc_html($user->user_email); ?></td>
+                                                            <td><?php echo esc_html($user->user_registered); ?></td>
+                                                            <td><?php echo get_user_meta($user->ID, 'fecha_inicio_suscripcion', true) ?></td>
+                                                            <td><?php echo get_user_meta($user->ID, 'fecha_finalizacion_suscripcion', true) ?></td>
                                                             <td><?php echo $suscripcion_activa == '1' ? 'Activa' : 'Inactiva'; ?></td>
                                                             <td>
                                                                 <form method="POST" style="display: inline;">
                                                                     <input type="hidden" name="user_id" value="<?php echo esc_attr($user->ID); ?>">
                                                                     <input type="hidden" name="action" value="<?php echo $suscripcion_activa == '1' ? 'deactivate' : 'activate'; ?>">
                                                                     <button type="submit" class="btn <?php echo $suscripcion_activa == '1' ? 'btn-danger' : 'btn-success'; ?>">
-                                                                        <?php echo $suscripcion_activa == '1' ? 'Desactivar' : 'Activar'; ?>
+                                                                        <?php echo $suscripcion_activa == '1' ? 'Desactivar' : 'Activar';
+                                                                        if ($suscripcion_activa == '1') {
+                                                                            $user_id = get_current_user_id();
+                                                                        } ?>
                                                                     </button>
                                                                 </form>
-                                                                <button class="btn btn-info">Detalles</button>
+                                                                <!-- <button class="btn btn-info">Detalles</button> -->
                                                             </td>
                                                         </tr>
-                                                        <?php
+                                                <?php
                                                     }
                                                 } else {
                                                     echo '<tr><td colspan="5">No hay suscriptores.</td></tr>';
@@ -603,21 +654,35 @@ function mostrar_suscriptores_shortcode() {
             </div>
         </div>
     </section>
-    <?php
+<?php
 
     return ob_get_clean(); // Retornar el contenido del buffer
 }
 
 
-
 add_shortcode('lista_suscriptores', 'mostrar_suscriptores_shortcode');
+
+
+
+
+function sesiones()
+{
+    if (is_user_logged_in()) {
+        echo 'sesion iniciada';
+    } else {
+        echo 'sesion no iniciada';
+    }
+}
+
+add_shortcode('revisa_sesion', 'sesiones');
 
 // functions.php
 
-function photolancer_enqueue_styles() {
+function photolancer_enqueue_styles()
+{
     // Encolar el archivo de estilos principal del tema
     wp_enqueue_style('photolancer-style', get_stylesheet_uri());
-    
+
     // Encolar otros estilos si es necesario
     // wp_enqueue_style('photolancer-custom', get_template_directory_uri() . '/path/to/your/custom.css');
 }
@@ -629,7 +694,8 @@ add_action('wp_ajax_nopriv_registrar_solicitud', 'registrar_solicitud'); // Si d
 
 
 
-function registrar_solicitud() {
+function registrar_solicitud()
+{
     if (!is_user_logged_in()) {
         wp_send_json_error('Usuario no autenticado.');
         wp_die();
@@ -708,7 +774,8 @@ function registrar_solicitud() {
 } */
 
 /* MOSTRAR SOLICITUDES */
-function mostrar_solicitudes_shortcode() {
+function mostrar_solicitudes_shortcode()
+{
     global $wpdb;
 
     ob_start(); // Iniciar el almacenamiento en buffer de salida
@@ -723,8 +790,8 @@ function mostrar_solicitudes_shortcode() {
         $wpdb->update(
             'wp_solicitudes',
             array(
-                'estado' => $nuevo_estado, 
-                'fecha_actualizacion' => current_time('mysql'), 
+                'estado' => $nuevo_estado,
+                'fecha_actualizacion' => current_time('mysql'),
                 'hora_solicitud' => $nueva_hora // Incluir la nueva hora
             ),
             array('id' => $solicitud_id),
@@ -786,7 +853,7 @@ function mostrar_solicitudes_shortcode() {
     // Ejecutar la consulta
     $solicitudes = $wpdb->get_results($query);
 
-    ?>
+?>
     <style>
         .btn {
             display: inline-block;
@@ -802,36 +869,43 @@ function mostrar_solicitudes_shortcode() {
             border-radius: 0.25rem;
             transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
         }
+
         .btn-danger {
             color: #fff;
             background-color: #dc3545;
             border-color: #dc3545;
         }
+
         .btn-danger:hover {
             color: #fff;
             background-color: #c82333;
             border-color: #bd2130;
         }
+
         .btn-success {
             color: #fff;
             background-color: #28a745;
             border-color: #28a745;
         }
+
         .btn-success:hover {
             color: #fff;
             background-color: #218838;
             border-color: #1e7e34;
         }
+
         .btn-info {
             color: white;
             background-color: #17a2b8;
             border-color: #17a2b8;
         }
+
         .btn-info:hover {
             background-color: #138496;
             border-color: #138496;
             color: white;
         }
+
         .form-control {
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
@@ -839,27 +913,34 @@ function mostrar_solicitudes_shortcode() {
             font-size: 1rem;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
         .form-control:focus {
             border-color: #80bdff;
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
+
         .form-control::placeholder {
             color: #6c757d;
             opacity: 1;
         }
+
         .mb-3 {
             margin-bottom: 1rem;
         }
-        .filter-style{
+
+        .filter-style {
             padding-bottom: 20px;
             justify-content: end;
             display: flex;
-        }        .pagination {
+        }
+
+        .pagination {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
+
         .pagination a {
             margin: 0 5px;
             padding: 10px;
@@ -867,10 +948,12 @@ function mostrar_solicitudes_shortcode() {
             border: 1px solid #007bff;
             color: #007bff;
         }
+
         .pagination a.active {
             background-color: #007bff;
             color: white;
         }
+
         .pagination a:hover {
             background-color: #0056b3;
             color: white;
@@ -950,7 +1033,7 @@ function mostrar_solicitudes_shortcode() {
             <?php endif; ?>
         </div>
     </section>
-    <?php
+<?php
 
     return ob_get_clean(); // Devolver el contenido almacenado
 }
@@ -963,7 +1046,8 @@ add_shortcode('mostrar_solicitudes', 'mostrar_solicitudes_shortcode');
 add_action('wp_ajax_nopriv_get_active_services', 'get_active_services');
 add_action('wp_ajax_get_active_services', 'get_active_services');
 
-function get_active_services() {
+function get_active_services()
+{
     global $wpdb;
     //$tabla = $wpdb->prefix . 'catalogo_servicios';
     $tabla = $wpdb->prefix . 'wc_product_meta_lookup';
@@ -981,15 +1065,269 @@ function get_active_services() {
     wp_die();
 }
 
-function cargar_formulario_personalizado() {
-    ob_start();
-    include get_template_directory() . '/formulario-suscriptor.php';
+function cargar_formulario_personalizado()
+{
+    ob_start(); ?>
+    <div class="formulario-contenedor">
+        <?php
+        global $wpdb;
+        // Procesa el formulario cuando se envía
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Sanitiza los datos del formulario para seguridad
+            $correo = sanitize_email($_POST['correo']);
+            $telefono = sanitize_text_field($_POST['telefono']);
+            $plan = sanitize_text_field($_POST['plan']);
+            $acepta_terminos = isset($_POST['terminos']) ? true : false;
+            $contraseña = ($_POST['contrasena']);
+            $usuario = sanitize_text_field($_POST['nom_usuario']);
+            $servicios_seleccionados = array_map('sanitize_text_field', $_POST['servicios']);
+            // Validación de términos y condiciones
+            if (!$acepta_terminos) {
+                echo "<p style='color: red;'>Debes aceptar los términos y condiciones.</p>";
+            } else {
+                $query = $wpdb->prepare("SELECT COUNT(*) FROM wp_users WHERE user_login = %s OR user_email = %s", $usuario, $correo);
+                $conteo = $wpdb->get_var($query);
+                /* die("numero de resultados" .$conteo ); */
+                if ($conteo > 0) {
+                    echo "Nombre o correo repetido";
+                } else {
+                    // Aquí puedes realizar acciones como enviar un correo o guardar en la base de datos.
+                    // Ejemplo: wp_mail($correo_destinatario, "Nuevo mensaje de contacto", "Teléfono: $telefono, Plan: $plan");
+                    global $wpdb;
+                    // Muestra un mensaje de agradecimiento
+                    $query = $wpdb->prepare(
+                        "INSERT INTO wp_users (user_email, user_pass, user_login, display_name, user_nicename) 
+            VALUES (%s, PASSWORD(%s), %s, %s, %s)",
+                        $correo,
+                        $contraseña,
+                        $usuario,
+                        $usuario,
+                        $usuario
+                    );
+                    $result = $wpdb->query($query);
+                    $log_usuario = get_user_by('login', $usuario);
+                    $role = 'guru';
+                    $log_usuario->set_role($role);
+                    $metausu = $log_usuario->ID;
+                    if ($metausu != 0) {
+                        update_user_meta($metausu, 'plan_contratado', $plan);
+                    }
+                    $tabla_relacional = $wpdb->prefix . 'servicios_usuarios';
+                    foreach ($servicios_seleccionados as $servicio_id) {
+                        $query = $wpdb->prepare(
+                            "INSERT INTO $tabla_relacional (id_usuario, id_servicio) VALUES (%d, %d)",
+                            $metausu,
+                            $servicio_id
+                        );
+                        error_log("Consulta INSERT: $query");
+                        $wpdb->query($query);
+                    }
+                    echo "gracias por su suscripcion";
+                }
+            }
+        }
+        ?>
+        <style>
+            .servicios-lista {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .servicios-lista li {
+                margin-bottom: 10px;
+            }
+
+            .formulario {
+                /* max-width: 500px; */
+                /* Ancho máximo del formulario */
+                margin: 0 auto;
+                /* Centrar el formulario en la página */
+                padding: 20px;
+                /* Espaciado interno */
+                border: 1px solid #ccc;
+                /* Borde del formulario */
+                border-radius: 8px;
+                /* Bordes redondeados */
+                background-color: #f9f9f9;
+                /* Fondo del formulario */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                /* Sombra */
+            }
+
+            .formulario-group {
+                margin-bottom: 15px;
+                /* Espacio entre los grupos de campos */
+            }
+
+            .formulario label {
+                display: block;
+                /* Que las etiquetas ocupen todo el ancho */
+                margin-bottom: 5px;
+                /* Espacio entre la etiqueta y el campo */
+                font-weight: bold;
+                /* Negrita para las etiquetas */
+            }
+
+            .formulario input[type="email"],
+            .formulario input[type="text"],
+            .formulario input[type="password"],
+            .formulario input[type="tel"],
+            .formulario select {
+                width: 100%;
+                /* Que los campos ocupen todo el ancho */
+                padding: 10px;
+                /* Espaciado interno en los campos */
+                border: 1px solid #ccc;
+                /* Borde de los campos */
+                border-radius: 4px;
+                /* Bordes redondeados en los campos */
+                box-sizing: border-box;
+                /* Incluye padding y borde en el ancho total */
+            }
+
+            .formulario input[type="checkbox"] {
+                margin-right: 5px;
+                /* Espacio a la derecha del checkbox */
+            }
+
+            .formulario-submit {
+                background-color: #007BFF;
+                /* Color de fondo del botón */
+                color: white;
+                /* Color del texto del botón */
+                border: none;
+                /* Sin borde */
+                padding: 10px 15px;
+                /* Espaciado interno del botón */
+                border-radius: 4px;
+                /* Bordes redondeados */
+                cursor: pointer;
+                /* Cambia el cursor al pasar por encima */
+                transition: background-color 0.3s;
+                /* Efecto de transición */
+            }
+
+            .formulario-submit:hover {
+                background-color: #0056b3;
+                /* Color de fondo al pasar el cursor */
+            }
+        </style>
+
+        <!-- Formulario HTML -->
+        <form action="" method="post" class="formulario" onsubmit="return validarCheckbox()">
+            <div class="formulario-group">
+                <label for="correo">Correo de Contacto:</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+
+            <div class="formulario-group">
+                <label for="nom_usuario">Nombre de Usuario:</label>
+                <input type="text" id="nom_usuario" name="nom_usuario" required>
+            </div>
+
+            <div class="formulario-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" minlength="8" required>
+            </div>
+
+            <div class="formulario-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="servicios">Servicios que ofreces</label>
+                <ul class="servicios-lista">
+                    <?php
+                    global $wpdb;
+                    $servicios = $wpdb->get_results("SELECT id, nombre FROM wp_catalogo_servicios WHERE estatus = 'Activo'", ARRAY_A);
+
+                    if (!empty($servicios)) {
+                        foreach ($servicios as $servicio_nombre) {
+                    ?>
+                            <li>
+                                <label for="<?php echo esc_attr($servicio_nombre['nombre']); ?>" class="servicio-item">
+                                    <input type="checkbox"
+                                        name="servicios[]"
+                                        id="<?php echo esc_attr($servicio_nombre['id']); ?>"
+                                        value="<?php echo esc_attr($servicio_nombre['id']); ?>">
+                                    <span><?php echo esc_html($servicio_nombre['nombre']); ?></span>
+                                </label>
+                            </li>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <input type="text" name="" id="" value="No hay servicios disponibles" disabled>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="formulario-group">
+                <label for="plan">Selecciona un Plan:</label>
+                <select id="plan" name="plan" required>
+                    <option value="" disabled selected>Elige un plan</option>
+
+                </select>
+            </div>
+            <div class="formulario-group">
+                <label for="terminos">
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    Acepto los <a href="/terminos-y-condiciones" target="_blank">términos y condiciones</a>
+                </label>
+            </div>
+
+            <input type="submit" value="Enviar" class="formulario-submit">
+        </form>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const selectPlan = document.getElementById('plan');
+
+                // Función para cargar los servicios activos
+                function cargarServiciosActivos() {
+                    fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=get_active_services')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                data.data.forEach(servicio => {
+                                    const option = document.createElement('option');
+                                    option.value = servicio.id;
+                                    option.textContent = servicio.nombre;
+                                    selectPlan.appendChild(option);
+                                });
+                            } else {
+                                console.error('No se encontraron servicios activos');
+                            }
+                        })
+                        .catch(error => console.error('Error en la solicitud AJAX:', error));
+                }
+
+                // Llamar a la función para cargar servicios al cargar la página
+                cargarServiciosActivos();
+            });
+
+            function validarCheckbox() {
+                const checkboxes = document.querySelectorAll('input[name="servicios[]"]:checked');
+                if (checkboxes.length === 0) {
+                    alert('Por favor, selecciona al menos un servicio.');
+                    return false; // Evita el envío del formulario
+                }
+                return true; // Permite el envío del formulario
+            }
+        </script>
+    </div>
+<?php
+
+    /* include get_template_directory() . '/formulario-suscriptor.php'; */
     return ob_get_clean();
 }
 add_shortcode('formulario_personalizado', 'cargar_formulario_personalizado');
 
 // Agregar opciones dinámicas de servicios al formulario de Contact Form 7
-function cargar_servicios_activos($tag) {
+function cargar_servicios_activos($tag)
+{
     if ($tag['name'] !== 'servicio_activo') return $tag;
 
     global $wpdb;
@@ -999,7 +1337,7 @@ function cargar_servicios_activos($tag) {
         $opciones = [];
         $i = 0;
         foreach ($resultados as $servicio) {
-            if($i == 0){
+            if ($i == 0) {
                 $opciones[] = "Seleccione un servicio";
                 $values[] = "";
             }
@@ -1020,7 +1358,8 @@ function cargar_servicios_activos($tag) {
 }
 add_filter('wpcf7_form_tag', 'cargar_servicios_activos', 10, 2);
 
-function mostrar_catalogo_servicios_shortcode() {
+function mostrar_catalogo_servicios_shortcode()
+{
     global $wpdb;
 
     ob_start(); // Iniciar el almacenamiento en buffer de salida
@@ -1035,7 +1374,7 @@ function mostrar_catalogo_servicios_shortcode() {
         $wpdb->update(
             'wp_catalogo_servicios',
             array(
-                'nombre' => $nuevo_nombre, 
+                'nombre' => $nuevo_nombre,
                 'estatus' => $nuevo_estatus,
                 'fecha_registro' => current_time('mysql') // Actualizar la fecha de registro si es necesario
             ),
@@ -1073,7 +1412,7 @@ function mostrar_catalogo_servicios_shortcode() {
     }
     $servicios = $wpdb->get_results($query);
 
-    ?>
+?>
     <style>
         .btn {
             display: inline-block;
@@ -1089,36 +1428,43 @@ function mostrar_catalogo_servicios_shortcode() {
             border-radius: 0.25rem;
             transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
         }
+
         .btn-danger {
             color: #fff;
             background-color: #dc3545;
             border-color: #dc3545;
         }
+
         .btn-danger:hover {
             color: #fff;
             background-color: #c82333;
             border-color: #bd2130;
         }
+
         .btn-success {
             color: #fff;
             background-color: #28a745;
             border-color: #28a745;
         }
+
         .btn-success:hover {
             color: #fff;
             background-color: #218838;
             border-color: #1e7e34;
         }
+
         .btn-info {
             color: white;
             background-color: #17a2b8;
             border-color: #17a2b8;
         }
+
         .btn-info:hover {
             background-color: #138496;
             border-color: #138496;
             color: white;
         }
+
         .form-control {
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
@@ -1126,38 +1472,49 @@ function mostrar_catalogo_servicios_shortcode() {
             font-size: 1rem;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
         .form-control:focus {
             border-color: #80bdff;
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
+
         .form-control::placeholder {
             color: #6c757d;
             opacity: 1;
         }
+
         .mb-3 {
             margin-bottom: 1rem;
         }
+
         .filter-style {
             padding-bottom: 20px;
             justify-content: end;
             display: flex;
         }
+
         .error {
-            color: red; /* Color del texto de error */
-            margin-bottom: 15px; /* Espacio inferior */
+            color: red;
+            /* Color del texto de error */
+            margin-bottom: 15px;
+            /* Espacio inferior */
         }
+
         .success {
-            color: green; /* Color del texto de éxito */
-            margin-bottom: 15px; /* Espacio inferior */
+            color: green;
+            /* Color del texto de éxito */
+            margin-bottom: 15px;
+            /* Espacio inferior */
         }
+
         .div-center {
             display: flex;
             justify-content: end;
             padding-bottom: 10px;
         }
     </style>
-    
+
     <section>
         <!-- Filtro para buscar servicios -->
         <div class="filter-style">
@@ -1184,17 +1541,17 @@ function mostrar_catalogo_servicios_shortcode() {
             </thead>
             <tbody>
                 <form method="POST" action="">
-                <tr>
-                    <td></td>
-                    <td><input type="text" name="nuevo_servicio" class="form-control" placeholder="Nombre del Servicio" required></td>
-                    <td>
-                        <select name="nuevo_estatus_servicio" class="form-control" required>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                    </td>
-                    <td><button type="submit" class="btn btn-success">Crear Servicio</button></td>
-                </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" name="nuevo_servicio" class="form-control" placeholder="Nombre del Servicio" required></td>
+                        <td>
+                            <select name="nuevo_estatus_servicio" class="form-control" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </td>
+                        <td><button type="submit" class="btn btn-success">Crear Servicio</button></td>
+                    </tr>
                 </form>
                 <?php if ($servicios): ?>
                     <?php foreach ($servicios as $servicio): ?>
@@ -1217,20 +1574,23 @@ function mostrar_catalogo_servicios_shortcode() {
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4"><center>No se encontraron servicios.</center></td>
+                        <td colspan="4">
+                            <center>No se encontraron servicios.</center>
+                        </td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </section>
-    <?php
+<?php
 
     return ob_get_clean(); // Devolver el contenido almacenado
 }
 
 
 // Función para verificar si el nombre del servicio ya existe
-function nombre_servicio_exists($nombre) {
+function nombre_servicio_exists($nombre)
+{
     global $wpdb; // Acceso a la base de datos de WordPress
 
     // Consulta para verificar si ya existe el servicio
@@ -1241,7 +1601,8 @@ function nombre_servicio_exists($nombre) {
 }
 
 // Suponiendo que ya tienes una función para guardar el servicio
-function guardar_servicio($nombre_servicio, $estatus_servicio) {
+function guardar_servicio($nombre_servicio, $estatus_servicio)
+{
     global $wpdb; // Acceso a la base de datos de WordPress
 
     // Guardar el servicio en la base de datos
@@ -1257,7 +1618,8 @@ add_shortcode('mostrar_catalogo_servicios', 'mostrar_catalogo_servicios_shortcod
 
 add_action('wpcf7_before_send_mail', 'evitar_envio_correo');
 
-function evitar_envio_correo($contact_form) {
+function evitar_envio_correo($contact_form)
+{
     // Verifica que estamos trabajando con el formulario correcto
     if ($contact_form->id() == 18) { // Cambia 18 por el ID de tu formulario
         // Evita que se envíe el correo
@@ -1267,7 +1629,8 @@ function evitar_envio_correo($contact_form) {
 
 add_action('wpcf7_mail_sent', 'guardar_solicitud');
 
-function guardar_solicitud($contact_form) {
+function guardar_solicitud($contact_form)
+{
     // Obtén los datos del formulario
     $submission = WPCF7_Submission::get_instance();
     if ($submission) {
@@ -1307,3 +1670,861 @@ function guardar_solicitud($contact_form) {
         }
     }
 }
+
+
+
+function editar_perfil_shortcode()
+{
+    ob_start(); // Captura la salida del formulario para retornarla
+    $all_cookies = $_COOKIE;
+
+    // Buscar la cookie 'wordpress_logged_in'
+    foreach ($all_cookies as $key => $value) {
+        if (strpos($key, 'wordpress_logged_in_') === 0) { // Verifica que comience con 'wordpress_logged_in_'
+            $logged_in_cookie = $value;
+
+            if (isset($logged_in_cookie)) {
+                $parts = explode('|', $logged_in_cookie);
+                if (count($parts) >= 3) {
+                    $username = $parts[0];
+                    global $wpdb;
+
+                    $user_data = $wpdb->get_row(
+                        $wpdb->prepare(
+                            "SELECT * FROM `wp_users` WHERE `user_login` = %s;",
+                            $username
+                        ),
+                        ARRAY_A
+                    );
+                } else {
+                    echo "formato de cookie no valido";
+                }
+            }
+            /*  break; */ // Salimos del bucle si encontramos la cookie
+        }
+    }
+    $id_usu = get_current_user_id();
+    $tabla_relacional = $wpdb->prefix . 'servicios_usuarios';
+    $servicios_seleccionados = $wpdb->get_col(
+        $wpdb->prepare(
+            "SELECT id_servicio FROM $tabla_relacional WHERE id_usuario = %d",
+            $id_usu
+        )
+    );
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $nickname = sanitize_text_field($_POST['nickname']);
+        $descripcion = sanitize_textarea_field($_POST['descripcion']);
+        $correo = sanitize_email($_POST['correo']);
+        $password = sanitize_text_field($_POST['password']);
+
+        global $wpdb;
+
+        if ($password == null || $password == "") {
+            $query = $wpdb->prepare(
+                "UPDATE `wp_users` SET `user_nicename` = %s, `user_email` = %s , `user_description` =%s WHERE `ID` = %d",
+                $nickname,
+                $correo,
+                $descripcion,
+                $id_usu
+            );
+            $wpdb->query($query);
+
+            if (isset($_POST['servicios'])) {
+                $servicios_seleccionados = array_map('sanitize_text_field', $_POST['servicios']);
+
+                $servicios_almacenados = $wpdb->get_col(
+                    $query = $wpdb->prepare(
+                        "SELECT id_servicio FROM $tabla_relacional WHERE id_usuario = %d",
+                        $id_usu
+                    )
+                );
+
+                $servicios_nuevos = array_diff($servicios_seleccionados, $servicios_almacenados);
+                $servicios_eliminar = array_diff($servicios_almacenados, $servicios_seleccionados);
+
+                foreach ($servicios_eliminar as $servicio_id) {
+
+                    $query = $wpdb->prepare(
+                        "DELETE FROM `wp_servicios_usuarios` WHERE `id_servicio` = %d AND `id_usuario` = %d",
+                        $servicio_id,
+                        $id_usu
+                    );
+
+                    $wpdb->query($query);
+                }
+
+                foreach ($servicios_nuevos as $servicio_id) {
+                    $query = $wpdb->prepare(
+                        "INSERT INTO $tabla_relacional (id_usuario, id_servicio) VALUES (%d, %d)",
+                        $id_usu,
+                        $servicio_id
+                    );
+                    error_log("Consulta INSERT: $query");
+                    $wpdb->query($query);
+                }
+            } else {
+                $servicios_seleccionados = [];
+
+                $servicios_almacenados = $wpdb->get_col(
+                    $query = $wpdb->prepare(
+                        "SELECT id_servicio FROM $tabla_relacional WHERE id_usuario = %d",
+                        $id_usu
+                    )
+                );
+
+                $servicios_nuevos = array_diff($servicios_seleccionados, $servicios_almacenados);
+                $servicios_eliminar = array_diff($servicios_almacenados, $servicios_seleccionados);
+
+                foreach ($servicios_eliminar as $servicio_id) {
+
+                    $query = $wpdb->prepare(
+                        "DELETE FROM `wp_servicios_usuarios` WHERE `id_servicio` = %d AND `id_usuario` = %d",
+                        $servicio_id,
+                        $id_usu
+                    );
+
+                    $wpdb->query($query);
+                }
+            }
+        } else {
+            $hashed_passwprd = wp_hash_password($password);
+            $query = $wpdb->prepare(
+                "UPDATE `wp_users`
+                    SET user_pass = %s,
+                        user_nicename = %s,
+                        user_email = %s,
+                        user_description = %s
+                    WHERE ID = %d",
+                $hashed_passwprd,
+                $nickname,
+                $correo,
+                $descripcion,
+                $id_usu
+            );
+            $wpdb->query($query);
+
+            if (isset($_POST['servicios'])) {
+                $servicios_seleccionados = array_map('sanitize_text_field', $_POST['servicios']);
+
+                $servicios_almacenados = $wpdb->get_col(
+                    $query = $wpdb->prepare(
+                        "SELECT id_servicio FROM $tabla_relacional WHERE id_usuario = %d",
+                        $id_usu
+                    )
+                );
+
+                $servicios_nuevos = array_diff($servicios_seleccionados, $servicios_almacenados);
+                $servicios_eliminar = array_diff($servicios_almacenados, $servicios_seleccionados);
+
+                foreach ($servicios_eliminar as $servicio_id) {
+
+                    $query = $wpdb->prepare(
+                        "DELETE FROM `wp_servicios_usuarios` WHERE `id_servicio` = %d AND `id_usuario` = %d",
+                        $servicio_id,
+                        $id_usu
+                    );
+
+                    $wpdb->query($query);
+                }
+
+                foreach ($servicios_nuevos as $servicio_id) {
+                    $query = $wpdb->prepare(
+                        "INSERT INTO $tabla_relacional (id_usuario, id_servicio) VALUES (%d, %d)",
+                        $id_usu,
+                        $servicio_id
+                    );
+                    error_log("Consulta INSERT: $query");
+                    $wpdb->query($query);
+                }
+            } else {
+                $servicios_seleccionados = [];
+
+                $servicios_almacenados = $wpdb->get_col(
+                    $query = $wpdb->prepare(
+                        "SELECT id_servicio FROM $tabla_relacional WHERE id_usuario = %d",
+                        $id_usu
+                    )
+                );
+
+                $servicios_nuevos = array_diff($servicios_seleccionados, $servicios_almacenados);
+                $servicios_eliminar = array_diff($servicios_almacenados, $servicios_seleccionados);
+
+                foreach ($servicios_eliminar as $servicio_id) {
+
+                    $query = $wpdb->prepare(
+                        "DELETE FROM `wp_servicios_usuarios` WHERE `id_servicio` = %d AND `id_usuario` = %d",
+                        $servicio_id,
+                        $id_usu
+                    );
+
+                    $wpdb->query($query);
+                }
+            }
+        }
+    } else {
+        /* echo "Hubo un error en la actualizacion de datos"; */
+    }
+
+?>
+    <h1>Editar Perfil</h1>
+    <div class="profile-form">
+        <form action="" method="POST" onsubmit="return validarCheckbox()">
+            <div class="form-group">
+                <label for="login">Login(Este dato no se puede modificar)</label>
+                <input type="text" id="login" name="login" placeholder="Ingrese su login" value="<?php echo esc_attr($user_data['user_login']); ?>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input type="text" id="nickname" name="nickname" placeholder="Ingrese su nickname" value="<?php echo esc_attr($user_data['user_nicename']); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" style="resize: none;" name="descripcion" rows="4" placeholder="Inserta aqui una descripcion de tu perfil"><?php echo esc_html($user_data['user_description']); ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo de contacto</label>
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su correo" value="<?php echo esc_attr($user_data['user_email']); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="servicios">Servicios que ofreces</label>
+                <ul class="servicios-lista">
+                    <?php
+                    global $wpdb;
+                    $servicios = $wpdb->get_results("SELECT id, nombre FROM wp_catalogo_servicios WHERE estatus = 'Activo'", ARRAY_A);
+
+                    if (!empty($servicios)) {
+                        foreach ($servicios as $servicio_nombre) {
+                            $checked = in_array($servicio_nombre['id'], $servicios_seleccionados) ? 'checked' : ' ';
+                    ?>
+                            <li>
+                                <label for="<?php echo esc_attr($servicio_nombre['nombre']); ?>" class="servicio-item">
+                                    <input type="checkbox"
+                                        name="servicios[]"
+                                        id="<?php echo esc_attr($servicio_nombre['id']); ?>"
+                                        value="<?php echo esc_attr($servicio_nombre['id']); ?>" <?php echo $checked; ?>>
+
+                                    <span><?php echo esc_html($servicio_nombre['nombre']); ?></span>
+                                </label>
+                            </li>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <input type="text" name="" id="" value="No hay servicios disponibles" disabled>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="password">Nueva contraseña</label>
+                <input type="password" id="password" name="password" minlength="8" placeholder="Ingrese su nueva contraseña">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+    <style>
+        .servicios-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .servicios-lista li {
+            margin-bottom: 10px;
+        }
+
+        /* Alineación de los elementos */
+        .servicio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* Espacio entre el checkbox y el texto */
+            font-size: 16px;
+            /* Ajustar el tamaño del texto */
+            font-weight: normal;
+            /* Ajusta el peso del texto si es necesario */
+        }
+
+        /* Estilos específicos para el checkbox */
+        .servicio-item input[type="checkbox"] {
+            margin: 0;
+            /* Elimina margen predeterminado */
+            width: 18px;
+            height: 18px;
+            /* Ajustar tamaño si es necesario */
+            cursor: pointer;
+        }
+
+        .profile-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: auto;
+        }
+
+        .profile-form h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            width: 98%;
+        }
+
+        .form-group label {
+            display: flex;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function validarCheckbox() {
+            const checkboxes = document.querySelectorAll('input[name="servicios[]"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Por favor, selecciona al menos un servicio.');
+                return false; // Evita el envío del formulario
+            }
+            return true; // Permite el envío del formulario
+        }
+    </script>
+<?php
+    return ob_get_clean(); // Retorna el contenido capturado
+}
+add_shortcode('editar_perfil', 'editar_perfil_shortcode');
+
+
+
+
+function enviar_solicitudes_shortcode()
+{
+    $usuarios_guru = get_users([
+        'role' => 'guru',
+        'orderby' => 'display_name', // Ordenar por nombre
+        'order' => 'ASC'
+    ]);
+    ob_start();
+
+
+
+?> <h1 style="text-align: center;">¡Contactanos!</h1>
+    <p style="padding-left: 40px; text-align: center;">Conecta con nosotros y encuentra respuestas a tus preguntas.</p>
+    <p style="padding-left: 40px; text-align: center;">Accede a una visión general de lo que te depara el destino.</p>
+    <p style="padding-left: 40px; text-align: center;">¡Atrévete a sumergirte en las páginas de una buena historia y deja que la magia de la lectura transforme tu mundo!</p>
+
+    <div class="profile-form">
+        <form action="" method="POST" class="formulario">
+            <div class="form-group">
+                <input type="email" id="" name="" placeholder="Ingrese su correo electronico" value="" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="" name="" maxlength="10" placeholder="Ingrese su numero de telefono a 10 digitos" value="" required>
+            </div>
+            <div class="form-group">
+                <select name="guru" id="guru" class="form-control" required>
+                    <option value="" disabled selected>Seleccione un guru</option>
+                    <?php
+                    foreach ($usuarios_guru as $usuario):
+                    ?>
+                        <option value="<?php echo esc_attr($usuario->ID); ?>"><?php echo esc_attr($usuario->display_name) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group" id="servicio-group" style="display:none;">
+                <select name="servicio" id="servicio" class="form-control" required>
+                    <option value="" disabled selected>Seleccione un servicio</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea id="descripcion" style="resize: none;" name="descripcion" rows="10" placeholder="Inserta aqui tu mensaje"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const guruSelect = document.getElementById('guru');
+            const servicioGroup = document.getElementById('servicio-group');
+            const servicioSelect = document.getElementById('servicio');
+            const form = document.querySelector('.formulario');
+
+            guruSelect.addEventListener('change', function() {
+                const guruId = guruSelect.value;
+
+                if (guruId) {
+                    servicioGroup.style.display = 'block';
+                    servicioSelect.innerHTML = '<option value="" disabled selected>Cargando servicios...</option>';
+
+                    fetch('<?php echo admin_url('admin-ajax.php'); ?>?action=obtener_servicios&guru_id=' + guruId)
+                        .then(response => response.json())
+                        .then(data => {
+                            servicioSelect.innerHTML = '<option value="" disabled selected>Seleccione un servicio</option>';
+                            data.forEach(servicio => {
+                                const option = document.createElement('option');
+                                option.value = servicio.id;
+                                option.textContent = servicio.nombre;
+                                servicioSelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error al cargar los servicios:', error);
+                            servicioSelect.innerHTML = '<option value="" disabled>Error al cargar servicios</option>';
+                        });
+                } else {
+                    servicioGroup.style.display = 'none';
+                }
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                        method: 'POST',
+                        body: new URLSearchParams({
+                            action: 'guardar_solicitud',
+                            correo: formData.get('correo'),
+                            telefono: formData.get('telefono'),
+                            guru: formData.get('guru'),
+                            servicio: formData.get('servicio'),
+                            descripcion: formData.get('descripcion')
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Solicitud guardada exitosamente.');
+                            form.reset();
+                        } else {
+                            alert('Error: ' + data.data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al enviar el formulario:', error);
+                        alert('Ocurrió un error al enviar el formulario.');
+                    });
+            });
+        });
+    </script>
+
+    <style>
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .formulario input[type="email"],
+        .formulario input[type="text"],
+        .formulario input[type="tel"],
+        .formulario select {
+            width: 100%;
+            /* Que los campos ocupen todo el ancho */
+            padding: 10px;
+            /* Espaciado interno en los campos */
+            border: 1px solid #ccc;
+            /* Borde de los campos */
+            border-radius: 4px;
+            /* Bordes redondeados en los campos */
+            box-sizing: border-box;
+            /* Incluye padding y borde en el ancho total */
+        }
+
+        .servicios-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .servicios-lista li {
+            margin-bottom: 10px;
+        }
+
+        /* Alineación de los elementos */
+        .servicio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* Espacio entre el checkbox y el texto */
+            font-size: 16px;
+            /* Ajustar el tamaño del texto */
+            font-weight: normal;
+            /* Ajusta el peso del texto si es necesario */
+        }
+
+        /* Estilos específicos para el checkbox */
+        .servicio-item input[type="checkbox"] {
+            margin: 0;
+            /* Elimina margen predeterminado */
+            width: 18px;
+            height: 18px;
+            /* Ajustar tamaño si es necesario */
+            cursor: pointer;
+        }
+
+        .profile-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            /* max-width: 400px; */
+            margin: auto;
+        }
+
+        .profile-form h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: flex;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+<?php
+    return ob_get_clean();
+}
+
+add_shortcode('enviar_solicitudes', 'enviar_solicitudes_shortcode');
+
+/* [contact-form-7 id="fccbb23" title="Formulario de Contacto"] */
+
+
+// Función AJAX para obtener servicios por gurú
+function obtener_servicios_por_usuario()
+{
+    global $wpdb;
+
+    if (!isset($_GET['guru_id'])) {
+        wp_send_json_error('ID de gurú no proporcionado.');
+        wp_die();
+    }
+
+    $guru_id = intval($_GET['guru_id']);
+    $tabla_servicios_usuarios = $wpdb->prefix . 'servicios_usuarios';
+    $tabla_services = $wpdb->prefix . 'catalogo_servicios';
+
+    $id_servicios = $wpdb->get_col($wpdb->prepare(
+        "SELECT id_servicio FROM $tabla_servicios_usuarios WHERE id_usuario = %d",
+        $guru_id
+    ));
+
+    if (empty($id_servicios)) {
+        wp_send_json([]);
+        wp_die();
+    }
+
+    $placeholders = implode(',', array_fill(0, count($id_servicios), '%d'));
+    $query = "SELECT id, nombre FROM $tabla_services WHERE id IN ($placeholders)";
+    $servicios = $wpdb->get_results($wpdb->prepare($query, $id_servicios));
+
+    wp_send_json($servicios);
+    wp_die();
+}
+add_action('wp_ajax_obtener_servicios', 'obtener_servicios_por_usuario');
+add_action('wp_ajax_nopriv_obtener_servicios', 'obtener_servicios_por_usuario');
+
+// Función AJAX para guardar solicitud
+function guardar_solicitud2()
+{
+    global $wpdb;
+
+    // Verificamos que los datos requeridos existan
+    if (!isset($_POST['guru']) || !isset($_POST['servicio']) || !isset($_POST['descripcion'])) {
+        wp_send_json_error('Faltan datos requeridos.');
+        wp_die();
+    }
+
+    // Obtenemos los datos del formulario
+    $guru_id = intval($_POST['guru']);
+    $servicio_id = intval($_POST['servicio']);
+    $descripcion = sanitize_textarea_field($_POST['descripcion']);
+
+    // Tabla de servicios
+    $tabla_services = $wpdb->prefix . 'catalogo_servicios';
+
+    // Obtenemos el nombre del servicio
+    $servicio = $wpdb->get_row($wpdb->prepare(
+        "SELECT nombre FROM $tabla_services WHERE id = %d",
+        $servicio_id
+    ));
+
+    if (!$servicio) {
+        wp_send_json_error('El servicio seleccionado no existe.');
+        wp_die();
+    }
+
+    // Insertamos la solicitud en la tabla wp_solicitudes
+    $tabla_solicitudes = $wpdb->prefix . 'solicitudes';
+
+    $resultado = $wpdb->insert(
+        $tabla_solicitudes,
+        [
+            'user_id' => $guru_id, // ID del guru
+            'servicio' => $servicio->nombre, // Nombre del servicio
+            'mensaje' => $descripcion, // Descripción del mensaje
+        ],
+        ['%d', '%s', '%s']
+    );
+
+    if ($resultado) {
+        wp_send_json_success('Solicitud guardada correctamente.');
+    } else {
+        wp_send_json_error('Error al guardar la solicitud.');
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_guardar_solicitud', 'guardar_solicitud2');
+add_action('wp_ajax_nopriv_guardar_solicitud', 'guardar_solicitud2');
+
+
+function mostrar_tarjetas_gurus_shortcode()
+{
+    global $wpdb;
+
+    // Obtener datos de los gurús
+    $usuarios_guru = get_users([
+        'role' => 'guru',
+        'orderby' => 'display_name',
+        'order' => 'ASC'
+    ]);
+
+    // Tabla de servicios por gurú
+    $tabla_servicios_usuarios = $wpdb->prefix . 'servicios_usuarios';
+    $tabla_services = $wpdb->prefix . 'catalogo_servicios';
+
+    ob_start();
+?>
+    <div class="gurus-container">
+        <?php foreach ($usuarios_guru as $guru): ?>
+            <?php
+            // Obtener servicios de cada gurú
+            $id_servicios = $wpdb->get_col($wpdb->prepare(
+                "SELECT id_servicio FROM $tabla_servicios_usuarios WHERE id_usuario = %d",
+                $guru->ID
+            ));
+
+            $placeholders = implode(',', array_fill(0, count($id_servicios), '%d'));
+            $servicios = $wpdb->get_results($wpdb->prepare(
+                "SELECT nombre FROM $tabla_services WHERE id IN ($placeholders)",
+                $id_servicios
+            ));
+            ?>
+            <div class="guru-card" data-id="<?php echo $guru->ID; ?>"
+                data-name="<?php echo esc_attr($guru->display_name); ?>"
+                data-description="<?php echo esc_attr($guru->user_description); ?>"
+                data-services="<?php echo esc_attr(json_encode($servicios)); ?>">
+                <h3><?php echo esc_html($guru->display_name); ?></h3>
+                <p class="short-description">
+                    <?php echo esc_html($guru->user_description); ?>
+                </p>
+                <button class="view-details">Ver más</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Modal -->
+    <div id="guru-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="guru-name"></h2>
+            <p id="guru-description"></p>
+            <h3>Servicios:</h3>
+            <ul id="guru-services"></ul>
+        </div>
+    </div>
+
+    <style>
+        /* Estilos para las tarjetas */
+        .short-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            /* Mostrar solo 3 líneas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4.5em;
+            /* Ajustar según el tamaño de la fuente */
+        }
+
+        .gurus-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .guru-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .guru-card h3 {
+            margin-top: 0;
+        }
+
+        .guru-card button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .guru-card button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('guru-modal'); // ID del modal
+            const modalName = document.getElementById('guru-name');
+            const modalDescription = document.getElementById('guru-description');
+            const modalServices = document.getElementById('guru-services');
+            const closeModal = document.querySelector('.close-button');
+
+            document.querySelectorAll('.guru-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const description = this.getAttribute('data-description');
+                    const services = JSON.parse(this.getAttribute('data-services'));
+
+                    modalName.textContent = name;
+                    modalDescription.textContent = description;
+
+                    modalServices.innerHTML = '';
+                    services.forEach(service => {
+                        const li = document.createElement('li');
+                        li.textContent = service.nombre;
+                        modalServices.appendChild(li);
+                    });
+
+                    modal.style.display = 'flex';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+<?php
+    return ob_get_clean();
+}
+add_shortcode('mostrar_tarjetas_gurus', 'mostrar_tarjetas_gurus_shortcode');
