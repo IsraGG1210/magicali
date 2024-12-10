@@ -715,17 +715,6 @@ add_shortcode('lista_suscriptores', 'mostrar_suscriptores_shortcode');
 
 
 
-function sesiones()
-{
-    if (is_user_logged_in()) {
-        echo 'sesion iniciada';
-    } else {
-        echo 'sesion no iniciada';
-    }
-}
-
-add_shortcode('revisa_sesion', 'sesiones');
-
 // functions.php
 
 function photolancer_enqueue_styles()
@@ -840,12 +829,12 @@ function mostrar_solicitudes_shortcode()
         $wpdb->update(
             'wp_solicitudes',
             array(
-                'estado' => $nuevo_estado,
+                'estatus' => $nuevo_estado,
                 'fecha_actualizacion' => current_time('mysql'),
                 'hora_solicitud' => $nueva_hora // Incluir la nueva hora
             ),
             array('id' => $solicitud_id),
-            array('%s', '%s', '%s'), // Tipos de datos a actualizar (estado, fecha y hora)
+            array('%s', '%s', '%s'), // Tipos de datos a actualizar (estatus, fecha y hora)
             array('%d') // Tipo de dato de la condición (id es int)
         );
     }
@@ -853,7 +842,7 @@ function mostrar_solicitudes_shortcode()
     // Obtener filtros
     $nombre = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
     $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-    $estado = isset($_POST['estado']) ? sanitize_text_field($_POST['estado']) : '';
+    $estatus = isset($_POST['estatus']) ? sanitize_text_field($_POST['estatus']) : '';
     $fecha_inicio = isset($_POST['fecha_inicio']) ? sanitize_text_field($_POST['fecha_inicio']) : '';
     $fecha_final = isset($_POST['fecha_final']) ? sanitize_text_field($_POST['fecha_final']) : '';
     $hora_solicitud = isset($_POST['hora_solicitud']) ? sanitize_text_field($_POST['hora_solicitud']) : ''; // Capturar la hora
@@ -877,8 +866,8 @@ function mostrar_solicitudes_shortcode()
         $query .= $wpdb->prepare(" AND u.user_email LIKE %s", '%' . $wpdb->esc_like($email) . '%');
     }
 
-    if ($estado) {
-        $query .= $wpdb->prepare(" AND s.estado = %s", $estado);
+    if ($estatus) {
+        $query .= $wpdb->prepare(" AND s.estatus = %s", $estatus);
     }
 
     if ($fecha_inicio) {
@@ -1016,9 +1005,9 @@ function mostrar_solicitudes_shortcode()
                 <input type="email" name="email" class="form-control" placeholder="Buscar por Email" value="<?php echo esc_attr($email); ?>">
                 <select name="estado" class="form-control">
                     <option value="">Todos los estados</option>
-                    <option value="pendiente" <?php selected($estado, 'pendiente'); ?>>Pendiente</option>
-                    <option value="aceptada" <?php selected($estado, 'aceptada'); ?>>Aceptada</option>
-                    <option value="rechazada" <?php selected($estado, 'rechazada'); ?>>Rechazada</option>
+                    <option value="pendiente" <?php selected($estatus, 'pendiente'); ?>>Pendiente</option>
+                    <option value="aceptada" <?php selected($estatus, 'aceptada'); ?>>Aceptada</option>
+                    <option value="rechazada" <?php selected($estatus, 'rechazada'); ?>>Rechazada</option>
                 </select>
                 <input type="date" name="fecha_inicio" class="form-control" value="<?php echo esc_attr($fecha_inicio); ?>">
                 <input type="time" name="hora_solicitud" class="form-control" value="<?php echo esc_attr($hora_solicitud); ?>"> <!-- Campo para la hora -->
@@ -1052,8 +1041,8 @@ function mostrar_solicitudes_shortcode()
                                     <input type="time" name="hora_solicitud" class="form-control" value="<?php echo esc_attr($solicitud->hora_solicitud); ?>"> <!-- Campo para la hora en la actualización -->
                                     <select name="nuevo_estado" class="form-control">
                                         <option value="">Selecciona una opción</option>
-                                        <option value="aceptada" <?php selected($solicitud->estado, 'aceptada'); ?>>Aceptada</option>
-                                        <option value="rechazada" <?php selected($solicitud->estado, 'rechazada'); ?>>Rechazada</option>
+                                        <option name="estatus" value="aceptada" <?php selected($solicitud->estatus, 'aceptada'); ?>>Aceptada</option>
+                                        <option name="estatus" value="rechazada" <?php selected($solicitud->estatus, 'rechazada'); ?>>Rechazada</option>
                                     </select>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </form>
@@ -2640,21 +2629,48 @@ function mostrar_tarjetas_gurus_shortcode()
 }
 add_shortcode('mostrar_tarjetas_gurus', 'mostrar_tarjetas_gurus_shortcode');
 
-
-add_action('after_setup_theme', function () {
+//Ocultar la barra de menu
+/* add_action('after_setup_theme', function () {
     if (current_user_can('manage_woocommerce') && !current_user_can('manage_options')) {
         show_admin_bar(false);
     }
-});
+}); */
+
+add_filter('wp_nav_menu_objects', function ($items, $args) {
+    // URLs específicas que deseas condicionar
+    $url_iniciar_sesion = 'http://localhost/magiacali_orig/login/';
+    $url_cerrar_sesion = 'http://localhost/magiacali_orig/wp-login.php?action=logout';
+
+    // Verifica si el usuario está autenticado
+    if (is_user_logged_in()) {
+        // Usuario autenticado: elimina "Iniciar sesión"
+        foreach ($items as $key => $item) {
+            if ($item->url === $url_iniciar_sesion) {
+                unset($items[$key]);
+            }
+        }
+    } else {
+        // Usuario no autenticado: elimina "Cerrar sesión"
+        foreach ($items as $key => $item) {
+            if ($item->url === $url_cerrar_sesion) {
+                unset($items[$key]);
+            }
+        }
+    }
+
+    return $items;
+}, 10, 2);
 
 
-function renovacion_durante_suscripcion()
-{
+add_filter('wp_nav_menu_objects', function ($items, $args) {
+    foreach ($items as $item) {
+        error_log('Título: ' . $item->title . ' - URL: ' . $item->url);
+    }
+    return $items;
+}, 10, 2);
 
-    ob_start();
 
 
-    return ob_get_clean();
-}
 
-add_shortcode('renovaciones', 'renovacion_durante_suscripcion');
+
+
