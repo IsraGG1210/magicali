@@ -1003,7 +1003,7 @@ function mostrar_solicitudes_shortcode()
             <form method="POST">
                 <input type="text" name="nombre" class="form-control" placeholder="Buscar por Nombre" value="<?php echo esc_attr($nombre); ?>">
                 <input type="email" name="email" class="form-control" placeholder="Buscar por Email" value="<?php echo esc_attr($email); ?>">
-                <select name="estado" class="form-control">
+                <select name="estatus" class="form-control">
                     <option value="">Todos los estados</option>
                     <option value="pendiente" <?php selected($estatus, 'pendiente'); ?>>Pendiente</option>
                     <option value="aceptada" <?php selected($estatus, 'aceptada'); ?>>Aceptada</option>
