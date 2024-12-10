@@ -406,11 +406,49 @@ function mostrar_suscriptores_shortcode()
 
     // Verificar si se ha enviado un formulario para activar/desactivar suscripciones
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && isset($_POST['user_id'])) {
+        $action = sanitize_text_field($_POST['action']);
         $user_id = intval($_POST['user_id']);
 
         $suscripcion_activa = get_user_meta($user_id, 'suscripcion_activa', true);
-        $new_status = $suscripcion_activa == '1' ? '0' : '1';
-        if ($_POST['action'] == 'activate') {
+       /*  $new_status = $suscripcion_activa == '1' ? '0' : '1';
+        update_user_meta($user_id, 'suscripcion_activa', $new_status); */
+        switch($action){
+            case 'activate':
+                update_user_meta($user_id, 'fecha_inicio_suscripcion', date('Y-m-d', current_time('timestamp')));
+            $fecha_inicio = get_user_meta($user_id, 'fecha_inicio_suscripcion', true);
+            if (get_user_meta($user_id, 'plan_contratado', true) == 74) {
+                $fecha_finalizacion = date('Y-m-d', strtotime($fecha_inicio . ' +1 month'));
+                update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $fecha_finalizacion);
+            } else {
+                $fecha_finalizacion = date('Y-m-d', strtotime($fecha_inicio . ' +1 year'));
+                update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $fecha_finalizacion);
+            }
+            update_user_meta($user_id, 'suscripcion_activa', '1');
+                break;
+
+            case 'deactivate':
+                update_user_meta($user_id, 'fecha_inicio_suscripcion', '0000-00-00');
+                update_user_meta($user_id, 'fecha_finalizacion_suscripcion', '0000-00-00');
+                update_user_meta($user_id, 'suscripcion_activa', '0');
+                break;
+
+            case 'renew':
+                $fecha_finalizacion = get_user_meta($user_id, 'fecha_finalizacion_suscripcion', true);
+                if (get_user_meta($user_id, 'plan_renovacion',true)==74) {
+                    $nueva_fecha = date('Y-m-d', strtotime($fecha_finalizacion . '+1 month'));
+                    update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $nueva_fecha);
+                } else {
+                    $nueva_fecha = date('Y-m-d', strtotime($fecha_finalizacion . '+1 year'));
+                    update_user_meta($user_id, 'fecha_finalizacion_suscripcion', $nueva_fecha);
+                }
+                
+                update_user_meta($user_id, 'fecha_renovacion', '');
+                update_user_meta($user_id, 'plan_renovacion','');
+                update_user_meta($user_id, 'suscripcion_activa', '1');
+                break;
+        }
+
+       /*  if ($_POST['action'] == 'activate') {
             update_user_meta($user_id, 'fecha_inicio_suscripcion', date('Y-m-d', current_time('timestamp')));
             $fecha_inicio = get_user_meta($user_id, 'fecha_inicio_suscripcion', true);
             if (get_user_meta($user_id, 'plan_contratado', true) == 74) {
@@ -424,7 +462,7 @@ function mostrar_suscriptores_shortcode()
             update_user_meta($user_id, 'fecha_inicio_suscripcion', '0000-00-00');
             update_user_meta($user_id, 'fecha_finalizacion_suscripcion', '0000-00-00');
         }
-        update_user_meta($user_id, 'suscripcion_activa', $new_status);
+        update_user_meta($user_id, 'suscripcion_activa', $new_status); */
     }
 
     // Obtener los filtros
@@ -551,6 +589,7 @@ function mostrar_suscriptores_shortcode()
                                                     <th>Fecha Finalizacion </th>
                                                     <th>Estatus</th>
                                                     <th>Acciones</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -589,6 +628,7 @@ function mostrar_suscriptores_shortcode()
                                                     // Mostrar usuarios
                                                     foreach ($paged_users as $user) {
                                                         $suscripcion_activa = get_user_meta($user->ID, 'suscripcion_activa', true);
+                                                        /* (date('Y-m-d')> $suscripcion_activa) ? update_user_meta($user->ID,'suscripcion_activa', 0) : null ; posible linea par actualizar segun fecha actual */
                                                 ?>
                                                         <tr style="height: 50px; border-bottom: 1px solid #ccc; vertical-align: middle;">
                                                             <td><?php echo esc_html($user->ID); ?></td>
@@ -601,16 +641,26 @@ function mostrar_suscriptores_shortcode()
                                                             <td>
                                                                 <form method="POST" style="display: inline;">
                                                                     <input type="hidden" name="user_id" value="<?php echo esc_attr($user->ID); ?>">
-                                                                    <input type="hidden" name="action" value="<?php echo $suscripcion_activa == '1' ? 'deactivate' : 'activate'; ?>">
-                                                                    <button type="submit" class="btn <?php echo $suscripcion_activa == '1' ? 'btn-danger' : 'btn-success'; ?>">
+                                                                    <button type="submit" name ="action" value="<?php echo $suscripcion_activa == '1' ? 'deactivate' : 'activate'; ?>" id="boton_accion" class="btn <?php echo $suscripcion_activa == '1' ? 'btn-danger' : 'btn-success'; ?>">
                                                                         <?php echo $suscripcion_activa == '1' ? 'Desactivar' : 'Activar';
                                                                         if ($suscripcion_activa == '1') {
                                                                             $user_id = get_current_user_id();
                                                                         } ?>
                                                                     </button>
+                                                                    <br>
+                                                                    
+                                                                    <?php
+                                                                        $renovacion_activa = get_user_meta($user->ID, 'plan_renovacion',true);
+                                                                        
+                                                                        $renovacion = ($renovacion_activa != '') ? '' : 'style="display: none;"' ;
+                                                                        
+                                                                    ?>
+                                                                    <br <?php echo $renovacion?>>
+                                                                    <button type="submit" name="action" value="renew" class="btn btn-info" <?php echo $renovacion?>>Renovar</button>
                                                                 </form>
                                                                 <!-- <button class="btn btn-info">Detalles</button> -->
                                                             </td>
+                                                            
                                                         </tr>
                                                 <?php
                                                     }
@@ -1067,12 +1117,38 @@ function get_active_services()
 
 function cargar_formulario_personalizado()
 {
-    ob_start(); ?>
-    <div class="formulario-contenedor">
-        <?php
-        global $wpdb;
-        // Procesa el formulario cuando se envía
+    ob_start();
+    /* date('Y-m-d', strtotime($fecha_inicio . ' +1 month')); */
+    $fechafinal = get_user_meta(get_current_user_id(), 'fecha_finalizacion_suscripcion', true);
+    $fechaactual = date('Y-m-d');
+
+    if ($fechafinal > $fechaactual) {
+        /* die('suscripcion aun activa'); */
+        $status = 'style="display:none;"';
+    } else {
+        /* die('suscripcion inactiva'); */
+        $status = 'style=""';
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_id'])) {
+        $form_id = sanitize_text_field($_POST['form_id']);
+        switch ($form_id) {
+            case 'formulario_2':
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $plan_renovacion = sanitize_text_field($_POST['plan']);                   
+                    update_user_meta(get_current_user_id(),'fecha_renovacion',date('Y-m-d'));
+                    update_user_meta(get_current_user_id(), 'plan_renovacion', $plan_renovacion);
+                } else {
+                    echo 'Error al seleccionar plan';
+                }
+                
+                break;
+            case 'formulario_1':
+                die('no entro al case anterior');
+                global $wpdb;
+                // Procesa el formulario cuando se envía
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
             // Sanitiza los datos del formulario para seguridad
             $correo = sanitize_email($_POST['correo']);
             $telefono = sanitize_text_field($_POST['telefono']);
@@ -1126,6 +1202,40 @@ function cargar_formulario_personalizado()
                 }
             }
         }
+                break;
+
+            default:
+                echo "Formulario desconocido.";
+                break;
+        }
+    }
+
+?>
+    <div class="formulario-contenedor">
+        <h2>Tienes una suscripcion activa ¡Renueva Ahora!</h2>
+        <form action="" method="post" class="formulario">
+        <input type="hidden" name="form_id" value="formulario_2">
+            <div class="formulario-group">
+                <label for="plan">Selecciona un Plan:</label>
+                <select id="plan" name="plan" required>
+                    <option value="" disabled selected>Elige un plan</option>
+                </select>
+            </div>
+            <div class="formulario-group">
+                <label for="terminos">
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    Acepto los <a href="/terminos-y-condiciones" target="_blank">términos y condiciones</a>
+                </label>
+            </div>
+            <input type="submit" value="Enviar" class="formulario-submit">
+        </form>
+
+    </div>
+
+    <div class="formulario-contenedor" <?php echo $status; ?>>
+        <?php
+        
+        
         ?>
         <style>
             .servicios-lista {
@@ -1216,6 +1326,7 @@ function cargar_formulario_personalizado()
 
         <!-- Formulario HTML -->
         <form action="" method="post" class="formulario" onsubmit="return validarCheckbox()">
+        <input type="hidden" name="form_id" value="formulario_1">
             <div class="formulario-group">
                 <label for="correo">Correo de Contacto:</label>
                 <input type="email" id="correo" name="correo" required>
@@ -2528,3 +2639,22 @@ function mostrar_tarjetas_gurus_shortcode()
     return ob_get_clean();
 }
 add_shortcode('mostrar_tarjetas_gurus', 'mostrar_tarjetas_gurus_shortcode');
+
+
+add_action('after_setup_theme', function () {
+    if (current_user_can('manage_woocommerce') && !current_user_can('manage_options')) {
+        show_admin_bar(false);
+    }
+});
+
+
+function renovacion_durante_suscripcion()
+{
+
+    ob_start();
+
+
+    return ob_get_clean();
+}
+
+add_shortcode('renovaciones', 'renovacion_durante_suscripcion');
