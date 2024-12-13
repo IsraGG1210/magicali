@@ -6,9 +6,9 @@
  * Categories: ha-patterns-pro
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/team_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/team_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/team_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/team_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/team_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/team_3.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|50","left":"var:preset|spacing|50","bottom":"80px","top":"80px"}}},"className":"hello-agency-animate","layout":{"type":"constrained","contentSize":"1180px"}} -->

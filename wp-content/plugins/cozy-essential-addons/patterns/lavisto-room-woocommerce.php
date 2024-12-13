@@ -6,7 +6,7 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/about.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/about.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Room and Suite WooCommerce"},"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->

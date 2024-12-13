@@ -6,8 +6,8 @@
  * Categories: magnewspress
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mnp/banner_image_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mnp/banner_ads_1.png'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mnp/banner_image_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mnp/banner_ads_1.png'
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"0px","right":"0","bottom":"0px","left":"0"}},"border":{"bottom":{"width":"0px","style":"none"}}},"backgroundColor":"light-color","className":"magnewspress-header","layout":{"type":"constrained","contentSize":"100%"}} -->

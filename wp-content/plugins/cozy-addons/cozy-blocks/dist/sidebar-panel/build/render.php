@@ -1,5 +1,5 @@
 <?php
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozySidebarPanel_' . str_replace( '-', '_', $client_id );
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
 wp_add_inline_script( 'cozy-block-scripts', 'document.addEventListener("DOMContentLoaded", function(event) { window.cozyBlockSidebarPanelInit( "' . $client_id . '" ) }) ' );
@@ -28,6 +28,20 @@ $open_icon = array(
 		'bg'         => isset( $attributes['openIcon']['color']['bg'] ) ? $attributes['openIcon']['color']['bg'] : '',
 		'bg_hover'   => isset( $attributes['openIcon']['color']['bgHover'] ) ? $attributes['openIcon']['color']['bgHover'] : '',
 	),
+);
+
+$overlay_styles = array(
+	'z_index' => isset( $attributes['overlayZIndex'] ) ? $attributes['overlayZIndex'] : '999',
+	'color'   => array(
+		'bg' => isset( $attributes['overlayBgColor'] ) ? $attributes['overlayBgColor'] : '',
+	),
+);
+
+$typography = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
 $block_styles = <<<BLOCK_STYLES
@@ -75,7 +89,13 @@ $block_styles = <<<BLOCK_STYLES
 }
 #$block_id .open-icon-wrapper {
     gap: {$attributes['openIcon']['gap']}px;
-    font: {$attributes['typography']['fontWeight']} {$attributes['typography']['fontSize']}px {$attributes['typography']['fontFamily']};
+    font-size: {$attributes['typography']['fontSize']}px;
+    font-weight: {$attributes['typography']['fontWeight']};
+    font-family: {$attributes['typography']['fontFamily']};
+    text-transform: {$typography['letter_case']};
+    text-decoration: {$typography['decoration']};
+    line-height: {$typography['line_height']};
+    letter-spacing: {$typography['letter_spacing']};
     color: {$container_color['text']};
 }
 #$block_id .open-icon-wrapper:hover {
@@ -101,10 +121,20 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id.icon-view-stacked .open-icon-wrapper:hover .sidebar-icon-wrapper {
     background-color: {$open_icon['color']['bg_hover']};
 }
+
+#$block_id.has-overlay:before {
+    z-index: {$overlay_styles['z_index']};
+    background-color: {$overlay_styles['color']['bg']};
+}
 BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper">';
 $output .= '<style>' . $block_styles . '</style>';
+
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
 $output .= $content;
 $output .= '</div>';
 

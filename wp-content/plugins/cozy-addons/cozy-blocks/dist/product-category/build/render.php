@@ -1,5 +1,5 @@
 <?php
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyProductCategory_' . str_replace( '-', '_', $client_id );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
@@ -221,7 +221,8 @@ foreach ( $categories as $product_cat ) {
 	$cat_item_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
 	$output            .= '<li class="' . implode( ' ', $cat_item_classes ) . '">';
 	$cat_link           = get_category_link( $product_cat->term_id );
-	$output            .= '<a class="woo-product-category__link" href="' . esc_url( $cat_link ) . '" target="_blank" rel="noopener">';
+	$open_new_tab       = isset( $attributes['enableOptions']['linkNewTab'] ) && $attributes['enableOptions']['linkNewTab'] ? '_blank' : '';
+	$output            .= '<a class="woo-product-category__link" href="' . esc_url( $cat_link ) . '" target="' . $open_new_tab . '" rel="noopener">';
 
 	$output      .= '<div class="cozy-block-product-category__stacked" style="position:relative">';
 	$thumbnail_id = get_term_meta( $product_cat->term_id, 'thumbnail_id', true );

@@ -1,13 +1,13 @@
-=== Cozy Blocks – Page Builder for Gutenberg & Site Editor, Post Blocks, WooCommerce Blocks, Magazine Blocks, WordPress Gutenberg Blocks, Patterns and Templates Library ===
+=== Cozy Blocks – Page Builder for Gutenberg & Site Editor with Post Blocks, WooCommerce Blocks, Magazine Blocks & WordPress Gutenberg Blocks ===
 Contributors: CozyThemes
-Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks, patterns, templates-library
+Tags: gutenberg-blocks, wordpress-blocks, woocommerce-blocks
 Requires PHP: 7.3.0
 Requires at least: 5.8
-Tested up to: 6.6
-Stable tag: 2.0.18
+Tested up to: 6.7
+Stable tag: 2.0.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
+Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
 
 == Description ==
 [Cozy Blocks](https://cozythemes.com/cozy-addons/)! A must-have WordPress plugin to powerfully enhance your website with the WordPress Gutenberg Editor.
@@ -15,7 +15,6 @@ Streamline your website designs with our library of advanced blocks, patterns & 
 = Key Features That Enhance and Extend WordPress Blocks =
 <ul>
 <li>40+ Advanced Blocks to Extend the Site Editor</li>
-<li>200+ Patterns Library of over 20 distinct Categories</li>
 <li>WooCommerce Blocks</li>
 <li>Post and Magazine Blocks</li>
 <li>Slider Blocks (Slider & Carousel Blocks)</li>
@@ -29,12 +28,11 @@ Streamline your website designs with our library of advanced blocks, patterns & 
 <li>Advanced Hover Effect for Blocks</li>
 <li>Google Fonts for Blocks</li>
 <li>Advanced Content Section builder (Tabs, Accordion, Counter and Progress Bar)</li>
-<li>10+ Template Library</li>
 <li>Ajax Loader for Post Blocks</li>
 <li>Advanced Gallery with multiple layouts</li>
 </ul>
 
-[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 40 advanced, customizable Gutenberg blocks and more than 200 patterns, organized into 20+ distinct categories. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
+[Cozy Blocks](https://cozythemes.com/cozy-addons/) is an essential WordPress plugin that revolutionizes Full Site Editing with Gutenberg. Seamlessly integrated with both FSE (Full Site Editing) and the Gutenberg editor, it offers a robust library of over 40 advanced, customizable Gutenberg blocks. Designed for ease of use, [Cozy Blocks](https://cozythemes.com/cozy-addons/) caters to both experienced developers and beginners, enabling users to effortlessly design dynamic, visually stunning websites.
 
 Whether you’re building an e-commerce store, a news platform, a corporate site, or any other type of web presence, [Cozy Blocks](https://cozythemes.com/cozy-addons/) provides the powerful tools you need. Supported by flexible customization options and robust support, this plugin empowers you to embrace the future of web design and unlock your creative potential.
 
@@ -43,36 +41,6 @@ Join the [Cozy Blocks](https://cozythemes.com/cozy-addons/) movement today and b
 Watch our step-by-step tutorial on installing [Cozy Blocks](https://cozythemes.com/cozy-addons/)!
 
 https://www.youtube.com/watch?v=GP4NxSbikS4
-
-= Extensive Patterns Library =
-Discover our extensive Pattern Library, offering over 20+ categories and 200+ professionally designed patterns for FSE and Gutenberg Editor. Accelerate your website creation process with ready-to-use patterns, crafted to build sites faster and more efficiently.
-
-= Patterns/Sections Categories =
-* About Us
-* Call To Action
-* Contact Us
-* FAQ
-* Features
-* Footer
-* Gallery
-* Header
-* Hero and Banner
-* How It Works
-* Logo Showcase
-* Newsletter
-* Number and Stats (Counter)
-* Popup
-* Portfolio
-* Posts and Magazine
-* Pricing and Plans
-* Services
-* Team
-* Testimonials
-* Why Choose Us
-* WooCommerce
-
-= Template Library =
-Explore our Template Library, offering over 10 ready-to-import homepage templates, including multiple niches. Set up your site in minutes with just a single click, simplifying the website creation process. Compatible with all major block-based themes.
 
 = Gutenberg Blocks and FSE =
 Enhance your website building experience with Gutenberg Blocks and Full Site Editing (FSE). Our plugin provides over 30 advanced blocks essential for effortlessly creating any type of website.
@@ -164,21 +132,19 @@ You can report any security bugs found in the source code of this plugin through
 == Screenshots ==
 1. Gutenberg Blocks Collection
 2. Blocks Enable/Disable Option
-3. Patterns/Sections Collection
-4. WooCommerce Blocks
-5. Post and Magazine Blocks
-6. Marketing and Social Blocks
-7. Animation and Hover Effects
+3. WooCommerce Blocks
+4. Post and Magazine Blocks
+5. Marketing and Social Blocks
+6. Animation and Hover Effects
 
 == Changelog ==
-= 2.0.18 - October 7, 2024 = 
-* Fix: Lightbox for carousel layout in 'Advanced Gallery' block.
-* Fix: Filter for portfolio gallery category.
+= 2.0.28 - December 11, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Styles preg match for 'Cozy Hover Styles' attribute.
 
-= 2.0.17 - October 2, 2024 = 
-* Fix: Advanced Gallery ajax loader.
-* Fix: Slider thumbnail image fit.
-* Update: Freemius SDK.
+= 2.0.27 - December 9, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Slider options for 'Featured Content Box' block.
 
 [See changes for all the versions here.](https://plugins.svn.wordpress.org/cozy-addons/trunk/changelog.txt)
 

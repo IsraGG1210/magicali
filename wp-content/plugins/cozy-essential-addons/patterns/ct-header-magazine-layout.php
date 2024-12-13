@@ -6,7 +6,7 @@
  * Categories: ct-patterns, header
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pattern_adv.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pattern_adv.png',
 );
 ?>
 <!-- wp:group {"className":"ct-header-magazine","layout":{"type":"constrained","contentSize":"100%"}} -->

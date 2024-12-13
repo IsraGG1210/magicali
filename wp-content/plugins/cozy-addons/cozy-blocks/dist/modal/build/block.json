@@ -36,7 +36,7 @@
     },
     "backgroundOverlayColor": {
       "type": "string",
-      "default": "#c3c3c3"
+      "default": "#222222ad"
     },
     "backgroundColor": {
       "type": "string",
@@ -45,11 +45,17 @@
     "iconStyles": {
       "type": "object",
       "default": {
+        "enabled": true,
         "alignment": "right",
-        "horizontalSpacing": 0,
-        "verticalSpacing": -35,
+        "horizontalSpacing": -50,
+        "verticalSpacing": -50,
+        "boxWidth": 36,
+        "boxHeight": 36,
+        "radius": 100,
         "iconSize": 15,
-        "iconColor": "#000",
+        "bg": "#0c50ff",
+        "bgHover": "#f90",
+        "iconColor": "#fff",
         "iconColorHover": "",
         "border": "1px solid #000",
         "borderRadius": 20
@@ -64,8 +70,21 @@
           "bottom": 10,
           "left": 10
         },
+        "content": "default",
         "label": "Open Popup",
+        "imgURL": "Open Popup",
+        "imgWidth": 100,
+        "imgHeight": 100,
+        "imgRadius": 0,
+        "imgHasPulse": 0,
         "fontSize": 14,
+        "fontFamily": "Public Sans",
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "justify": "center",
         "borderType": "none",
         "borderWidth": {
           "top": 1,

@@ -9,6 +9,7 @@ require_once __DIR__ . '/logging/Logger.php';
 require_once __DIR__ . '/catalog/Tt4b_Catalog_Class.php';
 require_once __DIR__ . '/pixel/Tt4b_Pixel_Class.php';
 require_once __DIR__ . '/admin/tts/common.php';
+require_once __DIR__ . '/utils/TBPApi.php';
 
 use Automattic\WooCommerce\Admin\Features\OnboardingTasks\TaskLists;
 
@@ -23,7 +24,7 @@ class Tiktokforbusiness {
 	 *
 	 * @var string[]
 	 */
-	private static $current_tiktok_for_woocommerce_version = '1.2.8';
+	private static $current_tiktok_for_woocommerce_version = '1.3.0';
 
 	/**
 	 * Whether WooCommerce has been loaded.
@@ -62,6 +63,21 @@ class Tiktokforbusiness {
 	}
 
 	/**
+	 * Teardown all action scheduler tasks
+	 *
+	 * @return void
+	 */
+	private static function unschedule_scheduled_actions() {
+		as_unschedule_all_actions( 'tt4b_catalog_sync' );
+		as_unschedule_all_actions( 'tt4b_catalog_sync_helper' );
+		as_unschedule_all_actions( 'tt4b_delete_products_helper' );
+		as_unschedule_all_actions( 'tt4b_variation_sync' );
+		as_unschedule_all_actions( 'tt4b_variation_sync_helper' );
+		as_unschedule_all_actions( 'tt4b_trust_signal_collection' );
+		as_unschedule_all_actions( 'tt4b_trust_signal_collection' );
+	}
+
+	/**
 	 * Initialize most of the plugin logic.
 	 *
 	 * @return void
@@ -69,6 +85,7 @@ class Tiktokforbusiness {
 	private function init() {
 		if ( get_option( 'tt4b_version' ) !== self::$current_tiktok_for_woocommerce_version ) {
 			update_option( 'tt4b_version', self::$current_tiktok_for_woocommerce_version );
+			update_option( 'tt4b_last_product_sync_time', 1 );
 		}
 
 		$logger  = new Logger();
@@ -79,7 +96,8 @@ class Tiktokforbusiness {
 
 		// Hook the onboarding task. The hook admin_init is not triggered when the WC fetches the tasks using the endpoint: wp-json/wc-admin/onboarding/tasks and hence hooking into init.
 		if ( did_action( 'woocommerce_loaded' ) > 0 ) {
-			add_action( 'init', [ $this, 'add_onboarding_task' ], 20 );
+			add_action( 'init', array( $this, 'add_onboarding_task' ), 20 );
+			self::$woocommerce_loaded = true;
 		}
 
 		add_filter( 'plugin_action_links_' . plugin_basename( $this->get_plugin_file() ), array( $this, 'plugin_action_links' ) );
@@ -97,7 +115,7 @@ class Tiktokforbusiness {
 	 * Adds plugin action links.
 	 */
 	public function plugin_action_links( $actions ) {
-		$custom_actions = [];
+		$custom_actions = array();
 
 		// settings url(s).
 		$custom_actions['configure'] = $this->get_settings_link();
@@ -147,22 +165,19 @@ class Tiktokforbusiness {
 		$external_business_id = get_option( 'tt4b_external_business_id' );
 
 		// delete scheduled TikTok-WooCommerce related actions
-		if ( self::$woocommerce_loaded ) {
-			as_unschedule_all_actions( 'tt4b_trust_signal_collection' );
-			as_unschedule_all_actions( 'tt4b_trust_signal_helper' );
-			as_unschedule_all_actions( 'tt4b_catalog_sync' );
-			as_unschedule_all_actions( 'tt4b_catalog_sync_helper' );
+		if ( self::$woocommerce_loaded or did_action( 'woocommerce_loaded' ) > 0 ) {
+			self::unschedule_scheduled_actions();
 		}
-		$logger = new Logger();
+		$logger        = new Logger();
 		$mapi          = new Tt4b_Mapi_Class( $logger );
 		$external_data = get_option( 'tt4b_external_data' );
-		$params = array(
+		$params        = array(
 			'business_platform'    => 'WOO_COMMERCE',
 			'external_business_id' => $external_business_id,
 		);
 
 		// call disconnect API
-		$mapi->tbp_post( $external_data, 'business_profile/disconnect', 'v2.0', $params );
+		$mapi->tbp_post( $external_data, 'business_profile/disconnect', 'v2.0', $params, TBPApi::TBP );
 
 		// delete tiktok credentials
 		delete_option( 'tt4b_app_id' );
@@ -182,7 +197,10 @@ class Tiktokforbusiness {
 		delete_option( 'tt4b_mapi_tenure' );
 		delete_option( 'tt4b_should_send_s2s_events' );
 		delete_option( 'tt4b_product_delete_queue' );
+		delete_option( 'tt4b_product_restore_queue' );
 		delete_option( 'tt4b_last_product_sync_time' );
+		delete_option( 'tt4b_full_catalog_sync' );
+		delete_option( 'tt4b_last_full_sync_time' );
 	}
 
 	/**
@@ -204,7 +222,8 @@ class Tiktokforbusiness {
 		add_option( 'tt4b_mapi_total_orders', 0 );
 		add_option( 'tt4b_mapi_tenure', 0 );
 		add_option( 'tt4b_product_delete_queue', array() );
-		add_option( 'tt4b_last_product_sync_time', 0 );
+		add_option( 'tt4b_product_restore_queue', array() );
+		add_option( 'tt4b_last_product_sync_time', 1 );
 		$cleaned_redirect = preg_replace( '/[^A-Za-z0-9\-]/', '', admin_url() );
 		$smb_id           = $external_business_id . $cleaned_redirect;
 		$app_rsp          = $mapi->create_open_source_app( $smb_id, 'PROD', admin_url() );

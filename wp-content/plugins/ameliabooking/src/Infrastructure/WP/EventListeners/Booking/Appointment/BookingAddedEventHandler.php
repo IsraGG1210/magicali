@@ -14,6 +14,7 @@ use AmeliaBooking\Application\Services\Helper\HelperService;
 use AmeliaBooking\Application\Services\Notification\EmailNotificationService;
 use AmeliaBooking\Application\Services\Notification\SMSNotificationService;
 use AmeliaBooking\Application\Services\Notification\AbstractWhatsAppNotificationService;
+use AmeliaBooking\Application\Services\Payment\InvoiceApplicationService;
 use AmeliaBooking\Application\Services\Payment\PaymentApplicationService;
 use AmeliaBooking\Application\Services\WebHook\AbstractWebHookApplicationService;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
@@ -93,10 +94,10 @@ class BookingAddedEventHandler
         $outlookCalendarService = $container->get('infrastructure.outlook.calendar.service');
         /** @var PaymentApplicationService $paymentAS */
         $paymentAS = $container->get('application.payment.service');
-        /** @var SettingsService $settingsDS */
-        $settingsDS = $container->get('domain.settings.service');
         /** @var AbstractPackageApplicationService $packageApplicationService */
         $packageApplicationService = $container->get('application.bookable.package');
+        /** @var InvoiceApplicationService $invoiceService */
+        $invoiceService = $container->get('application.invoice.service');
 
         $type = $commandResult->getData()['type'];
 
@@ -104,6 +105,11 @@ class BookingAddedEventHandler
         $appointmentStatusChanged = $commandResult->getData()['appointmentStatusChanged'];
 
         $paymentId = $commandResult->getData()['paymentId'];
+
+        $invoice = null;
+        if ($paymentId && $settingsService->getSetting('notifications', 'sendInvoice')) {
+            $invoice = $invoiceService->generateInvoice($paymentId);
+        }
 
         if (!empty($booking['couponId']) && empty($booking['coupon'])) {
             /** @var CouponRepository $couponRepository */
@@ -150,7 +156,7 @@ class BookingAddedEventHandler
 
             if ($booking === null) {
                 $packageReservation['onlyOneEmployee'] = $packageApplicationService->getOnlyOneEmployee($package->toArray());
-                $emailNotificationService->sendPackageNotifications($packageReservation, true);
+                $emailNotificationService->sendPackageNotifications($packageReservation, true, true, $invoice);
 
                 if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                     $smsNotificationService->sendPackageNotifications($packageReservation, true);
@@ -409,7 +415,7 @@ class BookingAddedEventHandler
             !$commandResult->getData()['packageId'] &&
             !$commandResult->getData()['isCart']
         ) {
-            $emailNotificationService->sendAppointmentStatusNotifications($reservation, empty($commandResult->getData()['fromLink']), true);
+            $emailNotificationService->sendAppointmentStatusNotifications($reservation, empty($commandResult->getData()['fromLink']), true, false, !empty($invoice));
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendAppointmentStatusNotifications($reservation, empty($commandResult->getData()['fromLink']), true);
@@ -424,7 +430,7 @@ class BookingAddedEventHandler
             !$commandResult->getData()['packageId'] &&
             !$commandResult->getData()['isCart']
         ) {
-            $emailNotificationService->sendBookingAddedNotifications($reservation, $booking, true);
+            $emailNotificationService->sendBookingAddedNotifications($reservation, $booking, true, $invoice);
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendBookingAddedNotifications($reservation, $booking, true);
@@ -454,7 +460,7 @@ class BookingAddedEventHandler
                 ]
             );
 
-            $emailNotificationService->sendPackageNotifications($packageReservation, true);
+            $emailNotificationService->sendPackageNotifications($packageReservation, true, true, $invoice);
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendPackageNotifications($packageReservation, true);
@@ -486,7 +492,7 @@ class BookingAddedEventHandler
                 )
             ];
 
-            $emailNotificationService->sendCartNotifications($cartReservation, true);
+            $emailNotificationService->sendCartNotifications($cartReservation, true, true, $invoice);
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendCartNotifications($cartReservation, true);
@@ -515,7 +521,9 @@ class BookingAddedEventHandler
                 $emailNotificationService->sendAppointmentStatusNotifications(
                     $recurringData[$key][$type],
                     true,
-                    true
+                    true,
+                    false,
+                    !empty($invoice)
                 );
 
                 if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {

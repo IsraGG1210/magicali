@@ -6,9 +6,9 @@
  * Categories: storemate
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/team_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/team_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/team_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/team_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/team_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/team_3.jpg',
 
 );
 ?>

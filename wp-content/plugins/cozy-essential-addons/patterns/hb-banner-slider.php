@@ -6,8 +6,8 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/banner_bg.jpg',
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/banner_bg_2.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/banner_bg.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/banner_bg_2.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Banner Slider","categories":["handyman-blocks"],"patternName":"cozy-essential-addons/hb-banner-slider"},"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->

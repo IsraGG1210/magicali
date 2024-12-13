@@ -197,6 +197,10 @@
           "weight": "500",
           "family": ""
         },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "bg": "",
           "bgHover": "",
@@ -224,7 +228,10 @@
             "weight": "500",
             "family": ""
           },
-          "letterCase": "none"
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
         },
         "color": {
           "text": "#fff",
@@ -279,6 +286,9 @@
             "family": ""
           },
           "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": {
             "text": "#fff"
           }
@@ -405,8 +415,11 @@
           "weight": "500",
           "family": ""
         },
-        "letterCase": "none",
         "textAlign": "center",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#fff",
           "textHover": "",

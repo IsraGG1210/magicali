@@ -12,16 +12,20 @@ $header_box = array(
 );
 
 $tab_item = array(
-	'padding'       => cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] ),
-	'border'        => isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '',
-	'border_active' => isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '',
-	'bg'            => isset( $attributes['tabStyles']['color']['bg'] ) ? $attributes['tabStyles']['color']['bg'] : '',
-	'bg_hover'      => isset( $attributes['tabStyles']['color']['bgHover'] ) ? $attributes['tabStyles']['color']['bgHover'] : '',
-	'bg_active'     => isset( $attributes['tabStyles']['color']['bgActive'] ) ? $attributes['tabStyles']['color']['bgActive'] : '',
-	'text'          => isset( $attributes['tabStyles']['color']['text'] ) ? $attributes['tabStyles']['color']['text'] : '',
-	'text_hover'    => isset( $attributes['tabStyles']['color']['textHover'] ) ? $attributes['tabStyles']['color']['textHover'] : '',
-	'text_active'   => isset( $attributes['tabStyles']['color']['textActive'] ) ? $attributes['tabStyles']['color']['textActive'] : '',
-	'shadow'        => array(
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['tabStyles']['padding'] ),
+	'border'         => isset( $attributes['tabStyles']['default']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['default']['border'] ) : '',
+	'border_active'  => isset( $attributes['tabStyles']['active']['border'] ) ? cozy_render_TRBL( 'border', $attributes['tabStyles']['active']['border'] ) : '',
+	'letter_case'    => isset( $attributes['tabStyles']['letterCase'] ) ? $attributes['tabStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['tabStyles']['decoration'] ) ? $attributes['tabStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['tabStyles']['lineHeight'] ) ? $attributes['tabStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['tabStyles']['letterSpacing'] ) ? $attributes['tabStyles']['letterSpacing'] : '',
+	'bg'             => isset( $attributes['tabStyles']['color']['bg'] ) ? $attributes['tabStyles']['color']['bg'] : '',
+	'bg_hover'       => isset( $attributes['tabStyles']['color']['bgHover'] ) ? $attributes['tabStyles']['color']['bgHover'] : '',
+	'bg_active'      => isset( $attributes['tabStyles']['color']['bgActive'] ) ? $attributes['tabStyles']['color']['bgActive'] : '',
+	'text'           => isset( $attributes['tabStyles']['color']['text'] ) ? $attributes['tabStyles']['color']['text'] : '',
+	'text_hover'     => isset( $attributes['tabStyles']['color']['textHover'] ) ? $attributes['tabStyles']['color']['textHover'] : '',
+	'text_active'    => isset( $attributes['tabStyles']['color']['textActive'] ) ? $attributes['tabStyles']['color']['textActive'] : '',
+	'shadow'         => array(
 		'horizontal' => isset( $attributes['tabStyles']['default']['shadow']['horizontal'] ) ? $attributes['tabStyles']['default']['shadow']['horizontal'] : '',
 		'vertical'   => isset( $attributes['tabStyles']['default']['shadow']['vertical'] ) ? $attributes['tabStyles']['default']['shadow']['vertical'] : '',
 		'blur'       => isset( $attributes['tabStyles']['default']['shadow']['blur'] ) ? $attributes['tabStyles']['default']['shadow']['blur'] : '',
@@ -29,7 +33,7 @@ $tab_item = array(
 		'color'      => isset( $attributes['tabStyles']['default']['shadow']['color'] ) ? $attributes['tabStyles']['default']['shadow']['color'] : '',
 		'position'   => isset( $attributes['tabStyles']['default']['shadow']['position'] ) ? $attributes['tabStyles']['default']['shadow']['position'] : '',
 	),
-	'shadow_active' => array(
+	'shadow_active'  => array(
 		'horizontal' => isset( $attributes['tabStyles']['active']['shadow']['horizontal'] ) ? $attributes['tabStyles']['active']['shadow']['horizontal'] : '',
 		'vertical'   => isset( $attributes['tabStyles']['active']['shadow']['vertical'] ) ? $attributes['tabStyles']['active']['shadow']['vertical'] : '',
 		'blur'       => isset( $attributes['tabStyles']['active']['shadow']['blur'] ) ? $attributes['tabStyles']['active']['shadow']['blur'] : '',
@@ -45,8 +49,12 @@ $image = array(
 	'height' => isset( $attributes['image']['height'] ) ? $attributes['image']['height'] : '',
 	'radius' => isset( $attributes['image']['radius'] ) ? $attributes['image']['radius'] : '',
 	'title'  => array(
-		'left'  => 'left' === $attributes['image']['title']['align'] ? $attributes['image']['title']['left'] : '',
-		'right' => 'right' === $attributes['image']['title']['align'] ? $attributes['image']['title']['right'] : '',
+		'left'           => 'left' === $attributes['image']['title']['align'] ? $attributes['image']['title']['left'] : '',
+		'right'          => 'right' === $attributes['image']['title']['align'] ? $attributes['image']['title']['right'] : '',
+		'letter_case'    => isset( $attributes['image']['title']['letterCase'] ) ? $attributes['image']['title']['letterCase'] : '',
+		'decoration'     => isset( $attributes['image']['title']['decoration'] ) ? $attributes['image']['title']['decoration'] : '',
+		'line_height'    => isset( $attributes['image']['title']['lineHeight'] ) ? $attributes['image']['title']['lineHeight'] : '',
+		'letter_spacing' => isset( $attributes['image']['title']['letterSpacing'] ) ? $attributes['image']['title']['letterSpacing'] : '',
 	),
 	'color'  => array(
 		'text'    => isset( $attributes['image']['color']['text'] ) ? $attributes['image']['color']['text'] : '',
@@ -67,8 +75,12 @@ $icon = array(
 
 $lightbox     = array(
 	'title' => array(
-		'left'  => 'left' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['left'] : '',
-		'right' => 'right' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['right'] : '',
+		'left'           => 'left' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['left'] : '',
+		'right'          => 'right' === $attributes['lightbox']['title']['align'] ? $attributes['lightbox']['title']['right'] : '',
+		'letter_case'    => isset( $attributes['lightbox']['title']['letterCase'] ) ? $attributes['lightbox']['title']['letterCase'] : '',
+		'decoration'     => isset( $attributes['lightbox']['title']['decoration'] ) ? $attributes['lightbox']['title']['decoration'] : '',
+		'line_height'    => isset( $attributes['lightbox']['title']['lineHeight'] ) ? $attributes['lightbox']['title']['lineHeight'] : '',
+		'letter_spacing' => isset( $attributes['lightbox']['title']['letterSpacing'] ) ? $attributes['lightbox']['title']['letterSpacing'] : '',
 	),
 	'color' => array(
 		'text' => isset( $attributes['lightbox']['title']['color']['text'] ) ? $attributes['lightbox']['title']['color']['text'] : '',
@@ -114,6 +126,10 @@ $ajax_loader = array(
 	'padding'           => cozy_render_TRBL( 'padding', $attributes['ajaxLoader']['padding'] ),
 	'border'            => isset( $attributes['ajaxLoader']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxLoader']['border'] ) : '',
 	'font_family'       => isset( $attributes['ajaxLoader']['font']['family'] ) ? $attributes['ajaxLoader']['font']['family'] : '',
+	'letter_case'       => isset( $attributes['ajaxLoader']['letterCase'] ) ? $attributes['ajaxLoader']['letterCase'] : '',
+	'decoration'        => isset( $attributes['ajaxLoader']['decoration'] ) ? $attributes['ajaxLoader']['decoration'] : '',
+	'line_height'       => isset( $attributes['ajaxLoader']['lineHeight'] ) ? $attributes['ajaxLoader']['lineHeight'] : '',
+	'letter_spacing'    => isset( $attributes['ajaxLoader']['letterSpacing'] ) ? $attributes['ajaxLoader']['letterSpacing'] : '',
 	'text'              => isset( $attributes['ajaxLoader']['color']['text'] ) ? $attributes['ajaxLoader']['color']['text'] : '',
 	'text_hover'        => isset( $attributes['ajaxLoader']['color']['textHover'] ) ? $attributes['ajaxLoader']['color']['textHover'] : '',
 	'bg'                => isset( $attributes['ajaxLoader']['color']['bg'] ) ? $attributes['ajaxLoader']['color']['bg'] : '',
@@ -148,6 +164,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['tabStyles']['font']['size']};
     font-weight: {$attributes['tabStyles']['font']['weight']};
     font-family: {$attributes['tabStyles']['font']['family']};
+    text-transform: {$tab_item['letter_case']};
+    text-decoration: {$tab_item['decoration']};
+    line-height: {$tab_item['line_height']};
+    letter-spacing: {$tab_item['letter_spacing']};
     background-color: {$tab_item['bg']};
     color: {$tab_item['text']};
 }
@@ -225,6 +245,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['image']['title']['font']['weight']};
 	font-family: {$attributes['image']['title']['font']['family']};
 	text-transform: {$attributes['image']['title']['letterCase']};
+	text-decoration: {$image['title']['decoration']};
+    line-height: {$image['title']['line_height']};
+    letter-spacing: {$image['title']['letter_spacing']};
 	color: {$image['color']['text']};
 }
 #$block_id .cozy-block-advanced-gallery__item.has-hover-caption:hover .cozy-block-advanced-gallery__image-caption {
@@ -259,6 +282,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['lightbox']['title']['font']['weight']};
 	font-family: {$attributes['lightbox']['title']['font']['family']};
 	text-transform: {$attributes['lightbox']['title']['letterCase']};
+	text-decoration: {$lightbox['title']['decoration']};
+	line-height: {$lightbox['title']['line_height']};
+	letter-spacing: {$lightbox['title']['letter_spacing']};
 	color: {$lightbox['color']['text']};
 }
 
@@ -345,6 +371,9 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['ajaxLoader']['font']['weight']};
 	font-family: {$ajax_loader['font_family']};
 	text-transform: {$attributes['ajaxLoader']['letterCase']};
+	text-decoration: {$ajax_loader['decoration']};
+	line-height: {$ajax_loader['line_height']};
+	letter-spacing: {$ajax_loader['letter_spacing']};
 	color: {$ajax_loader['text']};
 	background-color: {$ajax_loader['bg']};
 	min-width: {$attributes['ajaxLoader']['minWidth']};

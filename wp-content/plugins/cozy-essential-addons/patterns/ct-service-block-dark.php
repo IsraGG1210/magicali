@@ -6,7 +6,7 @@
  * Categories: ct-patterns,fotawp-services
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pattern_small.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pattern_small.png',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","right":"var:preset|spacing|50","left":"var:preset|spacing|50"}},"color":{"background":"#010101"}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

@@ -37,8 +37,12 @@ $image_color = array(
 );
 
 $title_styles = array(
-	'color'       => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
-	'color_hover' => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
+	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
+	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
+	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
+	'color'          => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
+	'color_hover'    => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
 );
 
 $icon_box_padding = cozy_render_TRBL( 'padding', $attributes['iconBox']['padding'] );
@@ -127,8 +131,11 @@ $block_styles = <<<BLOCK_STYLES
 	{$item_div_padding}
 	{$item_div_border}
 	{$item_div_radius}
-	box-shadow: {$attributes['categoryItem']['shadow']['horizontal']}px {$attributes['categoryItem']['shadow']['vertical']}px {$attributes['categoryItem']['shadow']['blur']}px {$attributes['categoryItem']['shadow']['spread']}px {$item_styles['shadow_color']} {$attributes['categoryItem']['shadow']['position']};
 	background-color: {$item_styles['bg_color']};
+	
+	&.has-box-shadow {
+		box-shadow: {$attributes['categoryItem']['shadow']['horizontal']}px {$attributes['categoryItem']['shadow']['vertical']}px {$attributes['categoryItem']['shadow']['blur']}px {$attributes['categoryItem']['shadow']['spread']}px {$item_styles['shadow_color']} {$attributes['categoryItem']['shadow']['position']};
+	}
 }
 #$block_id .cozy-block-advanced-categories__category-item:hover {
 	background-color: {$item_styles['bg_color_hover']};
@@ -208,6 +215,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['title']['fontSize']};
 	font-family: {$attributes['title']['fontFamily']};
 	font-weight: {$attributes['title']['fontWeight']};
+	text-transform: {$title_styles['letter_case']};
+	text-decoration: {$title_styles['decoration']};
+	line-height: {$title_styles['line_height']};
+	letter-spacing: {$title_styles['letter_spacing']};
 	color: {$title_styles['color']};
 }
 #$block_id.layout-default .cozy-block-advanced-categories__category-item:hover .cozy-block-advanced-categories__name {
@@ -349,9 +360,14 @@ if ( isset( $attributes['title']['fontFamily'] ) && ! empty( $attributes['title'
 		$cat_classes   = array();
 		$cat_classes[] = 'cozy-block-advanced-categories__category-item';
 		$cat_classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
+		$cat_classes[] = isset($attributes['categoryItem']['shadow']['enabled']) && $attributes['categoryItem']['shadow']['enabled'] ? 'has-box-shadow' : '';
 		$output       .= '<style>' . $cat_styles . '</style>';
 		$output       .= '<div class="' . implode( ' ', $cat_classes ) . '" data-category-id="' . $category->term_id . '">';
-			$output   .= '<a href="' . get_category_link( $category->term_id ) . '" target="_blank" rel="noopener">';
+
+		$has_category_link = isset( $attributes['enableOptions']['linkCategory'] ) && $attributes['enableOptions']['linkCategory'] ? 'href="' . esc_url( get_category_link( $category->term_id ) ) . '"' : '';
+		$open_new_tab      = isset( $attributes['enableOptions']['linkCategory'], $attributes['enableOptions']['openNewTab'] ) && $attributes['enableOptions']['linkCategory'] && $attributes['enableOptions']['openNewTab'] ? '_blank' : '';
+
+			$output .= '<a ' . $has_category_link . ' target="' . $open_new_tab . '" rel="noopener">';
 		if ( 'cover' === $attributes['layout'] ) {
 			$output .= '<span class="cozy-block-advanced-categories__background"></span>';
 		}

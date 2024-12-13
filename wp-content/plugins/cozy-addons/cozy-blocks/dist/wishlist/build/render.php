@@ -450,14 +450,13 @@ if ( 'sidebar' === $attributes['variation'] ) {
 	$output    .= '</svg>';
 
 	/* Wishlist Count */
-	$output .= '<span class="cozy-block-wishlist__count">';
-	if ( ! is_user_logged_in() ) {
-		$output .= '0';
+	if ( isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ) {
+		if ( is_user_logged_in() && is_array( $wishlist_user_meta ) && count( $wishlist_user_meta ) > 0 ) {
+			$output .= '<span class="cozy-block-wishlist__count">';
+			$output .= count( $wishlist_user_meta );
+			$output .= '</span>';
+		}
 	}
-	if ( is_user_logged_in() ) {
-		$output .= is_array( $wishlist_user_meta ) ? count( $wishlist_user_meta ) : '0';
-	}
-	$output .= '</span>';
 	/* End Wishlist Count */
 
 	$output .= '</div>';
@@ -504,6 +503,7 @@ if ( 'sidebar' === $attributes['variation'] ) {
 					$product_price       = wc_price( $product->get_price() );
 					$product_description = $product->get_description();
 					$product_image       = wp_get_attachment_url( $product->get_image_id() );
+					$is_in_stock         = $product->get_stock_status();
 
 					$output .= '<li class="cozy-block-wishlist__product-data post-' . $product_id . '">';
 					/* Product Image */
@@ -523,10 +523,14 @@ if ( 'sidebar' === $attributes['variation'] ) {
 					$output .= '<p class="cozy-block-wishlist__product-price">' . $product_price . '</p>';
 
 					/* Add/Remove Buttons */
-					$output .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
-					$output .= '<div class="cozy-block-wishlist__sidebar-button add__cart" data-product-id="' . $product_id . '">' . esc_html_x( 'Add to Cart', 'cozy-addons' ) . '</div>';
-					$output .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
-					$output .= '</div>';
+					$output     .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
+					$stock_label = 'instock' === $is_in_stock ? 'Add to Cart' : 'Out of Stock';
+					$classes     = array();
+					$classes[]   = 'cozy-block-wishlist__sidebar-button';
+					$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
+					$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
+					$output     .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
+					$output     .= '</div>';
 					/* End Add/Remove Buttons */
 
 					$output .= '</div>';
@@ -581,27 +585,42 @@ if ( ! is_user_logged_in() ) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	var wishlistCount = document.querySelector('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count');
-	
-	if(wishlistCount) {
-		const wishlistData = getLocalWishlist();
-		wishlistCount.innerHTML = wishlistData.length;
+	// var wishlistCount = document.querySelector('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count');
+	var wishlistData = getLocalWishlist();
 
-		wishlistData.forEach((productID) => {
-			const iconClass = '.cozy-block-wishlist.variation-wishlist .post-' + productID;
-			const wishlistIconWrapper = document.querySelector(iconClass);
+	var showWishlistCount = <?php echo 'sidebar' === $attributes['variation'] && isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ? '1' : '0'; ?>;
 
-			if(wishlistData.includes(productID)) {
-				if(wishlistIconWrapper) {
-					wishlistIconWrapper.classList.add('is-active');
-				}
-			}else {
-				if(wishlistIconWrapper) {
-					wishlistIconWrapper.classList.remove('is-active');
-				}
+	if(parseInt(showWishlistCount) == 1) {
+		if(wishlistData.length > 0) {
+			// wishlistCount.innerHTML = wishlistData.length;
+			if ($('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').length) {
+				// If it exists, update its content
+				$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(wishlistData.length);
+			} else {
+				// If it does not exist, create it and append it to the parent container
+				$('.cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper').append(
+					`<span class="cozy-block-wishlist__count">${wishlistData.length}</span>`
+				);
 			}
-		})
+		}else {
+			$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').remove();
+		}
 	}
+
+	wishlistData.forEach((productID) => {
+		const iconClass = '.cozy-block-wishlist.variation-wishlist .post-' + productID;
+		const wishlistIconWrapper = document.querySelector(iconClass);
+
+		if(wishlistData.includes(productID)) {
+			if(wishlistIconWrapper) {
+				wishlistIconWrapper.classList.add('is-active');
+			}
+		}else {
+			if(wishlistIconWrapper) {
+				wishlistIconWrapper.classList.remove('is-active');
+			}
+		}
+	})
 
 	// Function to toggle product ID in the wishlist
 	function updateLocalWishlist(productId) {
@@ -645,7 +664,23 @@ if ( ! is_user_logged_in() ) {
 			wishlistIconWrapper.classList.remove('is-active');
 		}
 
-		$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(wishlistData.length);
+		if(parseInt(showWishlistCount) == 1) {
+			if (wishlistData.length > 0) {
+				if ($('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').length) {
+						// If it exists, update its content
+					$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(wishlistData.length);
+				} else {
+					// If it does not exist, create it and append it to the parent container
+					$('.cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper').append(
+						`<span class="cozy-block-wishlist__count">${wishlistData.length}</span>`
+					);
+				}
+			} else {
+				$(
+					".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
+				).remove();
+			}
+		}
 
 		// Trigger Toast Message
 		const variationClass = "variation-<?php echo $attributes['variation']; ?>";
@@ -663,6 +698,8 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 	?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	var showWishlistCount = <?php echo 'sidebar' === $attributes['variation'] && isset( $attributes['sidebar']['count']['enabled'] ) && $attributes['sidebar']['count']['enabled'] ? '1' : '0'; ?>;
+
 	function addToCart(el) {
 		const productId = $(el).attr("data-product-id");
 		$.ajax({
@@ -710,9 +747,23 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 				).removeClass("is-active");
 			}
 
-			$(
-				".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
-			).html(response.data.user_wishlist.length);
+			if(parseInt(showWishlistCount) == 1) {
+				if (response.data.user_wishlist.length > 0) {
+					if ($('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').length) {
+						// If it exists, update its content
+						$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(response.data.user_wishlist.length);
+					} else {
+						// If it does not exist, create it and append it to the parent container
+						$('.cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper').append(
+							`<span class="cozy-block-wishlist__count">${response.data.user_wishlist.length}</span>`
+						);
+					}
+				} else {
+					$(
+						".cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count"
+					).remove();
+				}
+			}
 
 			if (response.data.user_wishlist.length <= 0) {
 				$(".cozy-block-wishlist__sidebar-body").html("");
@@ -780,7 +831,22 @@ if ( 'wishlist' === $attributes['variation'] && is_user_logged_in() ) {
 						$(".cozy-block-wishlist.variation-wishlist .post-" + productId).removeClass("is-active");
 					}
 
-					$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(response.data.user_wishlist.length);
+					if(parseInt(showWishlistCount) == 1) {
+						if(response.data.user_wishlist.length > 0) {
+							// Check if the .cozy-block-wishlist__count element exists
+							if ($('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').length) {
+								// If it exists, update its content
+								$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').html(response.data.user_wishlist.length);
+							} else {
+								// If it does not exist, create it and append it to the parent container
+								$('.cozy-block-wishlist.variation-sidebar .sidebar__icon-wrapper').append(
+									`<span class="cozy-block-wishlist__count">${response.data.user_wishlist.length}</span>`
+								);
+							}
+						}else {
+							$('.cozy-block-wishlist.variation-sidebar .cozy-block-wishlist__count').remove();
+						}
+					}
 
 					updateSidebarRender(response.data.user_wishlist);
 

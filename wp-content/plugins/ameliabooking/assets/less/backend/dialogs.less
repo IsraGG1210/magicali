@@ -885,6 +885,19 @@
       }
     }
 
+    .invoice-download {
+      display: block;
+      @media @less-then-small {
+        display: none;
+      }
+      &-mobile {
+        display: none;
+        @media @less-then-small {
+          display: block;
+        }
+      }
+    }
+
     .am-zoom-tabpane {
       div {
         padding-top: 10px;

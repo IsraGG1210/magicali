@@ -34,7 +34,7 @@
     "styles": {
       "type": "object",
       "default": {
-        "fontFamily": "default",
+        "fontFamily": "Public Sans",
         "fontSize": 64,
         "color": "#5566CA",
         "fontWeight": 700

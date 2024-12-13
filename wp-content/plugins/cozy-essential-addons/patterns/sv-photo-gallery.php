@@ -6,11 +6,11 @@
  * Categories: smartversity
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/g1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/g2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/g3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/g4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/g5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/g1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/g2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/g3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/g4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/g5.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

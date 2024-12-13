@@ -574,22 +574,22 @@ export default {
     },
 
     editPayment (obj) {
-      this.selectedPaymentModalData = this.getPaymentData(obj.payment, obj.package ? null : this.savedAppointment, null, obj.package)
-
-      this.selectedPaymentModalData.customer = this.getCustomerById(obj.payment.customerId)
-
-      this.selectedPaymentModalData.recurring = obj.recurring
-
       if (obj.package) {
         let payment = obj.payment
         payment['coupon'] = obj.booking.packageCustomerService.packageCustomer.couponId ? obj.booking.coupon : null
 
-        this.selectedPaymentModalData.bookings[0] = {
+        obj.booking = {
           price: obj.booking.packageCustomerService.packageCustomer.price,
           payments: [payment],
           extras: []
         }
       }
+
+      this.selectedPaymentModalData = this.getPaymentData(obj.payment, obj.package ? null : this.savedAppointment, null, obj.package ? obj : null)
+
+      this.selectedPaymentModalData.customer = this.getCustomerById(obj.payment.customerId)
+
+      this.selectedPaymentModalData.recurring = obj.recurring
 
       this.dialogPayment = true
     },

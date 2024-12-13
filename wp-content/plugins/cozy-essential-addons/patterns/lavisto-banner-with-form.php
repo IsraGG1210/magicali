@@ -6,7 +6,7 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/banner_bg.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/banner_bg.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Banner with Booking Form"},"style":{"spacing":{"padding":{"top":"0px","right":"0","bottom":"0px","left":"0"},"margin":{"top":"0","bottom":"0"}},"border":{"bottom":{"width":"0px","style":"none"}}},"backgroundColor":"light-color","className":"lavisto-header","layout":{"type":"constrained","contentSize":"100%"}} -->

@@ -6,17 +6,17 @@
  * Categories: ct-patterns, ct-patterns-innerpage
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_pattern_service_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_pattern_service_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_6.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_7.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_8.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_icon_9.png'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_pattern_service_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_pattern_service_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_7.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_8.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_icon_9.png'
 );
 ?>
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained","contentSize":"100%"}} -->

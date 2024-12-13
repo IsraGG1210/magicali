@@ -6,12 +6,12 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_5.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/brand_6.jpg'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/brand_6.jpg'
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Partners Branding"},"style":{"spacing":{"padding":{"top":"32px","bottom":"32px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

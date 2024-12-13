@@ -20,10 +20,12 @@ use AmeliaBooking\Domain\Entity\CustomField\CustomField;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
 use AmeliaBooking\Domain\Entity\User\Customer;
+use AmeliaBooking\Domain\Factory\Booking\Event\EventFactory;
 use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Domain\ValueObjects\Number\Integer\LoginType;
 use AmeliaBooking\Domain\ValueObjects\String\BookingStatus;
+use AmeliaBooking\Domain\ValueObjects\String\PaymentStatus;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
@@ -75,6 +77,10 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
         unset($data['icsFiles']);
 
         unset($data['providersAppointments']);
+
+        unset($data['invoice_items_booking']);
+        unset($data['invoice_items_extras']);
+        unset($data['invoice_items_event']);
 
         $placeholders = array_map(
             function ($placeholder) {
@@ -192,7 +198,8 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
             'company_name'    => $companyName,
             'company_phone'   => $companySettings['phone'],
             'company_website' => $companySettings['website'],
-            'company_email'   => !empty($companySettings['email']) ? $companySettings['email']:null
+            'company_email'   => !empty($companySettings['email']) ? $companySettings['email'] : null,
+            'company_logo'    => $companySettings['pictureThumbPath']
         ];
     }
 
@@ -206,7 +213,7 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
      *
      * @throws ContainerException
      */
-    protected function getBookingData($appointment, $type, $bookingKey = null, $token = null, $depositEnabled = null, $isGroup = null)
+    protected function getBookingData($appointment, $type, $bookingKey = null, $token = null, $depositEnabled = null, $isGroup = null, $invoice = false)
     {
         /** @var HelperService $helperService */
         $helperService = $this->container->get('application.helper.service');
@@ -218,6 +225,8 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
         $payment = null;
 
+        $invoiceItem = [];
+
         $paymentLinks = [
             'payment_link_woocommerce' => '',
             'payment_link_stripe' => '',
@@ -225,6 +234,14 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
             'payment_link_razorpay' => '',
             'payment_link_mollie' => '',
             'payment_link_square' => ''
+        ];
+
+        $couponDiscount = 0;
+
+        $amountData = [
+            'price'     => 0,
+            'discount'  => 0,
+            'deduction' => 0,
         ];
 
         // If notification is for provider: Appointment price will be sum of all bookings prices
@@ -291,7 +308,9 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
             $icsFiles = !empty($appointment['bookings'][0]['icsFiles']) ? $appointment['bookings'][0]['icsFiles'] : [];
         } else {
-            $amountData = $this->getAmountData($appointment['bookings'][$bookingKey], $appointment);
+            $amountData = $this->getAmountData($appointment['bookings'][$bookingKey], $appointment, $invoice);
+
+            $couponDiscount = $amountData['discount'] + $amountData['deduction'];
 
             $expirationDate = null;
 
@@ -312,9 +331,30 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
             $numberOfPersons = empty($appointment['bookings'][$bookingKey]['ticketsData']) ? $appointment['bookings'][$bookingKey]['persons'] : array_sum(array_column($appointment['bookings'][$bookingKey]['ticketsData'], 'persons'));
 
+            $invoiceItem['invoice_qty'] = $amountData['qty'];
+            $invoiceItem['invoice_unit_price'] = $amountData['unit_price'];
+            $invoiceItem['invoice_subtotal'] = $amountData['subtotal'];
+            $invoiceItem['invoice_tax'] = $amountData['tax'];
+            $invoiceItem['invoice_tax_rate'] = $amountData['tax_rate'];
+            $invoiceItem['invoice_tax_excluded'] = $amountData['tax_excluded'];
+            $invoiceItem['invoice_tax_type'] = $amountData['tax_type'];
+            $invoiceItem['invoice_extras_tax'] = !empty($amountData['extras_tax']) ? $amountData['extras_tax'] : null;
+            $invoiceItem['invoice_tickets_tax'] = !empty($amountData['tickets_tax']) ? $amountData['tickets_tax'] : null;
+
             $icsFiles = !empty($appointment['bookings'][$bookingKey]['icsFiles']) ? $appointment['bookings'][$bookingKey]['icsFiles'] : [];
 
             $payment = !empty($appointment['bookings'][$bookingKey]['payments'][0]) ? $appointment['bookings'][$bookingKey]['payments'][0] : null;
+
+            $invoiceItem['invoice_paid_amount'] = 0;
+            $invoiceItem['invoice_method']  = '';
+            foreach ($appointment['bookings'][$bookingKey]['payments'] as $p) {
+                if ($p['status'] === PaymentStatus::PARTIALLY_PAID || $p['status'] === PaymentStatus::PAID) {
+                    $invoiceItem['invoice_paid_amount'] += $p['amount'];
+                    $invoiceItem['invoice_method'] = $p['gateway'];
+                }
+            }
+
+            $invoiceItem['invoice_discount'] = !empty($amountData['full_discount']) && $amountData['full_discount'] > 0 ? $amountData['full_discount'] : 0;
 
             if (!empty($payment['paymentLinks'])) {
                 foreach ($payment['paymentLinks'] as $paymentType => $paymentLink) {
@@ -337,7 +377,7 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
                     $paymentType = BackendStrings::getSettingsStrings()['wc_name'];
                     break;
                 case 'square':
-                    $paymentType = LiteBackendStrings::getSettingsStrings()['square'];
+                    $paymentType = BackendStrings::getSettingsStrings()['square'];
                     break;
                 default:
                     $paymentType = BackendStrings::getSettingsStrings()[$payment['gateway']];
@@ -347,6 +387,12 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
         $appointmentPrice = $helperService->getFormattedPrice($amountData['price'] >= 0 ? $amountData['price'] : 0);
 
+        $paymentDueAmount = $payment ?
+            $helperService->getFormattedPrice(
+                ($amountData['price'] >= 0 ? $amountData['price'] : 0) -
+                ($payment['amount'] - (!empty($payment['wcItemTaxValue']) ? $payment['wcItemTaxValue'] : 0))
+            ) : '';
+
         $bookingKeyForEmployee = null;
 
         if ($bookingKey === null || $isGroup) {
@@ -354,6 +400,10 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
                 $appointment['bookings'][$bookingKey]['id'] : $this->getBookingKeyForEmployee($appointment);
         }
 
+        /** @var SettingsService $settingsService */
+        $settingsService = $this->container->get('domain.settings.service');
+
+        $dateFormat = $settingsService->getSetting('wordpress', 'dateFormat');
 
         return array_merge(
             $paymentLinks,
@@ -374,10 +424,14 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
                 'payment_type'                      => $paymentType,
                 'payment_status'                    => $payment ? $payment['status'] : '',
                 'payment_gateway'                   => $payment ? $payment['gateway'] : '',
+                'payment_created'                   => $payment ? date_i18n($dateFormat, $payment['created']) : '',
+                'payment_invoice_number'            => $payment ? $payment['invoiceNumber'] : '',
                 'payment_gateway_title'             => $payment ? $payment['gatewayTitle'] : '',
+                "payment_due_amount"                => $paymentDueAmount,
                 'number_of_persons'                 => $numberOfPersons,
                 'coupon_used'                       => $couponsUsed ? implode($break, $couponsUsed) : '',
-                'icsFiles'                          => $icsFiles
+                'icsFiles'                          => $icsFiles,
+                'invoice_items_booking'             => [$invoiceItem]
             ]
         );
     }
@@ -786,6 +840,10 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
             $customerId      = $type !== Entities::PACKAGE ? $appointment['bookings'][$bookingKey]['customerId'] : $appointment['customer']['id'];
             $couponsCriteria = [];
 
+            if (!$customerId) {
+                return $couponsData;
+            }
+
             switch ($type) {
                 case Entities::APPOINTMENT:
                     /** @var AppointmentRepository $appointmentRepository */
@@ -795,9 +853,15 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
                     $couponsCriteria['entityType'] = Entities::SERVICE;
 
-                    $customerReservations = $appointmentRepository->getFiltered(
+                    $customerReservations = $appointmentRepository->getPeriodAppointments(
                         [
                             'customerId'    => $customerId,
+                            'skipServices'  => true,
+                            'skipProviders' => true,
+                            'skipCustomers' => true,
+                            'skipPayments'  => true,
+                            'skipExtras'    => true,
+                            'skipCoupons'   => true,
                             'status'        => BookingStatus::APPROVED,
                             'bookingStatus' => BookingStatus::APPROVED,
                             'services'      => [
@@ -816,12 +880,20 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
                     $couponsCriteria['entityIds'] = [$appointment['id']];
 
-                    $customerReservations = $eventRepository->getFiltered(
+                    $eventsIds = $eventRepository->getFilteredIds(
                         [
-                            'customerId'    => $customerId,
-                            'bookingStatus' => BookingStatus::APPROVED,
-                        ]
+                            'customerId'            => $customerId,
+                            'customerBookingStatus' => BookingStatus::APPROVED,
+                        ],
+                        0
                     );
+
+                    /** @var Collection $customerReservations */
+                    $customerReservations = new Collection();
+
+                    foreach ($eventsIds as $eventId) {
+                        $customerReservations->addItem(EventFactory::create(['id' => $eventId]), $eventId);
+                    }
 
                     break;
 

@@ -6,12 +6,12 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/boating.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/offerbg.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/spa.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/wedding_celebration.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/banner_bg_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/boating.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/offerbg.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/spa.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/wedding_celebration.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/banner_bg_2.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Experience the Luxury"},"style":{"spacing":{"padding":{"top":"110px","bottom":"90px","left":"var:preset|spacing|40","right":"0"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"100%"}} -->

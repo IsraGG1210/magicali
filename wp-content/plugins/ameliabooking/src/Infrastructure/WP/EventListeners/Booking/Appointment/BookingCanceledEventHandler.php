@@ -69,6 +69,7 @@ class BookingCanceledEventHandler
         /** @var AbstractZoomApplicationService $zoomService */
         $zoomService = $container->get('application.zoom.service');
 
+
         $appointment = $commandResult->getData()[$commandResult->getData()['type']];
 
         if ($commandResult->getData()['type'] === Entities::APPOINTMENT) {

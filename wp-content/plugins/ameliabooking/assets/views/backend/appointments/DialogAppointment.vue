@@ -161,7 +161,7 @@
                           class="small-status"
                           :popper-class="'am-dropdown-cabinet'"
                           :no-data-text="$root.labels.choose_a_group_service"
-                          @change="handleBookingChange"
+                          @change="handleBookingChange(true)"
                         >
                           <el-option
                             v-for="n in appointment.providerServiceMaxAdditonalCapacity"
@@ -1982,14 +1982,14 @@
         this.statusMessage = this.getApprovedPersonsCount() < this.appointment.providerServiceMinCapacity ? '(minimum ' + this.appointment.providerServiceMinCapacity + ')' : ''
       },
 
-      handleBookingChange () {
+      handleBookingChange (fetchSlots = false) {
         let duration = this.appointment.duration
 
         this.handleBookingDurationChange()
         this.setPrice()
         this.setStatusMessage()
 
-        if (this.options.entities.resources.length > 0 || duration !== this.appointment.duration) {
+        if (fetchSlots || this.options.entities.resources.length > 0 || duration !== this.appointment.duration) {
           this.getTimeSlots(this.updateCalendar)
         }
       },
@@ -2161,7 +2161,7 @@
               providerIds: appointment.providerId ? [appointment.providerId] : [],
               extras: JSON.stringify(extras),
               excludeAppointmentId: appointment.id,
-              group: 1,
+              group: this.$root.settings.role === 'customer' || !this.appointment.id ? 1 : 0,
               timeZone: this.selectedTimeZone,
               monthsLoad: this.monthsLoad,
               startDateTime: this.startDateTime
@@ -2282,13 +2282,13 @@
       isPriceChanged () {
         let priceChanged = false
         let paymentLinksEnabled = this.$root.settings.payments && this.$root.settings.payments.paymentLinks ? this.$root.settings.payments.paymentLinks.enabled : false
-        let service = this.getServiceById(this.appointment.serviceId)
+        let service = this.appointment.serviceId ? this.getServiceById(this.appointment.serviceId) : null
         let serviceSettings = service && service.settings ? JSON.parse(service.settings) : null
         if (serviceSettings && serviceSettings.payments && serviceSettings.payments.paymentLinks) {
           paymentLinksEnabled = serviceSettings.payments.paymentLinks.enabled
         }
 
-        if (paymentLinksEnabled && this.appointment.id !== 0) {
+        if (paymentLinksEnabled && this.appointment.id !== 0 && this.appointment.serviceId) {
           for (let newBooking of this.appointment.bookings) {
             let oldBooking = this.clonedBookings.find(b => b.id === newBooking.id)
             if (oldBooking && oldBooking.id !== 0) {

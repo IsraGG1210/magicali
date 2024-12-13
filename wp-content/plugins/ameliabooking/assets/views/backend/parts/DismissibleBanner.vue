@@ -13,7 +13,7 @@
           <g transform="matrix(1 0 0 1 10 10)" id="e5447793-4e4b-4693-bccb-e9a5f9eacb67"  >
             <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-10" y="-10" rx="0" ry="0" width="20" height="20" />
           </g>
-          <g transform="matrix(Infinity NaN NaN Infinity 0 0)" id="7ecdb507-a311-4b85-af01-1072cc7786ed"></g>
+          <g transform="matrix(1 0 0 1 10 10)" id="7ecdb507-a311-4b85-af01-1072cc7786ed"></g>
           <g transform="matrix(1 0 0 1 10 10)">
             <path style="stroke: rgb(255,255,255); stroke-width: 2; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-10, -10)" d="M 15 15 L 5 5 M 15 5 L 5 15" stroke-linecap="round" />
           </g>

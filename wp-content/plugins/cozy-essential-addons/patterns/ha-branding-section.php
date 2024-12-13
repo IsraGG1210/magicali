@@ -6,18 +6,18 @@
  * Categories: ha-patterns-pro
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_6.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_7.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_8.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_9.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_10.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_11.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/logo_12.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_7.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_8.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_9.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_10.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_11.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/logo_12.png',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"0","right":"0"}}},"className":"hello-agency-animate","layout":{"type":"constrained","contentSize":"100%"}} -->

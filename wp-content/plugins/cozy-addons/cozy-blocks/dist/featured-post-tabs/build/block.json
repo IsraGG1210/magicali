@@ -61,6 +61,14 @@
       "type": "string",
       "default": ""
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "siteURL": {
       "type": "string",
       "default": ""
@@ -80,7 +88,9 @@
         "popular": true,
         "trending": false,
         "tags": true,
-        "comments": true
+        "tagsLinkNewTab": false,
+        "comments": true,
+        "commentsLinkNewTab": false
       }
     },
     "gridOptions": {
@@ -197,9 +207,17 @@
       "type": "object",
       "default": {
         "postImage": true,
+        "imgLinkPost": true,
+        "imgOpenLinkNewTab": false,
+        "titleLinkPost": true,
+        "titleOpenLinkNewTab": false,
         "postContent": true,
         "postDate": true,
+        "linkPostMeta": true,
+        "postMetaOpenLinkNewTab": false,
         "categories": true,
+        "linkCat": true,
+        "catLinkNewTab": false,
         "excerpt": 20
       }
     },
@@ -267,8 +285,12 @@
         "bgColorHover": "#f90",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
-        "fontWeight": "400"
+        "fontFamily": "Public Sans",
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "titleStyles": {
@@ -277,10 +299,14 @@
         "marginTop": "6px",
         "marginBottom": "6px",
         "fontSize": "20px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "600",
-        "color": "",
-        "colorHover": ""
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": "#090b10",
+        "colorHover": "#f90"
       }
     },
     "dateStyles": {
@@ -306,8 +332,12 @@
         "bgColorHover": "",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
-        "fontWeight": "400"
+        "fontFamily": "Public Sans",
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "tagStyles": {
@@ -338,9 +368,12 @@
         "bgColorHover": "#f90",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontWeight": "400",
-        "letterCase": "none"
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "tabStyles": {
@@ -380,8 +413,12 @@
           "bgColor": ""
         },
         "fontSize": "14px",
-        "fontFamily": "",
-        "fontWeight": "500"
+        "fontFamily": "Public Sans",
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "separatorStyles": {

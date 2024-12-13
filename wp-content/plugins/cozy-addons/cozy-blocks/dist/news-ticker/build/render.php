@@ -15,7 +15,7 @@ $nav_color = array(
 
 $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-container {
-    height: {$attributes['height']}px;
+    max-height: {$attributes['height']}px;
 }
 
 #$block_id .swiper-button-prev::after,

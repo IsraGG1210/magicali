@@ -660,10 +660,10 @@
         :action="{
           haveAdd: true,
           haveEdit: true,
-          haveStatus: $root.settings.capabilities.canWriteOthers === true,
-          haveRemove: $root.settings.capabilities.canDelete === true,
+          haveStatus: $root.settings.capabilities.canWriteOthers === true && !$root.licence.isLite,
+          haveRemove: $root.settings.capabilities.canDelete === true && !$root.licence.isLite,
           haveRemoveEffect: true,
-          haveDuplicate: $root.settings.capabilities.canWriteOthers === true
+          haveDuplicate: $root.settings.capabilities.canWriteOthers === true && !$root.licence.isLite
         }"
 
         :message="{

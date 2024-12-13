@@ -6,12 +6,12 @@
  * Categories: reshape-block-patterns
  */
 $reshape_block_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p5.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p6.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p6.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"right":"var:preset|spacing|50","left":"var:preset|spacing|50","top":"100px","bottom":"100px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

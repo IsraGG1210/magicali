@@ -1,3 +1,46 @@
+= 2.0.28 - December 11, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Styles preg match for 'Cozy Hover Styles' attribute.
+
+= 2.0.27 - December 9, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Slider options for 'Featured Content Box' block.
+
+= 2.0.26 - November 27, 2024 = 
+* Fix: Slider options 'Speed', 'Autoplay Delay' value to minimum 0.
+* Add: Transform option for default state in 'Cozy Hover Effect' functionality.
+* Add: Overflow option for default state in 'Cozy Hover Effect' functionality.
+
+= 2.0.25 - November 25, 2024 = 
+* Fix: Slider styles.
+* Add: z-index option for 'Cozy Hover Effect' functionality.
+* Add: Post meta options for 'Popular Post' and 'Trending Posts' blocks.
+
+= 2.0.24 - November 20, 2024 = 
+* Fix: 'Advanced Mega Menu' block's active menu item's text/background color and typography settings.
+* Fix: Render the popup in the respective block section for 'Sidebar Panel' block.
+* Fix: Render the popup in the respective block section for 'Popup Builder' block.
+* Fix: Reduced load time for plugin's Dashboard > Blocks enable/disabled status.
+
+= 2.0.23 - November 15, 2024 = 
+* Fix: Typography settings for general blocks.
+* Fix: Show block CPT if the option not set.
+
+= 2.0.22 - November 13, 2024 = 
+* Fix: Post/Product blocks typography settings.
+* Fix: 'Advanced Mega Menu' responsive dropdown.
+
+= 2.0.21 - November 6, 2024 = 
+* Add: 'Categorized Post Tabs' content wrapper border.
+* Add: 'Magazine Grid' content wrapper border.
+* Fix: Post/Product link redirection.
+* Fix: 'Advanced Mega Menu' responsive dropdown.
+
+= 2.0.19 - October 22, 2024 = 
+* Fix: Slider block's initial render template.
+* Fix: Security check for elementor widgets render data.
+* Add: Elementor support removal notice.
+
 = 2.0.18 - October 7, 2024 = 
 * Fix: Lightbox for carousel layout in 'Advanced Gallery' block.
 * Fix: Filter for portfolio gallery category.

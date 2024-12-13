@@ -38,6 +38,13 @@
           "height": 10,
           "borderRadius": 10,
           "activeWidth": 10,
+          "activeHeight": 10,
+          "activeBorder": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "activeOffset": 0,
           "activeBorderRadius": 10,
           "activeColor": "#007cba",
           "color": "#252525",
@@ -45,6 +52,7 @@
           "colorHover": "#a5a5a5",
           "align": "center",
           "positionVertical": 5,
+          "gap": 4,
           "left": "0px",
           "right": "0px"
         },
@@ -53,11 +61,17 @@
           "iconSize": 15,
           "iconBoxWidth": 35,
           "iconBoxHeight": 35,
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
           "borderRadius": 50,
           "backgroundColor": "#fff",
           "color": "#007cba",
           "backgroundColorHover": "#007cba",
-          "colorHover": "#fff"
+          "colorHover": "#fff",
+          "borderHover": ""
         },
         "sliderOptions": {
           "loop": false,

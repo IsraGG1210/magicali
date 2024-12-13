@@ -57,7 +57,6 @@ class EventAddedEventHandler
         /** @var AbstractOutlookCalendarService $outlookCalendarService */
         $outlookCalendarService = $container->get('infrastructure.outlook.calendar.service');
 
-
         $events = $commandResult->getData()[Entities::EVENTS];
 
         foreach ($events as $event) {

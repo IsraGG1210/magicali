@@ -6,10 +6,10 @@
  * Categories: musicmantra-patterns
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mm-assets/singer_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mm-assets/singer_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mm-assets/singer_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mm-assets/singer_4.jpg'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mm-assets/singer_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mm-assets/singer_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mm-assets/singer_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mm-assets/singer_4.jpg'
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"120px","bottom":"120px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"background-alt","layout":{"type":"constrained","contentSize":"96%"}} -->

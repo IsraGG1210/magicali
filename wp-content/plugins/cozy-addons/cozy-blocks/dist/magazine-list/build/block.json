@@ -65,6 +65,14 @@
       "type": "string",
       "default": ""
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "perPage": {
       "type": "number",
       "default": 6
@@ -80,13 +88,22 @@
         "subHeading": true,
         "ignoreSticky": true,
         "postImage": true,
+        "imgLinkPost": true,
+        "imgLinkNewTab": false,
+        "titleLinkPost": true,
+        "titleLinkNewTab": false,
         "postContent": true,
         "postExcerpt": 20,
         "readMore": true,
+        "readMoreNewTab": false,
         "postAuthor": true,
         "postComments": true,
         "postDate": true,
-        "postCategories": true
+        "linkPostMeta": true,
+        "postMetaNewTab": false,
+        "postCategories": true,
+        "linkCat": true,
+        "catNewTab": false
       }
     },
     "headingLabel": {
@@ -167,8 +184,12 @@
         "font": {
           "size": "18px",
           "weight": "600",
-          "family": ""
+          "family": "Public Sans"
         },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "bg": "",
           "text": ""
@@ -195,9 +216,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -287,9 +311,12 @@
           "font": {
             "size": "18px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": {
             "text": "#090b10",
             "textHover": "#f90"
@@ -320,10 +347,13 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "hoverEffect": true,
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -343,9 +373,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#5566ca",
           "textHover": "#f90"
@@ -374,10 +407,13 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
-        "letterCase": "none",
         "textAlign": "right",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -415,9 +451,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "textAlign": "center",
         "color": {
           "text": "#fff",

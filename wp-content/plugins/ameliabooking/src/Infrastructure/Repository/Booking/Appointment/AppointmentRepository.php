@@ -154,6 +154,8 @@ class AppointmentRepository extends AbstractRepository implements AppointmentRep
                     p.id AS payment_id,
                     p.packageCustomerId AS payment_packageCustomerId,
                     p.amount AS payment_amount,
+                    p.created AS payment_created,
+                    p.invoiceNumber AS payment_invoiceNumber,
                     p.dateTime AS payment_dateTime,
                     p.status AS payment_status,
                     p.parentId AS payment_parentId,
@@ -338,6 +340,7 @@ class AppointmentRepository extends AbstractRepository implements AppointmentRep
                     cb.couponId AS booking_couponId,
                     cb.duration AS booking_duration,
                     cb.created AS booking_created,
+                    cb.tax AS booking_tax,
                     
                     cbe.id AS bookingExtra_id,
                     cbe.extraId AS bookingExtra_extraId,
@@ -345,6 +348,7 @@ class AppointmentRepository extends AbstractRepository implements AppointmentRep
                     cbe.quantity AS bookingExtra_quantity,
                     cbe.price AS bookingExtra_price,
                     cbe.aggregatedPrice AS bookingExtra_aggregatedPrice,
+                    cbe.tax AS bookingExtra_tax,
                     
                     p.id AS payment_id,
                     p.packageCustomerId AS payment_packageCustomerId,
@@ -356,6 +360,8 @@ class AppointmentRepository extends AbstractRepository implements AppointmentRep
                     p.gatewayTitle AS payment_gatewayTitle,
                     p.transactionId AS payment_transactionId,
                     p.data AS payment_data,
+                    p.invoiceNumber AS payment_invoiceNumber,
+                    p.created AS payment_created,
                     
                     c.id AS coupon_id,
                     c.code AS coupon_code,
@@ -1214,7 +1220,8 @@ class AppointmentRepository extends AbstractRepository implements AppointmentRep
                     cb.aggregatedPrice AS booking_aggregatedPrice,
                     cb.packageCustomerServiceId AS booking_packageCustomerServiceId,
                     cb.duration AS booking_duration,
-                    cb.created AS booking_created
+                    cb.created AS booking_created,
+                    cb.tax AS booking_tax
                     
                 FROM {$this->table} a
                 INNER JOIN {$this->bookingsTable} cb ON cb.appointmentId = a.id

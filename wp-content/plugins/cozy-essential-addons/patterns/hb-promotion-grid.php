@@ -6,8 +6,8 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo2.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Offer \u0026 Promotion Grid"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"980px"}} -->

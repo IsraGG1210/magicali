@@ -460,17 +460,13 @@ function bookAppointment () {
     page: 'cabinet'
   }
 
-  let employeeIds = !props.data.services[selectedServiceId.value].purchaseData.employeeId
-    ? selectedPackage.value.bookable.find(i => parseInt(i.service.id) === parseInt(selectedServiceId.value)).providers.map(i => i.id)
-    : [props.data.services[selectedServiceId.value].purchaseData.employeeId]
+  let employeeIds = selectedPackage.value.bookable.find(i => parseInt(i.service.id) === parseInt(selectedServiceId.value)).providers.map(i => i.id)
 
   if (employeeIds.length) {
     params.providerIds = employeeIds
   }
 
-  if (props.data.services[selectedServiceId.value].purchaseData.locationId) {
-    params.locationId = props.data.services[selectedServiceId.value].purchaseData.locationId
-  }
+  params.locationId = null
 
   slotsParams.value = params
 

@@ -45,7 +45,7 @@ class QueryLoop {
 	}
 
 	public function apply_cozy_related_posts( $pre_render, $parsed_block ) {
-		if ( isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] ) {
+		if ( isset( $parsed_block ) && 'core/query' === $parsed_block['blockName'] && isset( $parsed_block['parents'] ) && in_array( 'cozy-block/related-post', $parsed_block['parents'], true ) ) {
 			$all_post_ids    = $this->get_all_post_ids();
 			$current_post_id = get_the_ID();
 

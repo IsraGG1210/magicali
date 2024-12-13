@@ -78,7 +78,7 @@
     },
     "perPage": {
       "type": "number",
-      "default": -1
+      "default": 6
     },
     "textAlign": {
       "type": "string",
@@ -89,7 +89,8 @@
       "default": {
         "image": true,
         "name": true,
-        "count": true
+        "count": true,
+        "linkNewTab": false
       }
     },
     "gridOptions": {

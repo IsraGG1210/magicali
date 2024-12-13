@@ -61,6 +61,14 @@
       "type": "string",
       "default": ""
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "display": {
       "type": "string",
       "default": "list"
@@ -83,31 +91,41 @@
     },
     "perPage": {
       "type": "number",
-      "default": -1
+      "default": 5
     },
     "enableOptions": {
       "type": "object",
       "default": {
         "image": true,
+        "imgLinkPost": true,
+        "imgLinkNewTab": false,
         "category": true,
+        "linkCat": true,
+        "catNewTab": false,
+        "titleLinkPost": true,
+        "titleLinkNewTab": false,
         "content": true,
         "excerpt": 20,
-        "date": true
+        "author": true,
+        "comments": true,
+        "date": true,
+        "linkPostMeta": true,
+        "postMetaNewTab": false
       }
     },
     "itemStyles": {
       "type": "object",
       "default": {
         "padding": {
-          "top": "0px",
-          "right": "0px",
-          "bottom": "0px",
-          "left": "0px"
+          "top": "10px",
+          "right": "10px",
+          "bottom": "10px",
+          "left": "10px"
         },
         "border": {
-          "width": "",
-          "style": "",
-          "color": ""
+          "width": "1px",
+          "style": "solid",
+          "color": "#e2e2e2"
         },
         "radius": {
           "top": "0px",
@@ -164,20 +182,28 @@
         "bgColorHover": "#f90",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
-        "fontWeight": "400"
+        "fontFamily": "Public Sans",
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "titleStyles": {
       "type": "object",
       "default": {
         "marginTop": "6px",
-        "marginBottom": "6px",
-        "fontSize": "20px",
-        "fontFamily": "",
+        "marginBottom": "4px",
+        "fontSize": "18px",
+        "fontFamily": "Public Sans",
         "fontWeight": "600",
-        "color": "",
-        "colorHover": ""
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": "#090b10",
+        "colorHover": "#f90"
       }
     },
     "dateStyles": {
@@ -189,22 +215,26 @@
           "bottom": "0px",
           "left": "0px"
         },
-        "marginTop": "6px",
-        "marginBottom": "0px",
+        "marginTop": "0px",
+        "marginBottom": "6px",
         "border": {
           "width": "",
           "style": "",
           "color": ""
         },
         "radius": "0px",
-        "color": "",
-        "colorHover": "",
+        "color": "#5566ca",
+        "colorHover": "#f90",
         "bgColor": "",
         "bgColorHover": "",
         "borderColorHover": "",
         "fontSize": "12px",
-        "fontFamily": "",
-        "fontWeight": "400"
+        "fontFamily": "Public Sans",
+        "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "pagination": {
@@ -242,6 +272,7 @@
       "type": "object",
       "default": {
         "enabled": true,
+        "hoverEffect": true,
         "horizontalGap": "50px",
         "verticalPosition": 0,
         "size": "15px",
@@ -317,9 +348,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "textAlign": "center",
         "color": {
           "text": "#fff",

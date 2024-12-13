@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
+class ComposerStaticInitb0c11d81e576be4c18b69a5e3b6b700a
 {
     public static $files = array (
         '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
@@ -51,9 +51,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\HttpFoundation\\' => 33,
-            'AmeliaStripe\\' => 7,
+            'Svg\\' => 4,
             'Square\\' => 7,
             'Slim\\' => 5,
+            'Sabberworm\\CSS\\' => 15,
         ),
         'R' => 
         array (
@@ -62,6 +63,7 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'AmeliaPsr\\Http\\Message\\' => 17,
             'AmeliaPsr\\Container\\' => 14,
             'AmeliaPHPMailer\\PHPMailer\\' => 20,
@@ -77,21 +79,12 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
             'Money\\' => 6,
             'Microsoft\\Graph\\Test\\' => 21,
             'Microsoft\\Graph\\' => 16,
+            'Masterminds\\' => 12,
         ),
         'L' => 
         array (
             'League\\Tactician\\' => 17,
             'League\\Event\\' => 13,
-        ),
-        'H' => 
-        array (
-            'AmeliaHttp\\Promise\\' => 13,
-            'AmeliaHttp\\Message\\MultipartStream\\' => 29,
-            'AmeliaHttp\\Message\\' => 13,
-            'AmeliaHttp\\Discovery\\' => 15,
-            'AmeliaHttp\\Client\\Curl\\' => 17,
-            'AmeliaHttp\\Client\\Common\\' => 19,
-            'AmeliaHttp\\Client\\' => 12,
         ),
         'G' => 
         array (
@@ -101,8 +94,13 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         ),
         'F' => 
         array (
+            'FontLib\\' => 8,
             'AmeliaFirebase\\JWT\\' => 13,
             'FastRoute\\' => 10,
+        ),
+        'D' => 
+        array (
+            'Dompdf\\' => 7,
         ),
         'C' => 
         array (
@@ -118,6 +116,13 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         array (
             'AmeliaStripe\\' => 13,
             'AmeliaPHPMailer\\' => 16,
+            'AmeliaHttp\\Promise\\' => 19,
+            'AmeliaHttp\\Message\\MultipartStream\\' => 35,
+            'AmeliaHttp\\Message\\' => 19,
+            'AmeliaHttp\\Discovery\\' => 21,
+            'AmeliaHttp\\Client\\Curl\\' => 23,
+            'AmeliaHttp\\Client\\Common\\' => 25,
+            'AmeliaHttp\\Client\\' => 18,
             'AmeliaBooking\\' => 14,
         ),
     );
@@ -171,9 +176,9 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
         ),
-        'AmeliaStripe\\' => 
+        'Svg\\' => 
         array (
-            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+            0 => __DIR__ . '/..' . '/dompdf/php-svg-lib/src/Svg',
         ),
         'Square\\' => 
         array (
@@ -183,6 +188,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
         ),
+        'Sabberworm\\CSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
+        ),
         'Razorpay\\Tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/razorpay/razorpay/tests',
@@ -190,6 +199,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         'Razorpay\\Api\\' => 
         array (
             0 => __DIR__ . '/..' . '/razorpay/razorpay/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'AmeliaPsr\\Http\\Message\\' => 
         array (
@@ -227,6 +240,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         array (
             0 => __DIR__ . '/..' . '/microsoft/microsoft-graph/src',
         ),
+        'Masterminds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
         'League\\Tactician\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/tactician/src',
@@ -234,35 +251,6 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         'League\\Event\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/event/src',
-        ),
-        'AmeliaHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/promise/src',
-        ),
-        'AmeliaHttp\\Message\\MultipartStream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
-        ),
-        'AmeliaHttp\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/message/src',
-            1 => __DIR__ . '/..' . '/php-http/message-factory/src',
-        ),
-        'AmeliaHttp\\Discovery\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/discovery/src',
-        ),
-        'AmeliaHttp\\Client\\Curl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/curl-client/src',
-        ),
-        'AmeliaHttp\\Client\\Common\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/client-common/src',
-        ),
-        'AmeliaHttp\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/httplug/src',
         ),
         'AmeliaGuzzleHttp\\Psr7\\' => 
         array (
@@ -276,6 +264,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
+        ),
         'AmeliaFirebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
@@ -283,6 +275,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Dompdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
         'Core\\' => 
         array (
@@ -303,10 +299,40 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         'AmeliaStripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+            1 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'AmeliaPHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'AmeliaHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/promise/src',
+        ),
+        'AmeliaHttp\\Message\\MultipartStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
+        ),
+        'AmeliaHttp\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
+            1 => __DIR__ . '/..' . '/php-http/message/src',
+        ),
+        'AmeliaHttp\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
+        ),
+        'AmeliaHttp\\Client\\Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/curl-client/src',
+        ),
+        'AmeliaHttp\\Client\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/client-common/src',
+        ),
+        'AmeliaHttp\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/httplug/src',
         ),
         'AmeliaBooking\\' => 
         array (
@@ -396,6 +422,7 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'Omnipay\\Omnipay' => __DIR__ . '/..' . '/omnipay/common/src/Omnipay.php',
@@ -408,10 +435,10 @@ class ComposerStaticInitc2226b1d70addb5b68147cc826d809be
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc2226b1d70addb5b68147cc826d809be::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc2226b1d70addb5b68147cc826d809be::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc2226b1d70addb5b68147cc826d809be::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc2226b1d70addb5b68147cc826d809be::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb0c11d81e576be4c18b69a5e3b6b700a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb0c11d81e576be4c18b69a5e3b6b700a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb0c11d81e576be4c18b69a5e3b6b700a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb0c11d81e576be4c18b69a5e3b6b700a::$classMap;
 
         }, null, ClassLoader::class);
     }

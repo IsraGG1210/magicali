@@ -10,7 +10,6 @@ use AmeliaBooking\Application\Services\Booking\BookingApplicationService;
 use AmeliaBooking\Application\Services\Booking\AppointmentApplicationService;
 use AmeliaBooking\Application\Services\Booking\EventApplicationService;
 use AmeliaBooking\Application\Services\Cache\CacheApplicationService;
-use AmeliaBooking\Application\Services\Coupon\CouponApplicationService;
 use AmeliaBooking\Application\Services\Entity\EntityApplicationService;
 use AmeliaBooking\Application\Services\Gallery\GalleryApplicationService;
 use AmeliaBooking\Application\Services\Payment\PaymentApplicationService;
@@ -452,6 +451,17 @@ $entries['application.whatsApp.service'] = function ($c) {
  */
 $entries['application.payment.service'] = function ($c) {
     return new AmeliaBooking\Application\Services\Payment\PaymentApplicationService($c);
+};
+
+/**
+ * Invoice service
+ *
+ * @param Container $c
+ *
+ * @return AmeliaBooking\Application\Services\Invoice\AbstractInvoiceApplicationService
+ */
+$entries['application.invoice.service'] = function ($c) {
+    return AmeliaBooking\Infrastructure\Licence\ApplicationService::getInvoiceService($c);
 };
 
 /**

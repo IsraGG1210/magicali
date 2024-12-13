@@ -6,11 +6,11 @@
  * Categories: ha-patterns-pro
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p5.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|50","left":"var:preset|spacing|50","bottom":"80px","top":"80px"}}},"className":"hello-agency-animate","layout":{"type":"constrained","contentSize":"1180px"}} -->

@@ -4,9 +4,9 @@ Author URI: https://tmsproducts.io/
 Tags: appointments, booking, event booking system, booking system, scheduling
 Donate link: https://wpamelia.com/
 Requires at least: 4.5
-Tested up to: 6.6.1
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.2.9
+Stable tag: 1.2.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,10 +289,24 @@ Installing Amelia Lite WordPress Booking Plugin is as easy as 1-2-3!
 
 
 == Changelog ==
+V1.2.12
+* Small bug fixes and stability improvements
+
+V1.2.11
+* Improvement: Optimized Event Queries
+* BugFix: Fixed issue with the Back button when one category created on Catalog 2.0 Booking Form
+* BugFix: Fixed conflict with the Beaver builder theme
+* BugFix: Fixed issue with displaying the dropdown menu when selecting the header option
+* BugFix: Fixed issue with the date/time step when service is longer than the employees' work hours
+* Other small bug fixes and stability improvements
+
+V1.2.10
+* Small bug fixes and stability improvements
+
 V1.2.9
-* Feature: Customer Activity - Now you can easily view all appointments and events booked by specific customers in one place
+* Feature: Customer Activity – Now you can easily view all appointments and events booked by specific customers in one place
 * Improvement: Added possibility to show “All” services on the Catalog Booking form 2.0
-* BugFix:Fixed issue with removing dates on the back-end Events page for Group view
+* BugFix: Fixed issue with removing dates on the back-end Events page for Group view
 * BugFix: Fixed issue with saving notifications header without placeholders
 * Other small bug fixes and stability improvements
 

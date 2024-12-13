@@ -6,8 +6,8 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/meeting_hall.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/boating.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/meeting_hall.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/boating.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"100px","bottom":"100px","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->

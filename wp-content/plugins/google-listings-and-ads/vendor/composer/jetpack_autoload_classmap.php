@@ -7,7 +7,7 @@ $baseDir   = dirname($vendorDir);
 
 return array(
 	'Attribute' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php'
 	),
 	'Autoloader' => array(
@@ -23,12 +23,24 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-autoloader/src/class-autoloader-locator.php'
 	),
 	'Automattic\\Jetpack\\A8c_Mc_Stats' => array(
-		'version' => '2.0.0.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php'
 	),
 	'Automattic\\Jetpack\\Admin_UI\\Admin_Menu' => array(
-		'version' => '0.3.2.0',
+		'version' => '0.4.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-admin-ui/src/class-admin-menu.php'
+	),
+	'Automattic\\Jetpack\\Assets' => array(
+		'version' => '2.3.14.0',
+		'path'    => $vendorDir . '/automattic/jetpack-assets/src/class-assets.php'
+	),
+	'Automattic\\Jetpack\\Assets\\Script_Data' => array(
+		'version' => '2.3.14.0',
+		'path'    => $vendorDir . '/automattic/jetpack-assets/src/class-script-data.php'
+	),
+	'Automattic\\Jetpack\\Assets\\Semver' => array(
+		'version' => '2.3.14.0',
+		'path'    => $vendorDir . '/automattic/jetpack-assets/src/class-semver.php'
 	),
 	'Automattic\\Jetpack\\Autoloader\\AutoloadFileWriter' => array(
 		'version' => '3.0.2',
@@ -54,2668 +66,2748 @@ return array(
 		'version' => '2.0.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-config/src/class-config.php'
 	),
+	'Automattic\\Jetpack\\Connection\\Authorize_Json_Api' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-authorize-json-api.php'
+	),
 	'Automattic\\Jetpack\\Connection\\Client' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-client.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Connection_Notice' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-connection-notice.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Error_Handler' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-error-handler.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Initial_State' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-initial-state.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Manager' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-manager.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Manager_Interface' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/interface-manager.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Nonce_Handler' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-nonce-handler.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Package_Version' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-package-version.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Package_Version_Tracker' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-package-version-tracker.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Plugin' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-plugin.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Plugin_Storage' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-plugin-storage.php'
 	),
 	'Automattic\\Jetpack\\Connection\\REST_Connector' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-rest-connector.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Rest_Authentication' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-rest-authentication.php'
 	),
+	'Automattic\\Jetpack\\Connection\\SSO' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/sso/class-sso.php'
+	),
+	'Automattic\\Jetpack\\Connection\\SSO\\Force_2FA' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/sso/class-force-2fa.php'
+	),
+	'Automattic\\Jetpack\\Connection\\SSO\\Helpers' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/sso/class-helpers.php'
+	),
+	'Automattic\\Jetpack\\Connection\\SSO\\Notices' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/sso/class-notices.php'
+	),
+	'Automattic\\Jetpack\\Connection\\SSO\\User_Admin' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/sso/class-user-admin.php'
+	),
 	'Automattic\\Jetpack\\Connection\\Secrets' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-secrets.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Server_Sandbox' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-server-sandbox.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Tokens' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-tokens.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Tokens_Locks' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-tokens-locks.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Urls' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-urls.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Utils' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-utils.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Webhooks' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-webhooks.php'
 	),
 	'Automattic\\Jetpack\\Connection\\Webhooks\\Authorize_Redirect' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/webhooks/class-authorize-redirect.php'
 	),
 	'Automattic\\Jetpack\\Connection\\XMLRPC_Async_Call' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-xmlrpc-async-call.php'
 	),
 	'Automattic\\Jetpack\\Connection\\XMLRPC_Connector' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-xmlrpc-connector.php'
 	),
 	'Automattic\\Jetpack\\Constants' => array(
-		'version' => '2.0.0.0',
+		'version' => '2.0.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-constants/src/class-constants.php'
 	),
 	'Automattic\\Jetpack\\CookieState' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-cookiestate.php'
 	),
 	'Automattic\\Jetpack\\Errors' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-errors.php'
 	),
 	'Automattic\\Jetpack\\Files' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-files.php'
 	),
 	'Automattic\\Jetpack\\Heartbeat' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-heartbeat.php'
 	),
+	'Automattic\\Jetpack\\IdentityCrisis\\Exception' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/identity-crisis/class-exception.php'
+	),
+	'Automattic\\Jetpack\\IdentityCrisis\\REST_Endpoints' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/identity-crisis/class-rest-endpoints.php'
+	),
+	'Automattic\\Jetpack\\IdentityCrisis\\UI' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/identity-crisis/class-ui.php'
+	),
+	'Automattic\\Jetpack\\IdentityCrisis\\URL_Secret' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/identity-crisis/class-url-secret.php'
+	),
+	'Automattic\\Jetpack\\Identity_Crisis' => array(
+		'version' => '2.12.6.0',
+		'path'    => $vendorDir . '/automattic/jetpack-connection/src/identity-crisis/class-identity-crisis.php'
+	),
 	'Automattic\\Jetpack\\Modules' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-modules.php'
 	),
 	'Automattic\\Jetpack\\Partner' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-partner.php'
 	),
 	'Automattic\\Jetpack\\Partner_Coupon' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-partner-coupon.php'
 	),
 	'Automattic\\Jetpack\\Paths' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-paths.php'
 	),
 	'Automattic\\Jetpack\\Redirect' => array(
-		'version' => '2.0.0.0',
+		'version' => '2.0.3.0',
 		'path'    => $vendorDir . '/automattic/jetpack-redirect/src/class-redirect.php'
 	),
 	'Automattic\\Jetpack\\Roles' => array(
-		'version' => '2.0.0.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/automattic/jetpack-roles/src/class-roles.php'
 	),
 	'Automattic\\Jetpack\\Status' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-status.php'
 	),
 	'Automattic\\Jetpack\\Status\\Cache' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-cache.php'
 	),
 	'Automattic\\Jetpack\\Status\\Host' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-host.php'
 	),
 	'Automattic\\Jetpack\\Status\\Visitor' => array(
-		'version' => '2.1.0.0',
+		'version' => '3.3.5.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-visitor.php'
 	),
 	'Automattic\\Jetpack\\Terms_Of_Service' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-terms-of-service.php'
 	),
 	'Automattic\\Jetpack\\Tracking' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-tracking.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Ads' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Ads.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsAssetGroup' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsAssetGroup.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsAssetGroupAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsAssetGroupAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsCampaign' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsCampaign.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsCampaignBudget' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsCampaignBudget.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsCampaignCriterion' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsCampaignCriterion.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsCampaignLabel' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsCampaignLabel.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsConversionAction' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsConversionAction.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AdsReport' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AdsReport.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\AssetFieldType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/AssetFieldType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\BillingSetupStatus' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/BillingSetupStatus.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\CallToActionType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/CallToActionType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\CampaignStatus' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/CampaignStatus.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\CampaignType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/CampaignType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Connection' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Connection.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\ExceptionTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/ExceptionTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\LocationIDTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/LocationIDTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Merchant' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Merchant.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\MerchantMetrics' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/MerchantMetrics.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\MerchantReport' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/MerchantReport.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Middleware' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Middleware.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsAccountAccessQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsAccountAccessQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsAccountQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsAccountQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsAssetGroupAssetQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsAssetGroupAssetQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsAssetGroupQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsAssetGroupQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsBillingStatusQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsBillingStatusQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsCampaignBudgetQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsCampaignBudgetQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsCampaignCriterionQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsCampaignCriterionQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsCampaignLabelQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsCampaignLabelQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsCampaignQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsCampaignQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsCampaignReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsCampaignReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsConversionActionQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsConversionActionQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsProductLinkInvitationQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsProductLinkInvitationQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsProductReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsProductReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\AdsReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/AdsReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\MerchantFreeListingReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/MerchantFreeListingReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\MerchantProductReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/MerchantProductReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\MerchantProductViewReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/MerchantProductViewReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\MerchantQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/MerchantQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\MerchantReportQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/MerchantReportQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\Query' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/Query.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\QueryInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/QueryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Query\\ReportQueryTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Query/ReportQueryTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\ReportTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/ReportTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\Settings' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/Settings.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\ShoppingContentDateTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/ShoppingContentDateTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Google\\SiteVerification' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Google/SiteVerification.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\MicroTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/MicroTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\PermissionsTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/PermissionsTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\AccountController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/AccountController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\AssetGroupController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/AssetGroupController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\AssetSuggestionsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/AssetSuggestionsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\BudgetRecommendationController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/BudgetRecommendationController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\CampaignController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/CampaignController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\ReportsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/ReportsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Ads\\SetupCompleteController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Ads/SetupCompleteController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingDataController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/AttributeMapping/AttributeMappingDataController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingRulesController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/AttributeMapping/AttributeMappingRulesController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingSyncerController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/AttributeMapping/AttributeMappingSyncerController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\BaseController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/BaseController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\BaseOptionsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/BaseOptionsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\BaseReportsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/BaseReportsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\BatchSchemaTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/BatchSchemaTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\CountryCodeTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/CountryCodeTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\DisconnectController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/DisconnectController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\EmptySchemaPropertiesTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/EmptySchemaPropertiesTrait.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\GTINMigrationController' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/API/Site/Controllers/GTINMigrationController.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Google\\AccountController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Google/AccountController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\Jetpack\\AccountController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/Jetpack/AccountController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\AccountController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/AccountController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\AttributeMappingCategoriesController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/AttributeMappingCategoriesController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\BatchShippingTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/BatchShippingTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ConnectionController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ConnectionController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ContactInformationController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ContactInformationController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\IssuesController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/IssuesController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\PhoneVerificationController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/PhoneVerificationController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\PolicyComplianceCheckController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/PolicyComplianceCheckController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ProductFeedController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ProductFeedController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ProductStatisticsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ProductStatisticsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ProductVisibilityController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ProductVisibilityController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ReportsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ReportsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\RequestReviewController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/RequestReviewController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\SettingsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/SettingsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\SettingsSyncController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/SettingsSyncController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ShippingRateBatchController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ShippingRateBatchController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ShippingRateController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ShippingRateController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ShippingRateSuggestionsController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ShippingRateSuggestionsController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ShippingTimeBatchController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ShippingTimeBatchController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\ShippingTimeController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/ShippingTimeController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\SupportedCountriesController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/SupportedCountriesController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\SyncableProductsCountController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/SyncableProductsCountController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\MerchantCenter\\TargetAudienceController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/MerchantCenter/TargetAudienceController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\ResponseFromExceptionTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/ResponseFromExceptionTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\RestAPI\\AuthController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/RestAPI/AuthController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\ShippingRateSchemaTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/ShippingRateSchemaTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\Controllers\\TourController' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/Controllers/TourController.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\Site\\RESTControllers' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/Site/RESTControllers.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\TransportMethods' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/TransportMethods.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\WP\\NotificationsService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/WP/NotificationsService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\API\\WP\\OAuthService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/API/WP/OAuthService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\ActionScheduler\\ActionScheduler' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/ActionScheduler/ActionScheduler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\ActionScheduler\\ActionSchedulerException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/ActionScheduler/ActionSchedulerException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\ActionScheduler\\ActionSchedulerInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/ActionScheduler/ActionSchedulerInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\ActionScheduler\\AsyncActionRunner' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/ActionScheduler/AsyncActionRunner.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Admin' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Admin.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\BulkEdit\\BulkEditInitializer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/BulkEdit/BulkEditInitializer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\BulkEdit\\BulkEditInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/BulkEdit/BulkEditInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\BulkEdit\\CouponBulkEdit' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/BulkEdit/CouponBulkEdit.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\BooleanSelect' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/BooleanSelect.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\DateTime' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/DateTime.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\Form' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/Form.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\FormException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/FormException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\FormInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/FormInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\Input' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/Input.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\InputInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/InputInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\Integer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/Integer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\Select' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/Select.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\SelectWithTextInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/SelectWithTextInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Input\\Text' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Input/Text.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\AbstractMetaBox' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/AbstractMetaBox.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\ChannelVisibilityMetaBox' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/ChannelVisibilityMetaBox.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\CouponChannelVisibilityMetaBox' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/CouponChannelVisibilityMetaBox.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\MetaBoxInitializer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/MetaBoxInitializer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\MetaBoxInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/MetaBoxInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\MetaBox\\SubmittableMetaBox' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/MetaBox/SubmittableMetaBox.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\ProductBlocksService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/ProductBlocksService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\AttributesForm' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/AttributesForm.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\AttributesTab' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/AttributesTab.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\AttributesTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/AttributesTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\AdultInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/AdultInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\AgeGroupInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/AgeGroupInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\AttributeInputInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/AttributeInputInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\AvailabilityDateInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/AvailabilityDateInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\BrandInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/BrandInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\ColorInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/ColorInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\ConditionInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/ConditionInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\GTINInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/GTINInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\GenderInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/GenderInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\IsBundleInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/IsBundleInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\MPNInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/MPNInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\MaterialInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/MaterialInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\MultipackInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/MultipackInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\PatternInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/PatternInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\SizeInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/SizeInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\SizeSystemInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/SizeSystemInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\Input\\SizeTypeInput' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/Input/SizeTypeInput.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\Attributes\\VariationsAttributes' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/Attributes/VariationsAttributes.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Product\\ChannelVisibilityBlock' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Product/ChannelVisibilityBlock.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Admin\\Redirect' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Admin/Redirect.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Ads\\AccountService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Ads/AccountService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Ads\\AdsAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Ads/AdsAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Ads\\AdsAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Ads/AdsAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Ads\\AdsService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Ads/AdsService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Ads\\AssetSuggestionsService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Ads/AssetSuggestionsService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AdminAssetHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AdminAssetHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AdminScriptAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AdminScriptAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AdminScriptWithBuiltDependenciesAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AdminScriptWithBuiltDependenciesAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AdminStyleAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AdminStyleAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\Asset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/Asset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AssetsHandler' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AssetsHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\AssetsHandlerInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/AssetsHandlerInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\BaseAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/BaseAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\ScriptAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/ScriptAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\ScriptWithBuiltDependenciesAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/ScriptWithBuiltDependenciesAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Assets\\StyleAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Assets/StyleAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Autoloader' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Autoloader.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\ConnectionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/ConnectionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Container' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Container.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\CouponHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/CouponHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\CouponMetaHandler' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/CouponMetaHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\CouponSyncer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/CouponSyncer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\CouponSyncerException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/CouponSyncerException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\SyncerHooks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/SyncerHooks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Coupon\\WCCouponAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Coupon/WCCouponAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Installer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Installer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\AbstractMigration' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/AbstractMigration.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\Migration20211228T1640692399' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/Migration20211228T1640692399.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\Migration20220524T1653383133' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/Migration20220524T1653383133.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\Migration20231109T1653383133' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/Migration20231109T1653383133.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\Migration20240813T1653383133' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/DB/Migration/Migration20240813T1653383133.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\MigrationInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/MigrationInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\MigrationVersion141' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/MigrationVersion141.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Migration\\Migrator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Migration/Migrator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\ProductFeedQueryHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/ProductFeedQueryHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\ProductMetaQueryHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/ProductMetaQueryHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\QueryInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/QueryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query\\AttributeMappingRulesQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query/AttributeMappingRulesQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query\\BudgetRecommendationQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query/BudgetRecommendationQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query\\MerchantIssueQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query/MerchantIssueQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query\\ShippingRateQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query/ShippingRateQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Query\\ShippingTimeQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Query/ShippingTimeQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\TableInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/TableInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\TableManager' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/TableManager.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table\\AttributeMappingRulesTable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table/AttributeMappingRulesTable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table\\BudgetRecommendationTable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table/BudgetRecommendationTable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table\\MerchantIssueTable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table/MerchantIssueTable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table\\ShippingRateTable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table/ShippingRateTable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\DB\\Table\\ShippingTimeTable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/DB/Table/ShippingTimeTable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Event\\ClearProductStatsCache' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Event/ClearProductStatsCache.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Event\\StartProductSync' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Event/StartProductSync.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\AccountReconnect' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/AccountReconnect.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\ApiNotReady' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/ApiNotReady.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\ExceptionWithResponseData' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/ExceptionWithResponseData.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\ExtensionRequirementException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/ExtensionRequirementException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\GoogleListingsAndAdsException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/GoogleListingsAndAdsException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidArgument' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidArgument.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidArray' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidArray.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidAsset' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidAsset.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidClass' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidClass.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidDomainName' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidDomainName.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidMeta' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidMeta.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidOption' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidOption.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidProperty' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidProperty.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidQuery' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidQuery.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidState' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidState.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidTerm' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidTerm.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidValue' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidValue.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\InvalidVersion' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/InvalidVersion.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\RuntimeExceptionWithMessageFunction' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/Exception/RuntimeExceptionWithMessageFunction.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\ValidateInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/ValidateInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\WPError' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/WPError.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Exception\\WPErrorTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Exception/WPErrorTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\Ads\\GoogleAdsClient' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/Ads/GoogleAdsClient.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\Ads\\ServiceClientFactoryTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/Ads/ServiceClientFactoryTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\BatchInvalidProductEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/BatchInvalidProductEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\BatchProductEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/BatchProductEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\BatchProductIDRequestEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/BatchProductIDRequestEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\BatchProductRequestEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/BatchProductRequestEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\BatchProductResponse' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/BatchProductResponse.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\DeleteCouponEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/DeleteCouponEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GlobalSiteTag' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GlobalSiteTag.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GoogleHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GoogleHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GoogleHelperAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GoogleHelperAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GoogleHelperAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GoogleHelperAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GoogleProductService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GoogleProductService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\GooglePromotionService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/GooglePromotionService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\InvalidCouponEntry' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/InvalidCouponEntry.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\RequestReviewStatuses' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/RequestReviewStatuses.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Google\\SiteVerificationMeta' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Google/SiteVerificationMeta.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\HelperTraits\\GTINMigrationUtilities' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/HelperTraits/GTINMigrationUtilities.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\HelperTraits\\ISO3166Awareness' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/HelperTraits/ISO3166Awareness.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\HelperTraits\\Utilities' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/HelperTraits/Utilities.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\HelperTraits\\ViewHelperTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/HelperTraits/ViewHelperTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Activateable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Activateable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\AdminConditional' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/AdminConditional.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Conditional' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Conditional.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Deactivateable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Deactivateable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\GoogleListingsAndAdsPlugin' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/GoogleListingsAndAdsPlugin.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Plugin' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Plugin.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Registerable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Registerable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Renderable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Renderable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\Service' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/Service.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\View' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/View.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Infrastructure\\ViewFactory' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Infrastructure/ViewFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Installer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Installer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\IntegrationInitializer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/IntegrationInitializer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\IntegrationInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/IntegrationInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\JetpackWPCOM' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/JetpackWPCOM.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WPCOMProxy' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/WPCOMProxy.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceBrands' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/WooCommerceBrands.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommercePreOrders' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/WooCommercePreOrders.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\WooCommerceProductBundles' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/WooCommerceProductBundles.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Integration\\YoastWooCommerceSeo' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Integration/YoastWooCommerceSeo.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\ContainerAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/ContainerAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\AbstractServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/AbstractServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\CoreServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/CoreServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\DBServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/DBServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\GoogleServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/GoogleServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\IntegrationServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/IntegrationServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\JobServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/JobServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\ProxyServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/ProxyServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\RESTServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/RESTServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DependencyManagement\\ThirdPartyServiceProvider' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DependencyManagement/ThirdPartyServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\DeprecatedFilters' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/DeprecatedFilters.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\InstallTimestamp' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/InstallTimestamp.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Interfaces\\ContainerAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Interfaces/ContainerAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Interfaces\\FirstInstallInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Interfaces/FirstInstallInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Interfaces\\ISO3166AwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Interfaces/ISO3166AwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Interfaces\\InstallableInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Interfaces/InstallableInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\GoogleProductFeedValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/GoogleProductFeedValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\PluginValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/PluginValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\RequirementValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/RequirementValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\RequirementValidatorInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/RequirementValidatorInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\VersionValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/VersionValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\WCAdminValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/WCAdminValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\Requirements\\WCValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/Requirements/WCValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Internal\\StatusMapping' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Internal/StatusMapping.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\AbstractActionSchedulerJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/AbstractActionSchedulerJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\AbstractBatchedActionSchedulerJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/AbstractBatchedActionSchedulerJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\AbstractCouponSyncerJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/AbstractCouponSyncerJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\AbstractProductSyncerBatchedJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/AbstractProductSyncerBatchedJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\AbstractProductSyncerJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/AbstractProductSyncerJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\ActionSchedulerJobInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/ActionSchedulerJobInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\ActionSchedulerJobMonitor' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/ActionSchedulerJobMonitor.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\BatchedActionSchedulerJobInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/BatchedActionSchedulerJobInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\CleanupProductsJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/CleanupProductsJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\CleanupSyncedProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/CleanupSyncedProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\DeleteAllProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/DeleteAllProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\DeleteCoupon' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/DeleteCoupon.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\DeleteProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/DeleteProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\JobException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/JobException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\JobInitializer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/JobInitializer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\JobInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/JobInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\JobRepository' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/JobRepository.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\MigrateGTIN' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/Jobs/MigrateGTIN.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\AbstractItemNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/AbstractItemNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\AbstractNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/AbstractNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\CouponNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/CouponNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\HelperNotificationInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/HelperNotificationInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\ProductNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/ProductNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\SettingsNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/SettingsNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Notifications\\ShippingNotificationJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Notifications/ShippingNotificationJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\ProductSyncStats' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/ProductSyncStats.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\RecurringJobInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/RecurringJobInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\ResubmitExpiringProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/ResubmitExpiringProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\StartHook' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/StartHook.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\StartOnHookInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/StartOnHookInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\SyncableProductsBatchedActionSchedulerJobTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/SyncableProductsBatchedActionSchedulerJobTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateAllProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateAllProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateCoupon' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateCoupon.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateMerchantProductStatuses' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateMerchantProductStatuses.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateProducts' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateProducts.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateShippingSettings' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateShippingSettings.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\UpdateSyncableProductsCount' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/UpdateSyncableProductsCount.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Update\\CleanupProductTargetCountriesJob' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Update/CleanupProductTargetCountriesJob.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Jobs\\Update\\PluginUpdate' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Jobs/Update/PluginUpdate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Logging\\DebugLogger' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Logging/DebugLogger.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\AttributeMapping' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/AttributeMapping.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\Dashboard' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/Dashboard.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\GetStarted' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/GetStarted.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\MenuFixesTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/MenuFixesTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\ProductFeed' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/ProductFeed.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\Reports' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/Reports.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\Settings' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/Settings.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\SetupAds' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/SetupAds.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Menu\\SetupMerchantCenter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Menu/SetupMerchantCenter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\AccountService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/AccountService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\ContactInformation' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/ContactInformation.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\MerchantCenterAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/MerchantCenterAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\MerchantCenterAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/MerchantCenterAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\MerchantCenterService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/MerchantCenterService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\MerchantStatuses' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/MerchantStatuses.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\PhoneVerification' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/PhoneVerification.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\PhoneVerificationException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/PhoneVerificationException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\PolicyComplianceCheck' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/PolicyComplianceCheck.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MerchantCenter\\TargetAudience' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MerchantCenter/TargetAudience.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MultichannelMarketing\\GLAChannel' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MultichannelMarketing/GLAChannel.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\MultichannelMarketing\\MarketingChannelRegistrar' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/MultichannelMarketing/MarketingChannelRegistrar.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\AbstractNote' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/AbstractNote.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\AbstractSetupCampaign' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/AbstractSetupCampaign.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\CompleteSetup' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/CompleteSetup.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\ContactInformation' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/ContactInformation.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\LeaveReviewActionTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/LeaveReviewActionTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\Note' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/Note.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\NoteInitializer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/NoteInitializer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\ReconnectWordPress' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/ReconnectWordPress.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\ReviewAfterClicks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/ReviewAfterClicks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\ReviewAfterConversions' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/ReviewAfterConversions.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\SetupCampaign' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/SetupCampaign.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\SetupCampaignTwoWeeks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/SetupCampaignTwoWeeks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Notes\\SetupCouponSharing' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Notes/SetupCouponSharing.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\AccountState' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/AccountState.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\AdsAccountState' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/AdsAccountState.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\AdsSetupCompleted' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/AdsSetupCompleted.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\MerchantAccountState' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/MerchantAccountState.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\MerchantSetupCompleted' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/MerchantSetupCompleted.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\Options' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/Options.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\OptionsAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/OptionsAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\OptionsAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/OptionsAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\OptionsInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/OptionsInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\Transients' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/Transients.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Options\\TransientsInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Options/TransientsInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\PluginFactory' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/PluginFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\PluginHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/PluginHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\AttributeMapping\\AttributeMappingHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/AttributeMapping/AttributeMappingHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\AttributeMapping\\Traits\\IsEnumTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/AttributeMapping/Traits/IsEnumTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\AttributeMapping\\Traits\\IsFieldTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/AttributeMapping/Traits/IsFieldTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\AbstractAttribute' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/AbstractAttribute.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Adult' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Adult.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\AgeGroup' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/AgeGroup.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\AttributeInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/AttributeInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\AttributeManager' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/AttributeManager.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\AvailabilityDate' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/AvailabilityDate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Brand' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Brand.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Color' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Color.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Condition' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Condition.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\GTIN' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/GTIN.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Gender' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Gender.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\IsBundle' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/IsBundle.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\MPN' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/MPN.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Material' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Material.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Multipack' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Multipack.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Pattern' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Pattern.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\Size' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/Size.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\SizeSystem' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/SizeSystem.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\SizeType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/SizeType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\WithMappingInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/WithMappingInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\Attributes\\WithValueOptionsInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/Attributes/WithValueOptionsInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\BatchProductHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/BatchProductHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\FilteredProductList' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/FilteredProductList.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductFactory' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductFilter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductFilter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductHelper' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductHelper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductMetaHandler' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductMetaHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductRepository' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductRepository.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductSyncer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductSyncer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\ProductSyncerException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/ProductSyncerException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\SyncerHooks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/SyncerHooks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Product\\WCProductAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Product/WCProductAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\GoogleGtagJs' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/GoogleGtagJs.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\Http' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/Http.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\Jetpack' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/Jetpack.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\RESTServer' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/RESTServer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\Tracks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/Tracks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\WC' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/WC.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Proxies\\WP' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Proxies/WP.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Settings\\SyncerHooks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Settings/SyncerHooks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\CountryRatesCollection' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/CountryRatesCollection.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\AbstractRateGroupAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/AbstractRateGroupAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\AbstractShippingSettingsAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/AbstractShippingSettingsAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\DBShippingSettingsAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/DBShippingSettingsAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\PostcodesRateGroupAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/PostcodesRateGroupAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\StatesRateGroupAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/StatesRateGroupAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\GoogleAdapter\\WCShippingSettingsAdapter' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/GoogleAdapter/WCShippingSettingsAdapter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\LocationRate' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/LocationRate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\LocationRatesCollection' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/LocationRatesCollection.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\LocationRatesProcessor' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/LocationRatesProcessor.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\PostcodeRange' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/PostcodeRange.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ServiceRatesCollection' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ServiceRatesCollection.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ShippingLocation' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ShippingLocation.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ShippingRate' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ShippingRate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ShippingRegion' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ShippingRegion.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ShippingSuggestionService' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ShippingSuggestionService.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ShippingZone' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ShippingZone.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\SyncerHooks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/SyncerHooks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ZoneLocationsParser' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ZoneLocationsParser.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Shipping\\ZoneMethodsParser' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Shipping/ZoneMethodsParser.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\TaskList\\CompleteSetupTask' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/TaskList/CompleteSetupTask.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Framework\\ContainerAwareUnitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Framework/ContainerAwareUnitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Framework\\RESTControllerUnitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Framework/RESTControllerUnitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Framework\\UnitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Framework/UnitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Framework\\WPRequestUnitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Framework/WPRequestUnitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\CouponTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/CouponTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\DataTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/DataTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\GoogleAdsClientTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/GoogleAdsClientTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\GuzzleClientTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/GuzzleClientTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\JobTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/JobTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\MerchantTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/MerchantTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\ProductMetaTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/ProductMetaTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\ProductTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/ProductTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\SettingsTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/SettingsTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\TrackingTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/TrackingTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\HelperTrait\\WPHookTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/HelperTrait/WPHookTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Tools\\WPHookMock' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Tools/WPHookMock.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\ClientTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/ClientTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsAssetGroupAssetTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsAssetGroupAssetTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsAssetGroupTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsAssetGroupTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsAssetTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsAssetTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsCampaignBudgetTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsCampaignBudgetTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsCampaignCriterionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsCampaignCriterionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsCampaignLabelTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsCampaignLabelTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsCampaignTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsCampaignTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsConversionActionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsConversionActionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsReportTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsReportTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\AdsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/AdsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\MerchantMetricsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/MerchantMetricsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\MerchantReportTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/MerchantReportTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\MerchantTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/MerchantTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\MiddlewareTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/MiddlewareTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Google\\SiteVerificationTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Google/SiteVerificationTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\AccountControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/AccountControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\AssetGroupControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/AssetGroupControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\AssetSuggestionsControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/AssetSuggestionsControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\BudgetRecommendationControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/BudgetRecommendationControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\CampaignControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/CampaignControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Ads\\SetupCompleteControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Ads/SetupCompleteControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingDataControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/AttributeMapping/AttributeMappingDataControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingRulesControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/AttributeMapping/AttributeMappingRulesControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\AttributeMapping\\AttributeMappingSyncerControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/AttributeMapping/AttributeMappingSyncerControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\CountryCodeTraitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/CountryCodeTraitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Google\\AccountControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Google/AccountControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\Jetpack\\AccountControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/Jetpack/AccountControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\AccountControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/AccountControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\ContactInformationControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/ContactInformationControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\PhoneVerificationControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/PhoneVerificationControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\PolicyComplianceCheckControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/PolicyComplianceCheckControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\RequestReviewControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/RequestReviewControllerTest.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\SettingsControllerTest' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/SettingsControllerTest.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\SettingsSyncControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/SettingsSyncControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\ShippingRateControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/ShippingRateControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\ShippingTimeBatchControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/ShippingTimeBatchControllerTest.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\ShippingTimeControllerTest' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/ShippingTimeControllerTest.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\SupportedCountriesControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/SupportedCountriesControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\SyncableProductsCountControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/SyncableProductsCountControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\MerchantCenter\\TargetAudienceControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/MerchantCenter/TargetAudienceControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\PluginHelperTraitTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Plugin/PluginHelperTraitTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\RestAPI\\AuthControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/RestAPI/AuthControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\Site\\Controllers\\ToursControllerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/Site/Controllers/ToursControllerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\WP\\NotificationsServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/WP/NotificationsServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\API\\WP\\OAuthServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/API/WP/OAuthServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\Input\\InputCollectionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/Input/InputCollectionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\Input\\InputTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/Input/InputTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\ProductBlocksServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/ProductBlocksServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\Product\\Attributes\\AttributesFormTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/Product/Attributes/AttributesFormTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\Product\\Attributes\\Input\\AttributeInputCollectionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/Product/Attributes/Input/AttributeInputCollectionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\Product\\ChannelVisibilityBlockTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/Product/ChannelVisibilityBlockTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Admin\\RedirectsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Admin/RedirectsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Ads\\AccountServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Ads/AccountServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Ads\\AdsServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Ads/AdsServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Ads\\AssetSuggestionsServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Ads/AssetSuggestionsServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Assets\\AdminScriptAssetTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Assets/AdminScriptAssetTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Assets\\ScriptAssetTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Assets/ScriptAssetTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Coupon\\CouponMetaHandlerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Coupon/CouponMetaHandlerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Coupon\\CouponSyncerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Coupon/CouponSyncerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Coupon\\SyncerHooksTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Coupon/SyncerHooksTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Coupon\\WCCouponAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Coupon/WCCouponAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\DB\\Migration\\MigratorTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/DB/Migration/MigratorTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\DB\\ProductFeedQueryHelperTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/DB/ProductFeedQueryHelperTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\DB\\Table\\BudgetRecommendationTableTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/DB/Table/BudgetRecommendationTableTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\DB\\Table\\MerchantIssueTableTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/DB/Table/MerchantIssueTableTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Google\\GoogleHelperTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Google/GoogleHelperTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Google\\SiteVerificationMetaTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Google/SiteVerificationMetaTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Integration\\WPCOMProxyTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Integration/WPCOMProxyTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Integration\\YoastWooCommerceSeoTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Integration/YoastWooCommerceSeoTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\AbstractItemNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/AbstractItemNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\AbstractNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/AbstractNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\CleanupSyncedProductsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/CleanupSyncedProductsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\CouponNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/CouponNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\DeleteAllProductsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/DeleteAllProductsTest.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\MigrateGTINTest' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/tests/Unit/Jobs/MigrateGTINTest.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\ProductNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/ProductNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\SettingsNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/SettingsNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\ShippingNotificationJobTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/ShippingNotificationJobTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\UpdateAllProductsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/UpdateAllProductsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\UpdateMerchantProductStatusesTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/UpdateMerchantProductStatusesTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\UpdateProductsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/UpdateProductsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\UpdateShippingSettingsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/UpdateShippingSettingsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Jobs\\UpdateSyncableProductsCountTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Jobs/UpdateSyncableProductsCountTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\AccountServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/AccountServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\ContactInformationTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/ContactInformationTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\MerchantCenterServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/MerchantCenterServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\MerchantStatusesTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/MerchantStatusesTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\PhoneVerificationTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/PhoneVerificationTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\PolicyComplianceCheckTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/PolicyComplianceCheckTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MerchantCenter\\ValidateAddressTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MerchantCenter/ValidateAddressTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\MultichannelMarketing\\GLAChannelTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/MultichannelMarketing/GLAChannelTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Notes\\ReconnectWordPressTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Notes/ReconnectWordPressTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Notes\\ReviewAfterClicksTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Notes/ReviewAfterClicksTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Notes\\ReviewAfterConversionsTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Notes/ReviewAfterConversionsTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Notes\\SetupCouponSharingTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Notes/SetupCouponSharingTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\AttributeMapping\\AttributeMappingHelperTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/AttributeMapping/AttributeMappingHelperTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\AttributeMapping\\AttributeMappingWCProductAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/AttributeMapping/AttributeMappingWCProductAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\Attributes\\AbstractAttributeTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/Attributes/AbstractAttributeTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\Attributes\\AttributeManagerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/Attributes/AttributeManagerTest.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\Attributes\\GtinMappingTest' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/tests/Unit/Product/Attributes/GtinMappingTest.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\BatchProductHelperTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/BatchProductHelperTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductFactoryTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductFactoryTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductFilterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductFilterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductHelperTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductHelperTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductMetaHandlerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductMetaHandlerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductRepositoryTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductRepositoryTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\ProductSyncerTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/ProductSyncerTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\SyncerHooksTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/SyncerHooksTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Product\\WCProductAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Product/WCProductAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Settings\\SyncerHooksTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Settings/SyncerHooksTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\CountryRatesCollectionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/CountryRatesCollectionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\GoogleAdapter\\DBShippingSettingsAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/GoogleAdapter/DBShippingSettingsAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\GoogleAdapter\\PostcodesRateGroupAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/GoogleAdapter/PostcodesRateGroupAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\GoogleAdapter\\StatesRateGroupAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/GoogleAdapter/StatesRateGroupAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\GoogleAdapter\\WCShippingSettingsAdapterTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/GoogleAdapter/WCShippingSettingsAdapterTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\LocationRatesProcessorTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/LocationRatesProcessorTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\PostcodeRangeTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/PostcodeRangeTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ServiceRatesCollectionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ServiceRatesCollectionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ShippingRegionTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ShippingRegionTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ShippingSuggestionServiceTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ShippingSuggestionServiceTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ShippingZoneTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ShippingZoneTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\SyncerHooksTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/SyncerHooksTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ZoneLocationsParserTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ZoneLocationsParserTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Shipping\\ZoneMethodsParserTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Shipping/ZoneMethodsParserTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\TaskList\\CompleteSetupTaskTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/TaskList/CompleteSetupTaskTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Utility\\AddressUtilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Utility/AddressUtilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Utility\\DateTimeUtilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Utility/DateTimeUtilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Utility\\DimensionUtilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Utility/DimensionUtilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Utility\\ISOUtilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Utility/ISOUtilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Utility\\ImageUtilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Utility/ImageUtilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Value\\ChannelVisibilityTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Value/ChannelVisibilityTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\Value\\PhoneNumberTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/Value/PhoneNumberTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\View\\PHPViewFactoryTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/View/PHPViewFactoryTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tests\\Unit\\View\\PHPViewTest' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/tests/Unit/View/PHPViewTest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\EventTracking' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/EventTracking.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\ActivatedEvents' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/ActivatedEvents.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\BaseEvent' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/BaseEvent.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\GenericEvents' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/GenericEvents.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\SiteClaimEvents' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/SiteClaimEvents.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\SiteVerificationEvents' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/SiteVerificationEvents.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Events\\TracksEventInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Events/TracksEventInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\TrackerSnapshot' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/TrackerSnapshot.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\Tracks' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/Tracks.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\TracksAwareInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/TracksAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\TracksAwareTrait' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/TracksAwareTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Tracking\\TracksInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Tracking/TracksInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Util\\GoogleAdsCleanupServices' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/bin/GoogleAdsCleanupServices.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Util\\SymfonyPolyfillCleanup' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/bin/SymfonyPolyfillCleanup.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\AddressUtility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/AddressUtility.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\ArrayUtil' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/ArrayUtil.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\DateTimeUtility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/DateTimeUtility.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\DimensionUtility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/DimensionUtility.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\ISOUtility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/ISOUtility.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\ImageUtility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Utility/ImageUtility.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Utility\\WPCLIMigrationGTIN' => array(
+		'version' => 'dev-release/2.9.2',
+		'path'    => $baseDir . '/src/Utility/WPCLIMigrationGTIN.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Validator\\GooglePriceConstraint' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Validator/GooglePriceConstraint.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Validator\\GooglePriceConstraintValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Validator/GooglePriceConstraintValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Validator\\ImageUrlConstraint' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Validator/ImageUrlConstraint.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Validator\\ImageUrlConstraintValidator' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Validator/ImageUrlConstraintValidator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Validator\\Validatable' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Validator/Validatable.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\ArrayWithRequiredKeys' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/ArrayWithRequiredKeys.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\BuiltScriptDependencyArray' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/BuiltScriptDependencyArray.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\CastableValueInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/CastableValueInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\ChannelVisibility' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/ChannelVisibility.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\EnumeratedValues' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/EnumeratedValues.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\MCStatus' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/MCStatus.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\MerchantCenterSettings' => array(
-		'version' => 'dev-release/2.8.6',
-		'path'    => $baseDir . '/src/Value/MerchantCenterSettings.php'
-	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\NotificationStatus' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/NotificationStatus.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\PhoneNumber' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/PhoneNumber.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\PositiveInteger' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/PositiveInteger.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\ProductIDMap' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/ProductIDMap.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\RateType' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/RateType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\SyncStatus' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/SyncStatus.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\TosAccepted' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/TosAccepted.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Value\\ValueInterface' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/Value/ValueInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Google\\AccessToken\\Revoke' => array(
@@ -5135,451 +5227,491 @@ return array(
 		'path'    => $vendorDir . '/google/apiclient/src/Utils/UriTemplate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\BodySummarizer' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/BodySummarizer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\BodySummarizerInterface' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/BodySummarizerInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Client' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Client.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\ClientInterface' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/ClientInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\ClientTrait' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/ClientTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Cookie\\CookieJar' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Cookie\\CookieJarInterface' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Cookie\\FileCookieJar' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Cookie\\SessionCookieJar' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Cookie\\SetCookie' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Cookie/SetCookie.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\BadResponseException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/BadResponseException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\ClientException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/ClientException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\ConnectException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/ConnectException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\GuzzleException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/GuzzleException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\InvalidArgumentException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\RequestException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/RequestException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\ServerException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/ServerException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\TooManyRedirectsException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Exception\\TransferException' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Exception/TransferException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\HandlerStack' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/HandlerStack.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\CurlFactory' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/CurlFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\CurlFactoryInterface' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\CurlHandler' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\CurlMultiHandler' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\EasyHandle' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\HeaderProcessor' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/HeaderProcessor.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\MockHandler' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/MockHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\Proxy' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/Proxy.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Handler\\StreamHandler' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\MessageFormatter' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/MessageFormatter.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\MessageFormatterInterface' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/MessageFormatterInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Middleware' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Middleware.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Pool' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Pool.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\PrepareBodyMiddleware' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\AggregateException' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/AggregateException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\CancellationException' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/CancellationException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Coroutine' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Coroutine.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Create' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Create.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Each' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Each.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\EachPromise' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/EachPromise.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\FulfilledPromise' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/FulfilledPromise.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Is' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Is.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Promise' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Promise.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\PromiseInterface' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/PromiseInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\PromisorInterface' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/PromisorInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\RejectedPromise' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/RejectedPromise.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\RejectionException' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/RejectionException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\TaskQueue' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/TaskQueue.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\TaskQueueInterface' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/TaskQueueInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Promise\\Utils' => array(
-		'version' => '2.0.2.0',
+		'version' => '2.0.4.0',
 		'path'    => $vendorDir . '/guzzlehttp/promises/src/Utils.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\AppendStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/AppendStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\BufferStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/BufferStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\CachingStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/CachingStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\DroppingStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/DroppingStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Exception\\MalformedUriException' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Exception/MalformedUriException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\FnStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/FnStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Header' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Header.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\HttpFactory' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/HttpFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\InflateStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/InflateStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\LazyOpenStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/LazyOpenStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\LimitStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/LimitStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Message' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Message.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\MessageTrait' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/MessageTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\MimeType' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/MimeType.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\MultipartStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/MultipartStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\NoSeekStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/NoSeekStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\PumpStream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/PumpStream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Query' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Query.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Request' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Request.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Response' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Response.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Rfc7230' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Rfc7230.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\ServerRequest' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/ServerRequest.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Stream' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Stream.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\StreamDecoratorTrait' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/StreamDecoratorTrait.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\StreamWrapper' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/StreamWrapper.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\UploadedFile' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/UploadedFile.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Uri' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Uri.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\UriComparator' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/UriComparator.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\UriNormalizer' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/UriNormalizer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\UriResolver' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/UriResolver.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Psr7\\Utils' => array(
-		'version' => '2.6.2.0',
+		'version' => '2.7.0.0',
 		'path'    => $vendorDir . '/guzzlehttp/psr7/src/Utils.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\RedirectMiddleware' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/RedirectMiddleware.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\RequestOptions' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/RequestOptions.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\RetryMiddleware' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/RetryMiddleware.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\TransferStats' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/TransferStats.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\GuzzleHttp\\Utils' => array(
-		'version' => '7.8.1.0',
+		'version' => '7.9.2.0',
 		'path'    => $vendorDir . '/guzzlehttp/guzzle/src/Utils.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ArgumentInterface' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/ArgumentInterface.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ArgumentResolverInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Argument/ArgumentResolverInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ArgumentResolverTrait' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Argument/ArgumentResolverTrait.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ClassName' => array(
-		'version' => '3.4.1.0',
-		'path'    => $vendorDir . '/league/container/src/Argument/ClassName.php'
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\DefaultValueArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/DefaultValueArgument.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ClassNameInterface' => array(
-		'version' => '3.4.1.0',
-		'path'    => $vendorDir . '/league/container/src/Argument/ClassNameInterface.php'
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\DefaultValueInterface' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/DefaultValueInterface.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ClassNameWithOptionalValue' => array(
-		'version' => '3.4.1.0',
-		'path'    => $vendorDir . '/league/container/src/Argument/ClassNameWithOptionalValue.php'
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\LiteralArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/LiteralArgument.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\RawArgument' => array(
-		'version' => '3.4.1.0',
-		'path'    => $vendorDir . '/league/container/src/Argument/RawArgument.php'
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\LiteralArgumentInterface' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/LiteralArgumentInterface.php'
 	),
-	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\RawArgumentInterface' => array(
-		'version' => '3.4.1.0',
-		'path'    => $vendorDir . '/league/container/src/Argument/RawArgumentInterface.php'
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\ArrayArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/ArrayArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\BooleanArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/BooleanArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\CallableArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/CallableArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\FloatArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/FloatArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\IntegerArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/IntegerArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\ObjectArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/ObjectArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\Literal\\StringArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/Literal/StringArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ResolvableArgument' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/ResolvableArgument.php'
+	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Argument\\ResolvableArgumentInterface' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/Argument/ResolvableArgumentInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Container' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Container.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ContainerAwareInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ContainerAwareInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ContainerAwareTrait' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ContainerAwareTrait.php'
 	),
+	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\DefinitionContainerInterface' => array(
+		'version' => '4.2.4.0',
+		'path'    => $vendorDir . '/league/container/src/DefinitionContainerInterface.php'
+	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Definition\\Definition' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Definition/Definition.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Definition\\DefinitionAggregate' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Definition/DefinitionAggregate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Definition\\DefinitionAggregateInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Definition/DefinitionAggregateInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Definition\\DefinitionInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Definition/DefinitionInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Exception\\ContainerException' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Exception/ContainerException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Exception\\NotFoundException' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Exception/NotFoundException.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Inflector\\Inflector' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Inflector/Inflector.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Inflector\\InflectorAggregate' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Inflector/InflectorAggregate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Inflector\\InflectorAggregateInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Inflector/InflectorAggregateInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\Inflector\\InflectorInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/Inflector/InflectorInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ReflectionContainer' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ReflectionContainer.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ServiceProvider\\AbstractServiceProvider' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ServiceProvider/AbstractServiceProvider.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ServiceProvider\\BootableServiceProviderInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ServiceProvider/BootableServiceProviderInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ServiceProvider\\ServiceProviderAggregate' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderAggregate.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ServiceProvider\\ServiceProviderAggregateInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderAggregateInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\Container\\ServiceProvider\\ServiceProviderInterface' => array(
-		'version' => '3.4.1.0',
+		'version' => '4.2.4.0',
 		'path'    => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\League\\ISO3166\\Exception\\DomainException' => array(
@@ -5647,7 +5779,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/MessageInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\RequestFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/RequestFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\RequestInterface' => array(
@@ -5655,7 +5787,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/RequestInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\ResponseFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/ResponseFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\ResponseInterface' => array(
@@ -5663,7 +5795,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/ResponseInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\ServerRequestFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/ServerRequestFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\ServerRequestInterface' => array(
@@ -5671,7 +5803,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/ServerRequestInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\StreamFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/StreamFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\StreamInterface' => array(
@@ -5679,7 +5811,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/StreamInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\UploadedFileFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/UploadedFileFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\UploadedFileInterface' => array(
@@ -5687,7 +5819,7 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/UploadedFileInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\UriFactoryInterface' => array(
-		'version' => '1.0.2.0',
+		'version' => '1.1.0.0',
 		'path'    => $vendorDir . '/psr/http-factory/src/UriFactoryInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\Vendor\\Psr\\Http\\Message\\UriInterface' => array(
@@ -5695,19 +5827,19 @@ return array(
 		'path'    => $vendorDir . '/psr/http-message/src/UriInterface.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\View\\PHPView' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/View/PHPView.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\View\\PHPViewFactory' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/View/PHPViewFactory.php'
 	),
 	'Automattic\\WooCommerce\\GoogleListingsAndAds\\View\\ViewException' => array(
-		'version' => 'dev-release/2.8.6',
+		'version' => 'dev-release/2.9.2',
 		'path'    => $baseDir . '/src/View/ViewException.php'
 	),
 	'CURLStringFile' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php'
 	),
 	'Container' => array(
@@ -14199,35 +14331,35 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-autoloader/src/class-hook-manager.php'
 	),
 	'Jetpack_IXR_Client' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-ixr-client.php'
 	),
 	'Jetpack_IXR_ClientMulticall' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-ixr-clientmulticall.php'
 	),
 	'Jetpack_Options' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-options.php'
 	),
 	'Jetpack_Signature' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-signature.php'
 	),
 	'Jetpack_Tracks_Client' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-tracks-client.php'
 	),
 	'Jetpack_Tracks_Event' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-tracks-event.php'
 	),
 	'Jetpack_XMLRPC_Server' => array(
-		'version' => '2.3.2.0',
+		'version' => '2.12.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-connection/legacy/class-jetpack-xmlrpc-server.php'
 	),
 	'JsonException' => array(
-		'version' => '1.28.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php'
 	),
 	'Latest_Autoloader_Guard' => array(
@@ -14755,7 +14887,7 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-autoloader/src/class-path-processor.php'
 	),
 	'PhpToken' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php'
 	),
 	'Plugin_Locator' => array(
@@ -14827,7 +14959,7 @@ return array(
 		'path'    => $vendorDir . '/psr/log/Psr/Log/Test/TestLogger.php'
 	),
 	'ReturnTypeWillChange' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php'
 	),
 	'Shutdown_Handler' => array(
@@ -14835,883 +14967,883 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-autoloader/src/class-shutdown-handler.php'
 	),
 	'Stringable' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php'
 	),
 	'Symfony\\Component\\Validator\\Command\\DebugCommand' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Command/DebugCommand.php'
 	),
 	'Symfony\\Component\\Validator\\Constraint' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraint.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintValidator.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintValidatorFactory' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintValidatorFactory.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintValidatorFactoryInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintValidatorFactoryInterface.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintValidatorInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintValidatorInterface.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintViolation' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintViolation.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintViolationInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintViolationInterface.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintViolationList' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintViolationList.php'
 	),
 	'Symfony\\Component\\Validator\\ConstraintViolationListInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ConstraintViolationListInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\AbstractComparison' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/AbstractComparison.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\AbstractComparisonValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/AbstractComparisonValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\All' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/All.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\AllValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/AllValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\AtLeastOneOf' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/AtLeastOneOf.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\AtLeastOneOfValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/AtLeastOneOfValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Bic' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Bic.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\BicValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/BicValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Blank' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Blank.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\BlankValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/BlankValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Callback' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Callback.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CallbackValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CallbackValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CardScheme' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CardScheme.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CardSchemeValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CardSchemeValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Cascade' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Cascade.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Choice' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Choice.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ChoiceValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ChoiceValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Cidr' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Cidr.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CidrValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CidrValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Collection' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Collection.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CollectionValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CollectionValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Composite' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Composite.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Compound' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Compound.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CompoundValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CompoundValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Count' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Count.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CountValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CountValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Country' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Country.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CountryValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CountryValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CssColor' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CssColor.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CssColorValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CssColorValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Currency' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Currency.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\CurrencyValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/CurrencyValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Date' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Date.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DateTime' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DateTime.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DateTimeValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DateTimeValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DateValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DateValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DisableAutoMapping' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DisableAutoMapping.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DivisibleBy' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DivisibleBy.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\DivisibleByValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/DivisibleByValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Email' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Email.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\EmailValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/EmailValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\EnableAutoMapping' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/EnableAutoMapping.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\EqualTo' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/EqualTo.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\EqualToValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/EqualToValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Existence' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Existence.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Expression' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Expression.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ExpressionLanguageSyntax' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ExpressionLanguageSyntax.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ExpressionLanguageSyntaxValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ExpressionLanguageSyntaxValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ExpressionValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ExpressionValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\File' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/File.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\FileValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/FileValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GreaterThan' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GreaterThan.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GreaterThanOrEqual' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GreaterThanOrEqual.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GreaterThanOrEqualValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GreaterThanOrEqualValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GreaterThanValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GreaterThanValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GroupSequence' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GroupSequence.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\GroupSequenceProvider' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/GroupSequenceProvider.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Hostname' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Hostname.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\HostnameValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/HostnameValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Iban' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Iban.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IbanValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IbanValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IdenticalTo' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IdenticalTo.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IdenticalToValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IdenticalToValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Image' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Image.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ImageValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ImageValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Ip' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Ip.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IpValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IpValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsFalse' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsFalse.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsFalseValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsFalseValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsNull' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsNull.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsNullValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsNullValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsTrue' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsTrue.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsTrueValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsTrueValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Isbn' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Isbn.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsbnValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsbnValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Isin' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Isin.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IsinValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IsinValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Issn' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Issn.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\IssnValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/IssnValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Json' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Json.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\JsonValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/JsonValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Language' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Language.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LanguageValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LanguageValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Length' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Length.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LengthValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LengthValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LessThan' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LessThan.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LessThanOrEqual' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LessThanOrEqual.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LessThanOrEqualValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LessThanOrEqualValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LessThanValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LessThanValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Locale' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Locale.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LocaleValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LocaleValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Luhn' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Luhn.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\LuhnValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/LuhnValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Negative' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Negative.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NegativeOrZero' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NegativeOrZero.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotBlank' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotBlank.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotBlankValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotBlankValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotCompromisedPassword' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotCompromisedPassword.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotCompromisedPasswordValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotCompromisedPasswordValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotEqualTo' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotEqualTo.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotEqualToValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotEqualToValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotIdenticalTo' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotIdenticalTo.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotIdenticalToValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotIdenticalToValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotNull' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotNull.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NotNullValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NotNullValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\NumberConstraintTrait' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/NumberConstraintTrait.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Optional' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Optional.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Positive' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Positive.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\PositiveOrZero' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/PositiveOrZero.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Range' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Range.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\RangeValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/RangeValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Regex' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Regex.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\RegexValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/RegexValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Required' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Required.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Sequentially' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Sequentially.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\SequentiallyValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/SequentiallyValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Time' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Time.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\TimeValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/TimeValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Timezone' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Timezone.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\TimezoneValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/TimezoneValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Traverse' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Traverse.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Type' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Type.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\TypeValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/TypeValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Ulid' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Ulid.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\UlidValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/UlidValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Unique' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Unique.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\UniqueValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/UniqueValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Url' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Url.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\UrlValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/UrlValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Uuid' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Uuid.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\UuidValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/UuidValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\Valid' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/Valid.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ValidValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ValidValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Constraints\\ZeroComparisonConstraintTrait' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Constraints/ZeroComparisonConstraintTrait.php'
 	),
 	'Symfony\\Component\\Validator\\ContainerConstraintValidatorFactory' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ContainerConstraintValidatorFactory.php'
 	),
 	'Symfony\\Component\\Validator\\Context\\ExecutionContext' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Context/ExecutionContext.php'
 	),
 	'Symfony\\Component\\Validator\\Context\\ExecutionContextFactory' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Context/ExecutionContextFactory.php'
 	),
 	'Symfony\\Component\\Validator\\Context\\ExecutionContextFactoryInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Context/ExecutionContextFactoryInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Context\\ExecutionContextInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Context/ExecutionContextInterface.php'
 	),
 	'Symfony\\Component\\Validator\\DataCollector\\ValidatorDataCollector' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/DataCollector/ValidatorDataCollector.php'
 	),
 	'Symfony\\Component\\Validator\\DependencyInjection\\AddAutoMappingConfigurationPass' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/DependencyInjection/AddAutoMappingConfigurationPass.php'
 	),
 	'Symfony\\Component\\Validator\\DependencyInjection\\AddConstraintValidatorsPass' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/DependencyInjection/AddConstraintValidatorsPass.php'
 	),
 	'Symfony\\Component\\Validator\\DependencyInjection\\AddValidatorInitializersPass' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/DependencyInjection/AddValidatorInitializersPass.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\BadMethodCallException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/BadMethodCallException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\ConstraintDefinitionException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/ConstraintDefinitionException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\ExceptionInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/ExceptionInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\GroupDefinitionException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/GroupDefinitionException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\InvalidArgumentException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/InvalidArgumentException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\InvalidOptionsException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/InvalidOptionsException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\LogicException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/LogicException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\MappingException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/MappingException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\MissingOptionsException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/MissingOptionsException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\NoSuchMetadataException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/NoSuchMetadataException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\OutOfBoundsException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/OutOfBoundsException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\RuntimeException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/RuntimeException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\UnexpectedTypeException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/UnexpectedTypeException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\UnexpectedValueException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/UnexpectedValueException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\UnsupportedMetadataException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/UnsupportedMetadataException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\ValidationFailedException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/ValidationFailedException.php'
 	),
 	'Symfony\\Component\\Validator\\Exception\\ValidatorException' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Exception/ValidatorException.php'
 	),
 	'Symfony\\Component\\Validator\\GroupSequenceProviderInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/GroupSequenceProviderInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\AutoMappingStrategy' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/AutoMappingStrategy.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\CascadingStrategy' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/CascadingStrategy.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\ClassMetadata' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/ClassMetadata.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\ClassMetadataInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/ClassMetadataInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Factory\\BlackHoleMetadataFactory' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Factory/BlackHoleMetadataFactory.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Factory\\LazyLoadingMetadataFactory' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Factory/LazyLoadingMetadataFactory.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Factory\\MetadataFactoryInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Factory/MetadataFactoryInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\GenericMetadata' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/GenericMetadata.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\GetterMetadata' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/GetterMetadata.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\AbstractLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/AbstractLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\AnnotationLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/AnnotationLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\AutoMappingTrait' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/AutoMappingTrait.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\FileLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/FileLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\FilesLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/FilesLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\LoaderChain' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/LoaderChain.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\LoaderInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/LoaderInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\PropertyInfoLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/PropertyInfoLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\StaticMethodLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/StaticMethodLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\XmlFileLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/XmlFileLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\XmlFilesLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/XmlFilesLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFileLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/YamlFileLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFilesLoader' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/Loader/YamlFilesLoader.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\MemberMetadata' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/MemberMetadata.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\MetadataInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/MetadataInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\PropertyMetadata' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/PropertyMetadata.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\PropertyMetadataInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/PropertyMetadataInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Mapping\\TraversalStrategy' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Mapping/TraversalStrategy.php'
 	),
 	'Symfony\\Component\\Validator\\ObjectInitializerInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ObjectInitializerInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Test\\AssertingContextualValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Test/ConstraintValidatorTestCase.php'
 	),
 	'Symfony\\Component\\Validator\\Test\\ConstraintValidatorTestCase' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Test/ConstraintValidatorTestCase.php'
 	),
 	'Symfony\\Component\\Validator\\Test\\ConstraintViolationAssertion' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Test/ConstraintValidatorTestCase.php'
 	),
 	'Symfony\\Component\\Validator\\Util\\PropertyPath' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Util/PropertyPath.php'
 	),
 	'Symfony\\Component\\Validator\\Validation' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validation.php'
 	),
 	'Symfony\\Component\\Validator\\ValidatorBuilder' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/ValidatorBuilder.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\ContextualValidatorInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/ContextualValidatorInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\LazyProperty' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/LazyProperty.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\RecursiveContextualValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/RecursiveContextualValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\RecursiveValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/RecursiveValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\TraceableValidator' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/TraceableValidator.php'
 	),
 	'Symfony\\Component\\Validator\\Validator\\ValidatorInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Validator/ValidatorInterface.php'
 	),
 	'Symfony\\Component\\Validator\\Violation\\ConstraintViolationBuilder' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Violation/ConstraintViolationBuilder.php'
 	),
 	'Symfony\\Component\\Validator\\Violation\\ConstraintViolationBuilderInterface' => array(
-		'version' => '5.4.30.0',
+		'version' => '5.4.48.0',
 		'path'    => $vendorDir . '/symfony/validator/Violation/ConstraintViolationBuilderInterface.php'
 	),
 	'Symfony\\Contracts\\Translation\\LocaleAwareInterface' => array(
-		'version' => '2.5.2.0',
+		'version' => '2.5.4.0',
 		'path'    => $vendorDir . '/symfony/translation-contracts/LocaleAwareInterface.php'
 	),
 	'Symfony\\Contracts\\Translation\\Test\\TranslatorTest' => array(
-		'version' => '2.5.2.0',
+		'version' => '2.5.4.0',
 		'path'    => $vendorDir . '/symfony/translation-contracts/Test/TranslatorTest.php'
 	),
 	'Symfony\\Contracts\\Translation\\TranslatableInterface' => array(
-		'version' => '2.5.2.0',
+		'version' => '2.5.4.0',
 		'path'    => $vendorDir . '/symfony/translation-contracts/TranslatableInterface.php'
 	),
 	'Symfony\\Contracts\\Translation\\TranslatorInterface' => array(
-		'version' => '2.5.2.0',
+		'version' => '2.5.4.0',
 		'path'    => $vendorDir . '/symfony/translation-contracts/TranslatorInterface.php'
 	),
 	'Symfony\\Contracts\\Translation\\TranslatorTrait' => array(
-		'version' => '2.5.2.0',
+		'version' => '2.5.4.0',
 		'path'    => $vendorDir . '/symfony/translation-contracts/TranslatorTrait.php'
 	),
 	'Symfony\\Polyfill\\Ctype\\Ctype' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-ctype/Ctype.php'
 	),
 	'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => array(
@@ -15723,27 +15855,27 @@ return array(
 		'path'    => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php'
 	),
 	'Symfony\\Polyfill\\Php73\\Php73' => array(
-		'version' => '1.28.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php73/Php73.php'
 	),
 	'Symfony\\Polyfill\\Php80\\Php80' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Php80.php'
 	),
 	'Symfony\\Polyfill\\Php80\\PhpToken' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/PhpToken.php'
 	),
 	'Symfony\\Polyfill\\Php81\\Php81' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php81/Php81.php'
 	),
 	'UnhandledMatchError' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php'
 	),
 	'ValueError' => array(
-		'version' => '1.29.0.0',
+		'version' => '1.31.0.0',
 		'path'    => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php'
 	),
 	'Version_Loader' => array(

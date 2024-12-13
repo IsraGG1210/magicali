@@ -148,6 +148,10 @@
         "fontSize": "14px",
         "fontFamily": "",
         "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": ""
       }
     }

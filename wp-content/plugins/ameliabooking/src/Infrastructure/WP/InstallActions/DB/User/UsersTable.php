@@ -4,6 +4,7 @@ namespace AmeliaBooking\Infrastructure\WP\InstallActions\DB\User;
 
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\ValueObjects\Picture;
+use AmeliaBooking\Domain\ValueObjects\String\Description;
 use AmeliaBooking\Domain\ValueObjects\String\Email;
 use AmeliaBooking\Domain\ValueObjects\String\Name;
 use AmeliaBooking\Domain\ValueObjects\String\Password;
@@ -33,6 +34,7 @@ class UsersTable extends AbstractDatabaseTable
         $phone = Phone::MAX_LENGTH;
         $picture = Picture::MAX_LENGTH;
         $password = Password::MAX_LENGTH;
+        $description = Description::MAX_LENGTH;
 
         return "CREATE TABLE {$table}  (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -57,6 +59,7 @@ class UsersTable extends AbstractDatabaseTable
                   `translations` TEXT NULL DEFAULT NULL,
                   `timeZone` varchar({$name}) DEFAULT NULL,
                   `badgeId` int(11) DEFAULT NULL,
+                  `error` TEXT({$description}) NOT NULL DEFAULT '',
                   PRIMARY KEY (`id`),
                   UNIQUE KEY `email` (`email`),
                   UNIQUE KEY `id` (`id`)

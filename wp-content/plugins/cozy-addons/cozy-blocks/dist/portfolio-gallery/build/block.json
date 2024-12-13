@@ -332,6 +332,10 @@
         "fontSize": "14px",
         "fontWeight": "400",
         "fontFamily": "",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "borderColorHover": "",
         "bgColor": "#5566ca",
         "bgColorHover": "",
@@ -380,6 +384,10 @@
         "fontSize": "14px",
         "fontWeight": "400",
         "fontFamily": "",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "bgColor": "#5566ca",
         "color": "#fff"
       }
@@ -507,7 +515,11 @@
         },
         "fontFamily": "",
         "fontWeight": "400",
-        "fontSize": "12px"
+        "fontSize": "12px",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "titleTypography": {
@@ -517,7 +529,11 @@
         "fontSize": "22px",
         "color": "#000",
         "colorHover": "#5566ca",
-        "fontWeight": "600"
+        "fontWeight": "600",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "subtitleTypography": {
@@ -526,7 +542,11 @@
         "fontFamily": "",
         "fontSize": "16px",
         "color": "#000",
-        "fontWeight": "500"
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

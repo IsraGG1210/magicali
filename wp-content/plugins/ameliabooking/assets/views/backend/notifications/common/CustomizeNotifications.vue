@@ -493,7 +493,7 @@
                   <!-- /Show Email Codes Button -->
 
                   <!-- Select Language -->
-                  <div class="align-right" v-if="notification.sendTo === 'customer' && type !== 'whatsapp' && usedLanguages.length > 0">
+                  <div class="align-right" v-if="notification.name !== 'customer_invoice' && notification.sendTo === 'customer' && type !== 'whatsapp' && usedLanguages.length > 0">
                     <el-select class="select-languages" :placeholder="$root.labels.language" v-model="selectedLanguage" clearable filterable @change="changeLanguage">
                       <li class="el-select-dropdown__item" @click="manageLanguages">
                         <span>
@@ -1554,6 +1554,11 @@
           excludedPlaceholders.paymentPlaceholders.push('%payment_link_square%')
         }
 
+
+        if (notification && notification.name === 'customer_invoice') {
+          excludedPlaceholders.customerPlaceholders.push('%customer_panel_url%')
+        }
+
         if (notification && notification.type !== 'whatsapp') {
           switch (notification.entity) {
             case 'event':
@@ -1648,6 +1653,12 @@
           ]
         }
 
+        if (notification.name === 'provider_cart' || notification.name === 'customer_cart') {
+          excludedPlaceholders.paymentPlaceholders = excludedPlaceholders.paymentPlaceholders.concat([
+            '%payment_due_amount%'
+          ])
+        }
+
         return excludedPlaceholders
       },
 
@@ -1714,12 +1725,19 @@
           common.push('employeePlaceholders')
         }
 
+        if (['provider_cart', 'customer_cart'].indexOf(notification.name) !== -1) {
+          common = common.filter(ph => ph !== 'paymentPlaceholders')
+        }
+
         if (['provider_cart', 'customer_cart'].indexOf(notification.name) !== -1 && notification.type === 'whatsapp') {
           common.push('cartPlaceholders')
         }
 
-        if (['customer_birthday_greeting', 'customer_account_recovery'].indexOf(notification.name) !== -1) {
-          return common
+        if (['customer_birthday_greeting', 'customer_account_recovery', 'customer_invoice'].indexOf(notification.name) !== -1) {
+          return [
+            'customerPlaceholders',
+            'companyPlaceholders'
+          ]
         } else if (['provider_panel_access', 'provider_panel_recovery'].indexOf(notification.name) !== -1) {
           return [
             'employeePlaceholders',
@@ -1799,7 +1817,8 @@
           name === 'provider_appointment_follow_up' ||
           name === 'customer_event_next_day_reminder' ||
           name === 'customer_event_follow_up' ||
-          name === 'provider_event_next_day_reminder'
+          name === 'provider_event_next_day_reminder' ||
+          name === 'customer_invoice'
         )) {
           return 'basic'
         }
@@ -2124,11 +2143,11 @@
       customerNotifications (entity) {
         if (entity === 'customer_other_notifications') {
           return this.notifications.filter(
-            notification => notification.type === this.type && notification.sendTo === 'customer' && ['customer_birthday_greeting', 'customer_account_recovery'].indexOf(notification.name) !== -1
+            notification => notification.type === this.type && notification.sendTo === 'customer' && ['customer_invoice', 'customer_birthday_greeting', 'customer_account_recovery'].indexOf(notification.name) !== -1
           )
         } else {
           let filteredNotifications = this.notifications.filter(
-            notification => notification.sendTo === 'customer' && notification.type === this.type && notification.entity === entity && ['customer_birthday_greeting', 'customer_account_recovery'].indexOf(notification.name) === -1
+            notification => notification.sendTo === 'customer' && notification.type === this.type && notification.entity === entity && ['customer_invoice', 'customer_birthday_greeting', 'customer_account_recovery'].indexOf(notification.name) === -1
           )
           // change position of app/event updated notifications
           let updatedNotification = filteredNotifications.find(n => n.name === 'customer_' + entity + '_updated' && !n.customName)

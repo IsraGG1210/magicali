@@ -10,9 +10,9 @@
 //     $hello_agency_url . 'assets/images/about_img.jpg',
 // );
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p5.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"120px","bottom":"120px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"className":"hello-agency-services-group hello-agency-animate","layout":{"type":"constrained","contentSize":"1180px"}} -->

@@ -6,7 +6,7 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/about.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/about.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"About Us with Counter"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40","bottom":"120px","top":"120px"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

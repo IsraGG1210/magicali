@@ -77,7 +77,7 @@ class OrderList {
 		add_filter(
 			'default_hidden_columns',
 			function ( $hidden, $screen ) {
-				return 'edit-shop_order' === $screen->id ? [] : $hidden;
+				return 'edit-shop_order' === $screen->id ? array() : $hidden;
 			},
 			10000,
 			2
@@ -90,7 +90,7 @@ class OrderList {
 		add_filter(
 			'woocommerce_admin_order_actions',
 			function ( $actions, $order ) {
-				return $order->get_meta( 'tiktok_order' ) ? [] : $actions;
+				return $order->get_meta( 'tiktok_order' ) ? array() : $actions;
 			},
 			10,
 			2
@@ -192,25 +192,25 @@ class OrderList {
 			function ( $views ) {
 				$screen    = get_current_screen();
 				$curr_page = 1;
-				$orders    = [];
+				$orders    = array();
 				$num_pages = wc_get_orders(
-					[
+					array(
 						'page'     => $curr_page,
 						'paginate' => true,
 						'limit'    => 10,
 						'meta_key' => 'tiktok_order',
 						'type'     => 'shop_order',
-					]
+					)
 				)->max_num_pages;
 
 				while ( $curr_page <= $num_pages ) {
 					$new_orders = wc_get_orders(
-						[
+						array(
 							'page'     => $curr_page,
 							'limit'    => 10,
 							'meta_key' => 'tiktok_order',
 							'type'     => 'shop_order',
-						]
+						)
 					);
 					$orders     = array_merge( $orders, $new_orders );
 					$curr_page++;
@@ -218,16 +218,16 @@ class OrderList {
 
 				return array_merge(
 					$views,
-					[
+					array(
 						'tiktok' => get_edit_link(
-							[
+							array(
 								'post_type' => $screen->post_type,
 								'channel'   => 'tiktok',
-							],
+							),
 							'TikTok <span class="count">(' . number_format_i18n( count( $orders ) ) . ')</span>',
 							isset( $_REQUEST['channel'] ) && 'tiktok' === $_REQUEST['channel'] ? 'current' : ''
 						),
-					]
+					)
 				);
 			}
 		);

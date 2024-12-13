@@ -6,11 +6,11 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/rating_star.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/quote_icon.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/rating_star.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/quote_icon.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Testimonials Grid Carousel "},"style":{"spacing":{"padding":{"top":"90px","bottom":"110px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0px","bottom":"0px"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

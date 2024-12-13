@@ -27,7 +27,7 @@
     },
     "perPage": {
       "type": "string",
-      "default": "-1"
+      "default": "6"
     },
     "ratingFilter": {
       "type": "string",
@@ -41,6 +41,8 @@
       "type": "object",
       "default": {
         "productName": true,
+        "titleLinkPost": true,
+        "titleLinkNewTab": false,
         "productRating": true,
         "reviewerName": true,
         "image": true,
@@ -60,12 +62,16 @@
         "gap": 15,
         "verticalGap": 10,
         "label": "Store Reviews",
-        "fontFamily": "sans-serif",
-        "fontSize": "",
+        "fontFamily": "Public Sans",
+        "fontSize": "22",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#000",
         "iconColor": "#D48D3B",
         "iconBgColor": "#FBF3EA",
-        "fontWeight": 400
+        "fontWeight": 600
       }
     },
     "gridOptions": {
@@ -86,15 +92,15 @@
     "ajaxButton": {
       "type": "object",
       "default": {
-        "enabled": true,
+        "enabled": false,
         "label": "Load More",
         "contentLoad": 10,
-        "marginTop": 0,
+        "marginTop": 16,
         "padding": {
-          "top": 10,
-          "right": 10,
-          "bottom": 10,
-          "left": 10
+          "top": 12,
+          "right": 26,
+          "bottom": 12,
+          "left": 26
         },
         "border": {
           "width": 1,
@@ -104,10 +110,14 @@
         },
         "borderRadius": 10,
         "fontSize": 14,
-        "fontWeight": 400,
-        "fontFamily": "sans-serif",
+        "fontWeight": 500,
+        "fontFamily": "Public Sans",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "bgColor": "#5566ca",
-        "bgColorHover": "",
+        "bgColorHover": "#f90",
         "color": "#fff",
         "colorHover": ""
       }
@@ -128,6 +138,14 @@
         "height": 10,
         "borderRadius": 10,
         "activeWidth": 10,
+        "activeHeight": 10,
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": 0,
+        "gap": 4,
         "activeBorderRadius": 10,
         "activeColor": "#007cba",
         "color": "#252525",
@@ -146,12 +164,18 @@
         "iconSize": 15,
         "iconBoxWidth": 35,
         "iconBoxHeight": 35,
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
         "borderRadius": 50,
         "verticalPosition": 65,
         "backgroundColor": "#fff",
         "color": "#007cba",
         "backgroundColorHover": "#007cba",
-        "colorHover": "#fff"
+        "colorHover": "#fff",
+        "borderHover": ""
       }
     },
     "sliderOptions": {
@@ -185,8 +209,8 @@
             "bottom": 1,
             "left": 1
           },
-          "type": "none",
-          "color": "#000",
+          "type": "solid",
+          "color": "#e2e2e2",
           "colorHover": ""
         },
         "borderRadius": {
@@ -215,8 +239,8 @@
       "type": "object",
       "default": {
         "hoverEffect": true,
-        "width": 48,
-        "height": "",
+        "width": 60,
+        "height": 60,
         "borderRadius": 100
       }
     },
@@ -227,14 +251,18 @@
         "dateFormat": "m-d-y",
         "dateAbbr": true,
         "titleColor": "#5566ca",
-        "titleColorHover": "",
+        "titleColorHover": "#f90",
         "ratingSize": 16,
         "ratingColor": "#fcb900",
         "textColor": "#000",
         "titleTypography": {
-          "fontFamily": "sans-serif",
+          "fontFamily": "Public Sans",
           "fontSize": 16,
-          "fontWeight": 400
+          "fontWeight": 600,
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
         }
       }
     },
@@ -247,7 +275,7 @@
           "bottom": 0,
           "left": 78
         },
-        "excerpt": 50,
+        "excerpt": 10,
         "position": "bottom",
         "borderRadius": 10
       }
@@ -255,10 +283,14 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "Public Sans",
         "fontSize": 14,
-        "color": "#000",
-        "fontWeight": 400
+        "color": "#646464",
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

@@ -91,9 +91,9 @@
     "enableOptions": {
       "type": "object",
       "default": {
+        "productImage": true,
         "productName": true,
         "productRating": true,
-        "productImage": true,
         "productCategories": true,
         "productSummary": true,
         "productPrice": true,
@@ -141,6 +141,10 @@
         "titleFontSize": "20px",
         "titleFontFamily": "",
         "titleFontWeight": "600",
+        "titleLetterCase": "none",
+        "titleDecoration": "none",
+        "titleLineHeight": "",
+        "titleLetterSpacing": "",
         "titleColor": "#090b10",
         "padding": {
           "top": "4px",
@@ -175,7 +179,11 @@
         },
         "fontSize": "14px",
         "fontFamily": "",
-        "fontWeight": "500"
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "separatorStyles": {
@@ -264,6 +272,7 @@
         "radius": "0px",
         "hoverEffect": true,
         "linkProduct": true,
+        "linkNewTab": false,
         "overlay": "#1c1c1c96"
       }
     },
@@ -294,6 +303,10 @@
         "fontSize": "12px",
         "fontFamily": "",
         "fontWeight": "400",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#fff"
       }
     },
@@ -368,17 +381,26 @@
           "weight": "500",
           "family": ""
         },
-        "letterCase": "none"
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "productName": {
       "type": "object",
       "default": {
+        "linkProduct": true,
+        "linkNewTab": false,
         "marginTop": "6px",
         "marginBottom": "4px",
         "fontSize": "18px",
         "fontFamily": "",
         "fontWeight": "600",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#090b10",
         "colorHover": "#f90"
       }
@@ -391,6 +413,10 @@
         "fontSize": "16px",
         "fontFamily": "",
         "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#090b10"
       }
     },
@@ -402,6 +428,10 @@
         "fontSize": "14px",
         "fontFamily": "",
         "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "",
         "iconColor": "#f90"
       }
@@ -432,6 +462,9 @@
           "family": ""
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#fff",
           "textHover": "",

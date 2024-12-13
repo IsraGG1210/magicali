@@ -6,12 +6,12 @@
  * Categories: ha-patterns-pro
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/service_icon_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/service_icon_6.png',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"120px","bottom":"120px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"className":"hello-agency-services-group hello-agency-animate","layout":{"type":"constrained","contentSize":"1180px"}} -->

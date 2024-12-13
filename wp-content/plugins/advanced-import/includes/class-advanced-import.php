@@ -230,6 +230,7 @@ class Advanced_Import {
 
 		require_once ADVANCED_IMPORT_PATH . 'includes/theme-template-library/cosmoswp.php'; /*cosmoswp*/
 		require_once ADVANCED_IMPORT_PATH . 'includes/theme-template-library/acmethemes.php'; /*acmethemes*/
+		require_once ADVANCED_IMPORT_PATH . 'includes/theme-template-library/patternswp.php'; /*patternswp*/
 
 		$this->loader = new Advanced_Import_Loader();
 	}

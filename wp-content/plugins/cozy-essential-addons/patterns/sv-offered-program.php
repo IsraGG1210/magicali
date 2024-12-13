@@ -6,9 +6,9 @@
  * Categories: smartversity
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/p1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/p2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/smv/p3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/p2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/smv/p3.jpg',
 
 );
 ?>

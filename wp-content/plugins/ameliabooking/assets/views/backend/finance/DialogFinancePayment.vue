@@ -16,7 +16,7 @@
       <div class="am-dialog-header">
         <el-row>
           <el-col :span="18">
-            <h2>{{ $root.labels.payment_details }}</h2>
+            <h2>{{ invoiceInDialog ? $root.labels.invoice_details : $root.labels.payment_details }}</h2>
           </el-col>
           <el-col :span="6" class="align-right">
             <el-button @click="closeDialog" class="am-dialog-close" size="small" icon="el-icon-close"></el-button>
@@ -25,6 +25,11 @@
       </div>
 
       <div class="am-payment-details">
+        <el-row v-if="payments[0].invoiceNumber" class="am-payment-details-row">
+          <h4>{{ $root.labels.invoice_number + ': #' + payments[0].invoiceNumber }}</h4>
+        </el-row>
+
+
         <el-row class="am-payment-details-row">
           <h4>{{ $root.labels.customer }}</h4>
           <el-col :span="24">
@@ -35,8 +40,8 @@
 
         <el-row class="am-payment-details-row" v-for="(singlePayment, index) in payments" :key="singlePayment.id">
           <div class="am-payment-details-row-header">
-            <h4>{{ $root.labels.payment }} #{{index+1}}</h4>
-            <div class="am-payment-details-row-options" v-if="payments.length > 1">
+            <h4>{{ $root.labels.payment }} {{ payments.length > 1 ? ('#' + (index+1)) : ''}} </h4>
+            <div class="am-payment-details-row-options" v-if="!invoiceInDialog && payments.length > 1">
               <div v-if="paymentRefundable(singlePayment)">
                 <el-button @click="showRefundModal(singlePayment)" size="small" :loading="refundMainBtnLoading">
                   {{ $root.labels.refund }}
@@ -62,14 +67,14 @@
           </div>
 
           <el-col :span="12">
-            <p>{{ $root.labels.date }}</p>
+            <p>{{ invoiceInDialog ?  $root.labels.issue_date : $root.labels.date }}</p>
             <p>{{ $root.labels.payment_method }}</p>
             <p v-if="singlePayment.wcOrderId">{{ $root.labels.wc_order }}:</p>
             <p>{{ $root.labels.status }}</p>
             <p>{{ $root.labels.id }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="am-semi-strong">{{ getFrontedFormattedDate(singlePayment.dateTime) }}</p>
+            <p class="am-semi-strong">{{ invoiceInDialog ? getFrontedFormattedDate(singlePayment.created) : getFrontedFormattedDate(singlePayment.dateTime) }}</p>
             <p class="am-semi-strong">
               <img class="svg-amelia" :style="{width: getPaymentIconWidth(singlePayment.gateway), verticalAlign: 'middle'}" :src="$root.getUrl + 'public/img/payments/' + getPaymentIconName(singlePayment)">
               <span v-if="!longNamePayments(singlePayment.gateway)">{{ getPaymentGatewayNiceName(singlePayment) }}</span>
@@ -89,24 +94,24 @@
           </el-col>
         </el-row>
 
-        <el-row class="am-payment-details-row">
+        <el-row class="am-payment-details-row" v-for="(bookItem, index) in modalData[modalData.bookableType]" :key="index">
           <h4>{{ $root.labels[modalData.bookableType + '_info'] }}</h4>
           <el-col :span="12">
             <p>{{ $root.labels[modalData.bookableType] }}</p>
             <p v-if="modalData.bookableType !== 'package'">{{ $root.labels.date }}</p>
-            <p v-if="modalData.providers.length && modalData.bookableType === 'appointment'">{{ $root.labels.employee }}</p>
+            <p v-if="bookItem.providers.length && modalData.bookableType === 'appointment'">{{ $root.labels.employee }}</p>
             <p v-if="modalData.bookableType === 'event' && getTicketsData().length">{{ $root.labels.event_tickets }}</p>
           </el-col>
           <el-col :span="12">
-            <p class="am-semi-strong">{{ modalData.bookableName }}</p>
-            <p class="am-semi-strong" v-if="modalData.bookableType !== 'package'">{{ getFrontedFormattedDateTime(modalData.bookingStart) }}</p>
-            <p class="am-semi-strong" v-if="modalData.providers.length && modalData.bookableType === 'appointment'">
+            <p class="am-semi-strong">{{ bookItem.bookable.name }}</p>
+            <p class="am-semi-strong" v-if="modalData.bookableType !== 'package'">{{ getFrontedFormattedDateTime(bookItem.bookingStart) }}</p>
+            <p class="am-semi-strong" v-if="bookItem.providers.length > 0 && modalData.bookableType === 'appointment'">
               <img
                 class="am-employee-photo"
-                :src="pictureLoad(modalData.providers[0], true)"
-                @error="imageLoadError(modalData.providers[0].id, true)"
+                :src="pictureLoad(bookItem.providers[0], true)"
+                @error="imageLoadError(bookItem.providers[0].id, true)"
               />
-              {{ modalData.providers.length ? modalData.providers[0].fullName : '' }}
+              {{ bookItem.providers[0].fullName }}
             </p>
             <p class="am-semi-strong" style="white-space: unset"
                v-if="modalData.bookableType === 'event' && getTicketsData().length"
@@ -120,15 +125,15 @@
 
         <el-row class="am-payment-details-row am-payment-summary">
           <el-col :span="12">
-            <p>{{ $root.labels[(modalData.bookableType === 'appointment' ? 'service' : (modalData.bookableType === 'event' ? 'event' : 'package')) + '_price'] }}</p>
+            <p>{{ $root.labels[(finance.multipleBookings ? 'bookings' : (modalData.bookableType === 'appointment' ? 'service' : modalData.bookableType)) + '_price'] }}</p>
             <p v-if="modalData.bookableType !== 'package' && modalData.bookableType !== 'event'">{{ $root.labels.extras }}</p>
             <p v-if="modalData.bookableType !== 'package' && modalData.bookableType !== 'event'">{{ $root.labels.subtotal }}</p>
             <p>{{ $root.labels.discount_amount }}</p>
             <p v-if="finance.tax">{{ $root.labels.tax }}</p>
             <p v-if="payments.filter(p => (p.wcOrderId && p.wcItemTaxValue)).length > 0">{{ $root.labels.tax }} (Woo)</p>
-            <p v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length === 1">{{ $root.labels.paid }}</p>
-            <p v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length > 1">{{ $root.labels.paid_deposit }}</p>
-            <p v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length > 1">{{ $root.labels.paid_remaining_amount }}</p>
+            <p v-if="!showPaidSeparate()">{{ $root.labels.paid }}</p>
+            <p v-if="showPaidSeparate()">{{ $root.labels.paid_deposit }}</p>
+            <p v-if="showPaidSeparate()">{{ $root.labels.paid_remaining_amount }}</p>
             <p v-if="finance.refunded > 0">{{ $root.labels.refunded }}</p>
             <p>{{ $root.labels.due }}</p>
             <p class="am-payment-total">{{ $root.labels.total }}</p>
@@ -141,9 +146,9 @@
             <p class="am-semi-strong">{{ getFormattedPrice(finance.discountTotal > finance.subTotal ? finance.subTotal : finance.discountTotal ) }}</p>
             <p v-if="finance.tax" class="am-semi-strong">{{ getFormattedPrice(finance.tax) }}</p>
             <p v-if="payments.filter(p => (p.wcOrderId && p.wcItemTaxValue)).length > 0" class="am-semi-strong">{{ getFormattedPrice(finance.wcTax) }}</p>
-            <p class="am-semi-strong" v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length === 1">{{ getFormattedPrice(finance.paidRemaining + finance.paidDeposit) }}</p>
-            <p class="am-semi-strong" v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length > 1">{{ getFormattedPrice(finance.paidDeposit) }}</p>
-            <p class="am-semi-strong" v-if="payments.filter(p => p.status !== 'pending' || p.gateway !== 'square').length > 1">{{ getFormattedPrice(finance.paidRemaining) }}</p>
+            <p class="am-semi-strong" v-if="!showPaidSeparate()">{{ getFormattedPrice(finance.paidRemaining + finance.paidDeposit) }}</p>
+            <p class="am-semi-strong" v-if="showPaidSeparate()">{{ getFormattedPrice(finance.paidDeposit) }}</p>
+            <p class="am-semi-strong" v-if="showPaidSeparate()">{{ getFormattedPrice(finance.paidRemaining) }}</p>
             <p class="am-semi-strong" v-if="finance.refunded > 0">{{getFormattedPrice(finance.refunded) }}</p>
             <p class="am-semi-strong">{{getFormattedPrice(finance.due) + (payments[0].wcItemTaxValue && finance.due > 0 ? $root.labels.plus_tax : '') }}</p>
             <p class="am-semi-strong am-payment-total">{{ getFormattedPrice(finance.total) + (payments[0].wcItemTaxValue && finance.due > 0 ? $root.labels.plus_tax : '') }}</p>
@@ -236,8 +241,7 @@
           </div>
         </transition>
 
-        <el-row>
-
+        <el-row v-if="!invoiceInDialog">
           <!-- Delete & Edit -->
           <el-col :sm="12" v-if="payments.length === 1" class="align-left">
 
@@ -265,7 +269,6 @@
 
           <!-- Cancel & Save -->
           <el-col :sm="payments.length > 1 ? 24 : 12" class="align-right">
-
             <!-- Cancel -->
             <el-button type="" @click="closeDialog" class="">
               {{ $root.labels.cancel }}
@@ -278,6 +281,36 @@
                 class="am-dialog-create"
             >
               {{ $root.labels.save }}
+            </el-button>
+
+          </el-col>
+        </el-row>
+        <el-row v-else>
+          <el-col :sm="8" :span="8" class="align-left invoice-download">
+            <el-button @click="downloadInvoice()" :loading="invoiceLoading.download">
+              {{ $root.labels.download }}
+            </el-button>
+          </el-col>
+          <el-col :sm="4" :span="4" class="align-left invoice-download-mobile">
+            <el-button @click="downloadInvoice()" class="button-export am-button-icon">
+              <img class="svg-amelia" alt="Import" :src="$root.getUrl+'public/img/import.svg'"/>
+            </el-button>
+          </el-col>
+          <el-col :sm="16" :span="16" class="align-right">
+            <el-button
+                @click="previewInvoice()"
+                class="am-dialog-create"
+                :loading="invoiceLoading.preview"
+            >
+              {{ $root.labels.preview }}
+            </el-button>
+            <el-button
+                type="primary"
+                @click="sendInvoice()"
+                class="am-dialog-create"
+                :loading="invoiceLoading.send"
+            >
+              {{ $root.labels.send_invoice }}
             </el-button>
 
           </el-col>
@@ -315,12 +348,12 @@ export default {
     props: {
       modalData: null,
       bookingFetched: false,
-      customersNoShowCount: null
+      customersNoShowCount: null,
+      invoiceInDialog: false
     },
 
     data () {
       return {
-        booking: {},
         dialogLoading: true,
         refundBtnLoading: false,
         refundMainBtnLoading: false,
@@ -331,10 +364,12 @@ export default {
           subTotal: 0,
           due: 0,
           refunded: 0,
+          total: 0,
           paidDeposit: 0,
           paidRemaining: 0,
           tax: 0,
-          wcTax: 0
+          wcTax: 0,
+          multipleBookings: false
         },
         form: new Form(),
         payment: null,
@@ -356,7 +391,8 @@ export default {
         showUpdatePaymentAmount: false,
         payments: [],
         showRefundConfirmation: false,
-        refundAmount: 0
+        refundAmount: 0,
+        invoiceLoading: {preview: false, download: false, send: false}
       }
     },
 
@@ -388,6 +424,72 @@ export default {
     },
 
     methods: {
+      showPaidSeparate () {
+        return this.payments.filter(p => p.status === 'partiallyPaid').length > 0 && !this.invoiceInDialog
+      },
+
+      createFileUrlFromResponse (response) {
+        var byteCharacters = atob(response.data)
+        var byteNumbers = new Array(byteCharacters.length)
+        for (var i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i)
+        }
+        var byteArray = new Uint8Array(byteNumbers)
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' })
+        return URL.createObjectURL(file)
+      },
+
+      sendInvoice () {
+        this.invoiceLoading.send = true
+        if (this.modalData.customer.email) {
+          this.$http.post(`${this.$root.getAjaxUrl}/invoices/${this.payments[0].id}`, {sendEmail: true})
+            .then(response => {
+              this.notify(this.$root.labels.success, this.$root.labels.invoice_sent, 'success')
+              this.invoiceLoading.send = false
+            })
+            .catch(e => {
+              console.log(e.response.data.message)
+              this.notify(this.$root.labels.error, this.$root.labels.invoice_sending_failed, 'error')
+              this.invoiceLoading.send = false
+            })
+        } else {
+          this.notify(this.$root.labels.error, this.$root.labels.send_invoice_no_email, 'error')
+          this.invoiceLoading.send = false
+        }
+      },
+
+      previewInvoice () {
+        this.invoiceLoading.preview = true
+        this.$http.post(`${this.$root.getAjaxUrl}/invoices/${this.payments[0].id}`)
+          .then(response => {
+            window.open(this.createFileUrlFromResponse(response))
+            this.invoiceLoading.preview = false
+          })
+          .catch(e => {
+            console.log(e.message)
+            this.invoiceLoading.preview = false
+          })
+      },
+
+      downloadInvoice () {
+        this.invoiceLoading.download = true
+        this.$http.post(`${this.$root.getAjaxUrl}/invoices/${this.payments[0].id}`)
+          .then(response => {
+            let url = this.createFileUrlFromResponse(response)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = 'Invoice'
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+            this.invoiceLoading.download = false
+          })
+          .catch(e => {
+            console.log(e.message)
+            this.invoiceLoading.download = false
+          })
+      },
+
       showRefundModal (singlePayment) {
         this.showDeleteConfirmation = false
         this.showUpdatePaymentAmount = false
@@ -444,22 +546,18 @@ export default {
       getTicketsData () {
         let ticketsData = []
 
-        if ('bookable' in this.modalData && this.modalData.bookable) {
-          this.modalData.bookings.forEach((bookItem) => {
-            bookItem.payments.forEach((payItem) => {
-              if (payItem.id === this.modalData.paymentId) {
-                bookItem.ticketsData.forEach((item) => {
-                  let ticket = this.modalData.bookable.customTickets.find(ticket => ticket.id === item.eventTicketId)
-
-                  if (ticket) {
-                    ticketsData.push(
-                      {
-                        name: ticket.name,
-                        persons: item.persons
-                      }
-                    )
+        if (this.modalData.bookableType === 'event' && this.modalData[this.modalData.bookableType][0]) {
+          this.modalData.event.forEach((ev) => {
+            let bookItem = ev.booking
+            bookItem.ticketsData.forEach((item) => {
+              let ticket = ev.bookable.customTickets.find(ticket => ticket.id === item.eventTicketId)
+              if (ticket) {
+                ticketsData.push(
+                  {
+                    name: ticket.name,
+                    persons: item.persons
                   }
-                })
+                )
               }
             })
           })
@@ -476,98 +574,21 @@ export default {
       },
 
       setFinance () {
-        this.payments = JSON.parse(JSON.stringify(this.modalData.bookings[this.modalData.bookingIndex].payments))
+        let appointments = JSON.parse(JSON.stringify(this.modalData[this.modalData.bookableType]))
+
+        appointments.forEach(a => {
+          this.payments = this.payments.concat(a.booking.payments)
+        })
 
         this.payments.sort(function (a, b) {
           return new Date(a.dateTime) - new Date(b.dateTime)
         })
 
-        let $this = this
+        let type = this.modalData.bookableType
+        let bookings = this.modalData[type]
 
-        $this.modalData.bookings.forEach(function (bookItem) {
-          if ($this.modalData.customerBookingId === bookItem.id) {
-            switch ($this.modalData.bookableType) {
-              case ('appointment'):
-                let amountData = $this.getAppointmentPriceAmount(
-                  {
-                    price: bookItem.price,
-                    aggregatedPrice: bookItem.aggregatedPrice,
-                    tax: bookItem.tax,
-                    id: null
-                  },
-                  bookItem.extras,
-                  bookItem.persons,
-                  bookItem.coupon,
-                  false
-                )
-
-                $this.finance.bookablePriceTotal = amountData.totalBookable
-                $this.finance.extrasPriceTotal = amountData.total - amountData.totalBookable
-                $this.finance.tax = amountData.tax
-                $this.finance.discountTotal = amountData.discount
-
-                break
-
-              case ('event'):
-                let eventAmountData = $this.getEventBookingPriceAmount(bookItem)
-
-                $this.finance.bookablePriceTotal = eventAmountData.total
-                $this.finance.extrasPriceTotal = 0
-                $this.finance.tax = eventAmountData.tax
-                $this.finance.discountTotal = eventAmountData.discount
-
-                break
-              case ('package'):
-                let coupon = null
-
-                bookItem.payments.forEach(function (payItem) {
-                  coupon = payItem.coupon ? payItem.coupon : coupon
-                })
-
-                let packagePrice = bookItem.price * (bookItem.aggregatedPrice ? bookItem.persons : 1)
-
-                let packageAmountData = $this.getAmountData(
-                  bookItem.tax && bookItem.tax.length ? bookItem.tax[0] : null,
-                  packagePrice,
-                  coupon
-                )
-
-                $this.finance.bookablePriceTotal = packageAmountData.total
-                $this.finance.extrasPriceTotal = 0
-                $this.finance.tax = packageAmountData.tax
-                $this.finance.discountTotal = packageAmountData.discount
-
-                break
-            }
-
-            $this.finance.subTotal = $this.finance.bookablePriceTotal + $this.finance.extrasPriceTotal
-
-            $this.finance.total = $this.finance.subTotal + $this.finance.tax
-
-            let paidDeposit = 0
-            let paidRemaining = 0
-            bookItem.payments.forEach(function (payItem) {
-              $this.finance.discountTotal += (payItem.wcOrderId ? payItem.wcItemCouponValue : 0)
-              $this.finance.total += (payItem.wcOrderId ? payItem.wcItemTaxValue : 0)
-              if (payItem.status === 'paid') {
-                paidRemaining += payItem.amount
-              } else if (payItem.status === 'partiallyPaid') {
-                paidDeposit += payItem.amount
-              }
-
-              if (payItem.wcOrderId && payItem.wcItemTaxValue) {
-                $this.finance.wcTax += payItem.wcItemTaxValue
-              }
-            })
-            let paidAmount = paidDeposit + paidRemaining
-            $this.finance.paidDeposit = paidDeposit
-            $this.finance.paidRemaining = paidRemaining
-            $this.finance.total -= $this.finance.discountTotal
-            $this.finance.due = ($this.finance.total - paidAmount) > 0 ? ($this.finance.total - paidAmount) : 0
-            $this.finance.refunded = bookItem.payments.filter(payItem => payItem.status === 'refunded').reduce((partialSum, a) => partialSum + a.amount, 0)
-            $this.finance.total = $this.finance.total >= 0 ? $this.finance.total : 0
-          }
-        })
+        this.finance = this.getPaymentAmountData(bookings, type)
+        this.finance.multipleBookings = bookings.length > 0
       },
 
       closeDialog () {

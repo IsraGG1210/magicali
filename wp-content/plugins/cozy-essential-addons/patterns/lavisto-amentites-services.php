@@ -6,7 +6,7 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_11.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_11.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Amenities and Services"},"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

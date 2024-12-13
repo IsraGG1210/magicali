@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+require_once __DIR__ . '/../utils/TBPApi.php';
 require_once __DIR__ . '/../utils/utilities.php';
+require_once __DIR__ . '/TikTokProductsController.php';
 
 class Tt4b_Catalog_Class {
 
@@ -33,6 +35,18 @@ class Tt4b_Catalog_Class {
 	protected $logger;
 
 	/**
+	 * Custom way to pull Woo products
+	 *
+	 * @var TikTokProductsController
+	 */
+	protected $tikTokProductsController;
+
+	/**
+	 * Week in seconds - used to determine if it's been at least a week since the last full sync
+	 */
+	const WEEK = 604800;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Tt4b_Mapi_Class $mapi   The Tt4b_Mapi_Class
@@ -41,8 +55,9 @@ class Tt4b_Catalog_Class {
 	 * @return void
 	 */
 	public function __construct( Tt4b_Mapi_Class $mapi, Logger $logger ) {
-		$this->mapi   = $mapi;
-		$this->logger = $logger;
+		$this->mapi                     = $mapi;
+		$this->logger                   = $logger;
+		$this->tikTokProductsController = new TikTokProductsController();
 	}
 
 	/**
@@ -51,9 +66,10 @@ class Tt4b_Catalog_Class {
 	 * @return void
 	 */
 	public function init() {
-		add_action( 'tt4b_catalog_sync_helper', [ $this, 'catalog_sync_helper' ], 2, 7 );
-		add_action( 'tt4b_catalog_sync', [ $this, 'catalog_sync' ], 1, 4 );
-		add_action( 'tt4b_delete_products_helper', [ $this, 'delete_products_helper' ], 1, 6 );
+		add_action( 'tt4b_catalog_sync_helper', array( $this, 'catalog_sync_helper' ), 2, 9 );
+		add_action( 'tt4b_catalog_sync', array( $this, 'catalog_sync' ), 1, 4 );
+		add_action( 'tt4b_delete_products_helper', array( $this, 'delete_products_helper' ), 1, 8 );
+		add_action( 'tt4b_variation_sync_helper', array( $this, 'variation_sync_helper' ), 2, 5 );
 	}
 
 	/**
@@ -76,15 +92,15 @@ class Tt4b_Catalog_Class {
 		$mapi   = new Tt4b_Mapi_Class( $logger );
 
 		$url    = 'catalog/overview/';
-		$params = [
+		$params = array(
 			'bc_id'      => $bc_id,
 			'catalog_id' => $catalog_id,
-		];
-		$base   = [
+		);
+		$base   = array(
 			'processing' => 0,
 			'approved'   => 0,
 			'rejected'   => 0,
-		];
+		);
 
 		$result = $mapi->mapi_get( $url, $access_token, $params, 'v1.2' );
 		$obj    = json_decode( $result, true );
@@ -103,11 +119,11 @@ class Tt4b_Catalog_Class {
 		$approved   = $obj['data']['approved'];
 		$rejected   = $obj['data']['rejected'];
 
-		return [
+		return array(
 			'processing' => $processing,
 			'approved'   => $approved,
 			'rejected'   => $rejected,
-		];
+		);
 	}
 
 	/**
@@ -126,39 +142,23 @@ class Tt4b_Catalog_Class {
 			return;
 		}
 
-		$this->logger->log( __METHOD__, "initiate_catalog_sync executing for $store_name" );
-
-		$tt4b_catalog_sync_payload = [
+		$tt4b_catalog_sync_payload = array(
 			'catalog_id'   => $catalog_id,
 			'bc_id'        => $bc_id,
 			'store_name'   => $store_name,
 			'access_token' => $access_token,
-		];
-		if ( false === as_has_scheduled_action( 'tt4b_catalog_sync_helper' ) ) {
-			self::check_and_start_async_action( 'tt4b_catalog_sync', $tt4b_catalog_sync_payload, 'tt4b_management_catalog_sync' );
-		}
+		);
+
 		if ( false === as_has_scheduled_action(
-			'tt4b_catalog_sync',
-			[
-				'catalog_id'   => $catalog_id,
-				'bc_id'        => $bc_id,
-				'store_name'   => $store_name,
-				'access_token' => $access_token,
-			],
-			'tt4b_scheduled_catalog_sync'
+			'tt4b_catalog_sync'
 		)
 		) {
 			as_schedule_cron_action(
 				'today',
-				'0 0-23 * * *',
+				$this->generate_cron_string(),
 				'tt4b_catalog_sync',
-				[
-					'catalog_id'   => $catalog_id,
-					'bc_id'        => $bc_id,
-					'store_name'   => $store_name,
-					'access_token' => $access_token,
-				],
-				'tt4b_scheduled_catalog_sync'
+				$tt4b_catalog_sync_payload,
+				'tt4b_daily_catalog_sync'
 			);
 		}
 	}
@@ -196,159 +196,395 @@ class Tt4b_Catalog_Class {
 		if ( '' === $store_name ) {
 			$store_name = 'WOO_COMMERCE';
 		}
-		$args                                = [
-			'date_modified' => '>=' . get_option( 'tt4b_last_product_sync_time' ) . '',
+		$timeForSync              = get_option( 'tt4b_last_product_sync_time' );
+		$lastFullSync             = get_option( 'tt4b_last_full_sync_time', 1 );
+		$reconciliation_sync      = false;
+		$reconciliation_sync_time = $timeForSync;
+		// if the time elapsed since the last full sync is over a week, initiate a full catalog sync
+		if ( time() - $lastFullSync >= self::WEEK ) {
+			$timeForSync         = 1;
+			$reconciliation_sync = true;
+			$this->logger->log( __METHOD__, 'one week since last full sync, initiating full catalog sync' );
+			update_option( 'tt4b_last_full_sync_time', time() );
+		}
+		update_option( 'tt4b_last_product_sync_time', time() );
+		$args                             = array(
+			'date_modified' => '>=' . $timeForSync,
 			'paginate'      => true,
 			'limit'         => 100,
-		];
-		$result                              = wc_get_products( $args );
-		$pages                               = $result->max_num_pages;
-		$tt4b_delete_products_helper_payload = [
-			'catalog_id'        => $catalog_id,
-			'bc_id'             => $bc_id,
-			'store_name'        => $store_name,
-			'access_token'      => $access_token,
-			'page_total'        => $pages,
-			'last_catalog_sync' => get_option( 'tt4b_last_product_sync_time' ),
-		];
-		$formatted_last_catalog_sync         = wp_date( 'j F Y H:i:s', get_option( 'tt4b_last_product_sync_time' ) );
-		$this->logger->log( __METHOD__, "adding and updating products from wc_get_products since $formatted_last_catalog_sync" );
-		update_option( 'tt4b_last_product_sync_time', time() );
-		self::check_and_start_async_action( 'tt4b_delete_products_helper', $tt4b_delete_products_helper_payload, '' );
+		);
+		$result                           = wc_get_products( $args );
+		$pages                            = $result->max_num_pages;
+		$tt4b_catalog_sync_helper_payload = array(
+			'catalog_id'               => $catalog_id,
+			'bc_id'                    => $bc_id,
+			'store_name'               => $store_name,
+			'access_token'             => $access_token,
+			'page_total'               => $pages,
+			'last_catalog_sync'        => $timeForSync,
+			'reconciliation_sync'      => $reconciliation_sync,
+			'reconciliation_sync_time' => $reconciliation_sync_time,
+		);
+		$formatted_last_catalog_sync      = wp_date( 'j F Y H:i:s', $timeForSync );
+		$this->logger->log( __METHOD__, "deleting, adding, and updating products from wc_get_products since $formatted_last_catalog_sync" );
+		self::check_and_start_async_action( 'tt4b_delete_products_helper', $tt4b_catalog_sync_helper_payload, '' );
 	}
 
 	/**
 	 * Helper function used to delete products on tiktok catalog manager that have been removed (trashed or deleted) from the woocommerce store
 	 * This function should run before any products sync to avoid issues when products are trashed and then untrashed
 	 *
-	 * @param string  $catalog_id        The users catalog ID
-	 * @param string  $bc_id             The users business center ID
-	 * @param string  $store_name        The users store name
-	 * @param string  $access_token      The MAPI issued access token
-	 * @param integer $page_total        The maximum number of pages of 100 products to sync for this job
-	 * @param integer $last_catalog_sync The unix timestamp of the last catalog sync, used to fetch products modified and created since that timestamp
+	 * @param string  $catalog_id               The users catalog ID
+	 * @param string  $bc_id                    The users business center ID
+	 * @param string  $store_name               The users store name
+	 * @param string  $access_token             The MAPI issued access token
+	 * @param integer $page_total               The maximum number of pages of 100 products to sync for this job
+	 * @param integer $last_catalog_sync        The unix timestamp of the last catalog sync, used to fetch products modified and created since that timestamp
+	 * @param boolean $reconciliation_sync      Control if the current sync is reconciliation for TikTok's product webhooks, which will sync all products to the webhooks and only deltas to the MAPI endpoint, defaults to false
+	 * @param integer $reconciliation_sync_time The reference time for the reconciliation sync, which will be used if reconciliation sync is enabled, to make sure to only send recent modifications to the MAPI endpoint
 	 *
 	 * @return void
 	 */
-	public function delete_products_helper( $catalog_id, $bc_id, $store_name, $access_token, $page_total, $last_catalog_sync ) {
-		$sku_ids = (array) get_option( 'tt4b_product_delete_queue', [] );
-		// check count of SKUs to delete, only send payload if SKUs array is not empty
-		if ( 0 === count( $sku_ids ) ) {
+	public function delete_products_helper( $catalog_id, $bc_id, $store_name, $access_token, $page_total, $last_catalog_sync, $reconciliation_sync, $reconciliation_sync_time ) {
+		// since delete_products_helper is the first job to run after a scheduled catalog sync, shift to daily sync instead of hourly sync if
+		if ( true === as_has_scheduled_action( 'tt4b_catalog_sync', null, 'tt4b_scheduled_catalog_sync' ) ) {
+			as_unschedule_all_actions( 'tt4b_catalog_sync', null, 'tt4b_scheduled_catalog_sync' );
+			if ( false === as_has_scheduled_action( 'tt4b_catalog_sync', null, 'tt4b_daily_catalog_sync' ) ) {
+				as_schedule_cron_action(
+					'tomorrow',
+					$this->generate_cron_string(),
+					'tt4b_catalog_sync',
+					array(
+						'catalog_id'   => $catalog_id,
+						'bc_id'        => $bc_id,
+						'store_name'   => $store_name,
+						'access_token' => $access_token,
+					),
+					'tt4b_daily_catalog_sync'
+				);
+			}
+		}
+		$products_to_delete = (array) get_option( 'tt4b_product_delete_queue', array() );
+		// check count of products to delete, only send payload if SKUs array is not empty
+		if ( 0 === count( $products_to_delete ) ) {
 			$this->logger->log( __METHOD__, 'no products retrieved from tt4b_product_delete_queue option, skipping product deletion' );
 		} else {
-			$dpa_product_information = [
-				'bc_id'      => $bc_id,
-				'catalog_id' => $catalog_id,
-				'sku_ids'    => $sku_ids,
-			];
-			// send payload and reset option to empty array
-			$this->mapi->mapi_post( 'catalog/product/delete/', $access_token, $dpa_product_information, 'v1.3' );
-			$this->logger->log( __METHOD__, "$sku_ids products posted to tiktok catalog for deletion" );
-			update_option( 'tt4b_product_delete_queue', [] );
+			$raw_products_payload      = array();
+			$raw_variations_payload    = array();
+			$mapi_dpa_products_payload = array();
+			foreach ( $products_to_delete as $sku_key => $product ) {
+				// type check here is necessary for backwards compatibility after API change:
+				// allow remaining sku IDs to be posted to MAPI for deletion
+				// new associative array of product data to be posted to new raw API and MAPI
+				if ( is_int( $sku_key ) ) {
+					$mapi_dpa_products_payload[] = $product;
+				} elseif ( $product['topic'] === 'partner_gw_product_sync' ) {
+					$mapi_dpa_products_payload[] = $sku_key;
+					$raw_products_payload[]      = array(
+						'id'   => $product['id'],
+						'data' => $product['data'],
+					);
+				} elseif ( $product['topic'] === 'partner_gw_product_variation_sync' ) {
+					$mapi_dpa_products_payload[] = $sku_key;
+					$raw_variations_payload[]    = array(
+						'id'        => $product['id'],
+						'data'      => $product['data'],
+						'parent_id' => $product['parent_id'],
+					);
+				}
+			}
+			if ( 0 < count( $raw_products_payload ) ) {
+				$raw_products_request = array(
+					'products' => $raw_products_payload,
+					'topic'    => 'partner_gw_product_sync',
+					'tag'      => 'delete',
+				);
+				$this->mapi->tbp_post( get_option( 'tt4b_external_data' ), 'woocommerce/php/product/batch/', 'v1.0', $raw_products_request, TBPApi::PLUGIN );
+			}
+			if ( 0 < count( $raw_variations_payload ) ) {
+				$raw_variations_request = array(
+					'products' => $raw_variations_payload,
+					'topic'    => 'partner_gw_product_variation_sync',
+					'tag'      => 'delete',
+				);
+				$this->mapi->tbp_post( get_option( 'tt4b_external_data' ), 'woocommerce/php/product/batch/', 'v1.0', $raw_variations_request, TBPApi::PLUGIN );
+			}
+			if ( 0 < count( $mapi_dpa_products_payload ) ) {
+				$mapi_dpa_request = array(
+					'sku_ids'    => $mapi_dpa_products_payload,
+					'bc_id'      => $bc_id,
+					'catalog_id' => $catalog_id,
+				);
+				$this->mapi->mapi_post( 'catalog/product/delete/', $access_token, $mapi_dpa_request, 'v1.3' );
+			}
+			update_option( 'tt4b_product_delete_queue', array() );
 		}
-		$tt4b_catalog_sync_helper_payload = [
-			'catalog_id'        => $catalog_id,
-			'bc_id'             => $bc_id,
-			'store_name'        => $store_name,
-			'access_token'      => $access_token,
-			'page'              => 1,
-			'page_total'        => $page_total,
-			'last_catalog_sync' => $last_catalog_sync,
-		];
-		// after product deletion is skipped or completed, proceed to initiate catalog sync helpers
-		self::check_and_start_async_action( 'tt4b_catalog_sync_helper', $tt4b_catalog_sync_helper_payload, '' );
+		$tt4b_catalog_sync_helper_payload = array(
+			'catalog_id'               => $catalog_id,
+			'bc_id'                    => $bc_id,
+			'store_name'               => $store_name,
+			'access_token'             => $access_token,
+			'page'                     => 1,
+			'page_total'               => $page_total,
+			'last_catalog_sync'        => $last_catalog_sync,
+			'reconciliation_sync'      => $reconciliation_sync,
+			'reconciliation_sync_time' => $reconciliation_sync_time,
+		);
+		// after product deletion is skipped or completed, proceed to initiate catalog sync helpers if anything needs to be synced
+		if ( $page_total >= 1 ) {
+			self::check_and_start_async_action( 'tt4b_catalog_sync_helper', $tt4b_catalog_sync_helper_payload, '' );
+		}
 	}
 
 	/**
 	 * Helper function used to post batches of products from woocommerce store to tiktok catalog manager
 	 *
-	 * @param string  $catalog_id        The users catalog ID
-	 * @param string  $bc_id             The users business center ID
-	 * @param string  $store_name        The users store name
-	 * @param string  $access_token      The MAPI issued access token
-	 * @param integer $page              The page of products from the user catalog
-	 * @param integer $page_total        The maximum number of pages of 100 products to sync for this job
-	 * @param integer $last_catalog_sync The unix timestamp of the last catalog sync, used to fetch products modified and created since that timestamp
+	 * @param string  $catalog_id               The users catalog ID
+	 * @param string  $bc_id                    The users business center ID
+	 * @param string  $store_name               The users store name
+	 * @param string  $access_token             The MAPI issued access token
+	 * @param integer $page                     The page of products from the user catalog
+	 * @param integer $page_total               The maximum number of pages of 100 products to sync for this job
+	 * @param integer $last_catalog_sync        The unix timestamp of the last catalog sync, used to fetch products modified and created since that timestamp
+	 * @param boolean $reconciliation_sync Control if the current sync is reconciliation for TikTok's product webhooks, which will sync all products to the webhooks and only deltas to the MAPI endpoint, defaults to false
+	 * @param integer $reconciliation_sync_time The reference time for the reconciliation sync, which will be used if reconciliation sync is enabled, to make sure to only send recent modifications to the MAPI endpoint
 	 *
 	 * @return void
 	 */
-	public function catalog_sync_helper( $catalog_id, $bc_id, $store_name, $access_token, $page, $page_total, $last_catalog_sync ) {
-		$args            = [
-			'date_modified' => '>=' . $last_catalog_sync . '',
+	public function catalog_sync_helper( string $catalog_id, string $bc_id, string $store_name, string $access_token, int $page, int $page_total, int $last_catalog_sync, bool $reconciliation_sync, int $reconciliation_sync_time ) {
+		$wc_get_products_args = array(
+			'date_modified' => '>=' . $last_catalog_sync,
 			'limit'         => 100,
 			'page'          => $page,
-		];
-		$dpa_products    = [];
-		$variation_count = 0;
-		$products        = wc_get_products( $args );
+		);
+		$parsed_time          = date( 'Y-m-d\TH:i:s', $last_catalog_sync );
+		$request              = new WP_REST_Request( 'GET', '/wc/v3/products' );
+		$request->set_query_params(
+			array(
+				'per_page'       => 100,
+				'page'           => $page,
+				'modified_after' => $parsed_time,
+				'dates_are_gmt'  => true,
+			)
+		);
+		$products = wc_get_products( $wc_get_products_args );
 		if ( 0 === count( $products ) ) {
 			$this->logger->log( __METHOD__, 'no products retrieved from wc_get_products' );
 		}
 		$failed_products_count = 0;
+		$products_to_restore   = (array) get_option( 'tt4b_product_restore_queue', array() );
+		$mapi_reference_time   = $last_catalog_sync;
+		if ( $reconciliation_sync ) {
+			$mapi_reference_time = $reconciliation_sync_time;
+		}
+
+		$raw_products_payload = array();
+		$mapi_upload_payload  = array();
+		// $mapi_update_payload = [];
 		foreach ( $products as $product ) {
 			if ( is_null( $product ) ) {
 				++$failed_products_count;
 				continue;
 			}
-			$this->logger->log( __METHOD__, "product retrieved: $product" );
-			$dpa_product = $this->generate_product_info( $store_name, $product );
-			if ( [] === $dpa_product ) {
+			$product_id  = $product->get_id();
+			$product_sku = $product->get_sku();
+
+			$dpa_product_info = $this->generate_product_info( $store_name, $product );
+			if ( array() === $dpa_product_info ) {
+				$this->logger->log( __METHOD__, 'unable to parse product: ' . $product_id . ' in to MAPI DPA schema' );
+				++$failed_products_count;
+				continue;
+			}
+			$restored_product = array_key_exists( $product_id, $products_to_restore );
+			if ( $restored_product ) {
+				unset( $products_to_restore[ $product_id ] );
+			}
+
+			$createTime = $product->get_date_created()->getTimestamp();
+			if ( $mapi_reference_time <= $createTime || $restored_product ) {
+				$mapi_upload_payload[] = $dpa_product_info;
+			}
+			// if ( $createTime < $mapi_reference_time && !$restored_product ) {
+			// $mapi_update_payload[] = $dpa_product_info;
+			// } else {
+			// $mapi_upload_payload[] = $dpa_product_info;
+			// }
+
+			$response = $this->tikTokProductsController->prepare_object( $product, $request );
+			if ( $response->is_error() ) {
+				$this->logger->log( __METHOD__, 'unable to parse product: ' . $product_id . ' in to REST API schema' );
 				++$failed_products_count;
 				continue;
 			}
 
-			// if adding parent variable product is successful, add children variation products
-			if ( $product->is_type( 'variable' ) ) {
-				$variations       = $product->get_available_variations( 'objects' );
-				$variations_count = count( $variations );
-				if ( isset( $dpa_product['sku_id'] ) && '' != $dpa_product['sku_id'] ) {
-					$this->logger->log( __METHOD__, "variable product detected with $variations_count variations" );
-					$dpa_variations = $this->variable_product_sync( $dpa_product['sku_id'], $dpa_product['description'] !== $dpa_product['title'] ? $dpa_product['description'] : '', $store_name, $variations );
-				}
-				// track count of variations with all fields
-				$variation_count += count( $dpa_variations );
-				$dpa_products     = array_merge( $dpa_products, $dpa_variations );
-			}
+			$product_information    = array(
+				'id'   => (string) $product_id,
+				'data' => json_encode( $response->get_data() ),
+			);
+			$raw_products_payload[] = $product_information;
 
-			$dpa_products[] = $dpa_product;
+			if ( $product->is_type( 'variable' ) ) {
+				$args            = array(
+					'parent'   => $product_id,
+					'type'     => 'variation',
+					'paginate' => true,
+					'limit'    => 100,
+				);
+				$result          = wc_get_products( $args );
+				$variation_pages = $result->max_num_pages;
+
+				$tt4b_variation_sync_payload = array(
+					'parent_id'    => $product_id,
+					'parent_sku'   => $product_sku,
+					'access_token' => $access_token,
+					'page_total'   => $variation_pages,
+					'page'         => 1,
+				);
+				self::check_and_start_async_action( 'tt4b_variation_sync_helper', $tt4b_variation_sync_payload, '' );
+
+				$variations     = $product->get_available_variations( 'objects' );
+				$dpa_variations = $this->fetch_mapi_product_variations( $dpa_product_info['sku_id'], $dpa_product_info['description'] !== $dpa_product_info['title'] ? $dpa_product_info['description'] : '', $store_name, $variations, $mapi_reference_time );
+				// $update_variations = $dpa_variations[0];
+				$upload_variations   = $dpa_variations[1];
+				$mapi_upload_payload = array_merge( $mapi_upload_payload, $upload_variations );
+				// $mapi_update_payload = array_merge( $mapi_update_payload, $update_variations );
+			}
 		}
-		// Remove variations from count of dpa_products to just return all parent products and simple products
-		$count = count( $dpa_products ) - $variation_count;
-		$this->logger->log( __METHOD__, "product_page: $page product_count: $count, variation_count: $variation_count" );
-		$dpa_product_information = [
-			'bc_id'      => $bc_id,
-			'catalog_id' => $catalog_id,
-			'products'   => $dpa_products,
-		];
-		$this->mapi->mapi_post( 'catalog/product/upload/', $access_token, $dpa_product_information, 'v1.3' );
+
+		if ( 0 < count( $raw_products_payload ) ) {
+			$raw_products_request = array(
+				'topic'    => 'partner_gw_product_sync',
+				'tag'      => 'update',
+				'products' => $raw_products_payload,
+			);
+			$this->mapi->tbp_post( get_option( 'tt4b_external_data' ), 'woocommerce/php/product/batch/', 'v1.0', $raw_products_request, TBPApi::PLUGIN );
+		}
+		if ( 0 < count( $mapi_upload_payload ) ) {
+			$mapi_upload_request = array(
+				'bc_id'      => $bc_id,
+				'catalog_id' => $catalog_id,
+				'products'   => $mapi_upload_payload,
+			);
+			$this->mapi->mapi_post( 'catalog/product/upload/', $access_token, $mapi_upload_request, 'v1.3' );
+		}
+		// if ( 0 < count( $mapi_update_payload ) ) {
+		// $mapi_update_request = [
+		// 'bc_id' => $bc_id,
+		// 'catalog_id' => $catalog_id,
+		// 'products' => $mapi_update_payload
+		// ];
+		// $this->mapi->mapi_post( 'catalog/product/update/', $access_token, $mapi_update_request, 'v1.3' );
+		// }
+		update_option( 'tt4b_product_restore_queue', $products_to_restore );
+
 		++$page;
-		$tt4b_catalog_sync_helper_payload = [
-			'catalog_id'        => $catalog_id,
-			'bc_id'             => $bc_id,
-			'store_name'        => $store_name,
-			'access_token'      => $access_token,
-			'page'              => $page,
-			'page_total'        => $page_total,
-			'last_catalog_sync' => $last_catalog_sync,
-		];
+		$tt4b_catalog_sync_helper_payload = array(
+			'catalog_id'               => $catalog_id,
+			'bc_id'                    => $bc_id,
+			'store_name'               => $store_name,
+			'access_token'             => $access_token,
+			'page'                     => $page,
+			'page_total'               => $page_total,
+			'last_catalog_sync'        => $last_catalog_sync,
+			'reconciliation_sync'      => $reconciliation_sync,
+			'reconciliation_sync_time' => $reconciliation_sync_time,
+		);
 		if ( $page <= $page_total ) {
 			self::check_and_start_async_action( 'tt4b_catalog_sync_helper', $tt4b_catalog_sync_helper_payload, '' );
 		}
 	}
 
 	/**
-	 * Prepare child product_variations associated with parent variable product to be synced to TikTok catalog
+	 * Sync a product's variants to the TikTok catalog
+	 *
+	 * @param int    $parent_id
+	 * @param string $parent_sku
+	 * @param string $access_token
+	 * @param int    $page_total
+	 * @param int    $page
+	 *
+	 * @return void
+	 */
+	public function variation_sync_helper( int $parent_id, string $parent_sku, string $access_token, int $page_total, int $page ) {
+		$wc_get_product_variation_args = array(
+			'parent' => $parent_id,
+			'type'   => 'variation',
+			'limit'  => 100,
+			'page'   => $page,
+		);
+		$products                      = wc_get_products( $wc_get_product_variation_args );
+		if ( 0 === count( $products ) ) {
+			$this->logger->log( __METHOD__, 'no variations retrieved from wc_get_products for parent product: ' . $parent_id );
+		}
+		$failed_products_count = 0;
+		$raw_products_payload  = array();
+		foreach ( $products as $product ) {
+			if ( is_null( $product ) ) {
+				++$failed_products_count;
+				continue;
+			}
+			$product_id = $product->get_id();
+
+			$request = new WP_REST_Request( 'GET', "wc/v3/products/$parent_id" );
+			$request->set_query_params(
+				array(
+					'dates_are_gmt' => true,
+				)
+			);
+
+			$response = $this->tikTokProductsController->prepare_object( $product, $request );
+			if ( $response->is_error() ) {
+				$this->logger->log( __METHOD__, 'unable to parse product: ' . $product_id . ' in to REST API schema' );
+				++$failed_products_count;
+				continue;
+			}
+
+			$product_information    = array(
+				'id'        => (string) $product_id,
+				'data'      => json_encode( $response->get_data() ),
+				'parent_id' => (string) $parent_id,
+			);
+			$raw_products_payload[] = $product_information;
+		}
+
+		if ( 0 < count( $raw_products_payload ) ) {
+			$raw_products_request = array(
+				'topic'    => 'partner_gw_product_variation_sync',
+				'tag'      => 'update',
+				'products' => $raw_products_payload,
+			);
+			$this->mapi->tbp_post( get_option( 'tt4b_external_data' ), 'woocommerce/php/product/batch/', 'v1.0', $raw_products_request, TBPApi::PLUGIN );
+		}
+
+		++$page;
+		$tt4b_variation_sync_payload = array(
+			'parent_id'    => $parent_id,
+			'parent_sku'   => $parent_sku,
+			'access_token' => $access_token,
+			'page_total'   => $page_total,
+			'page'         => $page,
+		);
+		if ( $page <= $page_total ) {
+			self::check_and_start_async_action( 'tt4b_variation_sync_helper', $tt4b_variation_sync_payload, '' );
+		}
+	}
+
+	/**
+	 * Prepare child product_variations associated with parent variable product to be synced to TikTok MAPI catalog
 	 *
 	 * @param string                 $parent_sku
 	 * @param string                 $parent_description
 	 * @param string                 $store_name
 	 * @param WC_Product_Variation[] $product_variations
+	 * @param integer                $last_catalog_sync The unix timestamp of the last catalog sync, used to fetch products modified and created since that timestamp
 	 *
 	 * @return array
 	 */
-	public function variable_product_sync( $parent_sku, $parent_description, $store_name, $product_variations ) {
-		$dpa_variation_products  = [];
-		$failed_variations_count = 0;
+	public function fetch_mapi_product_variations( $parent_sku, $parent_description, $store_name, $product_variations, $last_catalog_sync ) {
+		$dpa_variation_update_products = array();
+		$dpa_variation_upload_products = array();
+		$products_to_restore           = (array) get_option( 'tt4b_product_restore_queue', array() );
+		$failed_variations_count       = 0;
 		if ( 0 === count( $product_variations ) ) {
 			$this->logger->log( __METHOD__, 'empty array of variable products provided' );
 		}
@@ -357,12 +593,64 @@ class Tt4b_Catalog_Class {
 				++$failed_variations_count;
 				continue;
 			}
-			$this->logger->log( __METHOD__, "variation retrieved: $variation" );
 			$dpa_variation_product = $this->generate_product_info( $store_name, $variation, $parent_sku, $parent_description );
+			$variation_id          = $variation->get_id();
 
-			$dpa_variation_products[] = $dpa_variation_product;
+			$restored_product = array_key_exists( $variation_id, $products_to_restore );
+			if ( $restored_product ) {
+				unset( $products_to_restore[ $variation_id ] );
+			}
+
+			$createTime = $variation->get_date_created()->getTimestamp();
+			if ( $last_catalog_sync <= $createTime || $restored_product ) {
+				$dpa_variation_upload_products[] = $dpa_variation_product;
+			}
+			// if ( $createTime < $last_catalog_sync && !$restored_product ) {
+			// MAPI currently doesn't support updating item_group_id with /product/update/ endpoint
+			// unset( $dpa_variation_product['item_group_id'] );
+			// unset( $dpa_variation_product['price_info']['sale_price'] );
+			// $dpa_variation_update_products[] = $dpa_variation_product;
+			// } else {
+			// $dpa_variation_upload_products[] = $dpa_variation_product;
+			// }
 		}
-		return $dpa_variation_products;
+		update_option( 'tt4b_product_restore_queue', $products_to_restore );
+		return array( $dpa_variation_update_products, $dpa_variation_upload_products );
+	}
+
+	/**
+	 * Check if async action should be added according to name, payload, and group
+	 *
+	 * @param string $action_name name of the action to run
+	 * @param array  $payload     array payload for the action
+	 *
+	 * @param string $group       action group, pass empty string if no group
+	 */
+	private function check_and_start_async_action( string $action_name, array $payload, string $group ) {
+		if ( '' == $group ) {
+			if ( false === as_has_scheduled_action(
+				$action_name,
+				$payload
+			)
+			) {
+				as_enqueue_async_action(
+					$action_name,
+					$payload
+				);
+			}
+		} elseif ( false === as_has_scheduled_action(
+			$action_name,
+			$payload,
+			$group
+		)
+			) {
+
+				as_enqueue_async_action(
+					$action_name,
+					$payload,
+					$group
+				);
+		}
 	}
 
 	/**
@@ -390,7 +678,8 @@ class Tt4b_Catalog_Class {
 		if ( false === $stock_status ) {
 			$availability = 'OUT_OF_STOCK';
 		}
-		$sku_id = (string) $product->get_sku();
+		$sku_id  = (string) $product->get_sku();
+		$raw_sku = $sku_id;
 		if ( '' === $sku_id ) {
 			$sku_id = (string) $product->get_id();
 		}
@@ -424,13 +713,13 @@ class Tt4b_Catalog_Class {
 		}
 		// Get product gallery images - max 10
 		$gallery_image_ids  = array_slice( $product->get_gallery_image_ids(), 0, 10, true );
-		$gallery_image_urls = [];
+		$gallery_image_urls = array();
 		foreach ( $gallery_image_ids as $gallery_image_id ) {
 			$gallery_image_urls[] = wp_get_attachment_image_url( $gallery_image_id, 'full' );
 		}
 
 		// if any of the values are empty, the whole request will fail, so skip the product.
-		$missing_fields = [];
+		$missing_fields = array();
 		if ( '' === $sku_id || false === $sku_id ) {
 			$missing_fields[] = 'sku_id';
 		}
@@ -451,10 +740,10 @@ class Tt4b_Catalog_Class {
 				join( ',', $missing_fields )
 			);
 			$this->logger->log( __METHOD__, $debug_message );
-			return [];
+			return array();
 		}
 
-		$dpa_product = [
+		$dpa_product = array(
 			'sku_id'         => $sku_id,
 			'item_group_id'  => $item_group_id,
 			'title'          => $title,
@@ -462,17 +751,21 @@ class Tt4b_Catalog_Class {
 			'description'    => $description,
 			'image_url'      => $image_url,
 			'brand'          => $store_name,
-			'product_detail' => [
+			'product_detail' => array(
 				'condition' => $condition,
-			],
-			'price_info'     => [
+			),
+			'price_info'     => array(
 				'price'      => $price,
 				'sale_price' => $sale_price,
-			],
-			'landing_page'   => [
+			),
+			'landing_page'   => array(
 				'landing_page_url' => $link,
-			],
-		];
+			),
+			'extra_info'     => array(
+				'custom_label_0' => $raw_sku,
+			),
+
+		);
 
 		// add additional product images if available
 		if ( count( $gallery_image_urls ) > 0 ) {
@@ -483,37 +776,13 @@ class Tt4b_Catalog_Class {
 	}
 
 	/**
-	 * Check if async action should be added according to name, payload, and group
+	 * Returns a cron string with randomized hour and minute values for scheduling recurring eligibility collection
 	 *
-	 * @param string $action_name name of the action to run
-	 * @param array  $payload     array payload for the action
-	 *
-	 * @param string $group       action group, pass empty string if no group
+	 * @return string
 	 */
-	private function check_and_start_async_action( $action_name, $payload, $group ) {
-		if ( '' == $group ) {
-			if ( false === as_has_scheduled_action(
-				$action_name,
-				$payload
-			)
-			) {
-				as_enqueue_async_action(
-					$action_name,
-					$payload
-				);
-			}
-		} elseif ( false === as_has_scheduled_action(
-			$action_name,
-			$payload,
-			$group
-		)
-			) {
-
-				as_enqueue_async_action(
-					$action_name,
-					$payload,
-					$group
-				);
-		}
+	private function generate_cron_string() {
+		$minute = rand( 0, 59 );
+		$hour   = rand( 0, 23 );
+		return '' . $minute . ' ' . $hour . ' * * 0-6';
 	}
 }

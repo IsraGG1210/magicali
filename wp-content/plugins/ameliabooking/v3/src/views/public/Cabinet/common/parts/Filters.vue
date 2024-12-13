@@ -23,6 +23,7 @@
         :style="cssVars"
         :lang="localLanguage"
         class="am-capf__menu-datepicker"
+        :popper-class="'am-capf__menu-datepicker-popper'"
         :custom-input-display="true"
       ></AmDatePicker>
       <div v-if="!props.empty && filterCustomizeVisibility && filterVisibility">
@@ -98,7 +99,6 @@ import {
   reactive,
   computed,
   inject,
-  defineComponent,
 } from "vue";
 
 // * Composables
@@ -199,10 +199,10 @@ function changeFilters () {
 
 let cWidth = inject('containerWidth')
 
-let filterIcon = defineComponent({
+let filterIcon = {
   components: {IconComponent},
   template: `<IconComponent icon="filter"/>`
-})
+}
 
 let filtersMenuVisibility = ref(false)
 
@@ -542,6 +542,35 @@ export default {
         position: absolute;
         right: 10px;
         content: "\2713";
+      }
+    }
+  }
+}
+
+
+.am-capf__menu-datepicker-popper {
+  @media only screen and (max-width: 660px) {
+    left: 0 !important;
+    width: 100%;
+
+    .el-picker-panel.el-date-range-picker {
+      width: 100%;
+
+      .el-picker-panel__body {
+        min-width: unset;
+
+        @media only screen and (max-width: 570px) {
+          display: flex;
+          flex-direction: column;
+
+          .el-date-range-picker__content {
+            width: 100%;
+
+            &.is-left {
+              border: none;
+            }
+          }
+        }
       }
     }
   }

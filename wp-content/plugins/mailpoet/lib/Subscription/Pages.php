@@ -331,7 +331,10 @@ class Pages {
 
       switch ($this->action) {
         case self::ACTION_CAPTCHA:
-          $captchaSessionId = $this->data['captcha_session_id'] ?? null;
+          $captchaSessionId =
+            (isset($this->data['captcha_session_id']) && is_string($this->data['captcha_session_id']))
+            ? $this->data['captcha_session_id']
+            : null;
           if (!$captchaSessionId) {
             return false;
           }
@@ -493,11 +496,9 @@ class Pages {
     if (!$subscriber instanceof SubscriberEntity) return __('Link to subscription management page is only available to mailing lists subscribers.', 'mailpoet');
 
     // get label or display default label
-    $text = (
-      isset($params['text'])
+    $text = isset($params['text'])
       ? htmlspecialchars($params['text'])
-      : __('Manage your subscription', 'mailpoet')
-    );
+      : __('Manage your subscription', 'mailpoet');
 
     return '<a href="' . $this->subscriptionUrlFactory->getManageUrl($subscriber) . '">' . $text . '</a>';
   }

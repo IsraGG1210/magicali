@@ -295,7 +295,7 @@
             payment: payment,
             appointment: this.appointment,
             booking: booking,
-            package: booking.packageCustomerService ? {name: pack ? pack.name : 'Package'} : null,
+            package: booking.packageCustomerService ? (pack ? pack : {name: 'Package'}) : null,
             recurring: this.recurring
           })
       },

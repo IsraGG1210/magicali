@@ -263,6 +263,18 @@ class CouponRepository extends AbstractRepository implements CouponRepositoryInt
                 $where[] = 'UPPER(c.code) LIKE UPPER(:search)';
             }
 
+            if (!empty($criteria['ids'])) {
+                $queryIds = [];
+
+                foreach ((array)$criteria['ids'] as $index => $value) {
+                    $param = ':id' . $index;
+                    $queryIds[] = $param;
+                    $params[$param] = $value;
+                }
+
+                $where[] = "c.id IN (" . implode(', ', $queryIds) . ')';
+            }
+
             if (!empty($criteria['services'])) {
                 $queryServices = [];
 

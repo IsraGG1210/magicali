@@ -158,6 +158,10 @@ export default {
             label: this.$root.labels.ph_package_deposit_payment
           },
           {
+            value: '%payment_due_amount%',
+            label: this.$root.labels.ph_payment_due_amount
+          },
+          {
             value: '%payment_link_woocommerce%',
             label: this.$root.labels.ph_payment_link_woocommerce
           },

@@ -1,9 +1,9 @@
 === MailPoet - Newsletters, Email Marketing, and Automation ===
 Contributors: mailpoet, woocommerce, automattic
 Tags: email marketing, post notification, woocommerce emails, email automation, newsletter
-Requires at least: 6.5
-Tested up to: 6.6
-Stable tag: 5.3.1
+Requires at least: 6.6
+Tested up to: 6.7
+Stable tag: 5.5.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -18,7 +18,7 @@ Our newsletter builder integrates perfectly with WordPress so any website owner 
 
 Schedule your newsletters, send them right away, or set up new blog post notifications to send automatically, in just a few clicks.
 
-Trusted by 700,000 WordPress websites since 2011.
+Trusted by 600,000 WordPress websites since 2011.
 
 **With a free plan to get started, and scaling paid plans with enhanced functionality available, MailPoet is an email marketing solution suitable for both beginners and proficient email marketers.**
 
@@ -120,6 +120,7 @@ Please note:
 * Japanese
 * Mexican
 * Persian (IR)
+* Polish
 * Portuguese (BR and PT)
 * Russian
 * Serbian
@@ -136,7 +137,6 @@ Please note:
 * Hungarian
 * Norwegian
 * Persian
-* Polish
 * Romanian
 * Ukrainian
 
@@ -230,13 +230,8 @@ Check our [Knowledge Base](https://kb.mailpoet.com) or contact us through our [s
 
 == Changelog ==
 
-= 5.3.1 - 2024-10-15 =
-* Improved: add validation for re-engagement emails period;
-* Improved: more balanced text wrapping to improve readability;
-* Improved: when the email authentication service is unavailable, use the old authentication status and continue sending.
-* Fixed: some email template previews are too wide;
-* Fixed: remove Google+ icon from email templates;
-* Fixed: Removed a warning when caption is not present on image;
-* Fixed: deprecation warning from mb_convert_encoding.
+= 5.5.0 - 2024-12-09 =
+* Added the Polish translation as an officially maintained translation;
+* Added: classes now allowed in links of HTML forms.
 
 [See the changelog for all versions.](https://github.com/mailpoet/mailpoet/blob/trunk/mailpoet/CHANGELOG.md)

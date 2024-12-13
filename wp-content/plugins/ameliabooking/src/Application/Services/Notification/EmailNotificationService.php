@@ -21,6 +21,7 @@ use AmeliaBooking\Domain\ValueObjects\String\BookingStatus;
 use AmeliaBooking\Domain\ValueObjects\String\NotificationStatus;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Notification\NotificationLogRepository;
+use AmeliaBooking\Infrastructure\Repository\User\CustomerRepository;
 use AmeliaBooking\Infrastructure\Repository\User\UserRepository;
 use AmeliaBooking\Infrastructure\Services\Notification\MailgunService;
 use AmeliaBooking\Infrastructure\Services\Notification\PHPMailService;
@@ -56,7 +57,8 @@ class EmailNotificationService extends AbstractNotificationService
         $notification,
         $logNotification,
         $bookingKey = null,
-        $allBookings = null
+        $allBookings = null,
+        $invoice = []
     ) {
         /** @var NotificationLogRepository $notificationLogRepo */
         $notificationLogRepo = $this->container->get('domain.notificationLog.repository');
@@ -251,7 +253,7 @@ class EmailNotificationService extends AbstractNotificationService
                             $emailData['subject'],
                             $emailData['body'],
                             $emailData['bcc'],
-                            $emailData['attachments']
+                            array_merge($emailData['attachments'], [$invoice])
                         );
                     } else if (empty($emailData['skipSending'])) {
                         $this->addPreparedNotificationData(
@@ -324,6 +326,10 @@ class EmailNotificationService extends AbstractNotificationService
     {
         /** @var Collection $notifications */
         $notifications = $this->getByNameAndType('customer_birthday_greeting', $this->type);
+        /** @var NotificationLogRepository $notificationLogRepo */
+        $notificationLogRepo = $this->container->get('domain.notificationLog.repository');
+
+        $notificationsForSending = new Collection();
 
         foreach ($notifications->getItems() as $notification) {
             // Check if notification is enabled and it is time to send notification
@@ -332,6 +338,58 @@ class EmailNotificationService extends AbstractNotificationService
                 DateTimeService::getNowDateTimeObject() >=
                 DateTimeService::getCustomDateTimeObject($notification->getTime()->getValue())
             ) {
+                $notificationsForSending->addItem($notification);
+            }
+        }
+
+        $customers = $notificationLogRepo->getBirthdayCustomers($this->type);
+
+        $this->sendOtherNotifications($notifications, $customers->toArray());
+    }
+
+
+    /**
+     * @param int $customerId
+     * @param array $invoice
+     *
+     * @throws ContainerValueNotFoundException
+     * @throws QueryExecutionException
+     * @throws \AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException
+     * @throws \Interop\Container\Exception\ContainerException
+     * @throws Exception
+     */
+    public function sendInvoiceNotification($customerId, $invoice)
+    {
+        /** @var Collection $notifications */
+        $notifications = $this->getByNameAndType('customer_invoice', $this->type);
+
+        /** @var CustomerRepository $customerRepository */
+        $customerRepository = $this->container->get('domain.users.customers.repository');
+
+        if ($customerId) {
+            $customer = $customerRepository->getById($customerId);
+
+            $this->sendOtherNotifications($notifications, [$customer->toArray()], [$invoice]);
+        }
+    }
+
+
+    /**
+     * @param Collection $notifications
+     * @param array $customers
+     * @param array $attachments
+     *
+     * @throws ContainerValueNotFoundException
+     * @throws QueryExecutionException
+     * @throws \AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException
+     * @throws \Interop\Container\Exception\ContainerException
+     * @throws Exception
+     */
+    public function sendOtherNotifications($notifications, $customers, $attachments = [])
+    {
+        foreach ($notifications->getItems() as $notification) {
+            // Check if notification is enabled and it is time to send notification
+            if ($notification->getStatus()->getValue() === NotificationStatus::ENABLED) {
                 /** @var NotificationLogRepository $notificationLogRepo */
                 $notificationLogRepo = $this->container->get('domain.notificationLog.repository');
 
@@ -353,13 +411,9 @@ class EmailNotificationService extends AbstractNotificationService
                     return;
                 }
 
-                $customers = $notificationLogRepo->getBirthdayCustomers($this->type);
-
                 $companyData = $placeholderService->getCompanyData();
 
-                $customersArray = $customers->toArray();
-
-                foreach ($customersArray as $bookingKey => $customerArray) {
+                foreach ($customers as $customerArray) {
                     if ($customerArray['email']) {
                         $data = [
                             'customer_email'      => $customerArray['email'],
@@ -387,7 +441,8 @@ class EmailNotificationService extends AbstractNotificationService
                                 $data['customer_email'],
                                 $subject,
                                 $this->getParsedBody($body),
-                                $settingsAS->getBccEmails()
+                                $settingsAS->getBccEmails(),
+                                $attachments
                             );
 
                             $logNotificationId = $notificationLogRepo->add(

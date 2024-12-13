@@ -17,8 +17,8 @@ require_once __DIR__ . '/../utils/utilities.php';
 class Tt4b_Pixel_Class {
 	// TTCLID Cookie name
 	const TTCLID_COOKIE    = 'tiktok_ttclid';
-	const TTP_COOKIE = '_ttp';
-	private static $events = [];
+	const TTP_COOKIE       = '_ttp';
+	private static $events = array();
 
 
 	/**
@@ -55,58 +55,54 @@ class Tt4b_Pixel_Class {
 			$content_type = 'product_group';
 		}
 		$event_id = self::get_event_id( $content_id );
-		$content = self::get_properties_from_product( $product, 1, 0, Method::VIEWCONTENT );
+		$content  = self::get_properties_from_product( $product, 1, 0, Method::VIEWCONTENT );
 
-		$properties = [
-			'contents'             => [
+		$properties = array(
+			'contents'             => array(
 				$content,
-			],
+			),
 			'content_type'         => $content_type,
 			'currency'             => get_woocommerce_currency(),
 			'value'                => (float) $product->get_price(),
 			'event_trigger_source' => 'WooCommerce',
-		];
+		);
 
-		$user         = self::get_user();
-		$hashed_email = $user['email'];
-		$hashed_phone = $user['phone'];
-
-		$url = '';
+		$user = self::get_user();
+		$url  = '';
 		if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
 			$url = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 		}
 		$referrer = wp_get_referer();
-		$page = [
+		$page     = array(
 			'url' => $url,
-		];
+		);
 		if ( $referrer ) {
 			$page['referrer'] = $referrer;
 		}
 
-		$data = [
-			[
+		$data = array(
+			array(
 				'event'      => $event,
 				'event_id'   => $event_id,
 				'event_time' => time(),
 				'user'       => $user,
 				'properties' => $properties,
 				'page'       => $page,
-			],
-		];
+			),
+		);
 
-		$params = [
+		$params = array(
 			'partner_name'    => 'WooCommerce',
 			'event_source'    => 'web',
 			'event_source_id' => $fields['pixel_code'],
 			'data'            => $data,
-		];
+		);
 
 		// events API track
 		$mapi->mapi_post( 'event/track/', $fields['access_token'], $params, 'v1.3' );
 
 		// js pixel track
-		self::enqueue_event( $event, $fields['pixel_code'], $properties, $hashed_email, $hashed_phone, $event_id, $user['first_name'], $user['last_name'], $user['city'], $user['state'], $user['country'], $user['zip_code'] );
-
+		self::enqueue_event( $event, $fields['pixel_code'], $properties, $event_id, $user );
 	}
 
 	/**
@@ -141,57 +137,53 @@ class Tt4b_Pixel_Class {
 			$content_id = (string) $product->get_id();
 		}
 		$content_type = 'product';
-		$content = self::get_properties_from_product( $product, 1, $variation_id, Method::ADDTOCART );
+		$content      = self::get_properties_from_product( $product, 1, $variation_id, Method::ADDTOCART );
 
-		$event_id = self::get_event_id( $content_id );
-		$properties = [
-			'contents'     => [
+		$event_id   = self::get_event_id( $content_id );
+		$properties = array(
+			'contents'             => array(
 				$content,
-			],
+			),
 			'content_type'         => $content_type,
 			'currency'             => get_woocommerce_currency(),
 			'value'                => ( $content['price'] * (float) $quantity ),
 			'event_trigger_source' => 'WooCommerce',
-		];
+		);
 
-		$user         = self::get_user();
-		$hashed_email = $user['email'];
-		$hashed_phone = $user['phone'];
-
-		$url = '';
+		$user = self::get_user();
+		$url  = '';
 		if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
 			$url = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 		}
 		$referrer = wp_get_referer();
-		$page = [
+		$page     = array(
 			'url' => $url,
-		];
+		);
 		if ( $referrer ) {
 			$page['referrer'] = $referrer;
 		}
 
-		$data   = [
-			[
+		$data   = array(
+			array(
 				'event'      => $event,
 				'event_id'   => $event_id,
 				'event_time' => time(),
 				'user'       => $user,
 				'properties' => $properties,
 				'page'       => $page,
-			],
-		];
-		$params = [
+			),
+		);
+		$params = array(
 			'partner_name'    => 'WooCommerce',
 			'event_source'    => 'web',
 			'event_source_id' => $fields['pixel_code'],
 			'data'            => $data,
-		];
+		);
 		// events API track
 		$mapi->mapi_post( 'event/track/', $fields['access_token'], $params, 'v1.3' );
 
 		// js pixel track
-		self::enqueue_event( $event, $fields['pixel_code'], $properties, $hashed_email, $hashed_phone, $event_id, $user['first_name'], $user['last_name'], $user['city'], $user['state'], $user['country'], $user['zip_code'] );
-
+		self::enqueue_event( $event, $fields['pixel_code'], $properties, $event_id, $user );
 	}
 
 	/**
@@ -215,8 +207,8 @@ class Tt4b_Pixel_Class {
 		$mapi = new Tt4b_Mapi_Class( $logger );
 		// if registration required, and can't register in checkout and user not logged in, don't fire event.
 		if ( ! WC()->checkout()->is_registration_enabled()
-			 && WC()->checkout()->is_registration_required()
-			 && ! is_user_logged_in()
+			&& WC()->checkout()->is_registration_required()
+			&& ! is_user_logged_in()
 		) {
 			return;
 		}
@@ -225,66 +217,62 @@ class Tt4b_Pixel_Class {
 			return;
 		}
 
-		$event_contents = [];
-		$value              = 0;
-		$event_id           = self::get_event_id( '' );
-		$content_type       = 'product';
+		$event_contents = array();
+		$value          = 0;
+		$event_id       = self::get_event_id( '' );
+		$content_type   = 'product';
 		foreach ( WC()->cart->get_cart() as $cart_item ) {
 			$product      = $cart_item['data'];
 			$quantity     = (int) $cart_item['quantity'];
 			$variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
 			$content      = self::get_properties_from_product( $product, $quantity, $variation_id, Method::STARTCHECKOUT );
-			$value      += $content['price'] * $content['quantity'];
+			$value       += $content['price'] * $content['quantity'];
 			array_push( $event_contents, $content );
 		}
 
-		$user         = self::get_user();
-		$hashed_email = $user['email'];
-		$hashed_phone = $user['phone'];
-
-		$url = '';
+		$user = self::get_user();
+		$url  = '';
 		if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
 			$url = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 		}
 		$referrer = wp_get_referer();
-		$page = [
+		$page     = array(
 			'url' => $url,
-		];
+		);
 		if ( $referrer ) {
 			$page['referrer'] = $referrer;
 		}
 
-		$properties = [
+		$properties = array(
 			'contents'             => $event_contents,
 			'content_type'         => $content_type,
 			'currency'             => get_woocommerce_currency(),
 			'value'                => $value,
 			'event_trigger_source' => 'WooCommerce',
-		];
+		);
 
-		$data   = [
-			[
+		$data   = array(
+			array(
 				'event'      => $event,
 				'event_id'   => $event_id,
 				'event_time' => time(),
 				'user'       => $user,
 				'properties' => $properties,
 				'page'       => $page,
-			],
-		];
-		$params = [
+			),
+		);
+		$params = array(
 			'partner_name'    => 'WooCommerce',
 			'event_source'    => 'web',
 			'event_source_id' => $fields['pixel_code'],
 			'data'            => $data,
-		];
+		);
 
 		// events API track
 		$mapi->mapi_post( 'event/track/', $fields['access_token'], $params, 'v1.3' );
 
 		// js pixel track
-		self::enqueue_event( $event, $fields['pixel_code'], $properties, $hashed_email, $hashed_phone, $event_id, $user['first_name'], $user['last_name'], $user['city'], $user['state'], $user['country'], $user['zip_code'] );
-
+		self::enqueue_event( $event, $fields['pixel_code'], $properties, $event_id, $user );
 	}
 
 	/**
@@ -314,62 +302,58 @@ class Tt4b_Pixel_Class {
 			return;
 		}
 
-		// format of js and s2s payloads differ
-		$event_contents = [];
-		$value              = 0;
-		$event_id           = self::get_event_id( '' );
-		$content_type       = 'product';
+		$event_contents = array();
+		$value          = 0;
+		$event_id       = self::get_event_id( '' );
+		$content_type   = 'product';
 		foreach ( $order->get_items() as $item ) {
-			$product    = $item->get_product();
-			$quantity   = $item->get_quantity();
+			$product           = $item->get_product();
+			$quantity          = $item->get_quantity();
 			$parent_product_id = $product->get_parent_id();
-			$content = self::get_properties_from_product( $product, $quantity, $parent_product_id, Method::PURCHASE );
-			$value      += $content['price'] * $content['quantity'];
+			$content           = self::get_properties_from_product( $product, $quantity, $parent_product_id, Method::PURCHASE );
+			$value            += $content['price'] * $content['quantity'];
 			array_push( $event_contents, $content );
 		}
 
-		$user         = self::get_user();
-		$hashed_email = $user['email'];
-		$hashed_phone = $user['phone'];
-
-		$url = '';
+		$user = self::get_user();
+		$url  = '';
 		if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
 			$url = esc_url_raw( wp_unslash( $_SERVER['HTTP_HOST'] ) . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 		}
-		$page = [
+		$page = array(
 			'url' => $url,
-		];
+		);
 
-		$properties = [
+		$properties = array(
 			'contents'             => $event_contents,
 			'content_type'         => $content_type,
 			'currency'             => get_woocommerce_currency(),
 			'value'                => $value,
 			'event_trigger_source' => 'WooCommerce',
-		];
+		);
 
-		$data   = [
-			[
+		$data   = array(
+			array(
 				'event'      => $event,
 				'event_id'   => $event_id,
 				'event_time' => time(),
 				'user'       => $user,
 				'properties' => $properties,
 				'page'       => $page,
-			],
-		];
-		$params = [
+			),
+		);
+		$params = array(
 			'partner_name'    => 'WooCommerce',
 			'event_source'    => 'web',
 			'event_source_id' => $fields['pixel_code'],
 			'data'            => $data,
-		];
+		);
 
 		// events API track
 		$mapi->mapi_post( 'event/track/', $fields['access_token'], $params, 'v1.3' );
 
 		// js pixel track
-		self::enqueue_event( $event, $fields['pixel_code'], $properties, $hashed_email, $hashed_phone, $event_id, $user['first_name'], $user['last_name'], $user['city'], $user['state'], $user['country'], $user['zip_code'] );
+		self::enqueue_event( $event, $fields['pixel_code'], $properties, $event_id, $user );
 	}
 
 	/**
@@ -417,7 +401,7 @@ class Tt4b_Pixel_Class {
 			$content_id = variation_content_id_helper( $method, $content_id, $variation->get_sku(), $variation_id );
 
 			// use variation price.
-			$price = $variation->get_price();
+			$price      = $variation->get_price();
 			$sale_price = $variation->get_sale_price();
 
 			if ( Method::STARTCHECKOUT === $method ) {
@@ -430,26 +414,26 @@ class Tt4b_Pixel_Class {
 			}
 		}
 
-		$content  = [
-			'price'          => (float) $price,
-			'quantity'       => $quantity,
-			'content_id'     => $content_id,
-			'content_name'   => $product->get_name(),
-			'description'    => $product->get_short_description(),
-			'availability'   => $availability,
-			'sale_price'     => (float) $sale_price,
-			'on_sale'        => $product->is_on_sale(),
-		];
+		$content = array(
+			'price'        => (float) $price,
+			'quantity'     => $quantity,
+			'content_id'   => $content_id,
+			'content_name' => $product->get_name(),
+			'description'  => $product->get_short_description(),
+			'availability' => $availability,
+			'sale_price'   => (float) $sale_price,
+			'on_sale'      => $product->is_on_sale(),
+		);
 
 		$review_count = $product->get_review_count();
 		if ( $review_count > 0 ) {
-			$content['review_count'] = $review_count;
+			$content['review_count']   = $review_count;
 			$content['average_rating'] = (float) $product->get_average_rating();
 		}
 
 		$weight = $product->get_weight();
 		if ( '' !== $weight ) {
-			$content['weight'] = (float) $weight;
+			$content['weight']      = (float) $weight;
 			$content['weight_unit'] = 'KG';
 		}
 		return $content;
@@ -468,8 +452,8 @@ class Tt4b_Pixel_Class {
 		}
 		$advanced_matching = get_option( 'tt4b_advanced_matching' );
 
-		$email        = $current_user->user_email;
-		$external_id  = (string) $current_user->ID;
+		$email       = $current_user->user_email;
+		$external_id = (string) $current_user->ID;
 
 		$phone_number = get_user_meta( $current_user->ID, 'billing_phone', true );
 		if ( did_action( 'woocommerce_loaded' ) > 0 ) {
@@ -479,23 +463,15 @@ class Tt4b_Pixel_Class {
 		}
 
 		$first_name = $current_user->user_firstname;
-		$last_name = $current_user->user_lastname;
-		$user_id = $current_user->ID;
-		$zip_code = get_user_meta( $user_id, 'billing_postcode', true );
-		$user = [
+		$last_name  = $current_user->user_lastname;
+		$user_id    = $current_user->ID;
+		$zip_code   = get_user_meta( $user_id, 'billing_postcode', true );
+		$user       = array(
 			'ip'          => $ip,
 			'user_agent'  => $user_agent,
 			'locale'      => strtok( get_locale(), '_' ),
 			'external_id' => $external_id,
-			'email' => '',
-			'phone' => '',
-			'first_name' => '',
-			'last_name' => '',
-			'zip_code' => '',
-			'city' => '',
-			'state' => '',
-			'country' => '',
-		];
+		);
 
 		if ( isset( $_COOKIE[ self::TTCLID_COOKIE ] ) ) {
 			$user['ttclid'] = sanitize_text_field( $_COOKIE[ self::TTCLID_COOKIE ] );
@@ -506,13 +482,24 @@ class Tt4b_Pixel_Class {
 		}
 
 		if ( $advanced_matching ) {
-			$user['city'] = strtolower( str_replace(' ', '', get_user_meta( $user_id, 'billing_city', true ) ) );
-			$user['state'] = strtolower( get_user_meta( $user_id, 'billing_state', true ) );
-			$user['country'] = strtolower( get_user_meta( $user_id, 'billing_country', true ) );
+			$billing_city = strtolower( str_replace( ' ', '', get_user_meta( $user_id, 'billing_city', true ) ) );
+			if ( '' !== $billing_city ) {
+				$user['city'] = $billing_city;
+			}
+
+			$billing_state = strtolower( str_replace( ' ', '', get_user_meta( $user_id, 'billing_state', true ) ) );
+			if ( '' !== $billing_state ) {
+				$user['state'] = $billing_state;
+			}
+
+			$billing_country = strtolower( str_replace( ' ', '', get_user_meta( $user_id, 'billing_country', true ) ) );
+			if ( '' !== $billing_country ) {
+				$user['country'] = $billing_country;
+			}
 
 			// hash email, phone, first name, last name, zip, and add to $user object.
 			$user = $pixel_obj->add_advanced_matching_hashed_info( $email, $user, 'email' );
-			$user = $pixel_obj->add_advanced_matching_hashed_info( $phone_number, $user, 'phone' );
+			$user = $pixel_obj->add_advanced_matching_hashed_info( $phone_number, $user, 'phone_number' );
 			$user = $pixel_obj->add_advanced_matching_hashed_info( $first_name, $user, 'first_name' );
 			$user = $pixel_obj->add_advanced_matching_hashed_info( $last_name, $user, 'last_name' );
 			$user = $pixel_obj->add_advanced_matching_hashed_info( $zip_code, $user, 'zip_code' );
@@ -540,18 +527,18 @@ class Tt4b_Pixel_Class {
 	 */
 	public function get_pixels( $access_token, $advertiser_id, $pixel_code ) {
 		// returns a raw API response from TikTok pixel/list/ endpoint
-		$params = [
+		$params = array(
 			'advertiser_id' => $advertiser_id,
 			'code'          => $pixel_code,
-		];
+		);
 		$url    = 'https://business-api.tiktok.com/open_api/v1.3/pixel/list/?' . http_build_query( $params );
-		$args   = [
+		$args   = array(
 			'method'  => 'GET',
-			'headers' => [
+			'headers' => array(
 				'Access-Token' => $access_token,
 				'Content-Type' => 'application/json',
-			],
-		];
+			),
+		);
 		$logger = new Logger();
 		$logger->log_request( $url, $args );
 		$result = wp_remote_get( $url, $args );
@@ -569,11 +556,10 @@ class Tt4b_Pixel_Class {
 	 */
 	public function add_advanced_matching_hashed_info( $info, $user, $identifier ) {
 		if ( '' === $info ) {
-			$user[$identifier] = $info;
 			return $user;
 		}
-		$hashed_info = hash( 'SHA256', strtolower( $info ) );
-		$user[$identifier] = $hashed_info;
+		$hashed_info         = hash( 'SHA256', strtolower( $info ) );
+		$user[ $identifier ] = $hashed_info;
 
 		return $user;
 	}
@@ -594,14 +580,14 @@ class Tt4b_Pixel_Class {
 		} catch ( Exception $e ) {
 			$logger->log( $method, $e->getMessage() );
 
-			return [];
+			return array();
 		}
 
-		return [
+		return array(
 			'access_token'  => $access_token,
 			'advertiser_id' => $advertiser_id,
 			'pixel_code'    => $pixel_code,
-		];
+		);
 	}
 
 	/**
@@ -674,9 +660,9 @@ class Tt4b_Pixel_Class {
 	}
 
 	public static function get_user_ip_address() {
-		foreach ( ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'] as $key) {
+		foreach ( array( 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR' ) as $key ) {
 			if ( array_key_exists( $key, $_SERVER ) ) {
-				foreach ( explode( ',', sanitize_text_field( $_SERVER[$key] ) ) as $ip ) {
+				foreach ( explode( ',', sanitize_text_field( $_SERVER[ $key ] ) ) as $ip ) {
 					$ip = trim( $ip );
 					if ( false !== filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
 						return $ip;
@@ -703,17 +689,17 @@ class Tt4b_Pixel_Class {
 
 		$country           = get_option( 'tt4b_user_country' );
 		$advanced_matching = get_option( 'tt4b_advanced_matching' );
-		wp_register_script( 'tt4b_ajax_script', plugins_url( '/admin/js/ajaxSnippet.js', dirname( __DIR__ ) . '/tiktok-for-woocommerce.php' ), [ 'jquery' ], 'v1', false );
+		wp_register_script( 'tt4b_ajax_script', plugins_url( '/admin/js/ajaxSnippet.js', dirname( __DIR__ ) . '/tiktok-for-woocommerce.php' ), array( 'jquery' ), 'v1', false );
 		wp_enqueue_script( 'tt4b_ajax_script' );
 		wp_localize_script(
 			'tt4b_ajax_script',
 			'tt4b_script_vars',
-			[
+			array(
 				'pixel_code'        => $pixel_code,
 				'currency'          => $currency,
 				'country'           => $country,
 				'advanced_matching' => $advanced_matching,
-			]
+			)
 		);
 	}
 
@@ -730,9 +716,9 @@ class Tt4b_Pixel_Class {
 
 		if ( $product->is_taxable() ) {
 			if ( WC()->cart->display_prices_including_tax() ) {
-				$row_price = wc_get_price_including_tax( $product, [ 'qty' => 1 ] );
+				$row_price = wc_get_price_including_tax( $product, array( 'qty' => 1 ) );
 			} else {
-				$row_price = wc_get_price_excluding_tax( $product, [ 'qty' => 1 ] );
+				$row_price = wc_get_price_excluding_tax( $product, array( 'qty' => 1 ) );
 			}
 		}
 
@@ -750,7 +736,7 @@ class Tt4b_Pixel_Class {
 	 * @return string
 	 */
 	private static function prepare_event_code( $event, $pixel_code, $data, $event_id ) {
-		if ( [] === $data ) {
+		if ( array() === $data ) {
 			return sprintf(
 				'ttq.instance(\'%s\').track(\'%s\', {\'event_id\': \'%s\'})',
 				$pixel_code,
@@ -784,27 +770,29 @@ class Tt4b_Pixel_Class {
 	 *
 	 * @return string
 	 */
-	private static function prepare_advanced_matching( $pixel_code, $hashed_email, $hashed_phone, $first_name, $last_name, $city, $state, $country, $zip_code ) {
+	private static function prepare_advanced_matching( $pixel_code, $user ) {
+		$fields = array(
+			'email'        => 'email',
+			'phone_number' => 'phone_number',
+			'first_name'   => 'first_name',
+			'last_name'    => 'last_name',
+			'city'         => 'city',
+			'state'        => 'state',
+			'country'      => 'country',
+			'zip_code'     => 'zip_code',
+		);
+
+		$jsFields = array();
+		foreach ( $fields as $jsKey => $phpKey ) {
+			if ( isset( $user[ $phpKey ] ) ) {
+				$jsFields[] = sprintf( "%s: '%s'", $jsKey, $user[ $phpKey ] );
+			}
+		}
+		$jsObject = implode( ",\n            ", $jsFields );
 		return sprintf(
-			'ttq.instance(\'%s\').identify({
-            email: \'%s\',
-            phone_number: \'%s\',
-            first_name: \'%s\',
-            last_name: \'%s\',
-            city: \'%s\',
-            state: \'%s\',
-            country: \'%s\',
-            zip_code: \'%s\'
-            })',
+			"ttq.instance('%s').identify({\n            %s\n            })",
 			$pixel_code,
-			$hashed_email,
-			$hashed_phone,
-			$first_name,
-			$last_name,
-			$city,
-			$state,
-			$country,
-			$zip_code
+			$jsObject
 		);
 	}
 
@@ -826,7 +814,6 @@ class Tt4b_Pixel_Class {
 		wp_add_inline_script( 'tiktok-tracking-handle-header', $event_code_script );
 		$advanced_matching_script = '<script>' . self::prepare_advanced_matching( $pixel_code, $hashed_email, $hashed_phone ) . '</script>';
 		wp_add_inline_script( 'tiktok-tracking-handle-header', $advanced_matching_script );
-
 	}
 
 	/**
@@ -840,8 +827,8 @@ class Tt4b_Pixel_Class {
 	 *
 	 * @return void
 	 */
-	private static function enqueue_event( $event, $pixel_code, $data, $hashed_email, $hashed_phone, $event_id, $first_name, $last_name, $city, $state, $country, $zip_code ) {
-		self::$events[ self::prepare_event_code( $event, $pixel_code, $data, $event_id ) ] = self::prepare_advanced_matching( $pixel_code, $hashed_email, $hashed_phone, $first_name, $last_name, $city, $state, $country, $zip_code );
+	private static function enqueue_event( $event, $pixel_code, $data, $event_id, $user ) {
+		self::$events[ self::prepare_event_code( $event, $pixel_code, $data, $event_id ) ] = self::prepare_advanced_matching( $pixel_code, $user );
 	}
 
 	/**
@@ -882,24 +869,22 @@ class Tt4b_Pixel_Class {
 				wp_add_inline_script( 'tiktok-tracking-handle-header', $key );
 				wp_add_inline_script( 'tiktok-tracking-handle-header', $value );
 			}
-			self::$events = [];
+			self::$events = array();
 		}
 	}
 
 	public static function track_page_view() {
 		$event  = 'Pageview';
 		$logger = new Logger();
-		//      $logger->log( __METHOD__, "hit $event" );
-		$mapi = new Tt4b_Mapi_Class( $logger );
+		// $logger->log( __METHOD__, "hit $event" );
+		$mapi   = new Tt4b_Mapi_Class( $logger );
 		$fields = self::pixel_event_tracking_field_track( __METHOD__ );
 		if ( 0 === count( $fields ) ) {
 			return;
 		}
 
 		$event_id = self::get_event_id( '' );
-		$user         = self::get_user();
-		$hashed_email = $user['email'];
-		$hashed_phone = $user['phone'];
+		$user     = self::get_user();
 
 		$url = '';
 		if ( isset( $_SERVER['HTTP_HOST'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
@@ -907,40 +892,40 @@ class Tt4b_Pixel_Class {
 		}
 
 		$referrer = wp_get_referer();
-		$page = [
+		$page     = array(
 			'url' => $url,
-		];
+		);
 		if ( $referrer ) {
 			$page['referrer'] = $referrer;
 		}
 
-		$data = [
-			[
+		$data = array(
+			array(
 				'event'      => $event,
 				'event_id'   => $event_id,
 				'event_time' => time(),
 				'user'       => $user,
 				'page'       => $page,
-			],
-		];
+			),
+		);
 
 		$partner_name = 'WooCommerce';
 		if ( ! did_action( 'woocommerce_loaded' ) > 0 ) {
 			$partner_name = 'WordPress';
 		}
 
-		$params = [
+		$params = array(
 			'partner_name'    => $partner_name,
 			'event_source'    => 'web',
 			'event_source_id' => $fields['pixel_code'],
 			'data'            => $data,
-		];
+		);
 
 		// events API track
 		$mapi->mapi_post( 'event/track/', $fields['access_token'], $params, 'v1.3' );
 
 		// js pixel track
-		self::enqueue_event( $event, $fields['pixel_code'], [], $hashed_email, $hashed_phone, $event_id, $user['first_name'], $user['last_name'], $user['city'], $user['state'], $user['country'], $user['zip_code'] );
+		self::enqueue_event( $event, $fields['pixel_code'], array(), $event_id, $user );
 	}
 
 	public function get_key( $key ) {
@@ -960,14 +945,13 @@ class Tt4b_Pixel_Class {
 	 * @return array The filtered arguments for the Add to cart button.
 	 */
 	public static function filter_add_to_cart_attributes( array $args, WC_Product $product ) {
-		$attributes = [
+		$attributes = array(
 			'data-product_name' => $product->get_name(),
 			'data-price'        => $product->get_price(),
-		];
+		);
 
 		$args['attributes'] = array_merge( $args['attributes'], $attributes );
 
 		return $args;
 	}
-
 }

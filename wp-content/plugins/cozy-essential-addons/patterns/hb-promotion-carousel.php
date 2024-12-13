@@ -6,10 +6,10 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/promo4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/promo4.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Offer \u0026 Promotion Carousel"},"style":{"spacing":{"padding":{"top":"100px","bottom":"120px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

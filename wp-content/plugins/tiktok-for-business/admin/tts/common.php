@@ -32,7 +32,7 @@ function array_insert_after( $needle, $haystack, $new_key, $new_value ) {
 		return $haystack;
 	}
 
-	$new_array = [];
+	$new_array = array();
 	foreach ( $haystack as $key => $value ) {
 		$new_array[ $key ] = $value;
 
@@ -87,7 +87,7 @@ function get_edit_link( $args, $link_text, $css_class = '' ) {
  * We need to set the origin according to the country
  */
 function get_tts_seller_center_origin() {
-	$country_origin_map = [
+	$country_origin_map = array(
 		'GB' => 'uk',
 		'US' => 'us',
 		'ID' => 'id',
@@ -95,7 +95,7 @@ function get_tts_seller_center_origin() {
 		'MY' => 'my',
 		'VN' => 'vn',
 		'PH' => 'ph',
-	];
+	);
 	$country            = WC()->countries->get_base_country();
 
 	return "https://seller-{$country_origin_map[$country]}.tiktok.com";

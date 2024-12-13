@@ -202,46 +202,69 @@ export default {
        isValidEmail: true,
        blogPosts: [],
        changelog: {
-         version: '7.8.2',
+         version: '7.9',
          starter: {
-           feature: [
-             'Customer Activity - Now you can easily view all appointments and events booked by specific customers in one place'
-           ],
+           feature: [],
            improvement: [
-             'Added possibility to show “All” services and packages on the Catalog Booking form 2.0'
+             'Added new placeholder %payment_due_amount% for Due amount',
+             'Optimized Event Queries'
            ],
            translations: [],
            bugfix: [
-             'Fixed issue with removing dates on the back-end Events page for Group view',
-             'Fixed issue with capacity per employee when on SBS is hidden employee selection field'
+             'Fixed issue with logging out from customer panel when the customer is logged in to WP as well',
+             'Fixed  issue with the appointments\'/events\' times when the employee is logged in to the back-end',
+             'Fixed issue with Employee role and permission to remove an attendee',
+             'Fixed issue with the Back button on Catalog 2.0 Booking Form when one category exists',
+             'Fixed issue with responsive mode (calendar date picker) on the customer panel',
+             'Fixed conflict with the Beaver builder theme',
+             'Fixed issue with displaying the dropdown menu when selecting the header option',
+             'Fixed issue with booking forms when customer panel is on the same page',
+             'Fixed issue with the date/time step when service is longer than the employees\' work hours',
+             'Fixed issue with payment details and 100% coupon'
            ],
            other: [
              'Other small bug fixes and stability improvements'
            ]
          },
          basic: {
-           feature: [],
-           improvement: [],
+           feature: [
+             'INVOICE FEATURE -  Now you can automatically generate your invoices for your bookings. Available in Standard, Pro and Elite licenses'
+           ],
+           improvement: [
+             'Improved display of location address info in ics files'
+           ],
            translations: [],
            bugfix: [
-             'Fixed issue with Zoom when employee panel is disabled',
-             'Fixed issue on WooCommerce Checkout page when WooCommerce Product is in cart with Amelia Booking',
-             'Fixed issue with the error messages that appear on coupon validation'
+             'Fixed issue with payment links and approving an appointment',
+             'Fixed issue with Stripe change from test to live and customers',
+             'Fixed issue with the WooCommerce rules and the hidden option \'Create booking before payment process:\'',
+             'Fixed issue with removing/changing services in appointments when taxes are enabled',
+             'Fixed issue with prices info for events with Custom pricing by date range'
            ],
            other: []
          },
          pro: {
            feature: [],
-           improvement: [],
+           improvement: [
+             'Added filters and option to remove date filter on the “Manage packages” page'
+           ],
            translations: [],
            bugfix: [
-             'Fixed issue with duplicating events with custom pricing and waiting list'
+             'Fixed issue with choosing a default language in WhatsApp settings',
+             'Fixed issue with payment placeholders in Cart notifications',
+             'Fixed issue with Catalog form when a package is selected and categories are hidden',
+             'Fixed issue with refunded payment status in exported attendees/customers files',
+             'Fixed  Issue with booking appointments in packages in the customer panel and \'Show booking slots in client time zone\' option',
+             'Fixed issue with packages shown on mobile view in customer panel'
            ],
            other: []
          },
          developer: {
            feature: [],
-           improvement: [],
+           improvement: [
+             'Improved the Add appointment API, so users can send an array of appointments which will be added',
+             'Enabled only sending packageCustomerId when creating a booking inside a package with the API, instead of packageCustomerServiceId'
+           ],
            translations: [],
            bugfix: [],
            other: []

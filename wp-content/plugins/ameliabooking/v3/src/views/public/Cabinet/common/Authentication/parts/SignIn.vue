@@ -347,7 +347,10 @@ onMounted(() => {
         'changePass' in useUrlQueryParams(window.location.href)
     )
   } else {
-    useAuthenticateUser()
+    if (!amSettings.roles[cabinetType.value + 'Cabinet']['loginEnabled']) {
+      pageKey.value = 'sendAccessLink'
+    }
+    store.commit('setLoading', false)
   }
 })
 

@@ -151,41 +151,71 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 	}
 
 	if ( isset( $block['attrs']['cozyHoverEffect'] ) && in_array( $block['blockName'], $enabled_blocks, true ) ) {
-		$cozy_hover_effect                     = $block['attrs']['cozyHoverEffect'];
-		$cozy_hover_effect['transformEnabled'] = false;
-
-		if ( in_array( 'transformEnabled', $block['attrs']['cozyHoverEffect'] ) ) {
-			$cozy_hover_effect['transformEnabled'] = $block['attrs']['cozyHoverEffect']['transformEnabled'];
-		}
+		$cozy_hover_effect = $block['attrs']['cozyHoverEffect'];
 
 		// Extract the existing class attribute
 		preg_match( '/<div class="([^"]+)"/', $block_content, $matches );
 		$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
+		preg_match(
+			'/<div[^>]*\bclass=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"[^>]*\sstyle="([^"]*)"/',
+			$block_content,
+			$matches
+		);
+		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+
 		// Append the custom class and inline styles to the class attribute
 		$updated_class = trim( $existing_class . ' cozy-hover-effect__initialized' );
 
-		if ( $cozy_hover_effect['boxShadow']['enabled'] ) {
+		if ( filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$updated_class .= ' cozy-hover-effect__has-default-box-shadow';
 		}
 
-		if ( $cozy_hover_effect['boxShadowHover']['enabled'] ) {
+		if ( filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$updated_class .= ' cozy-hover-effect__has-hover-box-shadow';
 		}
 
 		$cozy_hover_string = ' style="';
 
-		if ( $cozy_hover_effect['transformEnabled'] ) {
+		// Hover Transform.
+		if ( isset( $cozy_hover_effect['transformEnabled'] ) && filter_var( $cozy_hover_effect['transformEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 			$cozy_hover_string .= '--cozyHoverTranslateX:' . esc_attr( $cozy_hover_effect['transform']['translateX'] ) . 'px; --cozyHoverTranslateY:' . esc_attr( $cozy_hover_effect['transform']['translateY'] ) . 'px; --cozyHoverRotate: ' . esc_attr( $cozy_hover_effect['transform']['rotate'] ) . 'deg; --cozyHoverScale: ' . esc_attr( $cozy_hover_effect['transform']['scale'] ) . ';';
 		}
-		$shadow_color       = array(
+
+		$shadow_color = array(
 			'default' => isset( $cozy_hover_effect['boxShadow']['color'] ) ? $cozy_hover_effect['boxShadow']['color'] : '',
 			'hover'   => isset( $cozy_hover_effect['boxShadowHover']['color'] ) ? $cozy_hover_effect['boxShadowHover']['color'] : '',
 		);
-		$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . '; --cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
+		// Default Box Shadow.
+		if ( isset( $cozy_hover_effect['boxShadow']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . ';';
+		}
+		// Hover Box Shadow.
+		if ( isset( $cozy_hover_effect['boxShadowHover']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$cozy_hover_string .= '--cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
+		}
 
-		preg_match( '/style="([^"]*)"/', $block_content, $matches );
-		$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+		// Z Index attribute.
+		if ( isset( $cozy_hover_effect['hasZIndex'] ) && filter_var( $cozy_hover_effect['hasZIndex'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$cozy_hover_string .= 'z-index:' . $cozy_hover_effect['zIndex'] . ';';
+		}
+
+		// Transform Default.
+		if ( isset( $cozy_hover_effect['transformDefaultEnabled'] ) && filter_var( $cozy_hover_effect['transformDefaultEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$translate_x = isset( $cozy_hover_effect['transformDefault']['translateX'] ) ? 'translateX(' . esc_attr( $cozy_hover_effect['transformDefault']['translateX'] ) . 'px) ' : '';
+			$translate_y = isset( $cozy_hover_effect['transformDefault']['translateY'] ) ? 'translateY(' . esc_attr( $cozy_hover_effect['transformDefault']['translateY'] ) . 'px) ' : '';
+			$rotate      = isset( $cozy_hover_effect['transformDefault']['rotate'] ) ? 'rotate(' . esc_attr( $cozy_hover_effect['transformDefault']['rotate'] ) . 'deg) ' : '';
+			$scale       = isset( $cozy_hover_effect['transformDefault']['scale'] ) ? 'scale(' . esc_attr( $cozy_hover_effect['transformDefault']['scale'] ) . ')' : '';
+
+			if ( ! empty( $translate_x ) || ! empty( $translate_y ) || ! empty( $rotate ) || ! empty( $scale ) ) {
+				$cozy_hover_string .= 'transform: ' . $translate_x . $translate_y . $rotate . $scale . ';';
+			}
+		}
+
+		// Overflow.
+		if ( isset( $cozy_hover_effect['hasOverflow'] ) && filter_var( $cozy_hover_effect['hasOverflow'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
+		}
 
 		if ( 'core/button' === $block['blockName'] ) {
 			$cozy_hover_string .= '"';
@@ -197,23 +227,85 @@ function append_cozy_hover_effect_data_attributes( &$block_content, &$block ) {
 			preg_match( '/<figure class="([^"]+)"/', $block_content, $matches );
 			$existing_class = isset( $matches[1] ) ? $matches[1] : '';
 
+			preg_match(
+				'/<figure class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"(?: style="([^"]*)")?/',
+				$block_content,
+				$matches
+			);
+			$existing_styles = isset( $matches[1] ) ? $matches[1] : '';
+
 			$updated_class = trim( $existing_class . ' cozy-hover-effect__initialized' );
 
-			if ( $cozy_hover_effect['boxShadow']['enabled'] ) {
+			if ( filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 				$updated_class .= ' cozy-hover-effect__has-default-box-shadow';
 			}
 
-			if ( $cozy_hover_effect['boxShadowHover']['enabled'] ) {
+			if ( filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
 				$updated_class .= ' cozy-hover-effect__has-hover-box-shadow';
 			}
 
-			$block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string, $block_content );
+			$cozy_hover_string = ' style="';
+
+			// Hover Transform.
+			if ( isset( $cozy_hover_effect['transformEnabled'] ) && filter_var( $cozy_hover_effect['transformEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				$cozy_hover_string .= '--cozyHoverTranslateX:' . esc_attr( $cozy_hover_effect['transform']['translateX'] ) . 'px; --cozyHoverTranslateY:' . esc_attr( $cozy_hover_effect['transform']['translateY'] ) . 'px; --cozyHoverRotate: ' . esc_attr( $cozy_hover_effect['transform']['rotate'] ) . 'deg; --cozyHoverScale: ' . esc_attr( $cozy_hover_effect['transform']['scale'] ) . ';';
+			}
+
+			$shadow_color = array(
+				'default' => isset( $cozy_hover_effect['boxShadow']['color'] ) ? $cozy_hover_effect['boxShadow']['color'] : '',
+				'hover'   => isset( $cozy_hover_effect['boxShadowHover']['color'] ) ? $cozy_hover_effect['boxShadowHover']['color'] : '',
+			);
+			// Default Box Shadow.
+			if ( isset( $cozy_hover_effect['boxShadow']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadow']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				$cozy_hover_string .= '--cozyDefaultBoxShadow: ' . $cozy_hover_effect['boxShadow']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadow']['vertical'] . 'px ' . $cozy_hover_effect['boxShadow']['blur'] . 'px ' . $cozy_hover_effect['boxShadow']['spread'] . 'px ' . $shadow_color['default'] . ' ' . $cozy_hover_effect['boxShadow']['position'] . ';';
+			}
+			// Hover Box Shadow.
+			if ( isset( $cozy_hover_effect['boxShadowHover']['enabled'] ) && filter_var( $cozy_hover_effect['boxShadowHover']['enabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				$cozy_hover_string .= '--cozyHoverBoxShadow: ' . $cozy_hover_effect['boxShadowHover']['horizontal'] . 'px ' . $cozy_hover_effect['boxShadowHover']['vertical'] . 'px ' . $cozy_hover_effect['boxShadowHover']['blur'] . 'px ' . $cozy_hover_effect['boxShadowHover']['spread'] . 'px ' . $shadow_color['hover'] . ' ' . $cozy_hover_effect['boxShadowHover']['position'] . ';';
+			}
+
+			// Z Index attribute.
+			if ( isset( $cozy_hover_effect['hasZIndex'] ) && filter_var( $cozy_hover_effect['hasZIndex'], FILTER_VALIDATE_BOOLEAN ) ) {
+				$cozy_hover_string .= 'z-index:' . $cozy_hover_effect['zIndex'] . ';';
+			}
+
+			// Transform Default.
+			if ( isset( $cozy_hover_effect['transformDefaultEnabled'] ) && filter_var( $cozy_hover_effect['transformDefaultEnabled'], FILTER_VALIDATE_BOOLEAN ) ) {
+				$translate_x = isset( $cozy_hover_effect['transformDefault']['translateX'] ) ? 'translateX(' . esc_attr( $cozy_hover_effect['transformDefault']['translateX'] ) . 'px) ' : '';
+				$translate_y = isset( $cozy_hover_effect['transformDefault']['translateY'] ) ? 'translateY(' . esc_attr( $cozy_hover_effect['transformDefault']['translateY'] ) . 'px) ' : '';
+				$rotate      = isset( $cozy_hover_effect['transformDefault']['rotate'] ) ? 'rotate(' . esc_attr( $cozy_hover_effect['transformDefault']['rotate'] ) . 'deg) ' : '';
+				$scale       = isset( $cozy_hover_effect['transformDefault']['scale'] ) ? 'scale(' . esc_attr( $cozy_hover_effect['transformDefault']['scale'] ) . ')' : '';
+
+				if ( ! empty( $translate_x ) || ! empty( $translate_y ) || ! empty( $rotate ) || ! empty( $scale ) ) {
+					$cozy_hover_string .= 'transform: ' . $translate_x . $translate_y . $rotate . $scale . ';';
+				}
+			}
+
+			// Overflow.
+			if ( isset( $cozy_hover_effect['hasOverflow'] ) && filter_var( $cozy_hover_effect['hasOverflow'], FILTER_VALIDATE_BOOLEAN ) ) {
+				// $cozy_hover_string .= 'overflow:' . $cozy_hover_effect['overflow'] . ';';
+				$updated_class .= ' cozy-hover-effect__overflow-' . $cozy_hover_effect['overflow'] . ' ';
+			}
+
+			$cozy_hover_string .= $existing_styles . '"';
+
+			// $block_content = preg_replace( '/<figure class="' . preg_quote( $existing_class ) . '.*?"/', '<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string, $block_content );
+
+			$block_content = preg_replace(
+				'/<figure class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
+				'<figure class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string,
+				$block_content,
+				1
+			);
 
 		} else {
+			// $cozy_hover_string .= $existing_styles . '"';
+
 			$block_content = preg_replace(
-				'/<div class="' . preg_quote( $existing_class ) . '.*?"/',
+				'/<div class=".*?\b' . preg_quote( $existing_class, '/' ) . '\b.*?"/',
 				'<div class="' . esc_attr( $updated_class ) . '"' . $cozy_hover_string,
-				$block_content
+				$block_content,
+				1
 			);
 		}
 	}

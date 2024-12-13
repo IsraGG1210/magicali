@@ -388,36 +388,7 @@ class CozyPattern {
 	}
 
 	public function get_cozy_pattern_category_count() {
-		$patterns_collection = $this->get_patterns_data();
-
 		$templates_collection = $this->get_template_data();
-
-		$pattern_categories = array(
-			'all'                => count( $patterns_collection ),
-			'about-us'           => 0,
-			'call-to-action'     => 0,
-			'contact-us'         => 0,
-			'faq'                => 0,
-			'features'           => 0,
-			'footer'             => 0,
-			'gallery'            => 0,
-			'header'             => 0,
-			'hero'               => 0,
-			'how-it-works'       => 0,
-			'logo-showcase'      => 0,
-			'newsletter'         => 0,
-			'number-and-stats'   => 0,
-			'popup'              => 0,
-			'portfolio'          => 0,
-			'posts-and-magazine' => 0,
-			'pricing-and-plans'  => 0,
-			'services'           => 0,
-			'slider'             => 0,
-			'teams'              => 0,
-			'testimonials'       => 0,
-			'why-choose-us'      => 0,
-			'woocommerce'        => 0,
-		);
 
 		$template_categories = array(
 			// 'all'      => count( $templates_collection ),
@@ -427,14 +398,6 @@ class CozyPattern {
 		// 'services' => 0,
 		// 'others'   => 0,
 		);
-
-		foreach ( $patterns_collection as $pattern ) {
-			foreach ( $pattern_categories as $key => $value ) {
-				if ( in_array( $key, $pattern['categories'], true ) ) {
-					++$pattern_categories[ $key ];
-				}
-			}
-		}
 
 		foreach ( $templates_collection as $template ) {
 			foreach ( $template_categories as $key => $value ) {
@@ -446,7 +409,6 @@ class CozyPattern {
 
 		wp_send_json(
 			array(
-				'pattern_categories'  => $pattern_categories,
 				'template_categories' => $template_categories,
 			)
 		);

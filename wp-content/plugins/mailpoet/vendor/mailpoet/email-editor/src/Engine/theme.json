@@ -12,7 +12,9 @@
     },
     "layout": {
       "contentSize": "660px",
-      "wideSize": "660px"
+      "wideSize": "",
+      "allowEditing": false,
+      "allowCustomContentAndWideSize": false
     },
     "background": {
       "backgroundImage": true
@@ -21,7 +23,7 @@
       "units": ["px"],
       "blockGap": false,
       "padding": true,
-      "margin": true,
+      "margin": false,
       "spacingSizes": [
         {
           "name": "1",

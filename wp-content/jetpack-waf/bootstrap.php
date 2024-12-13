@@ -6,5 +6,6 @@ define( 'JETPACK_WAF_SHARE_DATA', false );
 define( 'JETPACK_WAF_SHARE_DEBUG_DATA', false );
 define( 'JETPACK_WAF_DIR', 'C:\\xampp\\htdocs\\magiacali_orig/wp-content/jetpack-waf' );
 define( 'JETPACK_WAF_WPCONFIG', 'C:\\xampp\\htdocs\\magiacali_orig/wp-content/../wp-config.php' );
+define( 'JETPACK_WAF_ENTRYPOINT', 'rules/rules.php' );
 require_once 'C:\\xampp\\htdocs\\magiacali_orig\\wp-content\\plugins\\jetpack/vendor/autoload.php';
 Automattic\Jetpack\Waf\Waf_Runner::initialize();

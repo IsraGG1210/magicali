@@ -39,9 +39,13 @@
         "gap": 10,
         "marginBottom": 10,
         "styles": {
-          "fontFamily": "default",
+          "fontFamily": "Public Sans",
           "fontSize": 14,
           "fontWeight": "400",
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": "#000",
           "bgColor": "#fff"
         }
@@ -84,6 +88,11 @@
         "styles": {
           "fontSize": "",
           "fontWeight": "",
+          "fontFamily": "",
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": "",
           "bgColor": ""
         }

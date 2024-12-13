@@ -6,10 +6,10 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_4.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"About Us with image showcase"},"style":{"spacing":{"padding":{"top":"110px","bottom":"90px","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->

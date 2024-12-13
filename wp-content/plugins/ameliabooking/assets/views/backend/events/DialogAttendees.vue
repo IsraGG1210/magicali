@@ -167,6 +167,7 @@
                 <el-col :span="12">
                   <div class="">
                     <el-button
+                        v-if="writeEvents"
                         :loading="booking.removing"
                         @click="removeAttendee(index)">
                       {{ $root.labels.event_attendee_remove }}
@@ -296,6 +297,7 @@
                   <el-col :span="12">
                     <div class="">
                       <el-button
+                          v-if="writeEvents"
                           :loading="booking.removing"
                           @click="removeAttendee(index)">
                         {{ $root.labels.event_attendee_remove }}
@@ -361,7 +363,7 @@
           <el-button size="small" @click="showDeleteConfirmation = !showDeleteConfirmation">
             {{ $root.labels.cancel }}
           </el-button>
-          <el-button size="small" @click="removeAttendees" type="primary">
+          <el-button v-if="writeEvents" size="small" @click="removeAttendees" type="primary">
             {{ $root.labels.delete }}
           </el-button>
         </div>

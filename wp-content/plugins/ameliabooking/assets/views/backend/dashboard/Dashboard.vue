@@ -1517,7 +1517,7 @@
           this.fetched = true
           this.options.fetched = true
         }, {
-          types: ['locations', 'employees', 'categories', 'custom_fields', 'packages', 'resources'],
+          types: ['locations', 'employees', 'categories', 'custom_fields', 'packages', 'resources', 'coupons'],
           page: 'appointments',
           isFrontEnd: false,
           isPanel: false

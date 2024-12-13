@@ -51,8 +51,24 @@ interface PlaceholderServiceInterface
     /**
      * @param array $bookingArray
      * @param array $entity
+     * @param boolean $invoice
      *
      * @return array
      */
-    public function getAmountData(&$bookingArray, $entity);
+    public function getAmountData(&$bookingArray, $entity, $invoice = false);
+
+
+    /**
+     * @param array $reservationData
+     *
+     * @return array
+     *
+     * @throws InvalidArgumentException
+     * @throws ContainerValueNotFoundException
+     * @throws NotFoundException
+     * @throws QueryExecutionException
+     * @throws ContainerException
+     * @throws Exception
+     */
+    public function getInvoicePlaceholdersData($reservationData);
 }

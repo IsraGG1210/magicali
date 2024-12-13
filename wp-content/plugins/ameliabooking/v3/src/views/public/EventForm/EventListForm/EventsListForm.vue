@@ -671,6 +671,12 @@ export default {
         right: 12px;
         background: transparent !important;
         padding: 0;
+
+        &:active {
+          position: absolute;
+          border: none;
+          outline: 0;
+        }
       }
 
       &__close {

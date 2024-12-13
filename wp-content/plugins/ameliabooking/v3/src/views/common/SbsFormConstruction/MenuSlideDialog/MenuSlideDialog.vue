@@ -30,6 +30,7 @@
         :key="step.key"
       >
         <div
+          v-if="step.key !== 'packages' || store.getters['entities/getPackages'].length"
           class="am-msd__item"
           :class="{'selected': monitor === step.key}"
           @click="menuSelection(step, index)"
@@ -85,6 +86,8 @@ import {
   inject
 } from "vue";
 
+import {useStore} from "vuex";
+
 // * Components Props
 let props = defineProps({
   visibility: {
@@ -126,6 +129,8 @@ let props = defineProps({
 let emits = defineEmits(['click', 'update:visibility', 'logout'])
 
 let amLabels = inject('labels')
+
+const store = useStore()
 
 function menuSelection (step, index) {
   let obj = {step, index}

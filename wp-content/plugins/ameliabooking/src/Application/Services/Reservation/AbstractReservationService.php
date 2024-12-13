@@ -8,6 +8,7 @@ use AmeliaBooking\Application\Services\Booking\AppointmentApplicationService;
 use AmeliaBooking\Application\Services\Booking\BookingApplicationService;
 use AmeliaBooking\Application\Services\Booking\EventApplicationService;
 use AmeliaBooking\Application\Services\CustomField\AbstractCustomFieldApplicationService;
+use AmeliaBooking\Application\Services\Helper\HelperService;
 use AmeliaBooking\Application\Services\Payment\PaymentApplicationService;
 use AmeliaBooking\Application\Services\User\CustomerApplicationService;
 use AmeliaBooking\Domain\Common\Exceptions\BookingCancellationException;
@@ -228,7 +229,7 @@ abstract class AbstractReservationService implements ReservationServiceInterface
 
         $transfers = [];
 
-        $paymentCompleted = !empty($data['bookings'][0]['packageCustomerService']['id']) ||
+        $paymentCompleted = !empty($data['bookings'][0]['packageCustomerService']['id']) || !empty($data['bookings'][0]['packageCustomerService']['packageCustomer']['id']) ||
             $paymentAS->processPayment(
                 $result,
                 $data['payment'],
@@ -308,7 +309,7 @@ abstract class AbstractReservationService implements ReservationServiceInterface
         /** @var UserRepository $userRepository */
         $userRepository = $this->container->get('domain.users.repository');
 
-        if ($appointmentData['bookings'][0]['customer']['id']) {
+        if (!empty($appointmentData['bookings'][0]['customer']['id'])) {
             $existingCustomersIds = $userRepository->getIds(
                 ['id' => [(int)$appointmentData['bookings'][0]['customer']['id']]]
             );
@@ -404,7 +405,7 @@ abstract class AbstractReservationService implements ReservationServiceInterface
 
         $reservation->setLocale(new Label(isset($appointmentData['locale']) ? $appointmentData['locale'] : ''));
 
-        $reservation->setTimezone(new Label($appointmentData['timeZone']));
+        $reservation->setTimezone(new Label(!empty($appointmentData['timeZone']) ? $appointmentData['timeZone'] : ''));
 
         if (array_key_exists('uploadedCustomFieldFilesInfo', $appointmentData)) {
             $reservation->setUploadedCustomFieldFilesInfo($appointmentData['uploadedCustomFieldFilesInfo']);
@@ -629,7 +630,7 @@ abstract class AbstractReservationService implements ReservationServiceInterface
      * @return Tax
      * @throws InvalidArgumentException
      */
-    protected function getTax($taxJson)
+    public function getTax($taxJson)
     {
         return $taxJson &&
             ($taxData = json_decode($taxJson->getValue(), true)) &&
@@ -658,6 +659,27 @@ abstract class AbstractReservationService implements ReservationServiceInterface
     }
 
     /**
+     * @param Tax   $tax
+     *
+     * @return string
+     */
+    protected function getTaxRate($tax)
+    {
+        /** @var HelperService $helperService */
+        $helperService = $this->container->get('application.helper.service');
+
+        switch ($tax->getType()->getValue()) {
+            case (AmountType::PERCENTAGE):
+                return $tax->getAmount()->getValue() . '%';
+
+            case (AmountType::FIXED):
+                return $helperService->getFormattedPrice($tax->getAmount()->getValue());
+        }
+
+        return 0;
+    }
+
+    /**
      * @param Coupon $coupon
      * @param float  $amount
      *
@@ -673,11 +695,10 @@ abstract class AbstractReservationService implements ReservationServiceInterface
     /**
      * @param AbstractCustomerBooking $booking
      * @param AbstractBookable        $bookable
-     * @param string|null             $reduction
      *
-     * @return float
+     * @return array
      */
-    abstract public function getPaymentAmount($booking, $bookable, $reduction = null);
+    abstract public function getPaymentAmount($booking, $bookable, $invoice = false);
 
     /** @noinspection MoreThanThreeArgumentsInspection */
     /**
@@ -756,6 +777,7 @@ abstract class AbstractReservationService implements ReservationServiceInterface
                     $paymentData['wcOrderId'] : null,
                 'wcOrderItemId'     => !empty($paymentData['wcOrderItemId']) && $paymentData['gateway'] === 'wc' ?
                     $paymentData['wcOrderItemId'] : null,
+                'invoiceNumber'     => !empty($paymentData['invoiceNumber']) ? $paymentData['invoiceNumber'] : null
             ],
             $amount
         );
@@ -776,6 +798,13 @@ abstract class AbstractReservationService implements ReservationServiceInterface
         $paymentId = $paymentRepository->add($payment);
 
         $payment->setId(new Id($paymentId));
+
+        if (!$payment->getInvoiceNumber() || !$payment->getInvoiceNumber()->getValue()) {
+            $paymentNew = $paymentRepository->getById($paymentId);
+            if ($payment instanceof Payment) {
+                $payment = $paymentNew;
+            }
+        }
 
         return $payment;
     }

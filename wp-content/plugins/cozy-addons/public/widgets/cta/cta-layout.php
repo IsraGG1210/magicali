@@ -18,7 +18,7 @@ if ( $settings['cozy_cta_layout'] == 'layout-3' ) {
 	if ( $settings['title_text'] ) :
 		?>
 				<span class="title content-block">
-					<?php echo '<' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . '>'; ?>
+					<?php echo '<' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . '>'; ?>
 						
 				</span>
 			<?php
@@ -70,7 +70,7 @@ if ( $settings['cozy_cta_layout'] == 'layout-3' ) {
 	if ( $settings['title_text'] ) :
 		?>
 				<span class="title content-block">
-					<?php echo '<' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . '>'; ?>
+					<?php echo '<' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . '>'; ?>
 						
 				</span>
 			<?php
@@ -116,7 +116,7 @@ if ( $settings['cozy_cta_layout'] == 'layout-3' ) {
 	if ( $settings['title_text'] ) :
 		?>
 			<span class="title content-block">
-				<?php echo '<' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_remove_special_chars( $settings['title_tag'] ) ) . '>'; ?>
+				<?php echo '<' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . ' class="section-title">' . esc_html( $settings['title_text'] ) . '</' . esc_attr( cozy_filter_html_tags( $settings['title_tag'] ) ) . '>'; ?>
 					
 			</span>
 		<?php

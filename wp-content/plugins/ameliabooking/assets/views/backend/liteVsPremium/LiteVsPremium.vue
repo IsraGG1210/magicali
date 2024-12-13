@@ -117,8 +117,8 @@ export default {
           lite: '1',
           starter: '1',
           standard: '1',
-          pro: 'up to 3',
-          elite: 'up to 1000'
+          pro: 'up to 5',
+          elite: 'unlimited'
         },
         {
           feature: 'Support',
@@ -243,6 +243,15 @@ export default {
         },
         {
           feature: 'Tax feature',
+          lite: false,
+          starter: false,
+          standard: true,
+          pro: true,
+          elite: true,
+          tag: 'New'
+        },
+        {
+          feature: 'Invoice',
           lite: false,
           starter: false,
           standard: true,

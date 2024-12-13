@@ -6,8 +6,8 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/banner_bg.jpg',
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/banner_bg_2.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/banner_bg.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/banner_bg_2.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"categories":["lavisto"],"patternName":"cozy-essential-addons/lavisto-banner-slider","name":"PRO: Banner Slider"},"className":"lavisto-header","style":{"spacing":{"padding":{"top":"0px","right":"0","bottom":"0px","left":"0"}},"border":{"bottom":{"width":"0px","style":"none"}}},"backgroundColor":"light-color","layout":{"type":"constrained","contentSize":"100%"}} -->

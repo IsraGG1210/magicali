@@ -38,17 +38,27 @@ $rating_color = array(
 	'icon' => isset( $attributes['reviewStyles']['color'] ) ? $attributes['reviewStyles']['color'] : '',
 );
 
-$nav_color = array(
-	'icon'       => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
-	'bg'         => isset( $attributes['navigation']['backgroundColor'] ) ? $attributes['navigation']['backgroundColor'] : '',
-	'icon_hover' => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
-	'bg_hover'   => isset( $attributes['navigation']['backgroundColorHover'] ) ? $attributes['navigation']['backgroundColorHover'] : '',
+$nav_styles = array(
+	'border' => isset( $attributes['navigation']['border'] ) ? cozy_render_TRBL( 'border', $attributes['navigation']['border'] ) : '',
+);
+$nav_color  = array(
+	'icon'         => isset( $attributes['navigation']['color'] ) ? $attributes['navigation']['color'] : '',
+	'bg'           => isset( $attributes['navigation']['backgroundColor'] ) ? $attributes['navigation']['backgroundColor'] : '',
+	'icon_hover'   => isset( $attributes['navigation']['colorHover'] ) ? $attributes['navigation']['colorHover'] : '',
+	'bg_hover'     => isset( $attributes['navigation']['backgroundColorHover'] ) ? $attributes['navigation']['backgroundColorHover'] : '',
+	'border_hover' => isset( $attributes['navigation']['borderHover'] ) ? $attributes['navigation']['borderHover'] : '',
 );
 
 $bullet       = array(
-	'align' => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
-	'left'  => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? 'padding-left: ' . $attributes['pagination']['left'] . ';' : '',
-	'right' => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? 'padding-right: ' . $attributes['pagination']['right'] . ';' : '',
+	'align'  => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
+	'left'   => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? 'padding-left: ' . $attributes['pagination']['left'] . ';' : '',
+	'right'  => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? 'padding-right: ' . $attributes['pagination']['right'] . ';' : '',
+	'active' => array(
+		'height' => isset( $attributes['pagination']['activeHeight'] ) ? $attributes['pagination']['activeHeight'] : '',
+		'border' => isset( $attributes['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['pagination']['activeBorder'] ) : '',
+		'offset' => isset( $attributes['pagination']['activeOffset'] ) ? $attributes['pagination']['activeOffset'] : '',
+	),
+	'gap'    => isset( $attributes['pagination']['gap'] ) ? $attributes['pagination']['gap'] : 4,
 );
 $bullet_color = array(
 	'default'       => isset( $attributes['pagination']['color'] ) ? $attributes['pagination']['color'] : '',
@@ -133,6 +143,7 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-button-next {
     width: {$attributes['navigation']['iconBoxWidth']}px;
     height: {$attributes['navigation']['iconBoxHeight']}px;
+	{$nav_styles['border']}
     border-radius: {$attributes['navigation']['borderRadius']}px;
     color: {$nav_color['icon']};
     background-color: {$nav_color['bg']};
@@ -141,8 +152,12 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-button-next:hover {
     color: {$nav_color['icon_hover']};
     background-color: {$nav_color['bg_hover']};
+    border-color: {$nav_color['border_hover']};
 }
 
+#$block_id .swiper-pagination-bullets .swiper-pagination-bullet {
+	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet['gap']}px);
+}
 #$block_id .swiper-pagination {
     bottom: {$attributes['pagination']['verticalPosition']}px;
     text-align: {$bullet['align']};
@@ -157,6 +172,9 @@ $block_styles = <<<BLOCK_STYLES
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet-active {
     width: {$attributes['pagination']['activeWidth']}px;
+	height: {$bullet['active']['height']}px;
+	{$bullet['active']['border']}
+	outline-offset: {$bullet['active']['offset']}px;
     border-radius: {$attributes['pagination']['activeBorderRadius']}px;
     background-color: {$bullet_color['active']};
 }
@@ -170,6 +188,7 @@ BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper">';
 $output .= '<style>' . $block_styles . '</style>';
+
 if ( isset( $attributes['saleBadge']['typography']['fontFamily'] ) && ! empty( $attributes['saleBadge']['typography']['fontFamily'] ) ) {
 	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['saleBadge']['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
 }
@@ -178,57 +197,6 @@ if ( isset( $attributes['saleBadge']['labelTypography']['fontFamily'] ) && ! emp
 }
 $output .= $content;
 
-
-/* if ( 'grid' === $attributes['layout'] && isset( $attributes['ajaxLoader']['enabled'] ) && $attributes['ajaxLoader']['enabled'] ) {
-	if ( 'default' === $attributes['ajaxLoader']['type'] ) {
-		$args = array(
-			'posts_per_page' => -1,
-
-		);
-		$all_posts = get_cozy_block_product_carousel_data( $cozy_block_magazine_grid_args );
-
-		$remaining_posts = array_udiff(
-			$all_posts,
-			$additional_post_data,
-			function ( $a, $b ) {
-				return $a['ID'] - $b['ID'];
-			}
-		);
-
-		$classes   = array();
-		$classes[] = 'cozy-block-magazine-grid__ajax-loader';
-		$classes[] = empty( $remaining_posts ) ? 'display-none' : '';
-		$output   .= '<div class="cozy-block-magazine-grid__ajax-loader-wrapper">';
-		$output   .= '<button class="' . implode( ' ', $classes ) . '">';
-		$output   .= '<span>' . esc_html_x( $attributes['ajaxLoader']['label'], 'cozy-addons' ) . '</span>';
-
-		$classes   = array();
-		$classes[] = 'spinner';
-		$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-		$output   .= '<div class="' . implode( ' ', $classes ) . '">';
-		$output   .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
-		$output   .= '<span class="cozy-block-magazine-grid__dots"></span>';
-		$output   .= '</div>';
-
-		$output .= '</button>';
-		$output .= '<div>';
-	}
-
-	if ( 'scroll' === $attributes['ajaxLoader']['type'] ) {
-		$output   .= '<div style="text-align: center;">';
-		$classes   = array();
-		$classes[] = 'scroll-spinner';
-		$classes[] = 'display-none';
-		$classes[] = isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ? 'has-loading-text' : '';
-		$output   .= '<div class="' . implode( ' ', $classes ) . '">';
-		if ( isset( $attributes['ajaxLoader']['loadingText'] ) && ! empty( $attributes['ajaxLoader']['loadingText'] ) ) {
-			$output .= esc_html_x( $attributes['ajaxLoader']['loadingText'], 'cozy-addons' );
-			$output .= '<span class="cozy-block-magazine-grid__dots"></span>';
-		}
-		$output .= '</div>';
-		$output .= '</div>';
-	}
-} */
 
 $output .= '</div>';
 

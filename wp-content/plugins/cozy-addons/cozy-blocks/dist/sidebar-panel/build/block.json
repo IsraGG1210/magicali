@@ -58,6 +58,7 @@
           "vh": 20
         },
         "enableTitle": true,
+        "pulseEffect": false,
         "title": "Menu",
         "titlePosition": "after",
         "gap": 10,
@@ -104,11 +105,15 @@
     },
     "overlayBgColor": {
       "type": "string",
-      "default": "#c3c3c3"
+      "default": "#22222257"
     },
     "zIndex": {
       "type": "number",
-      "default": 30
+      "default": 9999
+    },
+    "overlayZIndex": {
+      "type": "number",
+      "default": 999
     },
     "iconBoxStyles": {
       "type": "object",
@@ -131,11 +136,15 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "color": "#000",
         "colorHover": "",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

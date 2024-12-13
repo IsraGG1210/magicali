@@ -6,12 +6,12 @@
  * Categories: ct-patterns, ct-patterns-innerpage
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_pattern_about_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/pro_pattern_about_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/team_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/team_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/team_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/team_4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_pattern_about_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/pro_pattern_about_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/team_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/team_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/team_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/team_4.jpg',
 );
 ?>
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained","contentSize":"100%"}} -->

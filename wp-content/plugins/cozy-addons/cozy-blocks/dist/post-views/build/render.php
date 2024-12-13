@@ -57,7 +57,13 @@ $icon_color       = array(
 	'bg' => isset( $attributes['iconBox']['bgColor'] ) ? $attributes['iconBox']['bgColor'] : '',
 );
 
-$label_color = isset( $attributes['label']['color'] ) ? $attributes['label']['color'] : '';
+$label_color  = isset( $attributes['label']['color'] ) ? $attributes['label']['color'] : '';
+$label_styles = array(
+	'letter_case'    => isset( $attributes['label']['letterCase'] ) ? $attributes['label']['letterCase'] : '',
+	'decoration'     => isset( $attributes['label']['decoration'] ) ? $attributes['label']['decoration'] : '',
+	'line_height'    => isset( $attributes['label']['lineHeight'] ) ? $attributes['label']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['label']['letterSpacing'] ) ? $attributes['label']['letterSpacing'] : '',
+);
 
 $block_styles = <<<BLOCK_STYLES
 #$block_id.display-block {
@@ -90,6 +96,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['label']['fontSize']};
 	font-family: {$attributes['label']['fontFamily']};
 	font-weight: {$attributes['label']['fontWeight']};
+	text-transform: {$label_styles['letter_case']};
+	text-decoration: {$label_styles['decoration']};
+	line-height: {$label_styles['line_height']};
+	letter-spacing: {$label_styles['letter_spacing']};
 	color: {$label_color};
 }
 BLOCK_STYLES;

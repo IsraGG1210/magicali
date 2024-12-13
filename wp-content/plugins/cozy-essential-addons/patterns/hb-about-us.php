@@ -6,7 +6,7 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/about_image.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/about_image.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"About With Counter"},"style":{"spacing":{"padding":{"top":"100px","bottom":"100px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

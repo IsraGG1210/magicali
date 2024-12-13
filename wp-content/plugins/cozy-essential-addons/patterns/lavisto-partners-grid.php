@@ -6,21 +6,21 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_12.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_13.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_11.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_14.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_15.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_7.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_6.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_8.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_9.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_10.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_12.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_13.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_11.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_14.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_15.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_7.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_8.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_9.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_10.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Partner Brands Grid"},"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"980px"}} -->

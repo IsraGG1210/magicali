@@ -20,22 +20,29 @@ $header_box = array(
 );
 
 $heading = array(
-	'padding'   => cozy_render_TRBL( 'padding', $attributes['headingStyles']['padding'] ),
-	'border'    => isset( $attributes['headingStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headingStyles']['border'] ) : '',
-	'radius'    => cozy_render_TRBL( 'border-radius', $attributes['headingStyles']['radius'] ),
-	'bg'        => isset( $attributes['headingStyles']['color']['bg'] ) ? $attributes['headingStyles']['color']['bg'] : '',
-	'text'      => isset( $attributes['headingStyles']['color']['text'] ) ? $attributes['headingStyles']['color']['text'] : '',
-	'clip_path' => isset( $attributes['headingStyles']['clipPath'] ) ? $attributes['headingStyles']['clipPath'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['headingStyles']['padding'] ),
+	'border'         => isset( $attributes['headingStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['headingStyles']['border'] ) : '',
+	'radius'         => cozy_render_TRBL( 'border-radius', $attributes['headingStyles']['radius'] ),
+	'bg'             => isset( $attributes['headingStyles']['color']['bg'] ) ? $attributes['headingStyles']['color']['bg'] : '',
+	'text'           => isset( $attributes['headingStyles']['color']['text'] ) ? $attributes['headingStyles']['color']['text'] : '',
+	'clip_path'      => isset( $attributes['headingStyles']['clipPath'] ) ? $attributes['headingStyles']['clipPath'] : '',
+	'letter_case'    => isset( $attributes['headingStyles']['letterCase'] ) ? $attributes['headingStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['headingStyles']['decoration'] ) ? $attributes['headingStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['headingStyles']['lineHeight'] ) ? $attributes['headingStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['headingStyles']['letterSpacing'] ) ? $attributes['headingStyles']['letterSpacing'] : '',
 );
 
 $sub_heading = array(
-	'padding'      => cozy_render_TRBL( 'padding', $attributes['subHeading']['padding'] ),
-	'border'       => isset( $attributes['subHeading']['border'] ) ? cozy_render_TRBL( 'border', $attributes['subHeading']['border'] ) : '',
-	'text'         => isset( $attributes['subHeading']['color']['text'] ) ? $attributes['subHeading']['color']['text'] : '',
-	'text_hover'   => isset( $attributes['subHeading']['color']['textHover'] ) ? $attributes['subHeading']['color']['textHover'] : '',
-	'bg'           => isset( $attributes['subHeading']['color']['bg'] ) ? $attributes['subHeading']['color']['bg'] : '',
-	'bg_hover'     => isset( $attributes['subHeading']['color']['bgHover'] ) ? $attributes['subHeading']['color']['bgHover'] : '',
-	'border_hover' => isset( $attributes['subHeading']['color']['borderHover'] ) ? $attributes['subHeading']['color']['borderHover'] : '',
+	'padding'        => cozy_render_TRBL( 'padding', $attributes['subHeading']['padding'] ),
+	'border'         => isset( $attributes['subHeading']['border'] ) ? cozy_render_TRBL( 'border', $attributes['subHeading']['border'] ) : '',
+	'decoration'     => isset( $attributes['subHeading']['decoration'] ) ? $attributes['subHeading']['decoration'] : '',
+	'line_height'    => isset( $attributes['subHeading']['lineHeight'] ) ? $attributes['subHeading']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['subHeading']['letterSpacing'] ) ? $attributes['subHeading']['letterSpacing'] : '',
+	'text'           => isset( $attributes['subHeading']['color']['text'] ) ? $attributes['subHeading']['color']['text'] : '',
+	'text_hover'     => isset( $attributes['subHeading']['color']['textHover'] ) ? $attributes['subHeading']['color']['textHover'] : '',
+	'bg'             => isset( $attributes['subHeading']['color']['bg'] ) ? $attributes['subHeading']['color']['bg'] : '',
+	'bg_hover'       => isset( $attributes['subHeading']['color']['bgHover'] ) ? $attributes['subHeading']['color']['bgHover'] : '',
+	'border_hover'   => isset( $attributes['subHeading']['color']['borderHover'] ) ? $attributes['subHeading']['color']['borderHover'] : '',
 );
 
 $post_item = array(
@@ -73,11 +80,14 @@ $post_image = array(
 );
 
 $sale_badge = array(
-	'padding' => isset( $attributes['saleBadge']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['saleBadge']['padding'] ) : '',
-	'border'  => isset( $attributes['saleBadge']['border'] ) ? cozy_render_TRBL( 'border', $attributes['saleBadge']['border'] ) : '',
-	'left'    => 'left' === $attributes['saleBadge']['position'] ? $attributes['saleBadge']['left'] : '',
-	'right'   => 'right' === $attributes['saleBadge']['position'] ? $attributes['saleBadge']['right'] : '',
-	'color'   => array(
+	'padding'        => isset( $attributes['saleBadge']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['saleBadge']['padding'] ) : '',
+	'border'         => isset( $attributes['saleBadge']['border'] ) ? cozy_render_TRBL( 'border', $attributes['saleBadge']['border'] ) : '',
+	'left'           => 'left' === $attributes['saleBadge']['position'] ? $attributes['saleBadge']['left'] : '',
+	'right'          => 'right' === $attributes['saleBadge']['position'] ? $attributes['saleBadge']['right'] : '',
+	'decoration'     => isset( $attributes['saleBadge']['decoration'] ) ? $attributes['saleBadge']['decoration'] : '',
+	'line_height'    => isset( $attributes['saleBadge']['lineHeight'] ) ? $attributes['saleBadge']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['saleBadge']['letterSpacing'] ) ? $attributes['saleBadge']['letterSpacing'] : '',
+	'color'          => array(
 		'text' => isset( $attributes['saleBadge']['color']['text'] ) ? $attributes['saleBadge']['color']['text'] : '',
 		'bg'   => isset( $attributes['saleBadge']['color']['bg'] ) ? $attributes['saleBadge']['color']['bg'] : '',
 	),
@@ -104,16 +114,22 @@ $icon = array(
 );
 
 $post_title = array(
-	'color' => array(
+	'decoration'     => isset( $attributes['postOptions']['title']['decoration'] ) ? $attributes['postOptions']['title']['decoration'] : '',
+	'line_height'    => isset( $attributes['postOptions']['title']['lineHeight'] ) ? $attributes['postOptions']['title']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['postOptions']['title']['letterSpacing'] ) ? $attributes['postOptions']['title']['letterSpacing'] : '',
+	'color'          => array(
 		'text'       => isset( $attributes['postOptions']['title']['color']['text'] ) ? $attributes['postOptions']['title']['color']['text'] : '',
 		'text_hover' => isset( $attributes['postOptions']['title']['color']['textHover'] ) ? $attributes['postOptions']['title']['color']['textHover'] : '',
 	),
 );
 
 $product_category = array(
-	'padding' => isset( $attributes['productCategory']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['productCategory']['padding'] ) : '',
-	'border'  => isset( $attributes['productCategory']['border'] ) ? cozy_render_TRBL( 'border', $attributes['productCategory']['padding'] ) : '',
-	'color'   => array(
+	'padding'        => isset( $attributes['productCategory']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['productCategory']['padding'] ) : '',
+	'border'         => isset( $attributes['productCategory']['border'] ) ? cozy_render_TRBL( 'border', $attributes['productCategory']['padding'] ) : '',
+	'decoration'     => isset( $attributes['productCategory']['decoration'] ) ? $attributes['productCategory']['decoration'] : '',
+	'line_height'    => isset( $attributes['productCategory']['lineHeight'] ) ? $attributes['productCategory']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['productCategory']['letterSpacing'] ) ? $attributes['productCategory']['letterSpacing'] : '',
+	'color'          => array(
 		'text'         => isset( $attributes['productCategory']['color']['text'] ) ? $attributes['productCategory']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['productCategory']['color']['textHover'] ) ? $attributes['productCategory']['color']['textHover'] : '',
 		'bg'           => isset( $attributes['productCategory']['color']['bg'] ) ? $attributes['productCategory']['color']['bg'] : '',
@@ -123,21 +139,32 @@ $product_category = array(
 );
 
 $product_price = array(
-	'color' => array(
+	'letter_case'    => isset( $attributes['productPrice']['letterCase'] ) ? $attributes['productPrice']['letterCase'] : '',
+	'decoration'     => isset( $attributes['productPrice']['decoration'] ) ? $attributes['productPrice']['decoration'] : '',
+	'line_height'    => isset( $attributes['productPrice']['lineHeight'] ) ? $attributes['productPrice']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['productPrice']['letterSpacing'] ) ? $attributes['productPrice']['letterSpacing'] : '',
+	'color'          => array(
 		'text' => isset( $attributes['productPrice']['color']['text'] ) ? $attributes['productPrice']['color']['text'] : '',
 	),
 );
 
 $product_summary = array(
-	'color' => array(
+	'letter_case'    => isset( $attributes['productSummary']['letterCase'] ) ? $attributes['productSummary']['letterCase'] : '',
+	'decoration'     => isset( $attributes['productSummary']['decoration'] ) ? $attributes['productSummary']['decoration'] : '',
+	'line_height'    => isset( $attributes['productSummary']['lineHeight'] ) ? $attributes['productSummary']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['productSummary']['letterSpacing'] ) ? $attributes['productSummary']['letterSpacing'] : '',
+	'color'          => array(
 		'text' => isset( $attributes['productSummary']['color']['text'] ) ? $attributes['productSummary']['color']['text'] : '',
 	),
 );
 
 $cart_btn = array(
-	'padding' => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
-	'border'  => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['padding'] ) : '',
-	'color'   => array(
+	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
+	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['padding'] ) : '',
+	'decoration'     => isset( $attributes['cartButton']['decoration'] ) ? $attributes['cartButton']['decoration'] : '',
+	'line_height'    => isset( $attributes['cartButton']['lineHeight'] ) ? $attributes['cartButton']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['cartButton']['letterSpacing'] ) ? $attributes['cartButton']['letterSpacing'] : '',
+	'color'          => array(
 		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? $attributes['cartButton']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? $attributes['cartButton']['color']['textHover'] : '',
 		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? $attributes['cartButton']['color']['bg'] : '',
@@ -193,6 +220,10 @@ $block_styles = <<<BLOCK_STYLES
     background-color: {$heading['bg']};
     color: {$heading['text']};
 	clip-path: {$heading['clip_path']};
+	text-transform: {$heading['letter_case']};
+	text-decoration: {$heading['decoration']};
+	line-height: {$heading['line_height']};
+	letter-spacing: {$heading['letter_spacing']};
 }
 
 #$block_id .cozy-block-featured-product__sub-heading {
@@ -203,6 +234,9 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['subHeading']['font']['weight']};
     font-family: {$attributes['subHeading']['font']['family']};
 	text-transform: {$attributes['subHeading']['letterCase']};
+    text-decoration: {$sub_heading['decoration']};
+    line-height: {$sub_heading['line_height']};
+    letter-spacing: {$sub_heading['letter_spacing']};
     background-color: {$sub_heading['bg']};
 }
 #$block_id .cozy-block-featured-product__sub-heading, #$block_id .cozy-block-featured-product__sub-heading a {
@@ -303,6 +337,9 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['saleBadge']['font']['weight']};
     font-family: {$attributes['saleBadge']['font']['family']};
     text-transform: {$attributes['saleBadge']['letterCase']};
+    text-decoration: {$sale_badge['decoration']};
+    line-height: {$sale_badge['line_height']};
+    letter-spacing: {$sale_badge['letter_spacing']};
     color: {$sale_badge['color']['text']};
     background-color: {$sale_badge['color']['bg']};
 }
@@ -349,12 +386,15 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['productCategory']['font']['weight']};
     font-family: {$attributes['productCategory']['font']['family']};
     text-transform: {$attributes['productCategory']['letterCase']};
+	line-height: {$product_category['line_height']};
+	letter-spacing: {$product_category['letter_spacing']};
     justify-content: {$attributes['postOptions']['textAlign']};
 }
 #$block_id .post__categories a {
 	{$product_category['padding']}
 	{$product_category['border']}
 	border-radius: {$attributes['productCategory']['radius']};
+	text-decoration: {$product_category['decoration']};
 	color: {$product_category['color']['text']};
 	background-color: {$product_category['color']['bg']};
 }
@@ -371,8 +411,11 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['postOptions']['title']['font']['weight']};
 	font-family: {$attributes['postOptions']['title']['font']['family']};
 	text-transform: {$attributes['postOptions']['title']['letterCase']};
+	line-height: {$post_title['line_height']};
+	letter-spacing: {$post_title['letter_spacing']};
 }
 #$block_id .post__title a {
+	text-decoration: {$post_title['decoration']};
 	color: {$post_title['color']['text']};
 }
 #$block_id .post__title:hover a {
@@ -385,6 +428,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['productPrice']['font']['size']};
 	font-weight: {$attributes['productPrice']['font']['weight']};
 	font-family: {$attributes['productPrice']['font']['family']};
+	text-transform: {$product_price['letter_case']};
+	text-decoration: {$product_price['decoration']};
+	line-height: {$product_price['line_height']};
+	letter-spacing: {$product_price['letter_spacing']};
 	color: {$product_price['color']['text']};
 }
 #$block_id .post__price * {
@@ -397,6 +444,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['productSummary']['font']['size']};
 	font-weight: {$attributes['productSummary']['font']['weight']};
 	font-family: {$attributes['productSummary']['font']['family']};
+	text-transform: {$product_summary['letter_case']};
+	text-decoration: {$product_summary['decoration']};
+	line-height: {$product_summary['line_height']};
+	letter-spacing: {$product_summary['letter_spacing']};
 	color: {$product_summary['color']['text']};
 }
 
@@ -410,6 +461,9 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['cartButton']['font']['weight']};
     font-family: {$attributes['cartButton']['font']['family']};
     text-transform: {$attributes['cartButton']['letterCase']};
+	text-decoration: {$cart_btn['decoration']};
+	line-height: {$cart_btn['line_height']};
+	letter-spacing: {$cart_btn['letter_spacing']};
     color: {$cart_btn['color']['text']};
     background-color: {$cart_btn['color']['bg']};
 }
@@ -568,7 +622,7 @@ if ( ! function_exists( 'get_cozy_block_featured_product_data' ) ) {
 				}
 
 				$post_data['ID']                  = $product_id;
-				$post_data['image_url']           = get_the_post_thumbnail( $product_id );
+				$post_data['image_url']           = get_the_post_thumbnail_url( $product_id );
 				$post_data['post_link']           = get_permalink( $product_id );
 				$post_data['post_title']          = get_the_title( $product_id );
 				$post_data['post_content']        = get_the_content( '', '', $product_id );
@@ -602,12 +656,27 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		$classes[] = $attributes['postBoxStyles']['shadowHover']['enabled'] ? 'has-hover-box-shadow' : '';
 		$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $post_data['ID'] . '">';
 
+		// Toast
+		$output .= '<div class="post__toast visibility-hidden">';
+		$output .= '<div id="tick-icon" style="display:none;">';
+		$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+		$output .= '<path d="M6.66668 10.1133L12.7947 3.986L13.7373 4.92867L6.66668 11.9993L2.42401 7.75667L3.36668 6.814L6.66668 10.1133Z" />';
+		$output .= '</svg>';
+		$output .= '</div>';
+		$output .= '<div id="cross-icon" style="display:none;">';
+		$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+		$output .= '<path d="M7.99999 7.058L11.3 3.758L12.2427 4.70067L8.94266 8.00067L12.2427 11.3007L11.2993 12.2433L7.99932 8.94334L4.69999 12.2433L3.75732 11.3L7.05732 8L3.75732 4.7L4.69999 3.75867L7.99999 7.058Z" />';
+		$output .= '</svg>';
+		$output .= '</div>';
+		$output .= '<div class="toast__message"></div>';
+		$output .= '</div>';
+
 		if ( $attributes['enableOptions']['postImage'] && ! empty( $post_data['image_url'] ) ) {
 			$classes   = array();
 			$classes[] = 'post__image';
 			$classes[] = $attributes['postOptions']['image']['hoverEffect'] ? 'has-hover-effect' : '';
 			$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
-			$output   .= '<img src="' . $post_data['image_url'] . '" />';
+			$output   .= '<img src="' . esc_url( $post_data['image_url'] ) . '" />';
 			if ( $attributes['enableOptions']['saleBadge'] && $post_data['on_sale'] ) {
 				$classes   = array();
 				$classes[] = 'cozy-block-featured-product__sale-badge';
@@ -648,10 +717,12 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 				}
 			}
 
-			$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">';
-			$output .= '<span class="post__image-background">';
-			$output .= '</span>';
-			$output .= '</a>';
+			$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && $attributes['enableOptions']['imgLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+			$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && $attributes['enableOptions']['imgLinkPost'] && $attributes['enableOptions']['imgLinkNewTab'] ? '_blank' : '';
+			$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
+			$output       .= '<span class="post__image-background">';
+			$output       .= '</span>';
+			$output       .= '</a>';
 
 			if ( $attributes['enableOptions']['cart'] || $attributes['enableOptions']['wishlist'] || $attributes['enableOptions']['quickView'] ) {
 				$classes   = array();
@@ -697,17 +768,21 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 		$output .= '<div class="post__content-wrapper">';
 
 		if ( $attributes['enableOptions']['productCategories'] && ! empty( $post_data['categories'] ) ) {
-			$classes   = array();
-			$classes[] = 'post__categories';
-			$classes[] = $attributes['productCategory']['hoverEffect'] ? 'has-hover-effect' : '';
-			$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+			$classes      = array();
+			$classes[]    = 'post__categories';
+			$classes[]    = $attributes['productCategory']['hoverEffect'] ? 'has-hover-effect' : '';
+			$output      .= '<div class="' . implode( ' ', $classes ) . '">';
+			$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && $attributes['enableOptions']['linkCat'] && $attributes['enableOptions']['catNewTab'] ? '_blank' : '';
 			foreach ( $post_data['categories'] as $cat_data ) {
-				$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+				$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && $attributes['enableOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+				$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 			}
-				$output .= '</div>';
+			$output .= '</div>';
 		}
 
-		$output .= '<h2 class="post__title"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+		$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+		$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+		$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
 		$justify_content = $attributes['postOptions']['textAlign'];
 
@@ -741,7 +816,10 @@ if ( ! function_exists( 'render_cozy_block_featured_product_data' ) ) {
 
 		if ( $attributes['enableOptions']['cartButton'] ) {
 			$output .= '<div class="post__cart-button" data-product-id="' . $post_data['ID'] . '">';
-			$output .= esc_html_x( $attributes['cartButton']['label'], 'cozy-addons' );
+			$output .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+				</svg>';
+			$output .= '<span class="cart-button__label">' . esc_html_x( $attributes['cartButton']['label'], 'cozy-addons' ) . '</span>';
 			$output .= '</div>';
 		}
 

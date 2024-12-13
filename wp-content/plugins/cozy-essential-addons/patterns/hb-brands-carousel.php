@@ -6,13 +6,13 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_13.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_11.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_12.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_14.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/brand_7.png'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_13.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_11.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_12.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_14.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/brand_7.png'
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Brands Showcase Carousel"},"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"1180px"}} -->

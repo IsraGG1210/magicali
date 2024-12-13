@@ -6,18 +6,18 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s5.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/s6.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_6.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_7.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_8.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/icon_9.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/s6.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_7.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_8.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/icon_9.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Services Carousel"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"100px","left":"var:preset|spacing|40","right":"var:preset|spacing|30"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

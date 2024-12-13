@@ -18,6 +18,12 @@ $wrapper_attributes = get_block_wrapper_attributes();
 $heading_color = array(
 	'text' => isset( $attributes['tabHeading']['color'] ) ? $attributes['tabHeading']['color'] : '',
 );
+$tab_heading   = array(
+	'letter_case'    => isset( $attributes['tabHeading']['letterCase'] ) ? $attributes['tabHeading']['letterCase'] : '',
+	'decoration'     => isset( $attributes['tabHeading']['decoration'] ) ? $attributes['tabHeading']['decoration'] : '',
+	'line_height'    => isset( $attributes['tabHeading']['lineHeight'] ) ? $attributes['tabHeading']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['tabHeading']['letterSpacing'] ) ? $attributes['tabHeading']['letterSpacing'] : '',
+);
 
 $separator_padding = cozy_render_TRBL( 'padding', $attributes['separatorStyles']['padding'] );
 $separator_border  = isset( $attributes['separatorStyles']['border'] ) ? cozy_render_TRBL( 'border', $attributes['separatorStyles']['border'] ) : '';
@@ -35,6 +41,10 @@ $tab_styles         = array(
 	'default_bg_color' => isset( $attributes['tabStyles']['default']['bgColor'] ) ? $attributes['tabStyles']['default']['bgColor'] : '',
 	'active_color'     => isset( $attributes['tabStyles']['active']['color'] ) ? $attributes['tabStyles']['active']['color'] : '',
 	'active_bg_color'  => isset( $attributes['tabStyles']['active']['bgColor'] ) ? $attributes['tabStyles']['active']['bgColor'] : '',
+	'letter_case'      => isset( $attributes['tabStyles']['letterCase'] ) ? $attributes['tabStyles']['letterCase'] : '',
+	'decoration'       => isset( $attributes['tabStyles']['decoration'] ) ? $attributes['tabStyles']['decoration'] : '',
+	'line_height'      => isset( $attributes['tabStyles']['lineHeight'] ) ? $attributes['tabStyles']['lineHeight'] : '',
+	'letter_spacing'   => isset( $attributes['tabStyles']['letterSpacing'] ) ? $attributes['tabStyles']['letterSpacing'] : '',
 );
 
 $active_tab_overlay = isset( $attributes['separatorStyles']['border']['bottom']['width'] ) ? $attributes['separatorStyles']['border']['bottom']['width'] : '';
@@ -79,6 +89,12 @@ $sale_badge_color   = array(
 	'text' => isset( $attributes['saleBadge']['color'] ) ? $attributes['saleBadge']['color'] : '',
 	'bg'   => isset( $attributes['saleBadge']['bgColor'] ) ? $attributes['saleBadge']['bgColor'] : '',
 );
+$sale_badge_styles  = array(
+	'letter_case'    => isset( $attributes['saleBadge']['letterCase'] ) ? $attributes['saleBadge']['letterCase'] : '',
+	'decoration'     => isset( $attributes['saleBadge']['decoration'] ) ? $attributes['saleBadge']['decoration'] : '',
+	'line_height'    => isset( $attributes['saleBadge']['lineHeight'] ) ? $attributes['saleBadge']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['saleBadge']['letterSpacing'] ) ? $attributes['saleBadge']['letterSpacing'] : '',
+);
 
 $util_icon = array(
 	'size'       => isset( $attributes['utilIcon']['size'] ) ? $attributes['utilIcon']['size'] : '',
@@ -113,36 +129,61 @@ $cat_styles  = array(
 	'bg_color'           => isset( $attributes['categoryStyles']['bgColor'] ) ? $attributes['categoryStyles']['bgColor'] : '',
 	'bg_color_hover'     => isset( $attributes['categoryStyles']['bgColorHover'] ) ? $attributes['categoryStyles']['bgColorHover'] : '',
 	'border_color_hover' => isset( $attributes['categoryStyles']['borderColorHover'] ) ? $attributes['categoryStyles']['borderColorHover'] : '',
+	'letter_case'        => isset( $attributes['categoryStyles']['letterCase'] ) ? $attributes['categoryStyles']['letterCase'] : '',
+	'decoration'         => isset( $attributes['categoryStyles']['decoration'] ) ? $attributes['categoryStyles']['decoration'] : '',
+	'line_height'        => isset( $attributes['categoryStyles']['lineHeight'] ) ? $attributes['categoryStyles']['lineHeight'] : '',
+	'letter_spacing'     => isset( $attributes['categoryStyles']['letterSpacing'] ) ? $attributes['categoryStyles']['letterSpacing'] : '',
 );
 
-$title_color = array(
+$title_color  = array(
 	'text'       => isset( $attributes['title']['color'] ) ? $attributes['title']['color'] : '',
 	'text_hover' => isset( $attributes['title']['colorHover'] ) ? $attributes['title']['colorHover'] : '',
 );
-
-$price_color = array(
-	'text' => isset( $attributes['price']['color'] ) ? $attributes['price']['color'] : '',
+$title_styles = array(
+	'letter_case'    => isset( $attributes['title']['letterCase'] ) ? $attributes['title']['letterCase'] : '',
+	'decoration'     => isset( $attributes['title']['decoration'] ) ? $attributes['title']['decoration'] : '',
+	'line_height'    => isset( $attributes['title']['lineHeight'] ) ? $attributes['title']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['title']['letterSpacing'] ) ? $attributes['title']['letterSpacing'] : '',
 );
 
-$rating_color = array(
+$price_color  = array(
+	'text' => isset( $attributes['price']['color'] ) ? $attributes['price']['color'] : '',
+);
+$price_styles = array(
+	'letter_case'    => isset( $attributes['price']['letterCase'] ) ? $attributes['price']['letterCase'] : '',
+	'decoration'     => isset( $attributes['price']['decoration'] ) ? $attributes['price']['decoration'] : '',
+	'line_height'    => isset( $attributes['price']['lineHeight'] ) ? $attributes['price']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['price']['letterSpacing'] ) ? $attributes['price']['letterSpacing'] : '',
+);
+
+$rating_color  = array(
 	'text' => isset( $attributes['rating']['color'] ) ? $attributes['rating']['color'] : '',
+);
+$rating_styles = array(
+	'letter_case'    => isset( $attributes['rating']['letterCase'] ) ? $attributes['rating']['letterCase'] : '',
+	'decoration'     => isset( $attributes['rating']['decoration'] ) ? $attributes['rating']['decoration'] : '',
+	'line_height'    => isset( $attributes['rating']['lineHeight'] ) ? $attributes['rating']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['rating']['letterSpacing'] ) ? $attributes['rating']['letterSpacing'] : '',
 );
 
 $cart_button = array(
-	'margin'      => array(
+	'margin'         => array(
 		'top'    => isset( $attributes['cartButton']['margin']['top'] ) ? $attributes['cartButton']['margin']['top'] : '',
 		'bottom' => isset( $attributes['cartButton']['margin']['bottom'] ) ? $attributes['cartButton']['margin']['bottom'] : '',
 	),
-	'padding'     => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
-	'border'      => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
-	'radius'      => isset( $attributes['cartButton']['radius'] ) ? $attributes['cartButton']['radius'] : '',
-	'font'        => array(
+	'padding'        => isset( $attributes['cartButton']['padding'] ) ? cozy_render_TRBL( 'padding', $attributes['cartButton']['padding'] ) : '',
+	'border'         => isset( $attributes['cartButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['cartButton']['border'] ) : '',
+	'radius'         => isset( $attributes['cartButton']['radius'] ) ? $attributes['cartButton']['radius'] : '',
+	'font'           => array(
 		'size'   => isset( $attributes['cartButton']['font']['size'] ) ? $attributes['cartButton']['font']['size'] : '',
 		'weight' => isset( $attributes['cartButton']['font']['weight'] ) ? $attributes['cartButton']['font']['weight'] : '',
 		'family' => isset( $attributes['cartButton']['font']['family'] ) ? $attributes['cartButton']['font']['family'] : '',
 	),
-	'letter_case' => isset( $attributes['cartButton']['letterCase'] ) ? $attributes['cartButton']['letterCase'] : '',
-	'color'       => array(
+	'letter_case'    => isset( $attributes['cartButton']['letterCase'] ) ? $attributes['cartButton']['letterCase'] : '',
+	'decoration'     => isset( $attributes['cartButton']['decoration'] ) ? $attributes['cartButton']['decoration'] : '',
+	'line_height'    => isset( $attributes['cartButton']['lineHeight'] ) ? $attributes['cartButton']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['cartButton']['letterSpacing'] ) ? $attributes['cartButton']['letterSpacing'] : '',
+	'color'          => array(
 		'text'         => isset( $attributes['cartButton']['color']['text'] ) ? $attributes['cartButton']['color']['text'] : '',
 		'text_hover'   => isset( $attributes['cartButton']['color']['textHover'] ) ? $attributes['cartButton']['color']['textHover'] : '',
 		'bg'           => isset( $attributes['cartButton']['color']['bg'] ) ? $attributes['cartButton']['color']['bg'] : '',
@@ -166,6 +207,9 @@ $bullet_styles  = array(
 	'default_color_hover' => isset( $attributes['pagination']['default']['colorHover'] ) ? $attributes['pagination']['default']['colorHover'] : '',
 	'active_color'        => isset( $attributes['pagination']['active']['color'] ) ? $attributes['pagination']['active']['color'] : '',
 	'active_color_hover'  => isset( $attributes['pagination']['active']['colorHover'] ) ? $attributes['pagination']['active']['colorHover'] : '',
+	'align'               => isset( $attributes['pagination']['align'] ) ? $attributes['pagination']['align'] : 'center',
+	'left'                => isset( $attributes['pagination']['align'], $attributes['pagination']['left'] ) && 'left' === $attributes['pagination']['align'] ? $attributes['pagination']['left'] : '',
+	'right'               => isset( $attributes['pagination']['align'], $attributes['pagination']['right'] ) && 'right' === $attributes['pagination']['align'] ? $attributes['pagination']['right'] : '',
 );
 
 $column1 = $attributes['gridOptions']['columnCount'] <= 3 ? $attributes['gridOptions']['columnCount'] : 3;
@@ -176,6 +220,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['tabHeading']['fontSize']};
 	font-weight: {$attributes['tabHeading']['fontWeight']};
 	font-family: {$attributes['tabHeading']['fontFamily']};
+	text-transform: {$tab_heading['letter_case']};
+	text-decoration: {$tab_heading['decoration']};
+	line-height: {$tab_heading['line_height']};
+	letter-spacing: {$tab_heading['letter_spacing']};
 	color: {$heading_color['text']};
 }
 
@@ -198,6 +246,10 @@ $block_styles = <<<BLOCK_STYLES
 	font-size: {$attributes['tabStyles']['fontSize']};
     font-family: {$attributes['tabStyles']['fontFamily']};
     font-weight: {$attributes['tabStyles']['fontWeight']};
+	text-transform: {$tab_styles['letter_case']};
+	text-decoration: {$tab_styles['decoration']};
+	line-height: {$tab_styles['line_height']};
+	letter-spacing: {$tab_styles['letter_spacing']};
 }
 #$block_id .cozy-block-featured-product-tabs__tab.active-tab {
     {$active_tab_border}
@@ -314,6 +366,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['saleBadge']['fontSize']};
     font-weight: {$attributes['saleBadge']['fontWeight']};
     font-family: {$attributes['saleBadge']['fontFamily']};
+	text-transform: {$sale_badge_styles['letter_case']};
+	text-decoration: {$sale_badge_styles['decoration']};
+	line-height: {$sale_badge_styles['line_height']};
+	letter-spacing: {$sale_badge_styles['letter_spacing']};
     top: {$attributes['saleBadge']['top']}px;
     transform: rotate({$attributes['saleBadge']['rotate']}deg);
 }
@@ -365,11 +421,15 @@ $block_styles = <<<BLOCK_STYLES
 	font-weight: {$attributes['categoryStyles']['fontWeight']};
 	margin-top: {$attributes['categoryStyles']['marginTop']};
 	margin-bottom: {$attributes['categoryStyles']['marginBottom']};
+	text-transform: {$cat_styles['letter_case']};
+	line-height: {$cat_styles['line_height']};
+	letter-spacing: {$cat_styles['letter_spacing']};
 }
 #$block_id .cozy-block-featured-product-tabs__product-categories a {
 	{$cat_padding}
 	{$cat_border}
 	border-radius: {$attributes['categoryStyles']['radius']};
+	text-decoration: {$cat_styles['decoration']};
 	color: {$cat_styles['color']};
 	background-color: {$cat_styles['bg_color']};
 }
@@ -385,8 +445,12 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['title']['fontSize']};
     font-family: {$attributes['title']['fontFamily']};
     font-weight: {$attributes['title']['fontWeight']};
+	text-transform: {$title_styles['letter_case']};
+	line-height: {$title_styles['line_height']};
+	letter-spacing: {$title_styles['letter_spacing']};
 }
 #$block_id .cozy-block-featured-product-tabs__product-title a, #$block_id .post__title a {
+	text-decoration: {$title_styles['decoration']};
 	color: {$title_color['text']};
 }
 #$block_id .cozy-block-featured-product-tabs__product-title a:hover, #$block_id .post__title a:hover {
@@ -399,6 +463,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['price']['fontSize']};
     font-weight: {$attributes['price']['fontWeight']};
     font-family: {$attributes['price']['fontFamily']};
+	text-transform: {$price_styles['letter_case']};
+	text-decoration: {$price_styles['decoration']};
+	line-height: {$price_styles['line_height']};
+	letter-spacing: {$price_styles['letter_spacing']};
     color: {$price_color['text']};
 }
 
@@ -408,6 +476,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['rating']['fontSize']};
     font-weight: {$attributes['rating']['fontWeight']};
     font-family: {$attributes['rating']['fontFamily']};
+	text-transform: {$rating_styles['letter_case']};
+	text-decoration: {$rating_styles['decoration']};
+	line-height: {$rating_styles['line_height']};
+	letter-spacing: {$rating_styles['letter_spacing']};
     color: {$rating_color['text']};
 }
 
@@ -420,7 +492,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$cart_button['font']['size']};
     font-weight: {$cart_button['font']['weight']};
     font-family: {$cart_button['font']['family']};
-    text-transform: {$cart_button['letter_case']};
+	text-transform: {$cart_button['letter_case']};
+	text-decoration: {$cart_button['decoration']};
+	line-height: {$cart_button['line_height']};
+	letter-spacing: {$cart_button['letter_spacing']};
     color: {$cart_button['color']['text']};
     background-color: {$cart_button['color']['bg']};
 }
@@ -452,6 +527,9 @@ $block_styles = <<<BLOCK_STYLES
 
 #$block_id .swiper-pagination {
 	bottom: {$attributes['pagination']['verticalPosition']}px;
+    text-align: {$bullet_styles['align']};
+    padding-left: {$bullet_styles['left']};
+    padding-right: {$bullet_styles['right']};
 }
 #$block_id .swiper-pagination .swiper-pagination-bullet {
 	width: {$attributes['pagination']['default']['width']};
@@ -473,10 +551,10 @@ $block_styles = <<<BLOCK_STYLES
 #$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
 	background-color: {$bullet_styles['active_color_hover']};
 }
-#$block_id.swiper-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id:has(.swiper-horizontal) .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$attributes['pagination']['gap']});
 }
-#$block_id.swiper-vertical .swiper-pagination-bullets .swiper-pagination-bullet {
+#$block_id:has(.swiper-vertical) .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: var(--swiper-pagination-bullet-vertical-gap, {$attributes['pagination']['gap']}) 0;
 }
 BLOCK_STYLES;
@@ -745,7 +823,23 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 			$classes   = array();
 			$classes[] = 'cozy-block-featured-product-tabs__item';
 			$classes[] = 'carousel' === $attributes['display'] ? 'swiper-slide' : '';
-			$output   .= '<li class="' . implode( ' ', $classes ) . '">';
+			$output   .= '<li class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_data['id'] . '">';
+
+			// Toast
+			$output .= '<div class="post__toast visibility-hidden">';
+			$output .= '<div id="tick-icon" style="display:none;">';
+			$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+			$output .= '<path d="M6.66668 10.1133L12.7947 3.986L13.7373 4.92867L6.66668 11.9993L2.42401 7.75667L3.36668 6.814L6.66668 10.1133Z" />';
+			$output .= '</svg>';
+			$output .= '</div>';
+			$output .= '<div id="cross-icon" style="display:none;">';
+			$output .= '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">';
+			$output .= '<path d="M7.99999 7.058L11.3 3.758L12.2427 4.70067L8.94266 8.00067L12.2427 11.3007L11.2993 12.2433L7.99932 8.94334L4.69999 12.2433L3.75732 11.3L7.05732 8L3.75732 4.7L4.69999 3.75867L7.99999 7.058Z" />';
+			$output .= '</svg>';
+			$output .= '</div>';
+			$output .= '<div class="toast__message"></div>';
+			$output .= '</div>';
+
 			if ( $attributes['productOptions']['image'] && ! empty( $product_data['image_url'] ) ) {
 				$classes   = array();
 				$classes[] = 'cozy-block-featured-product-tabs__featured-image';
@@ -753,10 +847,12 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 				$output   .= '<figure class="' . implode( ' ', $classes ) . '">';
 				$output   .= '<img src="' . esc_url( $product_data['image_url'] ) . '" />';
 
-				$output .= '<a href="' . esc_url( $product_data['link'] ) . '" target="_blank" rel="noopener">';
-				$output .= '<span class="post__image-background">';
-				$output .= '</span>';
-				$output .= '</a>';
+				$has_post_link = isset( $attributes['productOptions']['imgLinkPost'] ) && $attributes['productOptions']['imgLinkPost'] ? 'href="' . esc_url( $product_data['link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['productOptions']['imgLinkPost'], $attributes['productOptions']['imgLinkNewTab'] ) && $attributes['productOptions']['imgLinkPost'] && $attributes['productOptions']['imgLinkNewTab'] ? '_blank' : '';
+				$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
+				$output       .= '<span class="post__image-background">';
+				$output       .= '</span>';
+				$output       .= '</a>';
 
 				if ( $attributes['productOptions']['saleBadge'] && $product_data['on_sale'] ) {
 					$classes   = array();
@@ -837,20 +933,24 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 			$output .= '<div class="cozy-block-featured-product-tabs__product-detail">';
 
 			if ( $attributes['productOptions']['categories'] && ! empty( $product_data['categories'] ) ) {
-				$classes   = array();
-				$classes[] = 'cozy-block-featured-product-tabs__product-categories';
-				$classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
-				$output   .= '<div class="' . implode( ' ', $classes ) . '">';
+				$classes      = array();
+				$classes[]    = 'cozy-block-featured-product-tabs__product-categories';
+				$classes[]    = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
+				$output      .= '<div class="' . implode( ' ', $classes ) . '">';
+				$open_new_tab = isset( $attributes['productOptions']['linkCat'], $attributes['productOptions']['catNewTab'] ) && $attributes['productOptions']['linkCat'] && $attributes['productOptions']['catNewTab'] ? '_blank' : '';
 				foreach ( $product_data['categories'] as $cat_data ) {
-					$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+					$has_cat_link = isset( $attributes['productOptions']['linkCat'] ) && $attributes['productOptions']['linkCat'] ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+					$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 				}
 				$output .= '</div>';
 			}
 
 			if ( $attributes['productOptions']['title'] ) {
-				$output .= '<h4 class="cozy-block-featured-product-tabs__product-title">';
-				$output .= '<a href="' . esc_url( $product_data['link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $product_data['title'], 'cozy-addons' ) . '</a>';
-				$output .= '</h4>';
+				$output       .= '<h4 class="cozy-block-featured-product-tabs__product-title">';
+				$has_post_link = isset( $attributes['productOptions']['titleLinkPost'] ) && $attributes['productOptions']['titleLinkPost'] ? 'href="' . esc_url( $product_data['link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['productOptions']['titleLinkPost'], $attributes['productOptions']['titleLinkNewTab'] ) && $attributes['productOptions']['titleLinkPost'] && $attributes['productOptions']['titleLinkNewTab'] ? '_blank' : '';
+				$output       .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $product_data['title'], 'cozy-addons' ) . '</a>';
+				$output       .= '</h4>';
 			}
 
 			if ( $attributes['productOptions']['content'] ) {
@@ -880,8 +980,11 @@ if ( ! function_exists( 'render_cozy_block_featured_product_tab_data' ) ) {
 
 			if ( isset( $attributes['productOptions']['cartButton'] ) && $attributes['productOptions']['cartButton'] ) {
 				$output    .= '<div class="post__cart-button" data-product-id="' . $product_data['id'] . '">';
+				$output    .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+				</svg>';
 				$cart_label = isset( $attributes['cartButton']['label'] ) ? $attributes['cartButton']['label'] : '';
-				$output    .= esc_html_x( $cart_label, 'cozy-addons' );
+				$output    .= '<span class="cart-button__label">' . esc_html_x( $cart_label, 'cozy-addons' ) . '</span>';
 				$output    .= '</div>';
 			}
 

@@ -88,6 +88,7 @@ export default {
           [
             '%payment_type%',
             '%appointment_deposit_payment%',
+            '%payment_due_amount%',
             '%payment_link_woocommerce%',
             '%payment_link_mollie%',
             '%payment_link_paypal%',

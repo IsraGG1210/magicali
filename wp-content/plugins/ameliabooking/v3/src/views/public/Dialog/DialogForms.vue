@@ -168,6 +168,12 @@ export default {
           border-radius: 50%;
           align-items: center;
           justify-content: center;
+
+          &:active {
+            position: absolute;
+            border: none;
+            outline: 0;
+          }
         }
       }
     }
@@ -183,6 +189,18 @@ export default {
 
       &__headerbtn {
         z-index: 10;
+
+        &:active {
+          position: absolute;
+          border: none;
+          outline: 0;
+          background-color: initial;
+        }
+
+        &:hover {
+          border: none;
+        }
+
         .el-dialog__close {
           color: var(--am-c-main-text);
         }

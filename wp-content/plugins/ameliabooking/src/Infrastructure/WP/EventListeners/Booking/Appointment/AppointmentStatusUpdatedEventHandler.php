@@ -12,6 +12,7 @@ use AmeliaBooking\Application\Services\Booking\IcsApplicationService;
 use AmeliaBooking\Application\Services\Notification\EmailNotificationService;
 use AmeliaBooking\Application\Services\Notification\SMSNotificationService;
 use AmeliaBooking\Application\Services\Notification\AbstractWhatsAppNotificationService;
+use AmeliaBooking\Application\Services\Payment\PaymentApplicationService;
 use AmeliaBooking\Application\Services\WebHook\AbstractWebHookApplicationService;
 use AmeliaBooking\Application\Services\Zoom\AbstractZoomApplicationService;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
@@ -24,6 +25,7 @@ use AmeliaBooking\Domain\ValueObjects\String\BookingStatus;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
+use AmeliaBooking\Infrastructure\Repository\Bookable\Service\ServiceRepository;
 use AmeliaBooking\Infrastructure\Services\Google\AbstractGoogleCalendarService;
 use AmeliaBooking\Infrastructure\Services\LessonSpace\AbstractLessonSpaceService;
 use AmeliaBooking\Infrastructure\Services\Outlook\AbstractOutlookCalendarService;
@@ -141,6 +143,27 @@ class AppointmentStatusUpdatedEventHandler
                         [],
                         true
                     );
+                }
+
+                $paymentId = !empty($booking['payments'][0]['id']) ? $booking['payments'][0]['id'] : null;
+
+                if (!empty($paymentId)) {
+                    /** @var ServiceRepository $serviceRepository */
+                    $serviceRepository = $container->get('domain.bookable.service.repository');
+
+                    $data = [
+                        'booking' => $booking,
+                        'type' => Entities::APPOINTMENT,
+                        'appointment' => $appointment,
+                        'paymentId' => $paymentId,
+                        'bookable' => $serviceRepository->getById($appointment['serviceId'])->toArray(),
+                        'customer' => $booking['customer']
+                    ];
+
+                    /** @var PaymentApplicationService $paymentAS */
+                    $paymentAS = $container->get('application.payment.service');
+
+                    $appointment['bookings'][$index]['payments'][0]['paymentLinks'] = $paymentAS->createPaymentLink($data, $index);
                 }
             }
         }

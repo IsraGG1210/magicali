@@ -1318,6 +1318,12 @@ export default {
         border-radius: 50%;
         z-index: 1000000;
 
+        &:active {
+          position: absolute;
+          border: none;
+          outline: 0;
+        }
+
         .el-dialog__close {
           line-height: 1;
         }

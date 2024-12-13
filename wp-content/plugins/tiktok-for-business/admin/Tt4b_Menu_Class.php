@@ -15,7 +15,7 @@ class Tt4b_Menu_Class {
 	 * @return void
 	 */
 	public static function tt4b_admin_menu() {
-		 // if on woocommerce, load into woo marketing submenu. Else load into admin dashboard
+		// if on woocommerce, load into woo marketing submenu. Else load into admin dashboard
 		if ( did_action( 'woocommerce_loaded' ) > 0 ) {
 			add_submenu_page(
 				'woocommerce-marketing',
@@ -23,7 +23,7 @@ class Tt4b_Menu_Class {
 				'TikTok',
 				'manage_woocommerce',
 				'tiktok',
-				[ 'Tt4b_Menu_Class', 'tt4b_admin_menu_main' ],
+				array( 'Tt4b_Menu_Class', 'tt4b_admin_menu_main' ),
 				5
 			);
 		} else {
@@ -32,13 +32,13 @@ class Tt4b_Menu_Class {
 				'TikTok',
 				'manage_options',
 				'tiktok',
-				[ 'Tt4b_Menu_Class', 'tt4b_admin_menu_main' ],
+				array( 'Tt4b_Menu_Class', 'tt4b_admin_menu_main' ),
 				'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIGZpbGw9IiMwMDAwMDAiIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGlkPSJpY29ucyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDEyLjE5LDExOC42NmExMDkuMjcsMTA5LjI3LDAsMCwxLTkuNDUtNS41LDEzMi44NywxMzIuODcsMCwwLDEtMjQuMjctMjAuNjJjLTE4LjEtMjAuNzEtMjQuODYtNDEuNzItMjcuMzUtNTYuNDNoLjFDMzQ5LjE0LDIzLjksMzUwLDE2LDM1MC4xMywxNkgyNjcuNjlWMzM0Ljc4YzAsNC4yOCwwLDguNTEtLjE4LDEyLjY5LDAsLjUyLS4wNSwxLS4wOCwxLjU2LDAsLjIzLDAsLjQ3LS4wNS43MSwwLC4wNiwwLC4xMiwwLC4xOGE3MCw3MCwwLDAsMS0zNS4yMiw1NS41Niw2OC44LDY4LjgsMCwwLDEtMzQuMTEsOWMtMzguNDEsMC02OS41NC0zMS4zMi02OS41NC03MHMzMS4xMy03MCw2OS41NC03MGE2OC45LDY4LjksMCwwLDEsMjEuNDEsMy4zOWwuMS04My45NGExNTMuMTQsMTUzLjE0LDAsMCwwLTExOCwzNC41MiwxNjEuNzksMTYxLjc5LDAsMCwwLTM1LjMsNDMuNTNjLTMuNDgsNi0xNi42MSwzMC4xMS0xOC4yLDY5LjI0LTEsMjIuMjEsNS42Nyw0NS4yMiw4Ljg1LDU0Ljczdi4yYzIsNS42LDkuNzUsMjQuNzEsMjIuMzgsNDAuODJBMTY3LjUzLDE2Ny41MywwLDAsMCwxMTUsNDcwLjY2di0uMmwuMi4yQzE1NS4xMSw0OTcuNzgsMTk5LjM2LDQ5NiwxOTkuMzYsNDk2YzcuNjYtLjMxLDMzLjMyLDAsNjIuNDYtMTMuODEsMzIuMzItMTUuMzEsNTAuNzItMzguMTIsNTAuNzItMzguMTJhMTU4LjQ2LDE1OC40NiwwLDAsMCwyNy42NC00NS45M2M3LjQ2LTE5LjYxLDkuOTUtNDMuMTMsOS45NS01Mi41M1YxNzYuNDljMSwuNiwxNC4zMiw5LjQxLDE0LjMyLDkuNDFzMTkuMTksMTIuMyw0OS4xMywyMC4zMWMyMS40OCw1LjcsNTAuNDIsNi45LDUwLjQyLDYuOVYxMzEuMjdDNDUzLjg2LDEzMi4zNyw0MzMuMjcsMTI5LjE3LDQxMi4xOSwxMTguNjZaIi8+PC9zdmc+',
 				40
 			);
 		}
 
-		add_action( 'admin_enqueue_scripts', [ 'tt4b_menu_class', 'load_styles' ] );
+		add_action( 'admin_enqueue_scripts', array( 'tt4b_menu_class', 'load_styles' ) );
 	}
 
 	/**
@@ -115,7 +115,7 @@ class Tt4b_Menu_Class {
 
 		$hmac = hash_hmac( 'sha256', $hmac_str, $external_data_key );
 
-		$obj = [
+		$obj = array(
 			'external_business_id' => $external_business_id,
 			'business_platform'    => $business_platform,
 			'locale'               => $locale,
@@ -132,7 +132,7 @@ class Tt4b_Menu_Class {
 			'hmac'                 => $hmac,
 			'close_method'         => 'redirect_inside_tiktok',
 			'extra_data'           => $current_tiktok_for_woocommerce_version,
-		];
+		);
 
 		$obj = self::get_country_and_currency_for_external_data( $obj );
 		$obj = self::get_eligibility_info_for_external_data( $obj );
@@ -151,7 +151,7 @@ class Tt4b_Menu_Class {
 			$business_profile_rsp = $mapi->get_business_profile( $access_token, $external_business_id );
 			$business_profile     = json_decode( $business_profile_rsp, true );
 			// Check connection status against profile status
-			if ( [] === $business_profile['data'] ) {
+			if ( array() === $business_profile['data'] ) {
 				$is_connected = false;
 				delete_option( 'tt4b_access_token' );
 			} elseif ( ! is_null( $business_profile['data']['status'] ) && 2 !== $business_profile['data']['status'] ) {
@@ -217,12 +217,12 @@ class Tt4b_Menu_Class {
 		// enqueue js.
 		echo '<div class="tt4b_wrap" id="tiktok-for-business-root"></div>';
 		wp_register_script( 'tt4b_cdn', 'https://sf-ttmp.ttcdn-row.com/obj/ttastatic-sg/tiktok-business-plugin/tbp_external_platform-v2.3.11.js', '', 'v1', false );
-		wp_register_script( 'tt4b_script', plugins_url( '/admin/js/localJs.js', dirname( __DIR__ ) . '/Tiktokforbusiness.php' ), [ 'tt4b_cdn' ], 'v1', false );
+		wp_register_script( 'tt4b_script', plugins_url( '/admin/js/localJs.js', dirname( __DIR__ ) . '/Tiktokforbusiness.php' ), array( 'tt4b_cdn' ), 'v1', false );
 		wp_enqueue_script( 'tt4b_script' );
 		wp_localize_script(
 			'tt4b_script',
 			'tt4b_script_vars',
-			[
+			array(
 				'is_connected'         => $is_connected,
 				'external_business_id' => $external_business_id,
 				'business_platform'    => $business_platform,
@@ -238,7 +238,7 @@ class Tt4b_Menu_Class {
 				'processing'           => $processing,
 				'rejected'             => $rejected,
 				'country'              => get_option( 'tt4b_user_country' ),
-			]
+			)
 		);
 	}
 
@@ -257,26 +257,26 @@ class Tt4b_Menu_Class {
 		$total_gmv              = intval( get_option( 'tt4b_mapi_total_gmv' ) );
 		$total_orders           = intval( get_option( 'tt4b_mapi_total_orders' ) );
 		$days_since_first_order = intval( get_option( 'tt4b_mapi_tenure' ) );
-		$net_gmv                = [
-			[
+		$net_gmv                = array(
+			array(
 				'interval' => 'LIFETIME',
 				'min'      => $total_gmv,
 				'max'      => $total_gmv,
 				'unit'     => 'CURRENCY',
-			],
-		];
-		$net_order_count        = [
-			[
+			),
+		);
+		$net_order_count        = array(
+			array(
 				'interval' => 'LIFETIME',
 				'min'      => $total_orders,
 				'max'      => $total_orders,
 				'unit'     => 'COUNT',
-			],
-		];
-		$tenure                 = [
+			),
+		);
+		$tenure                 = array(
 			'min'  => $days_since_first_order,
 			'unit' => 'DAYS',
-		];
+		);
 
 		$external_data['is_email_verified'] = true;
 		$external_data['is_verified']       = true;
@@ -292,9 +292,9 @@ class Tt4b_Menu_Class {
 	 */
 	public static function get_extra_data_for_external_data( $external_data ) {
 		$current_tiktok_for_woocommerce_version = get_option( 'tt4b_version' );
-		$extra_data                             = [
+		$extra_data                             = array(
 			'version' => $current_tiktok_for_woocommerce_version,
-		];
+		);
 
 		if ( ! did_action( 'woocommerce_loaded' ) > 0 ) {
 			$extra_data['plugin_type'] = 'LEAD_GEN';
@@ -333,7 +333,6 @@ class Tt4b_Menu_Class {
 		}
 
 		return $external_data;
-
 	}
 
 	/**
@@ -429,224 +428,224 @@ class Tt4b_Menu_Class {
 	 * @return string
 	 */
 	public static function convert_state( $name ) {
-		$states  = [
-			[
+		$states  = array(
+			array(
 				'name' => 'Alabama',
 				'abbr' => 'AL',
-			],
-			[
+			),
+			array(
 				'name' => 'Alaska',
 				'abbr' => 'AK',
-			],
-			[
+			),
+			array(
 				'name' => 'Arizona',
 				'abbr' => 'AZ',
-			],
-			[
+			),
+			array(
 				'name' => 'Arkansas',
 				'abbr' => 'AR',
-			],
-			[
+			),
+			array(
 				'name' => 'California',
 				'abbr' => 'CA',
-			],
-			[
+			),
+			array(
 				'name' => 'Colorado',
 				'abbr' => 'CO',
-			],
-			[
+			),
+			array(
 				'name' => 'Connecticut',
 				'abbr' => 'CT',
-			],
-			[
+			),
+			array(
 				'name' => 'District of Columbia',
 				'abbr' => 'DC',
-			],
-			[
+			),
+			array(
 				'name' => 'Delaware',
 				'abbr' => 'DE',
-			],
-			[
+			),
+			array(
 				'name' => 'Florida',
 				'abbr' => 'FL',
-			],
-			[
+			),
+			array(
 				'name' => 'Georgia',
 				'abbr' => 'GA',
-			],
-			[
+			),
+			array(
 				'name' => 'Hawaii',
 				'abbr' => 'HI',
-			],
-			[
+			),
+			array(
 				'name' => 'Idaho',
 				'abbr' => 'ID',
-			],
-			[
+			),
+			array(
 				'name' => 'Illinois',
 				'abbr' => 'IL',
-			],
-			[
+			),
+			array(
 				'name' => 'Indiana',
 				'abbr' => 'IN',
-			],
-			[
+			),
+			array(
 				'name' => 'Iowa',
 				'abbr' => 'IA',
-			],
-			[
+			),
+			array(
 				'name' => 'Kansas',
 				'abbr' => 'KS',
-			],
-			[
+			),
+			array(
 				'name' => 'Kentucky',
 				'abbr' => 'KY',
-			],
-			[
+			),
+			array(
 				'name' => 'Louisiana',
 				'abbr' => 'LA',
-			],
-			[
+			),
+			array(
 				'name' => 'Maine',
 				'abbr' => 'ME',
-			],
-			[
+			),
+			array(
 				'name' => 'Maryland',
 				'abbr' => 'MD',
-			],
-			[
+			),
+			array(
 				'name' => 'Massachusetts',
 				'abbr' => 'MA',
-			],
-			[
+			),
+			array(
 				'name' => 'Michigan',
 				'abbr' => 'MI',
-			],
-			[
+			),
+			array(
 				'name' => 'Minnesota',
 				'abbr' => 'MN',
-			],
-			[
+			),
+			array(
 				'name' => 'Mississippi',
 				'abbr' => 'MS',
-			],
-			[
+			),
+			array(
 				'name' => 'Missouri',
 				'abbr' => 'MO',
-			],
-			[
+			),
+			array(
 				'name' => 'Montana',
 				'abbr' => 'MT',
-			],
-			[
+			),
+			array(
 				'name' => 'Nebraska',
 				'abbr' => 'NE',
-			],
-			[
+			),
+			array(
 				'name' => 'Nevada',
 				'abbr' => 'NV',
-			],
-			[
+			),
+			array(
 				'name' => 'New Hampshire',
 				'abbr' => 'NH',
-			],
-			[
+			),
+			array(
 				'name' => 'New Jersey',
 				'abbr' => 'NJ',
-			],
-			[
+			),
+			array(
 				'name' => 'New Mexico',
 				'abbr' => 'NM',
-			],
-			[
+			),
+			array(
 				'name' => 'New York',
 				'abbr' => 'NY',
-			],
-			[
+			),
+			array(
 				'name' => 'North Carolina',
 				'abbr' => 'NC',
-			],
-			[
+			),
+			array(
 				'name' => 'North Dakota',
 				'abbr' => 'ND',
-			],
-			[
+			),
+			array(
 				'name' => 'Ohio',
 				'abbr' => 'OH',
-			],
-			[
+			),
+			array(
 				'name' => 'Oklahoma',
 				'abbr' => 'OK',
-			],
-			[
+			),
+			array(
 				'name' => 'Oregon',
 				'abbr' => 'OR',
-			],
-			[
+			),
+			array(
 				'name' => 'Pennsylvania',
 				'abbr' => 'PA',
-			],
-			[
+			),
+			array(
 				'name' => 'Rhode Island',
 				'abbr' => 'RI',
-			],
-			[
+			),
+			array(
 				'name' => 'South Carolina',
 				'abbr' => 'SC',
-			],
-			[
+			),
+			array(
 				'name' => 'South Dakota',
 				'abbr' => 'SD',
-			],
-			[
+			),
+			array(
 				'name' => 'Tennessee',
 				'abbr' => 'TN',
-			],
-			[
+			),
+			array(
 				'name' => 'Texas',
 				'abbr' => 'TX',
-			],
-			[
+			),
+			array(
 				'name' => 'Utah',
 				'abbr' => 'UT',
-			],
-			[
+			),
+			array(
 				'name' => 'Vermont',
 				'abbr' => 'VT',
-			],
-			[
+			),
+			array(
 				'name' => 'Virginia',
 				'abbr' => 'VA',
-			],
-			[
+			),
+			array(
 				'name' => 'Washington',
 				'abbr' => 'WA',
-			],
-			[
+			),
+			array(
 				'name' => 'West Virginia',
 				'abbr' => 'WV',
-			],
-			[
+			),
+			array(
 				'name' => 'Wisconsin',
 				'abbr' => 'WI',
-			],
-			[
+			),
+			array(
 				'name' => 'Wyoming',
 				'abbr' => 'WY',
-			],
-			[
+			),
+			array(
 				'name' => 'Virgin Islands',
 				'abbr' => 'V.I.',
-			],
-			[
+			),
+			array(
 				'name' => 'Guam',
 				'abbr' => 'GU',
-			],
-			[
+			),
+			array(
 				'name' => 'Puerto Rico',
 				'abbr' => 'PR',
-			],
-		];
+			),
+		);
 		$return  = '';
 		$str_len = strlen( $name );
 

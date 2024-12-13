@@ -6,9 +6,9 @@
  * Categories: musicmantra-patterns
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"120px","bottom":"120px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

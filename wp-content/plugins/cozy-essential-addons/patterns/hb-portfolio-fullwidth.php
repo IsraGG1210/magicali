@@ -6,12 +6,12 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p5.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/p6.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/p6.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Portfolio Showcase 2"},"style":{"spacing":{"padding":{"top":"7rem","bottom":"0em","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-shade","layout":{"type":"constrained","contentSize":"100%"}} -->

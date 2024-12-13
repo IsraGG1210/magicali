@@ -126,11 +126,15 @@
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "color": "#000",
         "colorHover": "",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

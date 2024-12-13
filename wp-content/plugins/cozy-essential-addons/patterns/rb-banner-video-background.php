@@ -6,8 +6,8 @@
  * Categories: reshape-block-patterns, fotawp-banner
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/banner_video.mp4',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/video_icon.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/banner_video.mp4',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/video_icon.png',
 );
 ?>
 <!-- wp:cover {"url":"<?php echo esc_url($ct_patterns_media[0]) ?>","id":657,"dimRatio":70,"customOverlayColor":"#04163a","backgroundType":"video","minHeight":600,"layout":{"type":"constrained"}} -->

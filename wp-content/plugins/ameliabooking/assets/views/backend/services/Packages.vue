@@ -33,10 +33,10 @@
             <!-- Filters -->
             <transition name="fade">
               <div class="am-filter-fields" v-show="filterFields">
-                <el-row :gutter="16">
+                <el-row :gutter="16" class="am-package-appointment-filters">
 
                   <!-- Dates Filter -->
-                  <el-col :sm="24" :md="12" :lg="12" class="v-calendar-column">
+                  <el-col :sm="24" :md="12" :lg="8" class="v-calendar-column">
                     <el-form-item prop="dates">
                       <v-date-picker
                           @input="changeRange"
@@ -54,11 +54,18 @@
                           :formats="vCalendarFormats"
                       >
                       </v-date-picker>
+                      <span
+                          v-if="params.dates"
+                          class="am-v-date-picker-suffix el-input__suffix-inner"
+                          @click="clearDateFilter"
+                      >
+                        <i class="el-select__caret el-input__icon el-icon-circle-close"></i>
+                      </span>
                     </el-form-item>
                   </el-col>
 
                   <!-- Customer Filter -->
-                  <el-col :sm="24" :md="12" :lg="12">
+                  <el-col :sm="24" :md="12" :lg="8">
                     <el-form-item>
                       <el-select
                           v-model="params.customerId"
@@ -75,6 +82,26 @@
                             :key="key"
                             :label="(!item.firstName.trim() && !item.lastName.trim()) ? $root.labels.customer + ' ' + item.id : item.firstName + ' ' + item.lastName"
                             :value="item.id"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+
+                  <!-- Status Filter -->
+                  <el-col :sm="24" :md="12" :lg="8">
+                    <el-form-item>
+                      <el-select
+                          v-model="params.packageStatus"
+                          clearable
+                          :placeholder="$root.labels.package_status"
+                          @change="changeFilter"
+                      >
+                        <el-option
+                            v-for="(item, key) in packageStatuses"
+                            :key="key"
+                            :label="item.label"
+                            :value="item.value"
                         >
                         </el-option>
                       </el-select>
@@ -244,6 +271,9 @@
                               <p class="am-col-title">{{ $root.labels.package_date_purchased }}:</p>
                               <h3>{{ getFrontedFormattedDateFromDateTimeString(packageCustomer.appointments[0].booking.packageCustomerService.packageCustomer.purchased) }}</h3>
                               <span>{{ getFrontedFormattedTimeFromDateTimeString(packageCustomer.appointments[0].booking.packageCustomerService.packageCustomer.purchased) }}</span>
+                              <span :class="'am-appointment-package-purchased-status am-appointment-package-purchased-status-' + getPackagePurchasedExpiration(packageCustomer.appointments[0].booking.packageCustomerService.packageCustomer.end).class">
+                                {{ getPackagePurchasedExpiration(packageCustomer.appointments[0].booking.packageCustomerService.packageCustomer.end).label }}
+                              </span>
                             </el-col>
 
                           </el-row>
@@ -368,6 +398,17 @@
 
           </div>
         </transition>
+
+        <!-- Pagination -->
+        <pagination-block
+          :params="paginationParams"
+          :show="paginationParams.show"
+          :count="paginationParams.total"
+          :label="$root.labels.purchased_packages_pagination"
+          :visible="paginationParams.total > paginationParams.show"
+          @change="getAppointments"
+        >
+        </pagination-block>
       </div>
 
       <!-- Dialog New Appointment -->
@@ -533,12 +574,14 @@ export default {
         filterFields: true,
         form: new Form(),
         params: {
+          page: 1,
           dates: this.getDatePickerInitRange(),
           providers: [],
           search: '',
           status: '',
           services: [],
-          customerId: ''
+          customerId: '',
+          packageStatus: ''
         },
         selectedPaymentModalData: {
           paymentId: null,
@@ -562,7 +605,21 @@ export default {
           error: 0
         },
         packageCustomers: [],
-        newUser: null
+        newUser: null,
+        packageStatuses: [
+          { value: 'approved', label: this.$root.labels.active },
+          { value: 'expired', label: this.$root.labels.expired },
+          { value: 'canceled', label: this.$root.labels.canceled }
+        ],
+        bookingCount: [
+          { value: 1, label: this.$root.labels.available },
+          { value: 0, label: this.$root.labels.fully_booked }
+        ],
+        paginationParams: {
+          page: 1,
+          show: this.$root.settings.general.itemsPerPageBackEnd,
+          total: 0
+        }
       }
     },
 
@@ -599,6 +656,24 @@ export default {
     },
 
     methods: {
+      getPackagePurchasedExpiration (end) {
+        if (end === null) {
+          return { label: this.$root.labels.unlimited, class: 'unlimited' }
+        } else if (this.getDateTime(end) < this.getNowDate()) {
+          return { label: this.$root.labels.expired, class: 'expired' }
+        } else {
+          return { label: (this.$root.labels.expires_on + ' ' + this.getFrontedFormattedDateFromDateTimeString(end)), class: 'active' }
+        }
+      },
+
+      clearDateFilter () {
+        this.params.dates = null
+
+        this.paginationParams.page = 1
+
+        this.getAppointments()
+      },
+
       getPackageDiscountedPrice (packCustomer) {
         let amountData = this.getAmountData(
           packCustomer.tax && packCustomer.tax.length ? packCustomer.tax[0] : null,
@@ -841,11 +916,13 @@ export default {
           params.dates = dates
         }
 
+        params.page = this.paginationParams.page
+
         params.packageId = this.purchasedPackage.id
 
         Object.keys(params).forEach((key) => (!params[key] && params[key] !== 0) && delete params[key])
 
-        this.$http.get(`${this.$root.getAjaxUrl}/appointments`, {
+        this.$http.get(`${this.$root.getAjaxUrl}/package/appointments`, {
           params: this.getAppropriateUrlParams(params)
         })
           .then(response => {
@@ -973,6 +1050,8 @@ export default {
 
             this.packageCustomers = Object.keys(packageCustomers).length === 0 ? [] : packageCustomers
 
+            this.paginationParams.total = response.data.data.totalPackagePurchases
+
             this.changedRange = false
 
             this.fetched = true
@@ -1020,6 +1099,8 @@ export default {
         if (!this.params.customerId) {
           this.searchedCustomers = []
         }
+
+        this.paginationParams.page = 1
 
         this.getAppointments()
       },
@@ -1161,7 +1242,9 @@ export default {
 
     computed: {
       filterApplied () {
-        return !!this.params.services.length || !!this.params.providers.length || !!this.params.customerId || !!this.params.dates.start || !!this.params.dates.end || !!this.params.status
+        return !!this.params.services.length || !!this.params.providers.length || !!this.params.customerId ||
+            (this.params.dates && (!!this.params.dates.start || !!this.params.dates.end)) || !!this.params.status ||
+            !!this.params.packageStatus
       }
     },
 

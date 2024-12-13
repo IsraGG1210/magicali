@@ -332,6 +332,9 @@ class GetAppointmentsCommandHandler extends CommandHandler
 
                 if (!empty($params['timeZone'])) {
                     $timeZone = $params['timeZone'];
+                } elseif (($user && $user->getType() === Entities::PROVIDER) &&
+                    empty($user->getTimeZone()) && !empty(get_option('timezone_string'))) {
+                    $timeZone = get_option('timezone_string');
                 }
 
                 $appointment->getBookingStart()->getValue()->setTimezone(new \DateTimeZone($timeZone));

@@ -10,7 +10,7 @@
     <template #header>
       <span class="am-fcil__filter-buttons">
         <Header
-          v-if="preselectedCategories !== 1 && !shortcodeData.categories_hidden"
+          v-if="preselectedCategories !== 1 && !shortcodeData.categories_hidden && availableCategories.length !== 1"
           :btn-size="filterWidth < 481 ? 'medium' : 'mini'"
           :btn-string="amLabels.back_btn"
           :btn-type="customizedOptions.backBtn.buttonType"
@@ -86,7 +86,7 @@
         </Transition>
         <Transition name="slide-fade">
           <div
-            v-if="preselectedCategories !== 1 && customizedOptions.sidebar.visibility && !sideMenuVisibility && filterMobileMenu"
+            v-if="availableCategories.length !== 1 && preselectedCategories !== 1 && customizedOptions.sidebar.visibility && !sideMenuVisibility && filterMobileMenu"
             class="am-fcil__filter-item am-w100"
             :class="filterClassWidth.category"
           >
@@ -144,7 +144,7 @@
         </div>
       </div>
     </template>
-    <template v-if="preselectedCategories !== 1 && customizedOptions.sidebar.visibility && sideMenuVisibility" #side>
+    <template v-if="availableCategories.length !== 1 && preselectedCategories !== 1 && customizedOptions.sidebar.visibility && sideMenuVisibility" #side>
       <SideMenu
         :menu-items="categoriesMenu"
         :init-selection="categorySelected"
@@ -526,7 +526,7 @@
     ref="ameliaContainer"
     class="am-empty"
   >
-    <img :src="baseUrls.wpAmeliaPluginURL+'/v3/src/assets/img/am-empty-booking.svg'">
+    <img :src="baseUrls.wpAmeliaPluginURL+'/v3/src/assets/img/am-empty-booking.svg'" alt="Empty">
     <div class="am-empty__heading">
       {{ amLabels.oops }}
     </div>
@@ -570,7 +570,6 @@ import AmImagePlaceholder from '../../../_components/image-placeholder/AmImagePl
 import CategoryBooking from '../CategoryBooking/CategoryBooking.vue'
 
 import {
-  defineComponent,
   inject,
   ref,
   reactive,
@@ -713,17 +712,17 @@ let amLabels = computed(() => {
 // * FILTERS
 let searchFilter = ref('')
 
-let iconSearch = defineComponent({
+let iconSearch = {
   components: {IconComponent},
   template: `<IconComponent icon="search"/>`
-})
+}
 
 let filterMobileMenu = ref(true)
 
-let iconSearchMenu = defineComponent({
+let iconSearchMenu = {
   components: {IconComponent},
   template: `<IconComponent icon="filter"/>`
-})
+}
 
 let filterWidth = computed(() => {
   return contentRef.value && contentRef.value.catHeaderWidth ? contentRef.value.catHeaderWidth : 0
@@ -768,7 +767,7 @@ let categoriesMenu = computed(() => {
   })
 
   arrMenu.unshift({
-    id: null,
+    id: 0,
     name: amLabels.value.filter_all
   })
 
@@ -982,8 +981,9 @@ onMounted(() => {
 
 // * Choose category from categories menu
 function selectCategory (category) {
-  categorySelected.value = category.id
-  store.commit('booking/setCategoryId', parseInt(category.id))
+  const categoryId = category.id === 0 ? null : category.id
+  categorySelected.value = categoryId
+  store.commit('booking/setCategoryId',categoryId)
 }
 
 let itemType = inject('itemType')
@@ -1133,7 +1133,7 @@ let cssVars = computed(() => {
     '--am-c-fcil-primary-op20': useColorTransparency(amColors.value.colorPrimary, 0.20),
     '--am-c-fcil-success-op20': useColorTransparency(amColors.value.colorSuccess, 0.20),
     '--am-c-fcil-filter-text-op10': useColorTransparency(amColors.value.colorInpText, 0.1),
-    '--am-w-fcil-main': preselectedCategories.value !== 1 && customizedOptions.value.sidebar.visibility && sideMenuVisibility.value ? 'calc(100% - 220px)' : '100%',
+    '--am-w-fcil-main': availableCategories.value.length !== 1 && preselectedCategories.value !== 1 && customizedOptions.value.sidebar.visibility && sideMenuVisibility.value ? 'calc(100% - 220px)' : '100%',
     '--am-w-fcil-card': contentRef.value && contentRef.value.catFormWidth < 580 ? '100%' : '50%',
   }
 })
@@ -1596,7 +1596,7 @@ export default {
     z-index: 9999999 !important;
 
     * {
-      font-family: var(--am-f-fcil-employee-f);
+      font-family: var(--am-f-fcil-employee-f), sans-serif;
     }
 
     .el-dialog {

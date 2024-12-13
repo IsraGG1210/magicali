@@ -6,11 +6,11 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/testimonial_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/team_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/rating_star.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/testimonial_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/team_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/rating_star.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Testimonials"},"style":{"spacing":{"padding":{"top":"40px","bottom":"100px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0px","bottom":"0px"}}},"backgroundColor":"light-color","layout":{"type":"constrained","contentSize":"1180px"}} -->

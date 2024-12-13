@@ -2,6 +2,7 @@
 
 namespace AmeliaBooking\Application\Services\Stash;
 
+use AmeliaBooking\Application\Services\Booking\EventApplicationService;
 use AmeliaBooking\Application\Services\Location\AbstractLocationApplicationService;
 use AmeliaBooking\Application\Services\Tax\TaxApplicationService;
 use AmeliaBooking\Application\Services\User\ProviderApplicationService;
@@ -29,7 +30,6 @@ use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\CategoryRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\PackageRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\ServiceRepository;
-use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventRepository;
 use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventTagsRepository;
 use AmeliaBooking\Infrastructure\Repository\CustomField\CustomFieldRepository;
 use AmeliaBooking\Infrastructure\Repository\User\ProviderRepository;
@@ -71,6 +71,9 @@ class StashApplicationService
         /** @var ProviderApplicationService $providerAS */
         $providerAS = $this->container->get('application.user.provider.service');
 
+        /** @var EventApplicationService $eventAS */
+        $eventAS = $this->container->get('application.booking.event.service');
+
         /** @var ProviderService $providerService */
         $providerService = $this->container->get('domain.user.provider.service');
 
@@ -92,11 +95,16 @@ class StashApplicationService
         /** @var EventTagsRepository $eventTagsRepository */
         $eventTagsRepository = $this->container->get('domain.booking.event.tag.repository');
 
-        /** @var EventRepository $eventRepository */
-        $eventRepository = $this->container->get('domain.booking.event.repository');
-
         /** @var Collection $events */
-        $events = $eventRepository->getFiltered(['dates' => [DateTimeService::getNowDateTime()], 'show' => 1]);
+        $events = $eventAS->getEventsByCriteria(
+            [
+                'dates' => [DateTimeService::getNowDateTime()],
+                'show'  => 1
+            ],
+            [
+            ],
+            0
+        );
 
         /** @var TaxApplicationService $taxApplicationService */
         $taxApplicationService = $this->container->get('application.tax.service');

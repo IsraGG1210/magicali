@@ -1,6 +1,6 @@
 <?php
 
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyCounter_' . str_replace( '-', '_', $client_id );
 
 wp_localize_script( 'cozy-block-scripts', $cozy_block_var, $attributes );
@@ -22,6 +22,11 @@ BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper">';
 $output .= '<style>' . $block_styles . '</style>';
+
+if ( isset( $attributes['styles']['fontFamily'] ) && ! empty( $attributes['styles']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['styles']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
 $output .= $content;
 $output .= '</div>';
 

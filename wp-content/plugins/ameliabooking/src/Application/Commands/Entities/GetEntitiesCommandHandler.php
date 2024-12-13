@@ -7,6 +7,7 @@ use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Common\Exceptions\AccessDeniedException;
 use AmeliaBooking\Application\Services\Bookable\BookableApplicationService;
 use AmeliaBooking\Application\Services\Bookable\AbstractPackageApplicationService;
+use AmeliaBooking\Application\Services\Booking\EventApplicationService;
 use AmeliaBooking\Application\Services\Coupon\AbstractCouponApplicationService;
 use AmeliaBooking\Application\Services\CustomField\AbstractCustomFieldApplicationService;
 use AmeliaBooking\Application\Services\Helper\HelperService;
@@ -124,22 +125,22 @@ class GetEntitiesCommandHandler extends CommandHandler
 
         /** Events */
         if (in_array(Entities::EVENTS, $params['types'], true)) {
-            /** @var EventRepository $eventRepository */
-            $eventRepository = $this->container->get('domain.booking.event.repository');
-
-            $dateFilter = ['dates' => [DateTimeService::getNowDateTime()], 'itemsPerPage' => 10000, 'page' => 1];
+            /** @var EventApplicationService $eventAS */
+            $eventAS = $this->container->get('application.booking.event.service');
 
             /** @var Collection $events */
-            $events = $eventRepository->getFiltered($dateFilter);
+            $events = $eventAS->getEventsByCriteria(
+                [
+                    'dates' => [DateTimeService::getNowDateTime()],
+                    'page'  => 1,
+                ],
+                [
+                    'fetchEventsPeriods' => true,
+                ],
+                1000
+            );
 
-            /** @var Event $event */
-            foreach ($events->getItems() as $event) {
-                $event->setBookings(new Collection());
-            }
-
-            $resultData['events'] = $events->toArray();
-
-            $resultData['events'] = $eventDS->getShortcodeForEventList($this->container, $resultData['events']);
+            $resultData['events'] = $eventDS->getShortcodeForEventList($this->container, $events->toArray());
         }
 
         /** Event Tags */

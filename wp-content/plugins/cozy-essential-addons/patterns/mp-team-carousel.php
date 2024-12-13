@@ -6,9 +6,9 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/team_1.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/team_2.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/team_3.jpg'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/team_1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/team_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/team_3.jpg'
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Our Team Carousel"},"style":{"spacing":{"padding":{"top":"90px","bottom":"110px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"light-color","layout":{"type":"constrained","contentSize":"1180px"}} -->

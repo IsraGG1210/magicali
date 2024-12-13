@@ -71,7 +71,7 @@
             }
           },
           error: function (xhr, status, error) {
-            console.error("Error:", error);
+            console.log("Error:", error);
           },
         });
       });
@@ -94,84 +94,10 @@
             $("#" + checkboxId).prop("checked", false);
           },
           error: function (xhr, status, error) {
-            console.error("Error:", error);
+            console.log("Error:", error);
           },
         });
       });
-    });
-
-    // Function to retrieve the option value using AJAX
-    function getBlockOption(blockName, checkboxId) {
-      $.ajax({
-        url: ajax_url,
-        method: "POST",
-        data: {
-          action: "get_cozy_block_option",
-          block_name: blockName,
-        },
-        success: function (response) {
-          if ("" === response) {
-            $.ajax({
-              url: ajax_url,
-              method: "POST",
-              data: {
-                action: "update_cozy_block_option",
-                block_name: blockName,
-                checked: !premiumBlocks.includes(blockName)
-                  ? "1"
-                  : isPremium && premiumBlocks.includes(blockName)
-                  ? "1"
-                  : "",
-              },
-              success: function (res) {
-                if (!premiumBlocks.includes(blockName)) {
-                  $("#" + checkboxId).prop("checked", true);
-                }
-
-                if (isPremium && premiumBlocks.includes(blockName)) {
-                  $("#" + checkboxId).prop("checked", true);
-                }
-              },
-              error: function (xhr, status, error) {
-                console.error("Error:", error);
-              },
-            });
-          } else if (
-            ("1" === response || "0" === response) &&
-            !isPremium &&
-            premiumBlocks.includes(blockName)
-          ) {
-            $.ajax({
-              url: ajax_url,
-              method: "POST",
-              data: {
-                action: "update_cozy_block_option",
-                block_name: blockName,
-                checked: "",
-              },
-              success: function (res) {
-                $("#" + checkboxId).prop("checked", false);
-              },
-              error: function (xhr, status, error) {
-                console.error("Error:", error);
-              },
-            });
-          } else {
-            // Set the checkbox based on the retrieved value
-            $("#" + checkboxId).prop("checked", response === "1");
-          }
-        },
-        error: function (xhr, status, error) {
-          console.error("Error:", error);
-        },
-      });
-    }
-
-    // Call the function for each checkbox on page load
-    $(".cozy-block-active").each(function () {
-      var blockName = $(this).attr("name");
-      var checkboxId = $(this).attr("id");
-      getBlockOption(blockName, checkboxId);
     });
 
     // Event listener for changes in any checkbox
@@ -191,7 +117,29 @@
           // console.log(`${blockName}: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
+        },
+      });
+    });
+
+    // Block CPT enable/disable
+    $(".ca__block-cpt").change(function () {
+      const templateName = $(this).attr("name");
+      const isChecked = $(this).is(":checked");
+
+      $.ajax({
+        url: ajax_url,
+        method: "POST",
+        data: {
+          action: "toggle_ca_cpt_enable",
+          templateName: templateName,
+          checked: isChecked ? "1" : "0",
+        },
+        success: function (response) {
+          // console.log(`${templateName}: Active status(${isChecked})`);
+        },
+        error: function (xhr, status, error) {
+          console.log("Error:", error);
         },
       });
     });
@@ -227,7 +175,7 @@
                 // console.log(`Elementor Widgets: Active status(${isChecked})`);
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           } else {
@@ -242,7 +190,7 @@
                 // console.log(`Elementor Widgets: Active status(${isChecked})`);
               },
               error: function (xhr, status, error) {
-                console.error("Error:", error);
+                console.log("Error:", error);
               },
             });
           }
@@ -254,7 +202,7 @@
           }
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -278,7 +226,7 @@
           // console.log(`Elementor Widgets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -294,7 +242,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -318,7 +266,7 @@
           // console.log(`CT Header & Footer: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -334,7 +282,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -358,7 +306,7 @@
           // console.log(`CT Custom Assets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -374,7 +322,7 @@
           $("#" + checkboxId).prop("checked", response === "1");
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     }
@@ -398,7 +346,7 @@
           // console.log(`CT Custom Assets: Active status(${isChecked})`);
         },
         error: function (xhr, status, error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
         },
       });
     });
@@ -420,6 +368,19 @@
         },
       });
     });
+
+    $(".ca-elementor__removal-notice").on(
+      "click",
+      ".notice-dismiss",
+      function () {
+        $.ajax({
+          url: ajax_url,
+          data: {
+            action: "ca_elementor_removal_dismissable_notice",
+          },
+        });
+      }
+    );
   });
 
   function changeTab(index) {

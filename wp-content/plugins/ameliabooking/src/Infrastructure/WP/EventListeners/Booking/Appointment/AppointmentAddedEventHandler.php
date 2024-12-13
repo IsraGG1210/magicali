@@ -220,7 +220,7 @@ class AppointmentAddedEventHandler
                 }
             }
 
-            $emailNotificationService->sendAppointmentStatusNotifications($appointment, false, true, true);
+            $emailNotificationService->sendAppointmentStatusNotifications($appointment, false, true, true, !empty($settingsService->getSetting('notifications', 'sendInvoice')));
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendAppointmentStatusNotifications($appointment, false, true);

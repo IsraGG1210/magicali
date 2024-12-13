@@ -130,6 +130,7 @@
           }
         },
         "count": {
+          "enabled": true,
           "margin": {
             "top": 2,
             "right": 0

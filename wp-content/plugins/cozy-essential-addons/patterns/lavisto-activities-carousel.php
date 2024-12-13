@@ -6,10 +6,10 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/climbing.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/bike_ride.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/snow.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/boating.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/climbing.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/bike_ride.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/snow.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/boating.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Local Tours Activisties"},"style":{"spacing":{"padding":{"top":"7rem","bottom":"8em","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1240px"}} -->

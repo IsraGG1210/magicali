@@ -6,12 +6,12 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/feature_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/feature_6.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Why Choose Us"},"style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"0","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

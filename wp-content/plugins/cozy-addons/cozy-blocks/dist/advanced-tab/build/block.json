@@ -177,20 +177,28 @@
     "titleTypography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "color": "#000",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     },
     "typography": {
       "type": "object",
       "default": {
-        "fontFamily": "sans-serif",
+        "fontFamily": "Public Sans",
         "fontSize": 16,
         "color": "#fff",
         "colorActive": "#5566ca",
-        "fontWeight": 400
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

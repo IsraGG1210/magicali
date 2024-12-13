@@ -5,9 +5,9 @@ namespace AmeliaBooking\Infrastructure\Services\LessonSpace;
 use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Booking\Appointment\Appointment;
+use AmeliaBooking\Domain\Entity\Booking\Event\Event;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
-use AmeliaBooking\Infrastructure\Routes\Booking\Event\Event;
 use Interop\Container\Exception\ContainerException;
 
 abstract class AbstractLessonSpaceService

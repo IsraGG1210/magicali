@@ -6,10 +6,10 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/reviews_star.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/reviews_star.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Testimonials"},"style":{"spacing":{"padding":{"top":"0px","bottom":"0px","left":"0","right":"0"},"margin":{"top":"0px","bottom":"0px"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"100%"}} -->

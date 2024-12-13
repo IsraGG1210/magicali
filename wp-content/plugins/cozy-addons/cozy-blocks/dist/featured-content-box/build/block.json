@@ -64,15 +64,24 @@
       "type": "object",
       "default": {
         "enabled": true,
+        "gap": 4,
         "width": 10,
         "height": 10,
         "borderRadius": 10,
         "activeWidth": 10,
+        "activeHeight": 10,
         "activeBorderRadius": 10,
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": 0,
         "activeColor": "#007cba",
         "color": "#252525",
         "activeColorHover": "#164861",
         "colorHover": "#a5a5a5",
+        "activeBorderHover": "",
         "align": "center",
         "verticalPosition": 0,
         "left": "0px",
@@ -87,10 +96,16 @@
         "iconBoxWidth": 35,
         "iconBoxHeight": 35,
         "borderRadius": 50,
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
         "backgroundColor": "#fff",
         "color": "#007cba",
         "backgroundColorHover": "#007cba",
-        "colorHover": "#fff"
+        "colorHover": "#fff",
+        "borderHover": ""
       }
     },
     "sliderOptions": {
@@ -100,6 +115,7 @@
         "autoplay": {
           "status": true,
           "pauseOnMouseEnter": true,
+          "reverseDirection": false,
           "delay": 2500
         },
         "centeredSlides": false,

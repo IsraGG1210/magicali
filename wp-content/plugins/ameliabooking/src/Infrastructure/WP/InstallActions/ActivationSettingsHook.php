@@ -257,6 +257,7 @@ class ActivationSettingsHook
             'rejectErrorUrl'       => '',
             'breakReplacement'     => '<br>',
             'pendingReminder'      => false,
+            'sendInvoice'          => false,
             'whatsAppEnabled'      =>
                 $savedSettings &&
                 !empty($savedSettings['whatsAppPhoneID']) &&

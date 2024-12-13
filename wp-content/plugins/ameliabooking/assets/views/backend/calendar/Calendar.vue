@@ -342,7 +342,7 @@
           $this.fetched = true
           $this.options.fetched = true
         }, {
-          types: ['locations', 'employees', 'categories', 'custom_fields', 'tags', 'packages', 'resources'],
+          types: ['locations', 'employees', 'categories', 'custom_fields', 'tags', 'packages', 'resources', 'coupons'],
           page: 'calendar',
           isFrontEnd: false,
           isPanel: false

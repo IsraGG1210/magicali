@@ -6,7 +6,7 @@
  * Categories: reshape-block-patterns
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/p1.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/p1.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"5.83rem","bottom":"8rem","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->

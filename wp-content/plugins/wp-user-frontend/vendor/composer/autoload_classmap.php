@@ -152,6 +152,7 @@ return array(
     'WeDevs\\Wpuf\\Encryption_Helper' => $baseDir . '/includes/Encryption_Helper.php',
     'WeDevs\\Wpuf\\Fields\\Field_Contract' => $baseDir . '/includes/Fields/Field_Contract.php',
     'WeDevs\\Wpuf\\Fields\\Form_Field_Checkbox' => $baseDir . '/includes/Fields/Form_Field_Checkbox.php',
+    'WeDevs\\Wpuf\\Fields\\Form_Field_Cloudflare_Turnstile' => $baseDir . '/includes/Fields/Form_Field_Cloudflare_Turnstile.php',
     'WeDevs\\Wpuf\\Fields\\Form_Field_Column' => $baseDir . '/includes/Fields/Form_Field_Column.php',
     'WeDevs\\Wpuf\\Fields\\Form_Field_Dropdown' => $baseDir . '/includes/Fields/Form_Field_Dropdown.php',
     'WeDevs\\Wpuf\\Fields\\Form_Field_Email' => $baseDir . '/includes/Fields/Form_Field_Email.php',

@@ -11,8 +11,14 @@ $container_color = array(
 	'bg'     => isset( $attributes['containerStyles']['bgColor'] ) ? $attributes['containerStyles']['bgColor'] : '',
 );
 
-$title_color = array(
+$title_color  = array(
 	'text' => isset( $attributes['titleTypography']['color'] ) ? $attributes['titleTypography']['color'] : '',
+);
+$title_styles = array(
+	'letter_case'    => isset( $attributes['titleTypography']['letterCase'] ) ? $attributes['titleTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['titleTypography']['decoration'] ) ? $attributes['titleTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['titleTypography']['lineHeight'] ) ? $attributes['titleTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['titleTypography']['letterSpacing'] ) ? $attributes['titleTypography']['letterSpacing'] : '',
 );
 
 $tab_title_color = array(
@@ -20,14 +26,20 @@ $tab_title_color = array(
 	'text'   => isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '',
 );
 
-$tab_width = isset( $attributes['tabStyles']['width'] ) ? $attributes['tabStyles']['width'] : '';
-$tab_after = $attributes['enableTabAfter'] ? $attributes['separatorStyles']['border']['width']['bottom'] . 'px' : '';
-$tab_color = array(
+$tab_width  = isset( $attributes['tabStyles']['width'] ) ? $attributes['tabStyles']['width'] : '';
+$tab_after  = $attributes['enableTabAfter'] ? $attributes['separatorStyles']['border']['width']['bottom'] . 'px' : '';
+$tab_color  = array(
 	'border'        => isset( $attributes['tabStyles']['border']['color'] ) ? $attributes['tabStyles']['border']['color'] : '',
 	'bg'            => isset( $attributes['tabStyles']['bgColor'] ) ? $attributes['tabStyles']['bgColor'] : '',
 	'active_bg'     => isset( $attributes['tabStyles']['bgColorActive'] ) ? $attributes['tabStyles']['bgColorActive'] : '',
 	'active_text'   => isset( $attributes['typography']['colorActive'] ) ? $attributes['typography']['colorActive'] : '',
 	'active_border' => isset( $attributes['tabStyles']['border']['colorActive'] ) ? $attributes['tabStyles']['border']['colorActive'] : '',
+);
+$tab_styles = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
 );
 
 $icon_color = array(
@@ -55,6 +67,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['titleTypography']['fontSize']}px;
     font-family: {$attributes['titleTypography']['fontFamily']};
     color: {$title_color['text']};
+    text-tranform: {$title_styles['letter_case']};
+    text-decoration: {$title_styles['decoration']};
+    line-height: {$title_styles['line_height']};
+    letter-spacing: {$title_styles['letter_spacing']};
 }
 
 #$block_id .cozy-tab-title {
@@ -65,6 +81,10 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
     font-family: {$attributes['typography']['fontFamily']};
+    text-tranform: {$tab_styles['letter_case']};
+    text-decoration: {$tab_styles['decoration']};
+    line-height: {$tab_styles['line_height']};
+    letter-spacing: {$tab_styles['letter_spacing']};
     color: {$tab_title_color['text']};
 }
 
@@ -145,6 +165,15 @@ BLOCK_STYLES;
 
 $output  = '<div class="cozy-block-wrapper">';
 $output .= '<style>' . $block_styles . '</style>';
+
+if ( isset( $attributes['titleTypography']['fontFamily'] ) && ! empty( $attributes['titleTypography']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['titleTypography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
+if ( isset( $attributes['typography']['fontFamily'] ) && ! empty( $attributes['typography']['fontFamily'] ) ) {
+	$output .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' . $attributes['typography']['fontFamily'] . ':wght@100;200;300;400;500;600;700;800;900" />';
+}
+
 $output .= $content;
 $output .= '</div>';
 

@@ -522,6 +522,7 @@ class EventFactory
                         'wcOrderId'         => !empty($row['payment_wcOrderId']) ? $row['payment_wcOrderId'] : null,
                         'wcOrderItemId'     => !empty($row['payment_wcOrderItemId']) ?
                             $row['payment_wcOrderItemId'] : null,
+                        'invoiceNumber'     => !empty($row['payment_invoiceNumber']) ? $row['payment_invoiceNumber'] : null,
                     ];
             }
 

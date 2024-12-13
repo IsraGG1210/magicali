@@ -6,7 +6,7 @@
  * Categories: mighty-plumbers
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/plumber.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/plumber.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Request Quote"},"style":{"spacing":{"padding":{"left":"var:preset|spacing|40","right":"var:preset|spacing|40","top":"80px","bottom":"80px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

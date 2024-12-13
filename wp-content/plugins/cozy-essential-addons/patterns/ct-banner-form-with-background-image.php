@@ -6,7 +6,7 @@
  * Categories: ct-patterns,fotawp-banner
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/patterns-media/ct_pattern_img.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/patterns-media/ct_pattern_img.jpg',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"0","left":"0","bottom":"0rem"}}},"layout":{"type":"constrained","contentSize":"100%"}} -->

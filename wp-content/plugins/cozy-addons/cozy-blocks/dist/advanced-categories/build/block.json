@@ -92,6 +92,8 @@
     "enableOptions": {
       "type": "object",
       "default": {
+        "linkCategory": true,
+        "openNewTab": true,
         "image": true,
         "name": true,
         "icon": true,
@@ -171,6 +173,10 @@
         "fontSize": "18px",
         "fontFamily": "",
         "fontWeight": "600",
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": "#5566ca",
         "colorHover": "#f90"
       }

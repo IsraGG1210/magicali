@@ -6,7 +6,7 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mp/plumber.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mp/plumber.png',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Request Quote Form"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->

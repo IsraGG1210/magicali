@@ -6,7 +6,7 @@
  * Categories: handyman-blocks
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hb/banner_bg.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hb/banner_bg.jpg',
 );
 ?>
 <!-- wp:group {"metadata":{"name":"Banner With Quote Form"},"style":{"spacing":{"blockGap":"0","padding":{"right":"0","left":"0","top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"dimensions":{"minHeight":""}},"gradient":"primary-gradient","layout":{"type":"constrained","contentSize":"100%"}} -->

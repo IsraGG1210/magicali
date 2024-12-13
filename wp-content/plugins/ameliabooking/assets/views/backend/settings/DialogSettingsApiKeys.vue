@@ -17,7 +17,7 @@
       <LicenceBlockHeader :licence="'developer'"/>
 
       <!-- Form -->
-      <el-form :class="licenceClassDisabled()" :model="settings" ref="settings" label-position="top" @submit.prevent="onSubmit">
+      <el-form :class="licenceClassDisabled('developer')" :model="settings" ref="settings" label-position="top" @submit.prevent="onSubmit">
 
         <!-- API KEY URL -->
         <el-alert

@@ -9,6 +9,18 @@ $block_id = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 $width1 = $attributes['gridOptions']['displayColumn'] <= 3 ? $attributes['gridOptions']['displayColumn'] : 3;
 $width2 = $attributes['gridOptions']['displayColumn'] <= 2 ? $attributes['gridOptions']['displayColumn'] : 2;
 
+$bullet_styles = array(
+	'gap'    => isset( $attributes['carouselOptions']['pagination']['gap'] ) ? $attributes['carouselOptions']['pagination']['gap'] : 4,
+	'active' => array(
+		'height' => isset( $attributes['carouselOptions']['pagination']['activeHeight'] ) ? $attributes['carouselOptions']['pagination']['activeHeight'] : 10,
+		'border' => isset( $attributes['carouselOptions']['pagination']['activeBorder'] ) ? cozy_render_TRBL( 'outline', $attributes['carouselOptions']['pagination']['activeBorder'] ) : '',
+		'offset' => isset( $attributes['carouselOptions']['pagination']['activeOffset'] ) ? $attributes['carouselOptions']['pagination']['activeOffset'] : '',
+	),
+	'color'  => array(
+		'active_border_hover' => isset( $attributes['carouselOptions']['pagination']['activeBorderHover'] ) ? $attributes['carouselOptions']['pagination']['activeBorderHover'] : '',
+	),
+);
+
 $block_styles = <<<BLOCK_STYLES
 @media screen and (max-width: 1024px) {
     #$block_id.display-grid:not(.has-masonry) .cozy-block-grid-wrapper {
@@ -44,6 +56,18 @@ $block_styles = <<<BLOCK_STYLES
     #$block_id.display-grid.has-masonry .cozy-block-grid-wrapper {
         column-count: 1 !important;
     }
+}
+
+#$block_id.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 var(--swiper-pagination-bullet-horizontal-gap, {$bullet_styles['gap']}px);
+}
+#$block_id .swiper-pagination-bullet-active {
+    height: {$bullet_styles['active']['height']}px !important;
+    {$bullet_styles['active']['border']}
+    outline-offset: {$bullet_styles['active']['offset']}px;
+}
+#$block_id .swiper-pagination .swiper-pagination-bullet-active:hover {
+    outline-color: {$bullet_styles['color']['active_border_hover']};
 }
 BLOCK_STYLES;
 

@@ -6,9 +6,9 @@
  * Categories: mighty-builders
  */
 $ct_patterns_media = array(
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/banner_image.jpg',
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/banner_image_2.jpg',
-	COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/banner_image_3.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/banner_image.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/banner_image_2.jpg',
+	COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/banner_image_3.jpg',
 );
 ?>
 

@@ -2,7 +2,7 @@
 
 use CozyBlock\Helpers\CozyHelpers;
 
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id      = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $cozy_block_var = 'cozyPortfolioGallery_' . str_replace( '-', '_', $client_id );
 
 $attributes['portfolioTemplates'] = array( ...CozyHelpers::get_cozy_portfolio_gallery_templates() );
@@ -44,9 +44,21 @@ $title_color   = array(
 	'text'       => isset( $attributes['titleTypography']['color'] ) ? $attributes['titleTypography']['color'] : '',
 	'text_hover' => isset( $attributes['titleTypography']['colorHover'] ) ? $attributes['titleTypography']['colorHover'] : '',
 );
+$title_styles  = array(
+	'letter_case'    => isset( $attributes['titleTypography']['letterCase'] ) ? $attributes['titleTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['titleTypography']['decoration'] ) ? $attributes['titleTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['titleTypography']['lineHeight'] ) ? $attributes['titleTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['titleTypography']['letterSpacing'] ) ? $attributes['titleTypography']['letterSpacing'] : '',
+);
 
-$subtitle_color = array(
+$subtitle_color  = array(
 	'text' => isset( $attributes['subtitleTypography']['color'] ) ? $attributes['subtitleTypography']['color'] : '',
+);
+$subtitle_styles = array(
+	'letter_case'    => isset( $attributes['subtitleTypography']['letterCase'] ) ? $attributes['subtitleTypography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['subtitleTypography']['decoration'] ) ? $attributes['subtitleTypography']['decoration'] : '',
+	'line_height'    => isset( $attributes['subtitleTypography']['lineHeight'] ) ? $attributes['subtitleTypography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['subtitleTypography']['letterSpacing'] ) ? $attributes['subtitleTypography']['letterSpacing'] : '',
 );
 
 $isotope_tab_align      = isset( $attributes['isotopeStyles']['tabAlign'] ) ? $attributes['isotopeStyles']['tabAlign'] : '';
@@ -81,6 +93,12 @@ $isotope_color          = array(
 	'text_active'   => isset( $attributes['isotopeStyles']['active']['color'] ) ? $attributes['isotopeStyles']['active']['color'] : '',
 	'bg_active'     => isset( $attributes['isotopeStyles']['active']['bgColor'] ) ? $attributes['isotopeStyles']['active']['bgColor'] : '',
 	'shadow_active' => isset( $attributes['isotopeStyles']['active']['shadow']['color'] ) ? $attributes['isotopeStyles']['active']['shadow']['color'] : '',
+);
+$isotope_styles         = array(
+	'letter_case'    => isset( $attributes['isotopeStyles']['letterCase'] ) ? $attributes['isotopeStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['isotopeStyles']['decoration'] ) ? $attributes['isotopeStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['isotopeStyles']['lineHeight'] ) ? $attributes['isotopeStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['isotopeStyles']['letterSpacing'] ) ? $attributes['isotopeStyles']['letterSpacing'] : '',
 );
 
 $search_bar_padding = cozy_render_TRBL( 'padding', $attributes['searchBar']['padding'] );
@@ -134,6 +152,12 @@ $cat_color   = array(
 	'text' => isset( $attributes['catStyles']['color'] ) ? $attributes['catStyles']['color'] : '',
 	'bg'   => isset( $attributes['catStyles']['bgColor'] ) ? $attributes['catStyles']['bgColor'] : '',
 );
+$cat_styles  = array(
+	'letter_case'    => isset( $attributes['catStyles']['letterCase'] ) ? $attributes['catStyles']['letterCase'] : '',
+	'decoration'     => isset( $attributes['catStyles']['decoration'] ) ? $attributes['catStyles']['decoration'] : '',
+	'line_height'    => isset( $attributes['catStyles']['lineHeight'] ) ? $attributes['catStyles']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['catStyles']['letterSpacing'] ) ? $attributes['catStyles']['letterSpacing'] : '',
+);
 
 $ajax_button_padding = cozy_render_TRBL( 'padding', $attributes['ajaxButton']['padding'] );
 $ajax_button_border  = isset( $attributes['ajaxButton']['border'] ) ? cozy_render_TRBL( 'border', $attributes['ajaxButton']['border'] ) : '';
@@ -144,6 +168,12 @@ $ajax_button_color   = array(
 	'bg'           => isset( $attributes['ajaxButton']['bgColor'] ) ? $attributes['ajaxButton']['bgColor'] : '',
 	'bg_hover'     => isset( $attributes['ajaxButton']['bgColorHover'] ) ? $attributes['ajaxButton']['bgColorHover'] : '',
 	'border_hover' => isset( $attributes['ajaxButton']['borderColorHover'] ) ? $attributes['ajaxButton']['borderColorHover'] : '',
+);
+$ajax_btn_styles     = array(
+	'letter_case'    => isset( $attributes['ajaxButton']['letterCase'] ) ? $attributes['ajaxButton']['letterCase'] : '',
+	'decoration'     => isset( $attributes['ajaxButton']['decoration'] ) ? $attributes['ajaxButton']['decoration'] : '',
+	'line_height'    => isset( $attributes['ajaxButton']['lineHeight'] ) ? $attributes['ajaxButton']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['ajaxButton']['letterSpacing'] ) ? $attributes['ajaxButton']['letterSpacing'] : '',
 );
 
 $nav_size       = isset( $attributes['navigation']['size'] ) ? $attributes['navigation']['size'] : '20px';
@@ -194,6 +224,10 @@ $block_styles = <<<BLOCK_STYLES
     font-family: {$attributes['titleTypography']['fontFamily']};
     font-weight: {$attributes['titleTypography']['fontWeight']};
     font-size: {$attributes['titleTypography']['fontSize']};
+    text-transform: {$title_styles['letter_case']};
+    text-decoration: {$title_styles['decoration']};
+    line-height: {$title_styles['line_height']};
+    letter-spacing: {$title_styles['letter_spacing']};
     color: {$title_color['text']};
 }
 #$block_id .cozy-portfolio-gallery__title:hover, #$block_id .cozy-portfolio-gallery__title:hover a {
@@ -204,6 +238,10 @@ $block_styles = <<<BLOCK_STYLES
     font-family: {$attributes['subtitleTypography']['fontFamily']};
     font-weight: {$attributes['subtitleTypography']['fontWeight']};
     font-size: {$attributes['subtitleTypography']['fontSize']};
+    text-transform: {$subtitle_styles['letter_case']};
+    text-decoration: {$subtitle_styles['decoration']};
+    line-height: {$subtitle_styles['line_height']};
+    letter-spacing: {$subtitle_styles['letter_spacing']};
     color: {$subtitle_color['text']};
 }
 
@@ -268,6 +306,10 @@ $block_styles = <<<BLOCK_STYLES
     font-family: {$attributes['isotopeStyles']['fontFamily']};
     font-weight: {$attributes['isotopeStyles']['fontWeight']};
     font-size: {$attributes['isotopeStyles']['fontSize']};
+    text-transform: {$isotope_styles['letter_case']};
+    text-decoration: {$isotope_styles['decoration']};
+    line-height: {$isotope_styles['line_height']};
+    letter-spacing: {$isotope_styles['letter_spacing']};
 }
 #$block_id.layout-grid.has-isotope .cozy-isotope-filter__label {
     {$isotope_padding}
@@ -402,6 +444,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['catStyles']['fontSize']};
     font-weight: {$attributes['catStyles']['fontWeight']};
     font-family: {$attributes['catStyles']['fontFamily']};
+    text-transform: {$cat_styles['letter_case']};
+    text-decoration: {$cat_styles['decoration']};
+    line-height: {$cat_styles['line_height']};
+    letter-spacing: {$cat_styles['letter_spacing']};
 }
 #$block_id.has-popup-view .cozy-popup-content__wrapper > .cozy-popup-content__sticky .cozy-portfolio-gallery__cpt .cozy-portfolio-gallery__url a {
     color: {$portfolio_cpt_color['link']};
@@ -434,6 +480,10 @@ $block_styles = <<<BLOCK_STYLES
     font-size: {$attributes['ajaxButton']['fontSize']};
     font-weight: {$attributes['ajaxButton']['fontWeight']};
     font-family: {$attributes['ajaxButton']['fontFamily']};
+    text-transform: {$ajax_btn_styles['letter_case']};
+    text-decoration: {$ajax_btn_styles['decoration']};
+    line-height: {$ajax_btn_styles['line_height']};
+    letter-spacing: {$ajax_btn_styles['letter_spacing']};
 }
 #$block_id .cozy-dynamic-loader:hover {
     background-color: {$ajax_button_color['bg_hover']};

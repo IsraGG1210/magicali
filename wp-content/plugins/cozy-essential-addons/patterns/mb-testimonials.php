@@ -6,10 +6,10 @@
  * Categories: mighty-builders
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/mb/rating_star.png'
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/hello-agency-assets/testimonial_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/mb/rating_star.png'
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"100px","bottom":"100px","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"margin":{"top":"0px","bottom":"0px"}}},"gradient":"primary-gradient","layout":{"type":"constrained","contentSize":"100%"}} -->

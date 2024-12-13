@@ -1063,7 +1063,7 @@
 
     computed: {
       filterApplied () {
-        return !!this.params.search || (this.params.dates && (!!this.params.dates.start || !!this.params.dates.end))
+        return !!this.params.search || !!this.params.locationId || !!this.params.dates || !!this.params.customerId || (this.params.dates && (!!this.params.dates.start || !!this.params.dates.end))
       },
       eventCustomerIds () {
         return this.eventBookings.map(event => event.customerId)

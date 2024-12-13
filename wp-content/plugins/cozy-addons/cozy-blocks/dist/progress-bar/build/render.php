@@ -31,7 +31,7 @@ $block_styles = <<<BLOCK_STYLES
     font: {$attributes['labelTypography']['fontWeight']} {$attributes['labelTypography']['fontSize']}px {$attributes['labelTypography']['fontFamily']};
     color: {$label_color['text']};
 }
-#$block_id .label-wrapper.display-flex.justify-spread {
+.cozy-block-wrapper.$block_id .label-wrapper.display-flex.justify-spread {
     margin-bottom: {$attributes['label']['marginBottom']}px;
 }
 #$block_id {

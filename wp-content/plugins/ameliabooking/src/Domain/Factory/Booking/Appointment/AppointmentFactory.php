@@ -247,6 +247,7 @@ class AppointmentFactory
                         'parentId'          => !empty($row['payment_parentId']) ? $row['payment_parentId'] : null,
                         'amount'            => $row['payment_amount'],
                         'data'              => $row['payment_data'],
+                        'invoiceNumber'     => !empty($row['payment_invoiceNumber']) ? $row['payment_invoiceNumber'] : null,
                         'wcOrderId'         => !empty($row['payment_wcOrderId']) ? $row['payment_wcOrderId'] : null,
                         'wcOrderItemId'     => !empty($row['payment_wcOrderItemId']) ?
                             $row['payment_wcOrderItemId'] : null,

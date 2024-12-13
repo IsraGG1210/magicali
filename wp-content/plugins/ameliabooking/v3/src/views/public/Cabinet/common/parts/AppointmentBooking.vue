@@ -473,7 +473,7 @@ function processBooking () {
 }
 
 function getDateTimeData (useUtc) {
-  let timeZone = store.getters['cabinet/getTimeZone'] ? store.getters['cabinet/getTimeZone'] : 'UTC'
+  let timeZone = useUtc ? 'UTC' : store.getters['cabinet/getTimeZone']
 
   let localBookingStart = appointmentDate.value + ' ' + appointmentTime.value
 
@@ -556,13 +556,18 @@ function rescheduleBooking () {
 function packageBookingApp () {
   calendarRef.value.calendarSlotsLoading = true
 
-  let bookingDateTimeData = getDateTimeData(useCurrentTimeZone() === store.getters['cabinet/getTimeZone'])
+  let bookingDateTimeData = getDateTimeData(
+    amSettings.general.showClientTimeZone &&
+    store.getters['cabinet/getTimeZone'] === useCurrentTimeZone()
+  )
 
   let data = JSON.parse(JSON.stringify(props.appointment))
 
   data.bookingStart = bookingDateTimeData.bookingStart
 
   data.bookings[0].utcOffset = bookingDateTimeData.utcOffset
+
+  data.bookings[0].timeZone = bookingDateTimeData.timeZone
 
   data.providerId = parseInt(appointmentProviderId.value)
 

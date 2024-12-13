@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+require_once __DIR__ . '/../utils/utilities.php';
+
 class Tt4b_Mapi_Class {
 
 	/**
@@ -29,6 +31,13 @@ class Tt4b_Mapi_Class {
 	protected $tbp_url;
 
 	/**
+	 * The plugin endpoint base url.
+	 *
+	 * @var string
+	 */
+	protected $plugin_url;
+
+	/**
 	 * The wc_get_logger interface.
 	 *
 	 * @var WC_Logger_Interface
@@ -41,17 +50,18 @@ class Tt4b_Mapi_Class {
 	 * @return void
 	 */
 	public function __construct( Logger $logger ) {
-		$this->mapi_url = 'https://business-api.tiktok.com/open_api/';
-		$this->tbp_url  = 'https://business-api.tiktok.com/tbp/';
-		$this->logger   = $logger;
+		$this->mapi_url   = 'https://business-api.tiktok.com/open_api/';
+		$this->tbp_url    = 'https://business-api.tiktok.com/tbp/';
+		$this->plugin_url = 'https://business-api.tiktok.com/plugin/';
+		$this->logger     = $logger;
 	}
 
 	/**
 	 * Initializes actions related to Tt4b_Mapi_Class such as eligibility information collection
 	 */
 	public function init() {
-		add_action( 'tt4b_trust_signal_collection', [ $this, 'retrieve_eligibility_information' ], 1, 0 );
-		add_action( 'tt4b_trust_signal_helper', [ $this, 'retrieve_eligibility_helper' ], 2, 1 );
+		add_action( 'tt4b_trust_signal_collection', array( $this, 'retrieve_eligibility_information' ), 1, 0 );
+		add_action( 'tt4b_trust_signal_helper', array( $this, 'retrieve_eligibility_helper' ), 2, 1 );
 	}
 
 	/**
@@ -66,15 +76,15 @@ class Tt4b_Mapi_Class {
 	 */
 	public function mapi_post( $endpoint, $access_token, $params, $version ) {
 		$url  = $this->mapi_url . $version . '/' . $endpoint;
-		$args = [
+		$args = array(
 			'method'      => 'POST',
 			'data_format' => 'body',
-			'headers'     => [
+			'headers'     => array(
 				'Access-Token' => $access_token,
 				'Content-Type' => 'application/json',
-			],
+			),
 			'body'        => json_encode( $params ),
-		];
+		);
 		$this->logger->log_request( $url, $args );
 		$response = wp_remote_post( $url, $args );
 		$this->logger->log_response( __METHOD__, $response );
@@ -94,13 +104,13 @@ class Tt4b_Mapi_Class {
 	 */
 	public function mapi_get( $endpoint, $access_token, $params, $version ) {
 		$url  = $this->mapi_url . $version . '/' . $endpoint . '?' . http_build_query( $params );
-		$args = [
+		$args = array(
 			'method'  => 'GET',
-			'headers' => [
+			'headers' => array(
 				'Access-Token' => $access_token,
 				'Content-Type' => 'application/json',
-			],
-		];
+			),
+		);
 		$this->logger->log_request( $url, $args );
 		$result = wp_remote_get( $url, $args );
 		$this->logger->log_response( __METHOD__, $result );
@@ -125,11 +135,11 @@ class Tt4b_Mapi_Class {
 		}
 
 		$url    = 'tbp/business_profile/get/';
-		$params = [
+		$params = array(
 			'business_platform'    => 'WOO_COMMERCE',
 			'external_business_id' => $external_business_id,
 			'full_data'            => 1,
-		];
+		);
 		$result = $this->mapi_get( $url, $access_token, $params, 'v1.2' );
 		return $result;
 	}
@@ -143,7 +153,7 @@ class Tt4b_Mapi_Class {
 	public function get_user_location() {
 		// returns a raw API response from TikTok api/user/location endpoint
 		$url = 'https://ads.tiktok.com/creative_hub_server/api/user/location';
-		$this->logger->log_request( $url, [] );
+		$this->logger->log_request( $url, array() );
 		$result = wp_remote_get( $url );
 		$this->logger->log_response( __METHOD__, $result );
 		return wp_remote_retrieve_body( $result );
@@ -157,21 +167,30 @@ class Tt4b_Mapi_Class {
 	 * @param string $endpoint      The endpoint
 	 * @param string $version       The version
 	 * @param array  $params        The body of the request
+	 * @param int    $tbp_api_type  Which url to use based on the TBPApi abstract class
 	 *
 	 * @return string
 	 */
-	public function tbp_post( $external_data, $endpoint, $version, $params ) {
+	public function tbp_post( $external_data, $endpoint, $version, $params, $tbp_api_type ) {
 		// posts to TBP
-		$base_url = $this->tbp_url . $version . '/' . $endpoint;
+		switch ( $tbp_api_type ) {
+			case TBPApi::PLUGIN:
+				$domain = $this->plugin_url;
+				break;
+			default:
+				$domain = $this->tbp_url;
+				break;
+		}
+		$base_url = $domain . $version . '/' . $endpoint;
 		$url      = $base_url . '?external_data=' . $external_data;
-		$args     = [
+		$args     = array(
 			'method'      => 'POST',
 			'data_format' => 'body',
-			'headers'     => [
+			'headers'     => array(
 				'Content-Type' => 'application/json',
-			],
+			),
 			'body'        => json_encode( $params ),
-		];
+		);
 		$this->logger->log_request( $url, $args );
 		$response = wp_remote_post( $url, $args );
 		$this->logger->log_response( __METHOD__, $response );
@@ -197,35 +216,35 @@ class Tt4b_Mapi_Class {
 		}
 
 		$url             = 'tbp/business_profile/store/update/';
-		$net_gmv         = [
-			[
+		$net_gmv         = array(
+			array(
 				'interval' => 'LIFETIME',
 				'max'      => $total_gmv,
 				'min'      => $total_gmv,
 				'unit'     => 'CURRENCY',
-			],
-		];
-		$net_order_count = [
-			[
+			),
+		);
+		$net_order_count = array(
+			array(
 				'interval' => 'LIFETIME',
 				'max'      => $total_orders,
 				'min'      => $total_orders,
 				'unit'     => 'COUNT',
-			],
-		];
-		$tenure          = [
+			),
+		);
+		$tenure          = array(
 			'min'  => $days_since_first_order,
 			'max'  => $days_since_first_order,
 			'unit' => 'DAYS',
-		];
-		$params          = [
+		);
+		$params          = array(
 			'business_platform'    => 'WOO_COMMERCE',
 			'external_business_id' => $external_business_id,
 			'net_gmv'              => $net_gmv,
 			'net_order_count'      => $net_order_count,
 			'tenure'               => $tenure,
 			'extra_data'           => $current_tiktok_for_woocommerce_version,
-		];
+		);
 		$this->mapi_post( $url, $access_token, $params, 'v1.2' );
 	}
 
@@ -243,22 +262,22 @@ class Tt4b_Mapi_Class {
 		$url               = 'https://ads.tiktok.com/marketing_api/api/developer/app/create_auto_approve/';
 		$open_source_token = '244e1de7-8dad-4656-a859-8dc09eea299d';
 		$tries             = 0;
-		$params            = [
+		$params            = array(
 			'business_platform' => 'PROD',
 			'smb_id'            => $smb_id,
 			'smb_name'          => $smb_name,
 			'redirect_url'      => $redirect_uri,
-		];
-		$args              = [
+		);
+		$args              = array(
 			'method'      => 'POST',
 			'data_format' => 'body',
-			'headers'     => [
+			'headers'     => array(
 				'Access-Token' => $open_source_token,
 				'Content-Type' => 'application/json',
 				'Referer'      => 'https://ads.tiktok.com',
-			],
+			),
 			'body'        => json_encode( $params ),
-		];
+		);
 		$this->logger->log_request( $url, $args );
 		while ( $tries <= 3 ) {
 			$response = wp_remote_post( $url, $args );
@@ -286,17 +305,17 @@ class Tt4b_Mapi_Class {
 	public function get_access_token( $app_id, $secret, $auth_code, $version ) {
 		$endpoint = 'oauth2/access_token/';
 		$url      = $this->mapi_url . $version . '/' . $endpoint;
-		$params   = [
+		$params   = array(
 			'app_id'    => $app_id,
 			'secret'    => $secret,
 			'auth_code' => $auth_code,
-		];
-		$args     = [
+		);
+		$args     = array(
 			'method'      => 'POST',
 			'data_format' => 'body',
-			'headers'     => [ 'Content-Type' => 'application/json' ],
+			'headers'     => array( 'Content-Type' => 'application/json' ),
 			'body'        => json_encode( $params ),
-		];
+		);
 		$this->logger->log_request( $url, $args );
 		$response = wp_remote_post( $url, $args );
 		$this->logger->log_response( __METHOD__, $response );
@@ -327,7 +346,7 @@ class Tt4b_Mapi_Class {
 		}
 
 		$currentGroup = 'tt4b_version_' . get_option( 'tt4b_version' );
-		if ( false === as_has_scheduled_action( 'tt4b_trust_signal_collection', [], $currentGroup ) ) {
+		if ( false === as_has_scheduled_action( 'tt4b_trust_signal_collection', array(), $currentGroup ) ) {
 			// if no scheduled trust signal collection actions with $currentGroup group name, but there are scheduled actions (with no group name, or with other group names)
 			// that means there are scheduled actions from a previous version that should be removed and replaced with scheduled actions from the latest
 			if ( true === as_has_scheduled_action( 'tt4b_trust_signal_collection' ) ) {
@@ -337,7 +356,7 @@ class Tt4b_Mapi_Class {
 			}
 			as_enqueue_async_action( 'tt4b_trust_signal_collection' );
 			$cronStr = $this->generate_cron_string();
-			as_schedule_cron_action( strtotime( 'tomorrow' ), $cronStr, 'tt4b_trust_signal_collection', [], $currentGroup );
+			as_schedule_cron_action( strtotime( 'tomorrow' ), $cronStr, 'tt4b_trust_signal_collection', array(), $currentGroup );
 		}
 	}
 
@@ -352,11 +371,11 @@ class Tt4b_Mapi_Class {
 			return;
 		}
 
-		$args   = [
+		$args   = array(
 			'post_status' => 'wc-completed',
 			'paginate'    => true,
 			'limit'       => 100,
-		];
+		);
 		$result = wc_get_orders( $args );
 		$pages  = $result->max_num_pages;
 		update_option( 'tt4b_mapi_total_gmv', 0 );
@@ -364,19 +383,19 @@ class Tt4b_Mapi_Class {
 		update_option( 'tt4b_mapi_tenure', 0 );
 		update_option( 'tt4b_eligibility_page_total', $pages );
 		$oldest_orders = ( new WC_Order_Query(
-			[
+			array(
 				'limit'   => 1,
 				'orderby' => 'date',
 				'order'   => 'ASC',
-			]
+			)
 		) )->get_orders();
 		if ( count( $oldest_orders ) > 0 ) {
 			$oldest_order_timestamp = $oldest_orders[0]->get_date_created()->getTimestamp();
 			$mapi_tenure            = (int) ( ( time() - $oldest_order_timestamp ) / DAY_IN_SECONDS );
 			update_option( 'tt4b_mapi_tenure', $mapi_tenure );
 		}
-		if ( false === as_has_scheduled_action( 'tt4b_trust_signal_helper', [ 'page' => 1 ] ) ) {
-			as_enqueue_async_action( 'tt4b_trust_signal_helper', [ 'page' => 1 ] );
+		if ( false === as_has_scheduled_action( 'tt4b_trust_signal_helper', array( 'page' => 1 ) ) ) {
+			as_enqueue_async_action( 'tt4b_trust_signal_helper', array( 'page' => 1 ) );
 		}
 	}
 
@@ -394,11 +413,11 @@ class Tt4b_Mapi_Class {
 		}
 
 		$orders = wc_get_orders(
-			[
+			array(
 				'post_status' => 'wc-completed',
 				'limit'       => 100,
 				'page'        => $page,
-			]
+			)
 		);
 		foreach ( $orders as $order ) {
 			if ( is_null( $order ) ) {
@@ -410,7 +429,7 @@ class Tt4b_Mapi_Class {
 				$mapi_total_gmv += intval( $order_total );
 				update_option( 'tt4b_mapi_total_gmv', $mapi_total_gmv );
 				$mapi_total_orders = get_option( 'tt4b_mapi_total_orders' );
-				$mapi_total_orders++;
+				++$mapi_total_orders;
 				update_option( 'tt4b_mapi_total_orders', $mapi_total_orders );
 			}
 			if ( 0 === count( $orders ) ) {
@@ -418,9 +437,9 @@ class Tt4b_Mapi_Class {
 			}
 		}
 		$page_total = get_option( 'tt4b_eligibility_page_total' );
-		$page++;
-		if ( ( $page <= $page_total ) && ( false === as_has_scheduled_action( 'tt4b_trust_signal_helper', [ 'page' => $page ] ) ) ) {
-			as_enqueue_async_action( 'tt4b_trust_signal_helper', [ 'page' => $page ] );
+		++$page;
+		if ( ( $page <= $page_total ) && ( false === as_has_scheduled_action( 'tt4b_trust_signal_helper', array( 'page' => $page ) ) ) ) {
+			as_enqueue_async_action( 'tt4b_trust_signal_helper', array( 'page' => $page ) );
 		} else {
 			$access_token         = get_option( 'tt4b_access_token' );
 			$external_business_id = get_option( 'tt4b_external_business_id' );
@@ -442,12 +461,12 @@ class Tt4b_Mapi_Class {
 	public function tts_shop_disconnect( $external_data ) {
 		$base_url = 'https://business-api.tiktok.com/tbp/v2.0/shop/connection/disconnect';
 		$url      = $base_url . '?external_data=' . $external_data;
-		$args     = [
+		$args     = array(
 			'method'  => 'POST',
-			'headers' => [
+			'headers' => array(
 				'Content-Type' => 'application/json',
-			],
-		];
+			),
+		);
 		$this->logger->log_request( $url, $args );
 		$response = wp_remote_post( $url, $args );
 		$this->logger->log_response( __METHOD__, $response );

@@ -1283,8 +1283,389 @@
           </el-tab-pane>
 
           <el-tab-pane
+            :label="$root.labels.invoices"
             name="invoices"
+            v-if="notInLicence() ? licenceVisible() : true"
           >
+
+            <!-- Filter Finance -->
+            <div
+                class="am-finance-filter"
+                v-show="hasInvoices && options.fetched"
+            >
+              <el-form class="">
+                <el-row :gutter="16">
+
+                  <!-- Date Filter -->
+                  <el-col :md="24" :lg="6" class="v-calendar-column">
+                    <el-form-item class="calc-width-mobile-invoice">
+                      <v-date-picker
+                          @input="changeRangeInvoices"
+                          v-model="invoiceParams.dates"
+                          :is-double-paned="true"
+                          mode='range'
+                          popover-visibility="focus"
+                          popover-direction="bottom"
+                          tint-color='#1A84EE'
+                          :show-day-popover=false
+                          :input-props='{class: "el-input__inner"}'
+                          :is-expanded=false
+                          :is-required=true
+                          input-class="el-input__inner"
+                          :placeholder="$root.labels.pick_a_date"
+                          :formats="vCalendarFormats"
+                      >
+                      </v-date-picker>
+                      <span
+                          v-if="invoiceParams.dates"
+                          class="am-v-date-picker-suffix el-input__suffix-inner"
+                          @click="clearInvoiceDateFilter()"
+                      >
+                        <i class="el-select__caret el-input__icon el-icon-circle-close"></i>
+                      </span>
+                    </el-form-item>
+                  </el-col>
+
+                  <transition name="fade">
+                    <div class="am-filter-fields" v-show="filterInvoicesFields">
+
+                      <!-- Customers Filter -->
+                      <el-col :md="6" :lg="3">
+                        <el-form-item>
+                          <el-select
+                              v-model="invoiceParams.customerId"
+                              filterable
+                              clearable
+                              :placeholder="$root.labels.customer"
+                              @change="filterInvoices"
+                              remote
+                              :remote-method="searchCustomers"
+                              :loading="loadingCustomers"
+                          >
+                            <el-option
+                                v-for="(item, key) in searchedCustomers.length ? searchedCustomers : options.entities.customers"
+                                :key="key"
+                                :label="item.firstName + ' ' + item.lastName"
+                                :value="item.id"
+                            >
+                            </el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <!-- Employees Filter -->
+                      <el-col :md="6" :lg="3">
+                        <el-form-item>
+                          <el-select
+                              v-model="invoiceParams.providerId"
+                              filterable
+                              clearable
+                              :placeholder="$root.labels.employee"
+                              @change="filterInvoices"
+                          >
+                            <el-option
+                                v-for="item in visibleEmployees"
+                                :key="item.id"
+                                :label="item.firstName + ' ' + item.lastName"
+                                :value="item.id"
+                            >
+                            </el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <!-- Services Filter -->
+                      <el-col :md="6" :lg="4">
+                        <el-form-item>
+                          <el-select
+                              v-model="invoiceParams.services"
+                              multiple
+                              filterable
+                              :placeholder="$root.labels.services"
+                              @change="filterInvoices"
+                              collapse-tags
+                          >
+                            <div v-for="category in options.entities.categories"
+                                 :key="category.id">
+                              <div class="am-drop-parent"
+                                   @click="selectAllInCategoryFinance(category.id)"
+                              >
+                                <span>{{ category.name }}</span>
+                              </div>
+                              <el-option
+                                  v-for="service in category.serviceList"
+                                  :key="service.id"
+                                  :label="service.name"
+                                  :value="service.id"
+                                  class="am-drop-child"
+                              >
+                              </el-option>
+                            </div>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <!-- Events Filter -->
+                      <el-col :md="6" :lg="4">
+                        <el-form-item>
+                          <el-select
+                              v-model="invoiceParams.events"
+                              multiple
+                              clearable
+                              :placeholder="$root.labels.events"
+                              @change="filterInvoices"
+                          >
+                            <el-option
+                                v-for="item in options.entities.events"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                            >
+                            </el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <!-- Packages Filter -->
+                      <el-col :md="6" :lg="4">
+                        <el-form-item>
+                          <el-select
+                              v-model="invoiceParams.packages"
+                              multiple
+                              clearable
+                              :placeholder="$root.labels.packages"
+                              @change="filterInvoices"
+                          >
+                            <el-option
+                                v-for="item in options.entities.packages"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                            >
+                            </el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+
+                    </div>
+                  </transition>
+
+                  <div class="">
+
+                    <!-- Toggle More Filters -->
+                    <el-button
+                        class="button-filter-toggle button-filter-toggle-invoice am-button-icon"
+                        title="Toggle Filters"
+                        @click="filterInvoicesFields = !filterInvoicesFields"
+                    >
+                      <img class="svg-amelia" alt="Toggle Filters" :src="$root.getUrl + 'public/img/filter.svg'"/>
+                    </el-button>
+
+                  </div>
+
+                </el-row>
+
+              </el-form>
+            </div>
+
+            <!-- Spinner -->
+            <div class="am-spinner am-section"
+                 v-show="isInvoicesFiltering"
+            >
+              <img :src="$root.getUrl + 'public/img/spinner.svg'"/>
+            </div>
+
+            <!-- Empty State -->
+            <EmptyState
+                :visible="invoicesTotalCount === 0 && !isInvoicesFiltering"
+                :licence="'basic'"
+                :title="$root.labels.no_payments_yet"
+            >
+            </EmptyState>
+
+            <!-- Table Header -->
+            <div
+                class="am-finance-list-head"
+                v-show="invoicesTotalCount !== 0 && invoices.length !== 0 && !isInvoicesFiltering"
+            >
+              <el-row>
+
+                <!-- Payment Date, Customer, Employee -->
+                <el-col :lg="14">
+                  <el-row :gutter="10" class="am-finance-flex-row-middle-align">
+
+                    <el-col :lg="1">
+                      <p></p>
+                    </el-col>
+
+                    <!-- Issue Date -->
+                    <el-col :lg="8">
+                      <p>{{ $root.labels.issue_date }}:</p>
+                    </el-col>
+
+                    <!-- Invoice Number -->
+                    <el-col :lg="3">
+                      <p>{{ $root.labels.invoice }}:</p>
+                    </el-col>
+
+                    <!-- Total -->
+                    <el-col :lg="4">
+                      <p>{{ $root.labels.total }}:</p>
+                    </el-col>
+
+                    <!-- Customer -->
+                    <el-col :lg="8">
+                      <p>{{ $root.labels.customer }}:</p>
+                    </el-col>
+
+                  </el-row>
+
+                </el-col>
+
+                <!-- Status -->
+                <el-col :lg="10">
+                  <el-row :gutter="10" class="am-finance-flex-row-middle-align">
+                    <el-col :lg="0" class="hide-on-mobile"></el-col>
+
+                    <!-- Service -->
+                    <el-col :lg="12">
+                      <p>{{ $root.labels.service }}/{{ $root.labels.event }}:</p>
+                    </el-col>
+
+                    <!-- Status -->
+                    <el-col :lg="12">
+                      <p>{{ $root.labels.status }}:</p>
+                    </el-col>
+
+                  </el-row>
+                </el-col>
+
+              </el-row>
+            </div>
+
+            <!-- Collapsible Data  -->
+            <div
+                class="am-finance-list"
+                v-show="invoicesTotalCount !== 0 && invoices.length !== 0 && !isInvoicesFiltering"
+            >
+
+                <div
+                    v-for="(payment, index) in invoices"
+                    :key="payment.id"
+                    :name="payment.id"
+                    class="am-finance"
+                >
+
+                    <div class="am-finance-data am-finance-data-invoices">
+                      <span class="am-entity-color am-event-color"
+                            v-if="payment.appointmentId === 0">
+                      </span>
+                      <span class="am-entity-color am-appointment-color"
+                            v-else>
+                      </span>
+                      <el-row>
+
+                        <!-- Payment Date, Customer -->
+                        <el-col :lg="14">
+                          <el-row :gutter="10" class="am-finance-flex-row-middle-align">
+
+                            <el-col :lg="1" :sm="1">
+                              <span></span>
+                            </el-col>
+
+                            <!-- Issue Date -->
+                            <el-col :lg="8" :sm="8">
+                              <p class="am-col-title">{{ $root.labels.issue_date }}:</p>
+                              <h4>{{ getFrontedFormattedDate(payment.created) }}</h4>
+                            </el-col>
+
+                            <!-- Invoice Number -->
+                            <el-col :lg="3" :sm="3">
+                              <p class="am-col-title">{{ $root.labels.invoice }}:</p>
+                              <h4>{{ payment.invoiceNumber ? '#' + payment.invoiceNumber : '' }}</h4>
+                            </el-col>
+
+                            <!-- Total -->
+                            <el-col :lg="4" :sm="4">
+                              <p class="am-col-title">{{ $root.labels.total }}:</p>
+                              <h4>{{ getFormattedPrice(payment.total) }}</h4>
+                            </el-col>
+
+                            <!-- Customer -->
+                            <el-col :lg="8" :sm="8">
+                              <p class="am-col-title">{{ $root.labels.customer }}:</p>
+                              <h3 :class="getNoShowClass(payment.customerId)">
+                                {{ payment.customerFirstName + ' ' + payment.customerLastName }}
+                              </h3>
+                              <span>{{ payment.customerEmail }}</span>
+                            </el-col>
+
+
+                          </el-row>
+                        </el-col>
+
+                        <el-col :lg="10">
+                          <el-row :gutter="10" class="am-finance-flex-row-middle-align">
+                            <el-col :lg="0" :sm="1" class="hide-on-mobile"></el-col>
+
+                            <!-- Service -->
+                            <el-col :lg="12" :sm="14" class="am-payment-service">
+                              <p class="am-col-title">{{ $root.labels.service }}/{{ $root.labels.event }}:</p>
+                              <img
+                                  v-if="payment.packageId"
+                                  :src="$root.getUrl + 'public/img/am-package-black.svg'"
+                              >
+                              <h4>{{ getBookableName(payment) }}</h4>
+                            </el-col>
+
+                            <!-- Status -->
+                            <el-col class="am-finance-payment-status" :lg="6" :sm="5">
+                              <p class="am-col-title">{{ $root.labels.status }}:</p>
+                              <div class="am-payment-status">
+                                <span :class="'am-payment-status-symbol am-payment-status-symbol-' + payment.fullStatus"></span>
+                                <h4>
+                                  {{ getPaymentStatusNiceName(payment.fullStatus) }}
+                                </h4>
+                              </div>
+                            </el-col>
+
+                            <!-- Details Button -->
+                            <el-col :lg="6" :sm="4" class="align-right">
+                              <div @click.stop>
+                                <el-button @click="showDialogEditPayment(payment, true)">
+                                  {{ $root.labels.details }}
+                                </el-button>
+                              </div>
+                            </el-col>
+
+                          </el-row>
+                        </el-col>
+                      </el-row>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- No Results -->
+            <div class="am-empty-state am-section"
+                 v-show="invoicesTotalCount !== 0 && invoices.length === 0 && !isInvoicesFiltering">
+              <img :src="$root.getUrl + 'public/img/emptystate.svg'">
+              <h2>{{ $root.labels.no_results }}</h2>
+            </div>
+
+            <!-- Pagination -->
+            <pagination-block
+                :params="invoiceParams"
+                :count="invoicesFilteredCount"
+                :show="invoiceParams.show"
+                :label="$root.labels.payments_lower"
+                :visible="invoicesTotalCount !== 0 && invoices.length !== 0 && !isInvoicesFiltering"
+                @change="filterInvoices"
+            >
+            </pagination-block>
 
           </el-tab-pane>
 
@@ -1389,6 +1770,7 @@
               :modalData="selectedPaymentModalData"
               :bookingFetched="bookingFetched"
               :customersNoShowCount="customersNoShowCount"
+              :invoice-in-dialog="invoiceInDialog"
               @updatePaymentCallback="updatePaymentCallback"
               @deletePaymentCallback="updatePaymentCallback"
               @closeDialogPayment="closeDialogPayment()"
@@ -1430,12 +1812,12 @@
   import priceMixin from '../../../js/common/mixins/priceMixin'
   import PaginationBlock from '../parts/PaginationBlock.vue'
   import helperMixin from '../../../js/backend/mixins/helperMixin'
-  //import DialogNewCustomize from '../parts/DialogNewCustomize.vue'
+  // import DialogNewCustomize from '../parts/DialogNewCustomize.vue'
   import appointmentPriceMixin from '../../../js/backend/mixins/appointmentPriceMixin'
   import moment from "moment/moment";
   import eventMixin from '../../../js/backend/mixins/eventMixin'
 
-  export default {
+export default {
 
     mixins: [
       stashMixin,
@@ -1467,16 +1849,18 @@
         couponFetched: false,
         couponsFilteredCount: 0,
         couponsTotalCount: 0,
-
-        displayTotalCount: 0,
+        invoicesFilteredCount: 0,
+        invoicesTotalCount: 0,
 
         paymentsFiltering: false,
         taxesFiltering: false,
         couponsFiltering: false,
+        invoicesFiltering: false,
 
         fetchedFilteredPayments: false,
         fetchedFilteredTaxes: false,
         fetchedFilteredCoupons: false,
+        fetchedFilteredInvoices: false,
 
         addNewTaxBtnDisplay: false,
         addNewCouponBtnDisplay: false,
@@ -1484,6 +1868,7 @@
         dialogTax: false,
         dialogCoupon: false,
         dialogPayment: false,
+        invoiceInDialog: false,
 
         tax: null,
         coupon: null,
@@ -1578,6 +1963,18 @@
         },
         exportCouponsAction: '',
 
+        invoiceParams: {
+          page: 1,
+          show: this.$root.settings.general.itemsPerPageBackEnd,
+          dates: this.getDatePickerInitRange(),
+          services: [],
+          events: [],
+          packages: [],
+          providerId: '',
+          customerId: '',
+          invoices: true
+        },
+
         statuses: [
           {
             value: 'paid',
@@ -1611,12 +2008,14 @@
 
         filterCouponsFields: true,
         searchCouponsPlaceholder: this.$root.labels.finance_coupons_search_placeholder,
+        filterInvoicesFields: true,
 
         // Finance
         financeTabs: 'payments',
         payments: [],
         taxes: [],
         coupons: [],
+        invoices: [],
 
         timer: null,
         cancelSource: null
@@ -1659,6 +2058,8 @@
         this.getCoupons()
       }
 
+      this.getInvoices()
+
       this.handleResize()
       this.getFinanceOptions()
     },
@@ -1689,26 +2090,62 @@
         this.filterPayments()
       },
 
-      getPaymentsStatus (payment) {
+      clearInvoiceDateFilter () {
+        this.invoiceParams.dates = null
+
+        this.invoiceParams.page = 1
+
+        this.filterInvoices()
+      },
+
+      getBookableName (payment) {
+        if (payment.secondaryPayments && Object.values(payment.secondaryPayments).length > 0) {
+          if (payment.name === Object.values(payment.secondaryPayments)[0].name) {
+            return payment.name
+          }
+          return payment.name + ' +' + Object.values(payment.secondaryPayments).length
+        }
+
+        return payment.name
+      },
+
+      getPaymentsStatusAndTotal (payment) {
         let allPayments = [payment].concat(payment.secondaryPayments ? Object.values(payment.secondaryPayments) : [])
 
-        if (allPayments.every(p => p.status === 'refunded')) {
-          return 'refunded'
-        }
-        let bookingAggregatedPrice = payment.bookedPrice * (payment.aggregatedPrice ? payment.persons : 1)
-        let subTotal = bookingAggregatedPrice + payment.bookingExtrasSum
-        let discountTotal = (subTotal / 100 * (payment.coupon ? payment.coupon.discount : 0)) + (payment.coupon ? payment.coupon.deduction : 0)
-        let bookingPrice = discountTotal > subTotal ? 0 : subTotal - discountTotal
-        bookingPrice -= allPayments.filter(p => p.wcOrderId && p.wcItemCouponValue).reduce((partialSum, a) => partialSum + a.wcItemCouponValue, 0)
-        bookingPrice += allPayments.filter(p => p.wcOrderId && p.wcItemTaxValue).reduce((partialSum, a) => partialSum + a.wcItemTaxValue, 0)
+        let bookings = {}
+        allPayments.forEach((singlePayment) => {
+          let index = payment.type + '_' + (singlePayment.packageCustomerId ? singlePayment.packageCustomerId : singlePayment.customerBookingId)
+          if (index in bookings) {
+            bookings[index].booking.payments.push(singlePayment)
+          } else {
+            bookings[index] = {
+              booking: {
+                price: singlePayment.bookedPrice,
+                aggregatedPrice: singlePayment.aggregatedPrice,
+                persons: singlePayment.persons,
+                extras: singlePayment.extras,
+                coupon: singlePayment.coupon,
+                tax: singlePayment.bookedTax,
+                payments: [singlePayment]
+              }
+            }
+          }
+        })
 
-        let paidAmount = allPayments.filter(p => p.status !== 'pending' && p.status !== 'refunded').reduce((partialSum, a) => partialSum + a.amount, 0)
-        if (paidAmount >= bookingPrice.toFixed(2)) {
-          return 'paid'
-        } else if (paidAmount > 0) {
-          return 'partiallyPaid'
+        let amountData = this.getPaymentAmountData(Object.values(bookings), payment.type)
+
+        let bookingPrice = amountData.total
+        if (allPayments.every(p => p.status === 'refunded')) {
+          return {status: 'refunded', total: bookingPrice}
         }
-        return 'pending'
+
+        let paidAmount = amountData.paid
+        if (paidAmount >= bookingPrice.toFixed(2)) {
+          return {status: 'paid', total: bookingPrice}
+        } else if (paidAmount > 0) {
+          return {status: 'partiallyPaid', total: bookingPrice}
+        }
+        return {status: 'pending', total: bookingPrice}
       },
 
       savedTax () {
@@ -1721,15 +2158,7 @@
         this.getCoupons()
       },
 
-      getPayments () {
-        this.paymentsFiltering = true
-        this.fetchedFilteredPayments = false
-
-        if (this.cancelSource) {
-          this.cancelSource.cancel('Start new search, stop active search')
-        }
-
-        let params = JSON.parse(JSON.stringify(this.paymentsParams))
+      formatForFetch (params) {
         let dates = []
 
         if (params.dates) {
@@ -1746,6 +2175,20 @@
 
         Object.keys(params).forEach((key) => (!params[key] && params[key] !== 0) && delete params[key])
 
+        return params
+      },
+
+      getPayments () {
+        this.paymentsFiltering = true
+        this.fetchedFilteredPayments = false
+
+        if (this.cancelSource) {
+          this.cancelSource.cancel()
+        }
+
+        let params = JSON.parse(JSON.stringify(this.paymentsParams))
+        params = this.formatForFetch(params)
+
         this.cancelSource = this.$http.CancelToken.source()
 
         this.$http.get(`${this.$root.getAjaxUrl}/payments`, {
@@ -1759,7 +2202,8 @@
             let $this = this
             response.data.data.payments.forEach(function (payment) {
               payment.checked = false
-              payment.fullStatus = $this.getPaymentsStatus(payment)
+              let statusTotal = $this.getPaymentsStatusAndTotal(payment)
+              payment.fullStatus = statusTotal.status
               if (customersIds.indexOf(payment.customerId) === -1) {
                 customers.push({
                   id: payment.customerId,
@@ -1790,6 +2234,47 @@
           })
       },
 
+      getInvoices () {
+        if (this.$root.licence.isLite || this.$root.licence.isStarter) {
+          this.invoicesFiltering = false
+
+          this.fetchedFilteredInvoices = false
+
+          return
+        }
+
+        this.invoicesFiltering = true
+        this.fetchedFilteredInvoices = false
+
+        let params = JSON.parse(JSON.stringify(this.invoiceParams))
+        params = this.formatForFetch(params)
+
+        this.$http.get(`${this.$root.getAjaxUrl}/payments`, {
+          params: this.getAppropriateUrlParams(params)
+        })
+          .then(response => {
+            let $this = this
+            response.data.data.payments.forEach(function (payment) {
+              let statusTotal = $this.getPaymentsStatusAndTotal(payment)
+              payment.fullStatus = statusTotal.status
+              payment.total = statusTotal.total
+            })
+
+            this.invoices = response.data.data.payments
+            this.invoicesFilteredCount = response.data.data.filteredCount
+            this.invoicesTotalCount = response.data.data.totalCount
+
+            this.invoicesFiltering = false
+            this.fetchedFilteredInvoices = true
+          })
+          .catch(e => {
+            console.log(e.message)
+
+            this.invoicesFiltering = false
+            this.fetchedFilteredInvoices = true
+          })
+      },
+
       getTotal () {
         switch (this.financeTabs) {
           case ('payments'):
@@ -1802,7 +2287,7 @@
             return this.taxesFilteredCount
 
           case ('invoices'):
-            return 0
+            return this.invoicesFilteredCount
         }
       },
 
@@ -1954,19 +2439,12 @@
           })
       },
 
-      getPaymentAppointment (payment) {
-        this.$http.get(`${this.$root.getAjaxUrl}/appointments/` + payment.appointmentId)
+      getPaymentAppointment (payment, invoice) {
+        this.$http.get(`${this.$root.getAjaxUrl}/appointments/` + payment.appointmentId, {params: {'customerId': payment.customerId}})
           .then(response => {
-            this.selectedPaymentModalData = this.getPaymentData(payment, response.data.data.appointment, null, null)
+            this.selectedPaymentModalData = this.getPaymentData(payment, response.data.data.appointment, null, null, invoice ? response.data.data.recurring : [])
 
             this.selectedPaymentModalData.recurring = response.data.data.recurring
-
-            this.selectedPaymentModalData.customer = {
-              email: payment.customerEmail,
-              firstName: payment.customerFirstName,
-              lastName: payment.customerLastName,
-              id: payment.customerId
-            }
 
             this.bookingFetched = true
           })
@@ -1980,13 +2458,6 @@
           .then(response => {
             this.selectedPaymentModalData = this.getPaymentData(payment, null, response.data.data.event, null)
 
-            this.selectedPaymentModalData.customer = {
-              email: payment.customerEmail,
-              firstName: payment.customerFirstName,
-              lastName: payment.customerLastName,
-              id: payment.customerId
-            }
-
             this.bookingFetched = true
           })
           .catch(e => {
@@ -1995,21 +2466,17 @@
       },
 
       getPackage (payment) {
-        this.selectedPaymentModalData = this.getPaymentData(payment, null, null, {name: payment.name})
-
-        this.selectedPaymentModalData.customer = {
-          email: payment.customerEmail,
-          firstName: payment.customerFirstName,
-          lastName: payment.customerLastName,
-          id: payment.customerId
+        let packObj = {
+          package: {name: payment.name},
+          booking: {
+            price: payment.bookedPrice,
+            payments: [payment].concat(payment.secondaryPayments ? Object.values(payment.secondaryPayments) : []),
+            extras: [],
+            tax: payment.bookedTax ? JSON.parse(payment.bookedTax) : null,
+          }
         }
 
-        this.selectedPaymentModalData.bookings[0] = {
-          price: payment.bookedPrice,
-          payments: [payment].concat(payment.secondaryPayments ? Object.values(payment.secondaryPayments) : []),
-          tax: payment.bookedTax ? JSON.parse(payment.bookedTax) : null,
-          extras: []
-        }
+        this.selectedPaymentModalData = this.getPaymentData(payment, null, null, packObj)
 
         this.bookingFetched = true
       },
@@ -2096,6 +2563,14 @@
         this.filterPayments()
       },
 
+      changeRangeInvoices () {
+        this.setDatePickerSelectedDaysCount(this.invoiceParams.dates.start, this.invoiceParams.dates.end)
+
+        this.invoiceParams.page = 1
+
+        this.filterInvoices()
+      },
+
       filterPayments () {
         this.getPayments()
       },
@@ -2106,6 +2581,10 @@
 
       filterCoupons () {
         this.getCoupons()
+      },
+
+      filterInvoices () {
+        this.getInvoices()
       },
 
       updatePaymentCallback () {
@@ -2155,11 +2634,11 @@
         this.getCoupon(couponId)
       },
 
-      showDialogEditPayment (payment) {
+      showDialogEditPayment (payment, invoice = false) {
         this.dialogPayment = true
-
+        this.invoiceInDialog = invoice
         if (payment.appointmentId) {
-          this.getPaymentAppointment(payment)
+          this.getPaymentAppointment(payment, invoice)
         }
 
         if (payment.eventId) {
@@ -2175,17 +2654,15 @@
         if (tab.name === 'coupons') {
           this.addNewTaxBtnDisplay = false
           this.addNewCouponBtnDisplay = true
-          this.displayTotalCount = this.couponsTotalCount
         } else if (tab.name === 'taxes') {
           this.addNewTaxBtnDisplay = true
           this.addNewCouponBtnDisplay = false
-          this.displayTotalCount = this.taxesTotalCount
         } else if (tab.name === 'invoices') {
-
+          this.addNewCouponBtnDisplay = false
+          this.addNewTaxBtnDisplay = false
         } else {
           this.addNewTaxBtnDisplay = false
           this.addNewCouponBtnDisplay = false
-          this.displayTotalCount = this.paymentsTotalCount
         }
       },
 
@@ -2335,8 +2812,20 @@
         return this.payments.length !== 0
       },
 
+      hasInvoices () {
+        return this.invoicesTotalCount !== 0
+      },
+
+      hasInvoicesFiltered () {
+        return this.invoices.length !== 0
+      },
+
       isPaymentsFiltering () {
         return this.paymentsFiltering && this.financeTabs === 'payments'
+      },
+
+      isInvoicesFiltering () {
+        return this.invoicesFiltering && this.financeTabs === 'invoices'
       },
 
       hasTaxes () {

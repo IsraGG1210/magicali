@@ -43,6 +43,7 @@ class AppointmentsTable extends AbstractDatabaseTable
                    `zoomMeeting` TEXT({$description}) NULL,
                    `lessonSpace` TEXT({$description}) NULL,
                    `parentId` INT(11) NULL,
+                   `error` TEXT({$description}) NOT NULL DEFAULT '',
                     PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8 COLLATE utf8_general_ci";
     }

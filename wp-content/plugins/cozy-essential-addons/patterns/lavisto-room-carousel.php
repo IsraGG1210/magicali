@@ -6,13 +6,13 @@
  * Categories: lavisto
  */
 $ct_patterns_media = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/icon_guest.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/icon_bed.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/icon_bathroom.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_5.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_4.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_3.jpg',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/lavisto/room_2.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/icon_guest.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/icon_bed.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/icon_bathroom.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_5.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_4.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_3.jpg',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/lavisto/room_2.jpg',
 
 );
 ?>

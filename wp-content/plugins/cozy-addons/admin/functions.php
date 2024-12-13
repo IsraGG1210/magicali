@@ -375,6 +375,50 @@ function update_cozy_blocks_option_callback() {
 	wp_die();
 }
 
+add_action( 'wp_ajax_get_ca_cpt_enable_status', 'get_ca_cpt_enable_status_callback' );
+function get_ca_cpt_enable_status_callback() {
+	$option_name   = '';
+	$template_name = sanitize_text_field( $_POST['templateName'] );
+	if ( isset( $template_name ) ) {
+		$option_name = 'ca-cpt--' . $template_name;
+	}
+	$enabled_status = get_option( $option_name );
+	// echo esc_html( $block_option );
+	wp_send_json_success(
+		array(
+			'enabledStatus' => $enabled_status,
+		)
+	);
+	wp_die();
+}
+
+add_action( 'wp_ajax_toggle_ca_cpt_enable', 'toggle_ca_cpt_enable_callback' );
+if ( ! function_exists( 'toggle_ca_cpt_enable_callback' ) ) {
+	function toggle_ca_cpt_enable_callback() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Access Denied' );
+			return;
+		}
+
+		$allowed_options = array(
+			'mega-menu-templates',
+			'portfolio-gallery-templates',
+		);
+
+		$request_option = sanitize_text_field( $_POST['templateName'] );
+
+		if ( ! in_array( $request_option, $allowed_options ) ) {
+			wp_die( 'Invalid Option' );
+		}
+
+		$option_name = 'ca-cpt--' . $request_option;
+		$checked     = sanitize_text_field( $_POST['checked'] );
+		update_option( $option_name, $checked );
+		wp_die();
+	}
+}
+
+
 add_action( 'wp_ajax_get_cozy_addons_elementor_widgets_enabled', 'get_elementor_widgets_enabled_callback' );
 function get_elementor_widgets_enabled_callback() {
 	$option_name = 'cozy_addons_elementor_widgets_enabled';
@@ -483,6 +527,11 @@ function cozy_blocks_dismissble_notice() {
 }
 add_action( 'wp_ajax_cozy_blocks_dismissble_notice', 'cozy_blocks_dismissble_notice' );
 
+function ca_elementor_removal_dismissable_notice() {
+	update_option( 'ca_clear_elementor_removal_notice', 1 );
+}
+add_action( 'wp_ajax_ca_elementor_removal_dismissable_notice', 'ca_elementor_removal_dismissable_notice' );
+
 add_action( 'wp_ajax_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
 add_action( 'wp_ajax_nopriv_cozy_block_magazine_grid_loader', 'cozy_block_magazine_grid_load_content' );
 if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
@@ -573,10 +622,13 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 				$output   .= '<li class="' . implode( ' ', $classes ) . '">';
 
 				if ( filter_var( $attributes['enableOptions']['postImage'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $post_data['post_image_url'] ) ) {
-					$classes   = array();
-					$classes[] = 'post__image';
-					$classes[] = filter_var( $attributes['postOptions']['image']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
-					$output   .= '<figure class="' . implode( ' ', $classes ) . '"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
+					$classes       = array();
+					$classes[]     = 'post__image';
+					$classes[]     = filter_var( $attributes['postOptions']['image']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
+					$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+
+					$output .= '<figure class="' . implode( ' ', $classes ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
 				}
 
 				$output .= '<div class="post__content-wrapper">';
@@ -586,20 +638,28 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 					$classes   = array();
 					$classes[] = 'post__category-item';
 					$classes[] = filter_var( $attributes['postCategories']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
+
+					$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					foreach ( $post_data['post_categories'] as $cat_data ) {
-						$output .= '<a class="' . implode( ' ', $classes ) . '" href="' . esc_url( $cat_data['link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+						$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+						$output      .= '<a class="' . implode( ' ', $classes ) . '" ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 					}
 					$output .= '</div>';
 				}
 
-				$output .= '<h2 class="post__title"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['titleLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+				$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
 				if ( filter_var( $attributes['enableOptions']['postAuthor'], FILTER_VALIDATE_BOOLEAN ) || filter_var( $attributes['enableOptions']['postComments'], FILTER_VALIDATE_BOOLEAN ) || filter_var( $attributes['enableOptions']['postDate'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<div class="post__meta">';
 
+					$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && filter_var( $attributes['enableOptions']['linkPostMeta'], FILTER_VALIDATE_BOOLEAN ) ? true : false;
+					$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && filter_var( $attributes['enableOptions']['linkPostMeta'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['postMetaNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					if ( filter_var( $attributes['enableOptions']['postAuthor'], FILTER_VALIDATE_BOOLEAN ) ) {
-						$output .= '<a class="post__author display-flex" href="' . esc_url( $post_data['post_author_url'] ) . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+						$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -614,8 +674,9 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 					}
 
 					if ( filter_var( $attributes['enableOptions']['postComments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
-						$output .= '<a class="post__comments display-flex" href="' . $post_data['comment_link'] . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+						$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -630,8 +691,9 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 					}
 
 					if ( filter_var( $attributes['enableOptions']['postDate'], FILTER_VALIDATE_BOOLEAN ) ) {
-						$output .= '<a class="post__date display-flex" href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+						$output   .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -650,7 +712,10 @@ if ( ! function_exists( 'cozy_block_magazine_grid_load_content' ) ) {
 				if ( filter_var( $attributes['enableOptions']['postContent'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<div class="post__content">';
 					$output .= '<div>' . cozy_block_magazine_grid_create_post_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
-					$output .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+					if ( filter_var( $attributes['enableOptions']['readMore'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && filter_var( $attributes['enableOptions']['readMoreNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+						$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+					}
 					$output .= '</div>';
 				}
 
@@ -801,30 +866,40 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 					$classes   = array();
 					$classes[] = 'post__image';
 					$classes[] = filter_var( $attributes['postOptions']['image']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
-					$output   .= '<figure class="' . implode( ' ', $classes ) . '"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
+
+					$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+					$output       .= '<figure class="' . implode( ' ', $classes ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
 				}
 
 				$output .= '<div class="post__content-wrapper">';
 
 				if ( filter_var( $attributes['enableOptions']['postCategories'], FILTER_VALIDATE_BOOLEAN ) && ! empty( $post_data['post_categories'] ) ) {
-					$output   .= '<div class="post__categories">';
-					$classes   = array();
-					$classes[] = 'post__category-item';
-					$classes[] = filter_var( $attributes['postCategories']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
+					$output      .= '<div class="post__categories">';
+					$classes      = array();
+					$classes[]    = 'post__category-item';
+					$classes[]    = filter_var( $attributes['postCategories']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
+					$open_new_tab = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					foreach ( $post_data['post_categories'] as $cat_data ) {
-						$output .= '<a class="' . implode( ' ', $classes ) . '" href="' . esc_url( $cat_data['link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
+						$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+						$output      .= '<a class="' . implode( ' ', $classes ) . '" ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $cat_data['name'], 'cozy-addons' ) . '</a>';
 					}
 					$output .= '</div>';
 				}
 
-				$output .= '<h2 class="post__title"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
+				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && $attributes['enableOptions']['titleLinkPost'] ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && $attributes['enableOptions']['titleLinkPost'] && $attributes['enableOptions']['titleLinkNewTab'] ? '_blank' : '';
+				$output       .= '<h2 class="post__title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h2>';
 
 				if ( filter_var( $attributes['enableOptions']['postAuthor'], FILTER_VALIDATE_BOOLEAN ) || filter_var( $attributes['enableOptions']['postComments'], FILTER_VALIDATE_BOOLEAN ) || filter_var( $attributes['enableOptions']['postDate'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$output .= '<div class="post__meta">';
+					$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && filter_var( $attributes['enableOptions']['linkPostMeta'], FILTER_VALIDATE_BOOLEAN ) ? true : false;
+					$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && filter_var( $attributes['enableOptions']['linkPostMeta'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['postMetaNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+					$output       .= '<div class="post__meta">';
 
 					if ( filter_var( $attributes['enableOptions']['postAuthor'], FILTER_VALIDATE_BOOLEAN ) ) {
-						$output .= '<a class="post__author display-flex" href="' . esc_url( $post_data['post_author_url'] ) . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+						$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -839,8 +914,9 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 					}
 
 					if ( filter_var( $attributes['enableOptions']['postComments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
-						$output .= '<a class="post__comments display-flex" href="' . $post_data['comment_link'] . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+						$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -855,8 +931,9 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 					}
 
 					if ( filter_var( $attributes['enableOptions']['postDate'], FILTER_VALIDATE_BOOLEAN ) ) {
-						$output .= '<a class="post__date display-flex" href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">';
-						$output .= '<svg
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+						$output   .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
 								width="' . $attributes['postMeta']['font']['size'] . '"
 								height="' . $attributes['postMeta']['font']['size'] . '"
 								xmlns="http://www.w3.org/2000/svg"
@@ -875,7 +952,10 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 				if ( filter_var( $attributes['enableOptions']['postContent'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<div class="post__content">';
 					$output .= '<div>' . cozy_block_magazine_list_create_post_excerpt( $post_data['post_content'], $attributes['enableOptions']['postExcerpt'] ) . '</div>';
-					$output .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="_blank" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+					if ( filter_var( $attributes['enableOptions']['readMore'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$open_new_tab = isset( $attributes['enableOptions']['readMoreNewTab'] ) && filter_var( $attributes['enableOptions']['readMoreNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+						$output      .= '<span class="post__read-more"><a class="post__read-more-link" href="' . esc_url( $post_data['post_link'] ) . '" target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( 'Read More', 'cozy-addons' ) . '</a></span>';
+					}
 					$output .= '</div>';
 				}
 
@@ -885,7 +965,10 @@ if ( ! function_exists( 'cozy_block_magazine_list_load_content' ) ) {
 					$classes   = array();
 					$classes[] = 'post__image';
 					$classes[] = filter_var( $attributes['postOptions']['image']['hoverEffect'], FILTER_VALIDATE_BOOLEAN ) ? 'has-hover-effect' : '';
-					$output   .= '<figure class="' . implode( ' ', $classes ) . '"><a href="' . esc_url( $post_data['post_link'] ) . '" target="_blank"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
+
+					$has_post_link = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$open_new_tab  = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+					$output       .= '<figure class="' . implode( ' ', $classes ) . '"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener"><img src="' . esc_url( $post_data['post_image_url'] ) . '" /></a></figure>';
 				}
 
 				$output .= '</li>';
@@ -988,7 +1071,7 @@ if ( ! function_exists( 'cozy_block_popular_posts_load_content' ) ) {
 						// Get categories and their links.
 						$categories                  = get_the_category( $post_data->ID );
 						$post_categories             = array();
-						$postid                      = $post_data->ID;
+						$post_id                     = $post_data->ID;
 						$post_data                   = (array) $post_data; // Convert WP_Post object to an array.
 						$post_data['post_image_url'] = $post_image_url;
 
@@ -1005,8 +1088,11 @@ if ( ! function_exists( 'cozy_block_popular_posts_load_content' ) ) {
 						}
 						$post_data['post_categories'] = $post_categories;
 
+						$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post_data['post_author'] ) ?? '';
+						$post_data['post_author_url']     = get_author_posts_url( $post_data['post_author'] ) ?? '';
 						$post_data['post_link']           = $post_link;
-						$post_data['post_date_formatted'] = get_the_date( '', $postid );
+						$post_data['post_date_formatted'] = get_the_date( '', $post_id );
+						$post_data['comment_link']        = get_comments_link( $post_id );
 						$additional_post_data[]           = $post_data;
 					}
 
@@ -1030,8 +1116,10 @@ if ( ! function_exists( 'cozy_block_popular_posts_load_content' ) ) {
 					$figure_classes[] = 'cozy-block-popular-posts__image';
 					$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 					$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
-					$output          .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">';
-					$output          .= '<img alt="' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '" src="' . $post_data['post_image_url'] . '" />';
+					$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+					$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
+					$output          .= '<img alt="' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '" src="' . esc_url( $post_data['post_image_url'] ) . '" />';
 					$output          .= '</a>';
 					$output          .= '</figure>';
 				}
@@ -1043,28 +1131,86 @@ if ( ! function_exists( 'cozy_block_popular_posts_load_content' ) ) {
 					$category_classes[] = 'cozy-block-popular-posts__post-categories';
 					$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 					$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
+					$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					foreach ( $post_data['post_categories'] as $cat_data ) {
-						$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">';
-						$output .= esc_html_x( $cat_data['name'], 'cozy-addons' );
-						$output .= '</a>';
+						$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+						$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output      .= esc_html_x( $cat_data['name'], 'cozy-addons' );
+						$output      .= '</a>';
 					}
 					$output .= '</div>';
 				}
 
 				// Post Title.
-				$output .= '<h4 class="cozy-block-popular-posts__post-title"><a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
+				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['titleLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+				$output       .= '<h4 class="cozy-block-popular-posts__post-title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
+
+				if ( ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) || ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) ) || filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
+					$output .= '<div class="post__meta">';
+
+					$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
+					$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaNewTab'] ? '_blank' : '';
+					if ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+						$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
+													width="' . $attributes['dateStyles']['fontSize'] . '"
+													height="' . $attributes['dateStyles']['fontSize'] . '"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-hidden="true"
+													viewBox="0 0 12 15"
+												>
+													<path d="M11.2972 14.6667H0.630493V13.3333C0.630493 12.4493 0.981683 11.6014 1.6068 10.9763C2.23193 10.3512 3.07977 10 3.96383 10H7.96383C8.84788 10 9.69573 10.3512 10.3208 10.9763C10.946 11.6014 11.2972 12.4493 11.2972 13.3333V14.6667ZM5.96383 8.66667C5.43854 8.66667 4.9184 8.5632 4.43309 8.36218C3.94779 8.16117 3.50683 7.86653 3.1354 7.49509C2.76396 7.12366 2.46933 6.6827 2.26831 6.1974C2.06729 5.7121 1.96383 5.19195 1.96383 4.66667C1.96383 4.14138 2.06729 3.62124 2.26831 3.13593C2.46933 2.65063 2.76396 2.20967 3.1354 1.83824C3.50683 1.4668 3.94779 1.17217 4.43309 0.971148C4.9184 0.770129 5.43854 0.666666 5.96383 0.666666C7.02469 0.666666 8.04211 1.08809 8.79225 1.83824C9.5424 2.58838 9.96383 3.6058 9.96383 4.66667C9.96383 5.72753 9.5424 6.74495 8.79225 7.49509C8.04211 8.24524 7.02469 8.66667 5.96383 8.66667Z" />
+												</svg>';
+
+						$output .= '<p>' . esc_html_x( $post_data['post_author_name'], 'cozy-addons' ) . '</p>';
+						$output .= '</a>';
+					}
+
+					if ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+						$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
+												width="' . $attributes['dateStyles']['fontSize'] . '"
+												height="' . $attributes['dateStyles']['fontSize'] . '"
+												xmlns="http://www.w3.org/2000/svg"
+												aria-hidden="true"
+												viewBox="0 0 25 20"
+											>
+												<path d="M18.0556 6.94444C18.0556 3.10764 14.0148 0 9.02778 0C4.0408 0 0 3.10764 0 6.94444C0 8.43316 0.611979 9.80469 1.64931 10.9375C1.06771 12.2483 0.108507 13.2899 0.0954861 13.3029C0 13.4028 -0.0260417 13.5503 0.0303819 13.6806C0.0868056 13.8108 0.208333 13.8889 0.347222 13.8889C1.93576 13.8889 3.25087 13.355 4.19705 12.8038C5.59462 13.4852 7.24826 13.8889 9.02778 13.8889C14.0148 13.8889 18.0556 10.7812 18.0556 6.94444ZM23.3507 16.4931C24.388 15.3646 25 13.9887 25 12.5C25 9.59635 22.678 7.10937 19.388 6.07205C19.4271 6.35851 19.4444 6.6493 19.4444 6.94444C19.4444 11.5408 14.77 15.2778 9.02778 15.2778C8.55903 15.2778 8.1033 15.2431 7.65191 15.1953C9.0191 17.691 12.2309 19.4444 15.9722 19.4444C17.7517 19.4444 19.4054 19.0451 20.8029 18.3594C21.7491 18.9106 23.0642 19.4444 24.6528 19.4444C24.7917 19.4444 24.9175 19.362 24.9696 19.2361C25.026 19.1102 25 18.9627 24.9045 18.8585C24.8915 18.8455 23.9323 17.8082 23.3507 16.4931Z" />
+											</svg>';
+
+						$output .= '<p>' . esc_html_x( $post_data['comment_count'], 'cozy-addons' ) . '</p>';
+						$output .= '</a>';
+					}
+
+					// Post Date.
+					if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$meta_link   = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+							$output .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+							$output .= '<svg
+													width="' . $attributes['dateStyles']['fontSize'] . '"
+													height="' . $attributes['dateStyles']['fontSize'] . '"
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 16 18"
+													aria-hidden="true"
+												>
+													<path d="M7.66699 10.6666C7.43088 10.6666 7.23296 10.5868 7.07324 10.427C6.91352 10.2673 6.83366 10.0694 6.83366 9.83329C6.83366 9.59718 6.91352 9.39927 7.07324 9.23954C7.23296 9.07982 7.43088 8.99996 7.66699 8.99996C7.9031 8.99996 8.10102 9.07982 8.26074 9.23954C8.42046 9.39927 8.50033 9.59718 8.50033 9.83329C8.50033 10.0694 8.42046 10.2673 8.26074 10.427C8.10102 10.5868 7.9031 10.6666 7.66699 10.6666ZM4.33366 10.6666C4.09755 10.6666 3.89963 10.5868 3.73991 10.427C3.58019 10.2673 3.50033 10.0694 3.50033 9.83329C3.50033 9.59718 3.58019 9.39927 3.73991 9.23954C3.89963 9.07982 4.09755 8.99996 4.33366 8.99996C4.56977 8.99996 4.76769 9.07982 4.92741 9.23954C5.08713 9.39927 5.16699 9.59718 5.16699 9.83329C5.16699 10.0694 5.08713 10.2673 4.92741 10.427C4.76769 10.5868 4.56977 10.6666 4.33366 10.6666ZM11.0003 10.6666C10.7642 10.6666 10.5663 10.5868 10.4066 10.427C10.2469 10.2673 10.167 10.0694 10.167 9.83329C10.167 9.59718 10.2469 9.39927 10.4066 9.23954C10.5663 9.07982 10.7642 8.99996 11.0003 8.99996C11.2364 8.99996 11.4344 9.07982 11.5941 9.23954C11.7538 9.39927 11.8337 9.59718 11.8337 9.83329C11.8337 10.0694 11.7538 10.2673 11.5941 10.427C11.4344 10.5868 11.2364 10.6666 11.0003 10.6666ZM7.66699 14C7.43088 14 7.23296 13.9201 7.07324 13.7604C6.91352 13.6007 6.83366 13.4027 6.83366 13.1666C6.83366 12.9305 6.91352 12.7326 7.07324 12.5729C7.23296 12.4132 7.43088 12.3333 7.66699 12.3333C7.9031 12.3333 8.10102 12.4132 8.26074 12.5729C8.42046 12.7326 8.50033 12.9305 8.50033 13.1666C8.50033 13.4027 8.42046 13.6007 8.26074 13.7604C8.10102 13.9201 7.9031 14 7.66699 14ZM4.33366 14C4.09755 14 3.89963 13.9201 3.73991 13.7604C3.58019 13.6007 3.50033 13.4027 3.50033 13.1666C3.50033 12.9305 3.58019 12.7326 3.73991 12.5729C3.89963 12.4132 4.09755 12.3333 4.33366 12.3333C4.56977 12.3333 4.76769 12.4132 4.92741 12.5729C5.08713 12.7326 5.16699 12.9305 5.16699 13.1666C5.16699 13.4027 5.08713 13.6007 4.92741 13.7604C4.76769 13.9201 4.56977 14 4.33366 14ZM11.0003 14C10.7642 14 10.5663 13.9201 10.4066 13.7604C10.2469 13.6007 10.167 13.4027 10.167 13.1666C10.167 12.9305 10.2469 12.7326 10.4066 12.5729C10.5663 12.4132 10.7642 12.3333 11.0003 12.3333C11.2364 12.3333 11.4344 12.4132 11.5941 12.5729C11.7538 12.7326 11.8337 12.9305 11.8337 13.1666C11.8337 13.4027 11.7538 13.6007 11.5941 13.7604C11.4344 13.9201 11.2364 14 11.0003 14ZM1.83366 17.3333C1.37533 17.3333 0.982964 17.1701 0.656576 16.8437C0.330187 16.5173 0.166992 16.125 0.166992 15.6666V3.99996C0.166992 3.54163 0.330187 3.14926 0.656576 2.82288C0.982964 2.49649 1.37533 2.33329 1.83366 2.33329H2.66699V0.666626H4.33366V2.33329H11.0003V0.666626H12.667V2.33329H13.5003C13.9587 2.33329 14.351 2.49649 14.6774 2.82288C15.0038 3.14926 15.167 3.54163 15.167 3.99996V15.6666C15.167 16.125 15.0038 16.5173 14.6774 16.8437C14.351 17.1701 13.9587 17.3333 13.5003 17.3333H1.83366ZM1.83366 15.6666H13.5003V7.33329H1.83366V15.6666Z" />
+												</svg>';
+
+							$output .= '<p>' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</p>';
+							$output .= '</a>';
+					}
+
+					$output .= '</div>';
+
+				}
 
 				// Post Excerpt
 				if ( filter_var( $attributes['enableOptions']['content'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$output .= '<p class="cozy-block-popular-posts__content">';
 					$output .= cozy_block_popular_posts_create_post_excerpt( $post_data['post_content'], $attributes['enableOptions']['excerpt'] );
-					$output .= '</p>';
-				}
-
-				// Post Date.
-				if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$output .= '<p class="cozy-block-popular-posts__date">';
-					$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</a>';
 					$output .= '</p>';
 				}
 				$output .= '</div>';
@@ -1180,7 +1326,7 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 						// Get categories and their links.
 						$categories                  = get_the_category( $post_data->ID );
 						$post_categories             = array();
-						$postid                      = $post_data->ID;
+						$post_id                     = $post_data->ID;
 						$post_data                   = (array) $post_data; // Convert WP_Post object to an array.
 						$post_data['post_image_url'] = $post_image_url;
 
@@ -1197,8 +1343,11 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 						}
 						$post_data['post_categories'] = $post_categories;
 
+						$post_data['post_author_name']    = get_the_author_meta( 'display_name', $post_data['post_author'] ) ?? '';
+						$post_data['post_author_url']     = get_author_posts_url( $post_data['post_author'] ) ?? '';
 						$post_data['post_link']           = $post_link;
-						$post_data['post_date_formatted'] = get_the_date( '', $postid );
+						$post_data['post_date_formatted'] = get_the_date( '', $post_id );
+						$post_data['comment_link']        = get_comments_link( $post_id );
 						$additional_post_data[]           = $post_data;
 					}
 
@@ -1222,8 +1371,10 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 					$figure_classes[] = 'cozy-block-trending-posts__image';
 					$figure_classes[] = $attributes['imageStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 					$output          .= '<figure class="' . implode( ' ', $figure_classes ) . '">';
-					$output          .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">';
-					$output          .= '<img alt="' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '" src="' . $post_data['post_image_url'] . '" />';
+					$has_post_link    = isset( $attributes['enableOptions']['imgLinkPost'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+					$open_new_tab     = isset( $attributes['enableOptions']['imgLinkPost'], $attributes['enableOptions']['imgLinkNewTab'] ) && filter_var( $attributes['enableOptions']['imgLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['imgLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+					$output          .= '<a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">';
+					$output          .= '<img alt="' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '" src="' . esc_url( $post_data['post_image_url'] ) . '" />';
 					$output          .= '</a>';
 					$output          .= '</figure>';
 				}
@@ -1235,16 +1386,81 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 					$category_classes[] = 'cozy-block-trending-posts__post-categories';
 					$category_classes[] = $attributes['categoryStyles']['hoverEffect'] ? 'has-hover-effect' : '';
 					$output            .= '<div class="' . implode( ' ', $category_classes ) . '">';
+					$open_new_tab       = isset( $attributes['enableOptions']['linkCat'], $attributes['enableOptions']['catNewTab'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['catNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
 					foreach ( $post_data['post_categories'] as $cat_data ) {
-						$output .= '<a href="' . esc_url( $cat_data['link'] ) . '" rel="noopener" target="_blank">';
-						$output .= esc_html_x( $cat_data['name'], 'cozy-addons' );
-						$output .= '</a>';
+						$has_cat_link = isset( $attributes['enableOptions']['linkCat'] ) && filter_var( $attributes['enableOptions']['linkCat'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $cat_data['link'] ) . '"' : '';
+						$output      .= '<a ' . $has_cat_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output      .= esc_html_x( $cat_data['name'], 'cozy-addons' );
+						$output      .= '</a>';
 					}
 					$output .= '</div>';
 				}
 
 				// Post Title.
-				$output .= '<h4 class="cozy-block-trending-posts__post-title"><a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
+				$has_post_link = isset( $attributes['enableOptions']['titleLinkPost'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+				$open_new_tab  = isset( $attributes['enableOptions']['titleLinkPost'], $attributes['enableOptions']['titleLinkNewTab'] ) && filter_var( $attributes['enableOptions']['titleLinkPost'], FILTER_VALIDATE_BOOLEAN ) && filter_var( $attributes['enableOptions']['titleLinkNewTab'], FILTER_VALIDATE_BOOLEAN ) ? '_blank' : '';
+				$output       .= '<h4 class="cozy-block-trending-posts__post-title"><a ' . $has_post_link . ' target="' . $open_new_tab . '" rel="noopener">' . esc_html_x( $post_data['post_title'], 'cozy-addons' ) . '</a></h4>';
+
+				if ( ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) || ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) ) || filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
+					$output .= '<div class="post__meta">';
+
+					$has_meta_link = isset( $attributes['enableOptions']['linkPostMeta'] ) && $attributes['enableOptions']['linkPostMeta'] ? true : false;
+					$open_new_tab  = isset( $attributes['enableOptions']['linkPostMeta'], $attributes['enableOptions']['postMetaNewTab'] ) && $attributes['enableOptions']['linkPostMeta'] && $attributes['enableOptions']['postMetaNewTab'] ? '_blank' : '';
+					if ( isset( $attributes['enableOptions']['author'] ) && filter_var( $attributes['enableOptions']['author'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['post_author_url'] ) . '"' : '';
+						$output   .= '<a class="post__author display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
+													width="' . $attributes['dateStyles']['fontSize'] . '"
+													height="' . $attributes['dateStyles']['fontSize'] . '"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-hidden="true"
+													viewBox="0 0 12 15"
+												>
+													<path d="M11.2972 14.6667H0.630493V13.3333C0.630493 12.4493 0.981683 11.6014 1.6068 10.9763C2.23193 10.3512 3.07977 10 3.96383 10H7.96383C8.84788 10 9.69573 10.3512 10.3208 10.9763C10.946 11.6014 11.2972 12.4493 11.2972 13.3333V14.6667ZM5.96383 8.66667C5.43854 8.66667 4.9184 8.5632 4.43309 8.36218C3.94779 8.16117 3.50683 7.86653 3.1354 7.49509C2.76396 7.12366 2.46933 6.6827 2.26831 6.1974C2.06729 5.7121 1.96383 5.19195 1.96383 4.66667C1.96383 4.14138 2.06729 3.62124 2.26831 3.13593C2.46933 2.65063 2.76396 2.20967 3.1354 1.83824C3.50683 1.4668 3.94779 1.17217 4.43309 0.971148C4.9184 0.770129 5.43854 0.666666 5.96383 0.666666C7.02469 0.666666 8.04211 1.08809 8.79225 1.83824C9.5424 2.58838 9.96383 3.6058 9.96383 4.66667C9.96383 5.72753 9.5424 6.74495 8.79225 7.49509C8.04211 8.24524 7.02469 8.66667 5.96383 8.66667Z" />
+												</svg>';
+
+						$output .= '<p>' . esc_html_x( $post_data['post_author_name'], 'cozy-addons' ) . '</p>';
+						$output .= '</a>';
+					}
+
+					if ( isset( $attributes['enableOptions']['comments'] ) && filter_var( $attributes['enableOptions']['comments'], FILTER_VALIDATE_BOOLEAN ) && intval( $post_data['comment_count'] ) > 0 ) {
+						$meta_link = $has_meta_link ? 'href="' . esc_url( $post_data['comment_link'] ) . '"' : '';
+						$output   .= '<a class="post__comments display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+						$output   .= '<svg
+												width="' . $attributes['dateStyles']['fontSize'] . '"
+												height="' . $attributes['dateStyles']['fontSize'] . '"
+												xmlns="http://www.w3.org/2000/svg"
+												aria-hidden="true"
+												viewBox="0 0 25 20"
+											>
+												<path d="M18.0556 6.94444C18.0556 3.10764 14.0148 0 9.02778 0C4.0408 0 0 3.10764 0 6.94444C0 8.43316 0.611979 9.80469 1.64931 10.9375C1.06771 12.2483 0.108507 13.2899 0.0954861 13.3029C0 13.4028 -0.0260417 13.5503 0.0303819 13.6806C0.0868056 13.8108 0.208333 13.8889 0.347222 13.8889C1.93576 13.8889 3.25087 13.355 4.19705 12.8038C5.59462 13.4852 7.24826 13.8889 9.02778 13.8889C14.0148 13.8889 18.0556 10.7812 18.0556 6.94444ZM23.3507 16.4931C24.388 15.3646 25 13.9887 25 12.5C25 9.59635 22.678 7.10937 19.388 6.07205C19.4271 6.35851 19.4444 6.6493 19.4444 6.94444C19.4444 11.5408 14.77 15.2778 9.02778 15.2778C8.55903 15.2778 8.1033 15.2431 7.65191 15.1953C9.0191 17.691 12.2309 19.4444 15.9722 19.4444C17.7517 19.4444 19.4054 19.0451 20.8029 18.3594C21.7491 18.9106 23.0642 19.4444 24.6528 19.4444C24.7917 19.4444 24.9175 19.362 24.9696 19.2361C25.026 19.1102 25 18.9627 24.9045 18.8585C24.8915 18.8455 23.9323 17.8082 23.3507 16.4931Z" />
+											</svg>';
+
+						$output .= '<p>' . esc_html_x( $post_data['comment_count'], 'cozy-addons' ) . '</p>';
+						$output .= '</a>';
+					}
+
+					// Post Date.
+					if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
+						$meta_link   = $has_meta_link ? 'href="' . esc_url( $post_data['post_link'] ) . '"' : '';
+							$output .= '<a class="post__date display-flex" ' . $meta_link . ' target="' . $open_new_tab . '" rel="noopener">';
+							$output .= '<svg
+													width="' . $attributes['dateStyles']['fontSize'] . '"
+													height="' . $attributes['dateStyles']['fontSize'] . '"
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 16 18"
+													aria-hidden="true"
+												>
+													<path d="M7.66699 10.6666C7.43088 10.6666 7.23296 10.5868 7.07324 10.427C6.91352 10.2673 6.83366 10.0694 6.83366 9.83329C6.83366 9.59718 6.91352 9.39927 7.07324 9.23954C7.23296 9.07982 7.43088 8.99996 7.66699 8.99996C7.9031 8.99996 8.10102 9.07982 8.26074 9.23954C8.42046 9.39927 8.50033 9.59718 8.50033 9.83329C8.50033 10.0694 8.42046 10.2673 8.26074 10.427C8.10102 10.5868 7.9031 10.6666 7.66699 10.6666ZM4.33366 10.6666C4.09755 10.6666 3.89963 10.5868 3.73991 10.427C3.58019 10.2673 3.50033 10.0694 3.50033 9.83329C3.50033 9.59718 3.58019 9.39927 3.73991 9.23954C3.89963 9.07982 4.09755 8.99996 4.33366 8.99996C4.56977 8.99996 4.76769 9.07982 4.92741 9.23954C5.08713 9.39927 5.16699 9.59718 5.16699 9.83329C5.16699 10.0694 5.08713 10.2673 4.92741 10.427C4.76769 10.5868 4.56977 10.6666 4.33366 10.6666ZM11.0003 10.6666C10.7642 10.6666 10.5663 10.5868 10.4066 10.427C10.2469 10.2673 10.167 10.0694 10.167 9.83329C10.167 9.59718 10.2469 9.39927 10.4066 9.23954C10.5663 9.07982 10.7642 8.99996 11.0003 8.99996C11.2364 8.99996 11.4344 9.07982 11.5941 9.23954C11.7538 9.39927 11.8337 9.59718 11.8337 9.83329C11.8337 10.0694 11.7538 10.2673 11.5941 10.427C11.4344 10.5868 11.2364 10.6666 11.0003 10.6666ZM7.66699 14C7.43088 14 7.23296 13.9201 7.07324 13.7604C6.91352 13.6007 6.83366 13.4027 6.83366 13.1666C6.83366 12.9305 6.91352 12.7326 7.07324 12.5729C7.23296 12.4132 7.43088 12.3333 7.66699 12.3333C7.9031 12.3333 8.10102 12.4132 8.26074 12.5729C8.42046 12.7326 8.50033 12.9305 8.50033 13.1666C8.50033 13.4027 8.42046 13.6007 8.26074 13.7604C8.10102 13.9201 7.9031 14 7.66699 14ZM4.33366 14C4.09755 14 3.89963 13.9201 3.73991 13.7604C3.58019 13.6007 3.50033 13.4027 3.50033 13.1666C3.50033 12.9305 3.58019 12.7326 3.73991 12.5729C3.89963 12.4132 4.09755 12.3333 4.33366 12.3333C4.56977 12.3333 4.76769 12.4132 4.92741 12.5729C5.08713 12.7326 5.16699 12.9305 5.16699 13.1666C5.16699 13.4027 5.08713 13.6007 4.92741 13.7604C4.76769 13.9201 4.56977 14 4.33366 14ZM11.0003 14C10.7642 14 10.5663 13.9201 10.4066 13.7604C10.2469 13.6007 10.167 13.4027 10.167 13.1666C10.167 12.9305 10.2469 12.7326 10.4066 12.5729C10.5663 12.4132 10.7642 12.3333 11.0003 12.3333C11.2364 12.3333 11.4344 12.4132 11.5941 12.5729C11.7538 12.7326 11.8337 12.9305 11.8337 13.1666C11.8337 13.4027 11.7538 13.6007 11.5941 13.7604C11.4344 13.9201 11.2364 14 11.0003 14ZM1.83366 17.3333C1.37533 17.3333 0.982964 17.1701 0.656576 16.8437C0.330187 16.5173 0.166992 16.125 0.166992 15.6666V3.99996C0.166992 3.54163 0.330187 3.14926 0.656576 2.82288C0.982964 2.49649 1.37533 2.33329 1.83366 2.33329H2.66699V0.666626H4.33366V2.33329H11.0003V0.666626H12.667V2.33329H13.5003C13.9587 2.33329 14.351 2.49649 14.6774 2.82288C15.0038 3.14926 15.167 3.54163 15.167 3.99996V15.6666C15.167 16.125 15.0038 16.5173 14.6774 16.8437C14.351 17.1701 13.9587 17.3333 13.5003 17.3333H1.83366ZM1.83366 15.6666H13.5003V7.33329H1.83366V15.6666Z" />
+												</svg>';
+
+							$output .= '<p>' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</p>';
+							$output .= '</a>';
+					}
+
+					$output .= '</div>';
+
+				}
 
 				// Post Excerpt
 				if ( filter_var( $attributes['enableOptions']['content'], FILTER_VALIDATE_BOOLEAN ) ) {
@@ -1253,12 +1469,6 @@ if ( ! function_exists( 'cozy_block_trending_posts_load_content' ) ) {
 					$output .= '</p>';
 				}
 
-				// Post Date.
-				if ( filter_var( $attributes['enableOptions']['date'], FILTER_VALIDATE_BOOLEAN ) ) {
-					$output .= '<p class="cozy-block-trending-posts__date">';
-					$output .= '<a href="' . esc_url( $post_data['post_link'] ) . '" rel="noopener" target="_blank">' . esc_html_x( $post_data['post_date_formatted'], 'cozy-addons' ) . '</a>';
-					$output .= '</p>';
-				}
 				$output .= '</div>';
 
 				$output .= '</li>';
@@ -1487,6 +1697,7 @@ if ( ! function_exists( 'get_cozy_block_wishlist_render_data_sidebar' ) ) {
 					$product_price       = wc_price( $product->get_price() );
 					$product_description = $product->get_description();
 					$product_image       = wp_get_attachment_url( $product->get_image_id() );
+					$is_in_stock         = $product->get_stock_status();
 
 					$output .= '<li class="cozy-block-wishlist__product-data post-' . $product_id . '">';
 					/* Product Image */
@@ -1501,13 +1712,17 @@ if ( ! function_exists( 'get_cozy_block_wishlist_render_data_sidebar' ) ) {
 
 					/* Product Details */
 					$output .= '<div style="width:100%;">';
-					$output .= '<p class="cozy-block-wishlist__product-title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . $product_name . '</a></p>';
+					$output .= '<p class="cozy-block-wishlist__product-title"><a href="' . esc_url( $product_link ) . '" rel="noopener" target="_blank">' . esc_html( $product_name ) . '</a></p>';
 					$output .= '<p class="cozy-block-wishlist__product-summary">' . cozy_create_excerpt( $product_description, 15 ) . '</p>';
 					$output .= '<p class="cozy-block-wishlist__product-price">' . $product_price . '</p>';
 
 					/* Add/Remove Buttons */
 					$output .= '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">';
-					$output .= '<div class="cozy-block-wishlist__sidebar-button add__cart" data-product-id="' . $product_id . '">' . esc_html_x( 'Add to Cart', 'cozy-addons' ) . '</div>';
+					$stock_label = 'instock' === $is_in_stock ? 'Add to Cart' : 'Out of Stock';
+					$classes     = array();
+					$classes[]   = 'cozy-block-wishlist__sidebar-button';
+					$classes[]   = 'instock' === $is_in_stock ? 'add__cart' : 'out-of-stock';
+					$output     .= '<div class="' . implode( ' ', $classes ) . '" data-product-id="' . $product_id . '">' . $stock_label . '</div>';
 					$output .= '<div class="cozy-block-wishlist__sidebar-button remove__wishlist" data-product-id="' . $product_id . '">' . esc_html_x( 'Remove', 'cozy-addons' ) . '</div>';
 					$output .= '</div>';
 					/* End Add/Remove Buttons */
@@ -1690,11 +1905,16 @@ if ( ! function_exists( 'render_cozy_block_quick_view_lightbox_body' ) ) {
 			</svg></span>';
 			$output .= '</div>';
 
-			$output .= '<div class="quick-view__cart-tooltip visibility-hidden">Cart Updated!</div>';
+			$output .= '<div class="quick-view__cart-tooltip visibility-hidden"></div>';
 
 			$output       .= '<div class="quick-view__cart-buttons">';
 			$cart_label    = $attributes['cartButton']['label'] ? $attributes['cartButton']['label'] : 'Add to cart';
-			$output       .= '<div class="quick-view__cart-button post__cart-button">' . esc_html_x( $cart_label, 'cozy-addons' ) . '</div>';
+			$output       .= '<div class="quick-view__cart-button post__cart-button">';
+			$output       .= '<svg class="loader-icon display-none" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M7.99998 2.66666C9.72665 2.66666 11.2626 3.48666 12.238 4.762L10.6666 6.33333H14.6666V2.33333L13.1873 3.81266C12.5631 3.03781 11.773 2.41284 10.8753 1.98376C9.97754 1.55467 8.99499 1.33241 7.99998 1.33333C4.31798 1.33333 1.33331 4.318 1.33331 8H2.66665C2.66665 6.58551 3.22855 5.22896 4.22874 4.22876C5.22894 3.22857 6.58549 2.66666 7.99998 2.66666ZM13.3333 8C13.3333 9.11533 12.9837 10.2026 12.3336 11.1089C11.6835 12.0151 10.7656 12.6948 9.7091 13.0522C8.65259 13.4096 7.51062 13.4268 6.44382 13.1014C5.37703 12.776 4.4391 12.1243 3.76198 11.238L5.33331 9.66666H1.33331V13.6667L2.81265 12.1873C3.43687 12.9622 4.22694 13.5872 5.12468 14.0162C6.02242 14.4453 7.00497 14.6676 7.99998 14.6667C11.682 14.6667 14.6666 11.682 14.6666 8H13.3333Z" />
+				</svg>';
+			$output       .= '<span class="cart-button__label">' . esc_html_x( $cart_label, 'cozy-addons' ) . '</span>';
+			$output       .= '</div>';
 			$cart_page_url = wc_get_cart_url();
 			$output       .= '<a class="quick-view__cart-view" href="' . esc_url( $cart_page_url ) . '" rel="noopener" target="_blank">' . esc_html_x( 'View my cart', 'cozy-addons' ) . '</a>';
 			$output       .= '</div>';
@@ -1776,4 +1996,25 @@ if ( ! function_exists( 'cozy_remove_special_chars' ) ) {
 
 		return str_replace( $special_chars, '', $str );
 	}
+}
+
+/**
+ * Filters HTML content to allow only a specific set of HTML tags and attributes.
+ *
+ * This function helps prevent XSS (Cross-Site Scripting) attacks by sanitizing
+ * user-provided content and ensuring only safe HTML elements and attributes
+ * are allowed. It uses the wp_kses() function internally to enforce the whitelist.
+ *
+ * @param string $content The HTML content to be sanitized.
+ *
+ * @return string The sanitized content with only the allowed HTML tags and attributes.
+ */
+function cozy_filter_html_tags( $tag ) {
+	$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p' );
+
+	// Convert the user input to lowercase to ensure case-insensitive comparison.
+	$tag = strtolower( trim( $tag ) );
+
+	// Check if the tag is in the whitelist; return it if valid, otherwise return 'p'.
+	return in_array( $tag, $allowed_tags, true ) ? $tag : 'p';
 }

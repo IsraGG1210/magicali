@@ -1,5 +1,5 @@
 <?php
-$client_id     = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
+$client_id = ! empty( $attributes['blockClientId'] ) ? str_replace( array( ';', '=', '(', ')', ' ' ), '', wp_strip_all_tags( $attributes['blockClientId'] ) ) : '';
 $block_id  = 'cozyBlock_' . str_replace( '-', '_', $client_id );
 
 $color                   = isset( $attributes['typography']['color'] ) ? $attributes['typography']['color'] : '';
@@ -25,6 +25,13 @@ $icon_color = array(
 	'hover_border'   => isset( $attributes['iconBoxStyles']['borderColorHover'] ) ? $attributes['iconBoxStyles']['borderColorHover'] : '',
 );
 
+$typography_styles = array(
+	'letter_case'    => isset( $attributes['typography']['letterCase'] ) ? $attributes['typography']['letterCase'] : '',
+	'decoration'     => isset( $attributes['typography']['decoration'] ) ? $attributes['typography']['decoration'] : '',
+	'line_height'    => isset( $attributes['typography']['lineHeight'] ) ? $attributes['typography']['lineHeight'] : '',
+	'letter_spacing' => isset( $attributes['typography']['letterSpacing'] ) ? $attributes['typography']['letterSpacing'] : '',
+);
+
 $block_styles = <<<BLOCK_STYLES
 #$block_id .cozy-block-list-item {
     width: {$attributes['containerStyles']['width']}px;
@@ -34,6 +41,10 @@ $block_styles = <<<BLOCK_STYLES
     font-weight: {$attributes['typography']['fontWeight']};
     font-size: {$attributes['typography']['fontSize']}px;
     font-family: {$attributes['typography']['fontFamily']};
+    text-transform: {$typography_styles['letter_case']};
+    text-decoration: {$typography_styles['decoration']};
+	line-height: {$typography_styles['line_height']};
+	letter-spacing: {$typography_styles['letter_spacing']};
     color: {$color};
     text-align: {$attributes['textAlign']};
     padding: {$item_padding_top}px {$item_padding_right}px {$item_padding_bottom}px {$item_padding_left}px;

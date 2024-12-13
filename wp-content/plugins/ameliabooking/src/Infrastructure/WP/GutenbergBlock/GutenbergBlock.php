@@ -19,7 +19,6 @@ use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\CategoryRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\ServiceRepository;
-use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventRepository;
 use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventTagsRepository;
 use AmeliaBooking\Infrastructure\Repository\User\ProviderRepository;
 use Exception;
@@ -219,35 +218,19 @@ class GutenbergBlock
 
             $finalData = self::getOnlyCatSerLocEmp($resultData);
 
-            /** @var EventRepository $eventRepository */
-            $eventRepository = self::$container->get('domain.booking.event.repository');
-
             /** @var EventApplicationService $eventAS */
             $eventAS = self::$container->get('application.booking.event.service');
 
-            $filteredEventIds = $eventRepository->getFilteredIds(
-                ['dates' => [DateTimeService::getNowDateTime()]],
+            /** @var Collection $events */
+            $events = $eventAS->getEventsByCriteria(
+                [
+                    'dates' => [DateTimeService::getNowDateTime()],
+                ],
+                [
+                    'fetchEventsPeriods' => true,
+                ],
                 100
             );
-
-            $eventsIds = array_column($filteredEventIds, 'id');
-
-            /** @var Collection $events */
-            $events = $eventsIds ? $eventAS->getEventsByIds(
-                $eventsIds,
-                [
-                    'fetchEventsPeriods'    => true,
-                    'fetchEventsTickets'    => false,
-                    'fetchEventsTags'       => false,
-                    'fetchEventsProviders'  => false,
-                    'fetchEventsImages'     => false,
-                    'fetchBookingsTickets'  => false,
-                    'fetchBookingsCoupons'  => false,
-                    'fetchApprovedBookings' => false,
-                    'fetchBookingsPayments' => false,
-                    'fetchBookingsUsers'    => false,
-                ]
-            ) : new Collection();
 
             $finalData['events'] = $events->toArray();
 

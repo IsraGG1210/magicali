@@ -130,7 +130,7 @@ class AppointmentApplicationService
                 }
 
                 $customerBookingExtra->setPrice(new Price($extra->getPrice()->getValue()));
-                $customerBookingExtra->setAggregatedPrice(new BooleanValueObject($extra->getAggregatedPrice()->getValue()));
+                $customerBookingExtra->setAggregatedPrice(new BooleanValueObject($extra->getAggregatedPrice() ? $extra->getAggregatedPrice()->getValue() : $service->getAggregatedPrice()->getValue()));
             }
 
             $customerBooking->setPrice(
@@ -318,9 +318,11 @@ class AppointmentApplicationService
 
         /** @var CustomerBooking $booking */
         foreach ($appointment->getBookings()->getItems() as $booking) {
-            $personsCount += $bookingAS->isBookingApprovedOrPending($booking->getStatus()->getValue())
-                ? $booking->getPersons()->getValue()
-                : 0;
+            $personsCount +=
+                (!$booking->getId() || !$booking->getId()->getValue()) &&
+                $bookingAS->isBookingApprovedOrPending($booking->getStatus()->getValue())
+                    ? $booking->getPersons()->getValue()
+                    : 0;
         }
 
         /** @var ApplicationTimeSlotService $applicationTimeSlotService */
@@ -414,6 +416,24 @@ class AppointmentApplicationService
             $customerBooking->setToken(new Token());
             $customerBooking->setActionsCompleted(new BooleanValueObject($isBackendBooking));
             $customerBooking->setCreated(new DateTimeValue(DateTimeService::getNowDateTimeObject()));
+
+            if ($customerBooking->getPackageCustomerService() && $customerBooking->getPackageCustomerService()->getId() === null
+                && $customerBooking->getPackageCustomerService()->getPackageCustomer() && $customerBooking->getPackageCustomerService()->getPackageCustomer()->getId()) {
+                /** @var PackageCustomerServiceRepository $packageCustomerServiceRepository */
+                $packageCustomerServiceRepository = $this->container->get('domain.bookable.packageCustomerService.repository');
+
+                $packageCustomerService = $packageCustomerServiceRepository->getByCriteria(
+                    [
+                        'packagesCustomers' => [$customerBooking->getPackageCustomerService()->getPackageCustomer()->getId()->getValue()],
+                        'services'          => [$service->getId()->getValue()]
+                    ]
+                );
+
+                if ($packageCustomerService->length()) {
+                    $customerBooking->getPackageCustomerService()->setId(new Id($packageCustomerService->toArray()[0]['id']));
+                }
+            }
+
             $customerBookingId = $bookingRepository->add($customerBooking);
 
             /** @var CustomerBookingExtra $customerBookingExtra */
@@ -440,7 +460,7 @@ class AppointmentApplicationService
             $customerBooking->setId(new Id($customerBookingId));
 
             if ($paymentData) {
-                $paymentAmount = $reservationService->getPaymentAmount($customerBooking, $service);
+                $paymentAmount = $reservationService->getPaymentAmount($customerBooking, $service)['price'];
 
                 if ($customerBooking->getDeposit() &&
                     $customerBooking->getDeposit()->getValue() &&
@@ -552,7 +572,7 @@ class AppointmentApplicationService
                 $newBooking->setId(new Id($newBookingId));
 
                 if ($paymentData) {
-                    $paymentAmount = $reservationService->getPaymentAmount($newBooking, $service);
+                    $paymentAmount = $reservationService->getPaymentAmount($newBooking, $service)['price'];
 
                     if ($newBooking->getDeposit() &&
                         $newBooking->getDeposit()->getValue() &&
@@ -977,7 +997,7 @@ class AppointmentApplicationService
 
             $paymentRepository->updateFieldById(
                 $payment->getId()->getValue(),
-                $reservationService->getPaymentAmount($booking, $service) > $payment->getAmount()->getValue() ?
+                $reservationService->getPaymentAmount($booking, $service)['price'] > $payment->getAmount()->getValue() ?
                     PaymentStatus::PARTIALLY_PAID : PaymentStatus::PAID,
                 'status'
             );

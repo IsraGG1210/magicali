@@ -48,7 +48,7 @@ class Logger {
 			return;
 		}
 		$logger  = wc_get_logger();
-		$handler = [ 'source' => $this->log_file_name ];
+		$handler = array( 'source' => $this->log_file_name );
 		$info    = "{$method}: {$message}";
 		$logger->log( $level, $info, $handler );
 	}
@@ -89,9 +89,9 @@ class Logger {
 
 		// Scenarios where we never want to output, regardless of the filter above.
 		$should_not_output = is_admin()
-						 || $this->doing_ajax()
-						 || ( defined( 'WP_CLI' ) && WP_CLI )
-						 || ( defined( 'REST_REQUEST' ) && REST_REQUEST );
+						|| $this->doing_ajax()
+						|| ( defined( 'WP_CLI' ) && WP_CLI )
+						|| ( defined( 'REST_REQUEST' ) && REST_REQUEST );
 
 		if ( $should_not_output ) {
 			return;

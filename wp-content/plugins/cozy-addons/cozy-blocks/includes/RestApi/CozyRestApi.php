@@ -55,7 +55,7 @@ class CozyRestApi {
 	public function get_cozy_V1_controllers() {
 		return array(
 			'block'       => __NAMESPACE__ . '\\Controllers\\V1\\BlockController',
-			'pattern'     => __NAMESPACE__ . '\\Controllers\\V1\\PatternController',
+			// 'pattern'     => __NAMESPACE__ . '\\Controllers\\V1\\PatternController',
 			'woocommerce' => __NAMESPACE__ . '\\Controllers\\V1\\WooController',
 		);
 	}

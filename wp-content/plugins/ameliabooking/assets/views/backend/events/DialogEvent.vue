@@ -996,7 +996,7 @@
                       </el-row>
 
                       <!-- Custom Pricing Warning -->
-                      <el-row :style="{borderBottom: customTickets.length ? '1px solid #E2E6EC' : '', marginBottom: '12px', wordBreak: 'break-word'}">
+                      <el-row v-if="!maxCustomCapacity" :style="{borderBottom: customTickets.length ? '1px solid #E2E6EC' : '', marginBottom: '12px', wordBreak: 'break-word'}">
                         <div class="am-setting">
                           <el-alert
                               type="warning"
@@ -1532,8 +1532,8 @@
               yes: event.status === 'rejected' ? $root.labels.open_following : $root.labels.cancel_following,
               no: $root.labels.save_single
             } : event.status === 'rejected' ? {
-              yes: $root.labels.open_following,
-              no: $root.labels.open_following
+              yes: $root.labels.open,
+              no: $root.labels.open
             } : null,
             remove: originRecurring.until ? {
               yes: $root.labels.delete_following,

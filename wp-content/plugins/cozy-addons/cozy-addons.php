@@ -15,14 +15,14 @@
  * @wordpress-plugin
  * Plugin Name:       Cozy Blocks
  * Plugin URI:        https://cozythemes.com/cozy-addons
- * Description:       Streamline your website designs with our library of advanced blocks, patterns & templates designed to extend the WordPress Site Editor.
- * Version:           2.0.18
+ * Description:       Streamline your website designs with our library of advanced blocks designed to extend the WordPress Site Editor.
+ * Version:           2.0.28
  * Author:            CozyThemes
  * Author URI:        https://cozythemes.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cozy-addons
- * Domain Path:       /languages
+ * Domain Path:       /languages/
  * Requires at least: 5.8
  * Requires PHP: 7.3
  */
@@ -108,7 +108,7 @@ register_deactivation_hook( __FILE__, 'deactivate_cozy_addons' );
  * @since 1.0.0
  */
 
-define( 'COZY_ADDONS_VERSION', '2.0.18' );
+define( 'COZY_ADDONS_VERSION', '2.0.28' );
 
 if ( ! class_exists( 'Cozy_Addons' ) ) :
 	final class Cozy_Addons {
@@ -160,10 +160,10 @@ if ( ! class_exists( 'Cozy_Addons' ) ) :
 		 * @access public
 		 */
 		public function __construct() {
-			// Load translation
+			// Load translation.
 			add_action( 'init', array( $this, 'i18n' ) );
 
-			// Init Plugin
+			// Init Plugin.
 			$this->cozy_addons_load_files();
 			add_action( 'plugins_loaded', array( $this, 'init' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'cozy_addons_dashboard_style' ) );
@@ -210,8 +210,9 @@ if ( ! class_exists( 'Cozy_Addons' ) ) :
 		 * @access public
 		 */
 		public function i18n() {
+			$lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
 
-			load_plugin_textdomain( 'cozy-addons' );
+			load_plugin_textdomain( 'cozy-addons', false, $lang_dir );
 		}
 
 		/**

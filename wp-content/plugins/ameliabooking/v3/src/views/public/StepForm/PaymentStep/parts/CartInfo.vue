@@ -323,7 +323,7 @@ function onCollapseOpen (el) {
 const emits = defineEmits(['setOnSitePayment'])
 
 function couponApplied () {
-  emits('setOnSitePayment', cartAmount.value.totalAmount <= 0)
+  emits('setOnSitePayment', (cartAmount.value.totalAmount - cartAmount.value.discountAmount) <= 0)
   collapseAllCards()
 }
 

@@ -121,6 +121,8 @@ class PackageCustomerServiceFactory
                     'data'              => $row['payment_data'],
                     'wcOrderId'         => !empty($row['payment_wcOrderId']) ? $row['payment_wcOrderId'] : null,
                     'wcOrderItemId'     => !empty($row['payment_wcOrderItemId']) ? $row['payment_wcOrderItemId'] : null,
+                    'created'           => !empty($row['payment_created']) ? $row['payment_created'] : null,
+                    'invoiceNumber'     => !empty($row['payment_invoiceNumber']) ? $row['payment_invoiceNumber'] : null,
                 ];
             }
         }

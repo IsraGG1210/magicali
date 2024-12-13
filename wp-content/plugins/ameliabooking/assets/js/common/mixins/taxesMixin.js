@@ -148,6 +148,10 @@ export default {
           let enabledExtraTax = this.$root.settings.payments.taxes.enabled
 
           if ('tax' in selectedExtra) {
+            if (selectedExtra.tax && !Array.isArray(selectedExtra.tax)) {
+              selectedExtra.tax = JSON.parse(selectedExtra.tax)
+            }
+
             extraTax = selectedExtra.tax && selectedExtra.tax.length ? selectedExtra.tax[0] : null
 
             excludedExtraTax = extraTax ? extraTax.excluded : excludedExtraTax
@@ -236,6 +240,10 @@ export default {
           let enabledExtraTax = this.$root.settings.payments.taxes.enabled
 
           if ('tax' in selectedExtra) {
+            if (selectedExtra.tax && !Array.isArray(selectedExtra.tax)) {
+              selectedExtra.tax = JSON.parse(selectedExtra.tax)
+            }
+
             extraTax = selectedExtra.tax && selectedExtra.tax.length ? selectedExtra.tax[0] : null
 
             excludedExtraTax = extraTax ? extraTax.excluded : excludedExtraTax

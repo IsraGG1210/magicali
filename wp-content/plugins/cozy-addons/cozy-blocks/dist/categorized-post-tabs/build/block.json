@@ -73,18 +73,42 @@
       "type": "string",
       "default": "grid-featured"
     },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
     "enableOptions": {
       "type": "object",
       "default": {
         "heading": true,
         "postImage": true,
+        "imgLinkPost": true,
+        "imgOpenNewTab": false,
+        "titleLinkPost": true,
+        "titleOpenNewTab": false,
         "postContent": true,
-        "postExcerpt": 30,
+        "featuredPostContent": true,
+        "postExcerpt": 20,
+        "featuredPostExcerpt": 20,
         "readMore": true,
+        "featuredReadMore": true,
+        "readMoreNewTab": false,
         "postAuthor": true,
+        "featuredPostAuthor": true,
         "postComments": true,
+        "featuredPostComments": true,
         "postDate": true,
-        "postCategories": true
+        "featuredPostDate": true,
+        "postCategories": true,
+        "featuredPostCategories": true,
+        "linkCat": true,
+        "catOpenNewTab": false,
+        "linkPostMeta": true,
+        "postMetaOpenNewTab": false
       }
     },
     "headingLabel": {
@@ -163,8 +187,12 @@
         "font": {
           "size": "18px",
           "weight": "600",
-          "family": ""
+          "family": "Public Sans"
         },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "bg": "",
           "text": ""
@@ -229,8 +257,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "bg": "",
           "bgHover": "",
@@ -270,7 +302,14 @@
             "top": 0,
             "bottom": "0px"
           },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
           "radius": "0px",
+          "outerHGap": "0px",
+          "outerVGap": "0px",
           "position": "relative",
           "color": {
             "bg": ""
@@ -284,9 +323,12 @@
           "font": {
             "size": "22px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": {
             "text": "#090b10",
             "textHover": "#f90"
@@ -377,9 +419,12 @@
           "font": {
             "size": "18px",
             "weight": "600",
-            "family": ""
+            "family": "Public Sans"
           },
           "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
           "color": {
             "text": "#090b10",
             "textHover": "#f90"
@@ -399,9 +444,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -434,9 +482,12 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -456,9 +507,12 @@
         "font": {
           "size": "12px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
         "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "#5566ca",
           "textHover": "#f90",
@@ -479,10 +533,13 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
-        "letterCase": "none",
         "textAlign": "right",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",
@@ -514,10 +571,13 @@
         "font": {
           "size": "14px",
           "weight": "500",
-          "family": ""
+          "family": "Public Sans"
         },
-        "letterCase": "none",
         "textAlign": "right",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
         "color": {
           "text": "",
           "textHover": "",

@@ -6,12 +6,12 @@
  * Categories: reshape-block-patterns
  */
 $ct_patterns_images = array(
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_1.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_2.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_3.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_4.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_5.png',
-    COZY_ESSENTIAL_ADDONS_URL . 'admin/images/rb-assets/featured_icon_6.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_1.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_2.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_3.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_4.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_5.png',
+    COZY_ESSENTIAL_ADDONS_ASSETS_URL . 'admin/images/rb-assets/featured_icon_6.png',
 );
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"100px","bottom":"100px","right":"var:preset|spacing|50","left":"var:preset|spacing|50"}}},"backgroundColor":"background-alt","layout":{"type":"constrained","contentSize":"1180px"}} -->

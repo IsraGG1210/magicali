@@ -2,10 +2,10 @@
 Contributors: automattic, google, woocommerce
 Tags: woocommerce, google, product feed, ads, listings
 Requires at least: 5.9
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.4
 Requires PHP Architecture: 64 Bits
-Stable tag: 2.8.6
+Stable tag: 2.9.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -140,29 +140,61 @@ To allow your products to appear in all relevant locations, make sure you’ve c
 
 == Changelog ==
 
-= 2.8.6 - 2024-10-02 =
-* Dev - Fix missing blueprint dependency.
-* Tweak - Adjust WP Proxy Response to force the string type for the price fields.
-* Tweak - Logic for Delete notifications.
+= 2.9.2 - 2024-12-11 =
+* Dev - Centralize frontend end images to the dedicated directory.
+* Fix - Ensure coupon brand restrictions are uploaded to Google Merchant Center.
+* Fix - Initial php 8.4 compatibility.
+* Fix - Prevent Warning when Saving a Variation if YOAST is activated.
+* Fix - The country selector in setup/edit free listing flow from being hidden.
 
-= 2.8.5 - 2024-09-05 =
-* Break - Remove WooCommerce Navigation integration.
-* Fix - Issue with syncing shipping rates with more than two decimals.
-* Fix - Log exceptions triggered by assets being enqueued before being registered.
-* Tweak - Use remote-site-status to check the WPCOM Auth status.
-* Tweak - WC 9.3.0 compatibility.
+= 2.9.1 - 2024-12-03 =
+* Fix - Make the tab navigation tabs wrap when the screen narrows.
+* Fix - Prevent translations from being called early.
+* Fix - The initial values of the form on free listings editing page may be empty.
+* Update - New shipping settings.
 
-= 2.8.4 - 2024-08-28 =
-* Dev - Align namespaces for unit tests.
-* Dev - Avoid accidentally using the event object to reset the asset group values in the CampaignAssetsForm component.
-* Dev - Migrate jest tests to use Node.js 20.
-* Dev - Rewrite the replacer of JSON.stringify in getReportKey to ensure it returns the same key regardless of the query keys' order.
-* Dev - Upgrade to use Node.js 20 and bump npm dependencies.
-* Dev - Use a fixed SKU number when testing product adapter.
-* Fix - issue with comma separators for Shipping Rates.
-* Tweak - Connect Test Page errors when WPCOM token is not connected.
-* Tweak - Make the Tooltip use the new placement prop when WordPress >= 6.4.
-* Tweak - Replace deprecated event.keyCode with event.code for the verification code inputs in the contact information setting.
-* Tweak - Update the copy in the "Linked accounts" of the accounts connection setting to include Google Ads account.
+= 2.9.0 - 2024-11-26 =
+* Add - Add GTIN Migration Job.
+* Add - Banner for GTIN MIgration.
+* Add - Confirmation modal when user skips without creating a campaign during onboarding.
+* Add - During onboarding, automatically create Google Merchant Center or Google Ads accounts when the connected Google account doesn't have a respective existing one.
+* Add - GTIN Migration API Controller.
+* Add - Show promotion for Google Ads campaign on the Dashboard page.
+* Add - Show promotion for Google Ads campaign on the Product Feed page.
+* Add - Support YOAST SEO GTIN field in the migration tools.
+* Add - WP CLI Command for GTIN Migration.
+* Dev - Adding tests for GTIN migration tool.
+* Dev - Tweak E2E tests for GTIN migration in versions > 2.8.7.
+* Fix - Add margin for separating notices in the admin.
+* Fix - Hide or disable  GTIN in Product Block editor.
+* Fix - Hide/disable GTIN also when YOAST is active.
+* Fix - Prevent fatal in GTIN MIgration AS Job.
+* Fix rebranding tour on mobile.
+* Tweak -  Prepare GTIN with the correct format before sending it to MC.
+* Tweak - Adjust plugin version to hide GTIN.
+* Tweak - Change to use a banner to present the ad credit offer during onboarding.
+* Tweak - Move FAQs to the bottom of pages.
+* Tweak - Remove the word "Paid" from the plugin.
+* Tweak - Remove unused methods from ProductMetaQueryHelper.
+* Tweak - Set the default value of the tax rate to destination-based during onboarding.
+* Tweak - Show campaign setup fields immediately during onboarding.
+* Tweak - Swap performance cards on the Dashboard page.
+* Update - Adjust the minimum average daily cost of a campaign to 30% of the highest recommended value among audience countries.
+* Update - Automatically preselect a Google Ads account when there is only one, as well as adjust the UI presentation.
+* Update - Change the campaign setup and creation to use the recommended budget as the initial value and adjust its description.
+* Update - Consolidate the campaign setup UI in the onboarding flow with the one in the Ads-onboarding flow.
+* Update - Hide or disable GTIN field in favor of the new native GTIN located in the WooCommerce Product Inventory tab.
+* Update - Hides WordPress.com account connection setting from the onboarding flow if already connected.
+* Update - Hides the tax rate setting during onboarding.
+* Update - Introduce new UI for Google accounts setup during the onboarding.
+* Update - Merge the billing setup into the campaign setup for the Ads-onboarding flow.
+* Update - Merge the store address setting in Step 3 of the onboarding flow into Step 1 and remove Step 3 along with the contact phone verification.
+* Update - Product adapter to map GTIN value from WooCommerce core field if it's available.
+* Update - Remove ads audience field from paid ads setup during onboarding.
+* Update - Remove the Pre-Launch Checklist from the onboarding flow.
+* Update - Remove the contact phone from the Settings page.
+* Update - Remove the language setting from onboarding.
+* Update - Restrict the GTIN field based on the version of WooCommerce installed and the initial version of G4W installed.
+* Update - When the accounts have been connected before, skip accounts setup step during the Ads-onboarding.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/google-listings-and-ads/trunk/changelog.txt).
